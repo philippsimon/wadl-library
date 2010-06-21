@@ -15,6 +15,28 @@
 		</method>
 	</resource>
 </resources>
+		<resource path="search">
+			<param name="q" required="true"  type="xsd:string" style="query" default="apigee"><notes>The search string</notes></param>
+			<param name="object" type="xsd:string" style="query" required="false" default="post">
+				<option value="post"/>
+				<option value="user"/>
+				<option value="page"/>
+				<option value="event"/>
+				<option value="group"/>
+				<notes>Supports these types of objects: All public "posts", "people", "pages", "events", "groups"</notes>
+			</param>
+			<method name="GET" id="search">
+				<tags>
+					<tag primary="true">Search</tag>
+				</tags>
+				<authentication required="false"/>
+				<docs url="http://developers.facebook.com/docs/api"/>
+				<example url="/search?q={q}"/>
+				<notes>Search over all public objects in the social graph</notes>
+				<response>
+				</response>
+			</method>
+		</resource>
 		<resource path="{album}">
 			<param name="album" required="true"  type="xsd:string" style="template" default="99394368305"><notes>Represents the ID of the album object.</notes></param>
 			<param name="metadata" required="false"  type="xsd:string" style="query" default="0"><notes>The Graph API supports introspection of objects, which enables you to see all of the connections an object has without knowing its type ahead of time.</notes></param>
@@ -88,7 +110,7 @@
 					<tag primary="true">Event</tag>
 					<tag>Object</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/event"/>
 				<example url="/{event}"/>
 				<notes>Specifies information about an event, including the location, event name, and which invitees plan to attend.</notes>
@@ -118,7 +140,7 @@
 					<tag>Connection</tag>
 					<tag>Feed</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/event"/>
 				<example url="/{event}/feed"/>
 				<notes>This event's wall</notes>
@@ -138,7 +160,7 @@
 					<tag>Connection</tag>
 					<tag>Noreply</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/event"/>
 				<example url="/{event}/noreply"/>
 				<notes>All of the users who have been not yet responded to their invitation to this event</notes>
@@ -158,7 +180,7 @@
 					<tag>Connection</tag>
 					<tag>Maybe</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/event"/>
 				<example url="/{event}/maybe"/>
 				<notes>All of the users who have been responded "Maybe" to their invitation to this event</notes>
@@ -178,7 +200,7 @@
 					<tag>Connection</tag>
 					<tag>Invited</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/event"/>
 				<example url="/{event}/invited"/>
 				<notes>All of the users who have been invited to this event</notes>
@@ -198,7 +220,7 @@
 					<tag>Connection</tag>
 					<tag>Attending</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/event"/>
 				<example url="/{event}/attending"/>
 				<notes>All of the users who are attending this event</notes>
@@ -218,7 +240,7 @@
 					<tag>Connection</tag>
 					<tag>Declined</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/event"/>
 				<example url="/{event}/declined"/>
 				<notes>All of the users who declined their invitation to this event</notes>
@@ -251,7 +273,7 @@
 					<tag primary="true">Group</tag>
 					<tag>Object</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/group"/>
 				<example url="/{group}"/>
 				<notes>A Facebook group</notes>
@@ -279,7 +301,7 @@
 					<tag>Connection</tag>
 					<tag>Feed</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/group"/>
 				<example url="/{group}/feed"/>
 				<notes>This group's wall</notes>
@@ -316,7 +338,7 @@
 					<tag>Connection</tag>
 					<tag>Picture</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/group"/>
 				<example url="/{group}/picture"/>
 				<notes>The profile picture of this group</notes>
@@ -332,7 +354,7 @@
 					<tag primary="true">Link</tag>
 					<tag>Object</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/link"/>
 				<example url="/{link}"/>
 				<notes>A link shared on a user's wall</notes>
@@ -357,7 +379,7 @@
 					<tag>Connection</tag>
 					<tag>Comments</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/link"/>
 				<example url="/{link}/comments"/>
 				<notes>All of the comments on this link</notes>
@@ -373,7 +395,7 @@
 					<tag primary="true">Note</tag>
 					<tag>Object</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/note"/>
 				<example url="/{note}"/>
 				<notes>A Facebook note</notes>
@@ -399,7 +421,7 @@
 					<tag>Connection</tag>
 					<tag>Comments</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/note"/>
 				<example url="/{note}/comments"/>
 				<notes>All of the comments on this note</notes>
@@ -495,7 +517,7 @@
 					<tag>Connection</tag>
 					<tag>Links</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/page"/>
 				<example url="/{page}/links"/>
 				<notes>The page's posted links</notes>
@@ -535,7 +557,7 @@
 					<tag>Connection</tag>
 					<tag>Groups</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/page"/>
 				<example url="/{page}/groups"/>
 				<notes>The groups this page is a member of</notes>
@@ -575,7 +597,7 @@
 					<tag>Connection</tag>
 					<tag>Statuses</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/page"/>
 				<example url="/{page}/statuses"/>
 				<notes>The page's status updates</notes>
@@ -595,7 +617,7 @@
 					<tag>Connection</tag>
 					<tag>Videos</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/page"/>
 				<example url="/{page}/videos"/>
 				<notes>The videos this page has created</notes>
@@ -615,7 +637,7 @@
 					<tag>Connection</tag>
 					<tag>Notes</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/page"/>
 				<example url="/{page}/notes"/>
 				<notes>The page's notes</notes>
@@ -655,7 +677,7 @@
 					<tag>Connection</tag>
 					<tag>Events</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/page"/>
 				<example url="/{page}/events"/>
 				<notes>The events this page is attending</notes>
@@ -770,7 +792,7 @@
 					<tag primary="true">Status message</tag>
 					<tag>Object</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/status"/>
 				<example url="/{status}"/>
 				<notes>A status message on a user's wall</notes>
@@ -794,7 +816,7 @@
 					<tag>Connection</tag>
 					<tag>Comments</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/status"/>
 				<example url="/{status}/comments"/>
 				<notes>All of the comments on this message</notes>
@@ -803,8 +825,9 @@
 			</method>
 		</resource>
 		<resource path="{user}">
-			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="btaylor"><notes>Represents the ID of the user object.</notes></param>
+			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="robertscoble"><notes>Represents the ID of the user object.</notes></param>
 			<param name="metadata" required="false"  type="xsd:string" style="query" default="0"><notes>The Graph API supports introspection of objects, which enables you to see all of the connections an object has without knowing its type ahead of time.</notes></param>
+			<param name="q" required="false"  type="xsd:string" style="query" default="facebook"><notes>search an individual user's News Feed, restricted to that user's friends</notes></param>
 			<method name="GET" id="getuser">
 				<tags>
 					<tag primary="true">User</tag>
@@ -830,7 +853,7 @@
 			</method>
 		</resource>
 		<resource path="{user}/home">
-			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="btaylor"><notes>Represents the ID of the user object.</notes></param>
+			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="me"><notes>Represents the ID of the user object.</notes></param>
 			<param name="since" required="false"  type="xsd:string" style="query" default="last week"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="until" required="false"  type="xsd:string" style="query" default="yesterday"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="limit" required="false"  type="xsd:string" style="query" default="3"><notes>Limit the number of items returned.</notes></param>
@@ -841,7 +864,7 @@
 					<tag>Connection</tag>
 					<tag>Home</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/user"/>
 				<example url="/{user}/home"/>
 				<notes>The user's News Feed. Requires the read_stream permission</notes>
@@ -870,7 +893,7 @@
 			</method>
 		</resource>
 		<resource path="{user}/tagged">
-			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="btaylor"><notes>Represents the ID of the user object.</notes></param>
+			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="robertscoble"><notes>Represents the ID of the user object.</notes></param>
 			<param name="since" required="false"  type="xsd:string" style="query" default="last week"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="until" required="false"  type="xsd:string" style="query" default="yesterday"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="limit" required="false"  type="xsd:string" style="query" default="3"><notes>Limit the number of items returned.</notes></param>
@@ -890,7 +913,7 @@
 			</method>
 		</resource>
 		<resource path="{user}/posts">
-			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="btaylor"><notes>Represents the ID of the user object.</notes></param>
+			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="robertscoble"><notes>Represents the ID of the user object.</notes></param>
 			<param name="since" required="false"  type="xsd:string" style="query" default="last week"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="until" required="false"  type="xsd:string" style="query" default="yesterday"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="limit" required="false"  type="xsd:string" style="query" default="3"><notes>Limit the number of items returned.</notes></param>
@@ -910,7 +933,7 @@
 			</method>
 		</resource>
 		<resource path="{user}/picture">
-			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="btaylor"><notes>Represents the ID of the user object.</notes></param>
+			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="robertscoble"><notes>Represents the ID of the user object.</notes></param>
 			<param name="type" required="false"  type="xsd:string" style="query" default="small"><notes>One of square (50x50), small (50 pixels wide, variable height), and large (about 200 pixels wide, variable height)</notes></param>
 			<method name="GET" id="getuserpicture">
 				<tags>
@@ -927,7 +950,7 @@
 			</method>
 		</resource>
 		<resource path="{user}/friends">
-			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="btaylor"><notes>Represents the ID of the user object.</notes></param>
+			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="robertscoble"><notes>Represents the ID of the user object.</notes></param>
 			<param name="since" required="false"  type="xsd:string" style="query" default="last week"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="until" required="false"  type="xsd:string" style="query" default="yesterday"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="limit" required="false"  type="xsd:string" style="query" default="3"><notes>Limit the number of items returned.</notes></param>
@@ -938,7 +961,7 @@
 					<tag>Connection</tag>
 					<tag>Friends</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/user"/>
 				<example url="/{user}/friends"/>
 				<notes>The user's friends</notes>
@@ -947,7 +970,7 @@
 			</method>
 		</resource>
 		<resource path="{user}/activities">
-			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="btaylor"><notes>Represents the ID of the user object.</notes></param>
+			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="robertscoble"><notes>Represents the ID of the user object.</notes></param>
 			<param name="since" required="false"  type="xsd:string" style="query" default="last week"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="until" required="false"  type="xsd:string" style="query" default="yesterday"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="limit" required="false"  type="xsd:string" style="query" default="3"><notes>Limit the number of items returned.</notes></param>
@@ -958,7 +981,7 @@
 					<tag>Connection</tag>
 					<tag>Activities</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/user"/>
 				<example url="/{user}/activities"/>
 				<notes>The activities listed on the user's profile</notes>
@@ -967,7 +990,7 @@
 			</method>
 		</resource>
 		<resource path="{user}/interests">
-			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="btaylor"><notes>Represents the ID of the user object.</notes></param>
+			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="robertscoble"><notes>Represents the ID of the user object.</notes></param>
 			<param name="since" required="false"  type="xsd:string" style="query" default="last week"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="until" required="false"  type="xsd:string" style="query" default="yesterday"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="limit" required="false"  type="xsd:string" style="query" default="3"><notes>Limit the number of items returned.</notes></param>
@@ -978,7 +1001,7 @@
 					<tag>Connection</tag>
 					<tag>Interests</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/user"/>
 				<example url="/{user}/interests"/>
 				<notes>The interests listed on the user's profile</notes>
@@ -987,7 +1010,7 @@
 			</method>
 		</resource>
 		<resource path="{user}/music">
-			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="btaylor"><notes>Represents the ID of the user object.</notes></param>
+			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="robertscoble"><notes>Represents the ID of the user object.</notes></param>
 			<param name="since" required="false"  type="xsd:string" style="query" default="last week"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="until" required="false"  type="xsd:string" style="query" default="yesterday"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="limit" required="false"  type="xsd:string" style="query" default="3"><notes>Limit the number of items returned.</notes></param>
@@ -998,7 +1021,7 @@
 					<tag>Connection</tag>
 					<tag>Music</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/user"/>
 				<example url="/{user}/music"/>
 				<notes>The music listed on the user's profile</notes>
@@ -1007,7 +1030,7 @@
 			</method>
 		</resource>
 		<resource path="{user}/books">
-			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="btaylor"><notes>Represents the ID of the user object.</notes></param>
+			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="robertscoble"><notes>Represents the ID of the user object.</notes></param>
 			<param name="since" required="false"  type="xsd:string" style="query" default="last week"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="until" required="false"  type="xsd:string" style="query" default="yesterday"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="limit" required="false"  type="xsd:string" style="query" default="3"><notes>Limit the number of items returned.</notes></param>
@@ -1018,7 +1041,7 @@
 					<tag>Connection</tag>
 					<tag>Books</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/user"/>
 				<example url="/{user}/books"/>
 				<notes>The books listed on the user's profile</notes>
@@ -1027,7 +1050,7 @@
 			</method>
 		</resource>
 		<resource path="{user}/movies">
-			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="btaylor"><notes>Represents the ID of the user object.</notes></param>
+			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="robertscoble"><notes>Represents the ID of the user object.</notes></param>
 			<param name="since" required="false"  type="xsd:string" style="query" default="last week"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="until" required="false"  type="xsd:string" style="query" default="yesterday"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="limit" required="false"  type="xsd:string" style="query" default="3"><notes>Limit the number of items returned.</notes></param>
@@ -1038,7 +1061,7 @@
 					<tag>Connection</tag>
 					<tag>Movies</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/user"/>
 				<example url="/{user}/movies"/>
 				<notes>The movies listed on the user's profile</notes>
@@ -1047,7 +1070,7 @@
 			</method>
 		</resource>
 		<resource path="{user}/television">
-			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="btaylor"><notes>Represents the ID of the user object.</notes></param>
+			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="robertscoble"><notes>Represents the ID of the user object.</notes></param>
 			<param name="since" required="false"  type="xsd:string" style="query" default="last week"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="until" required="false"  type="xsd:string" style="query" default="yesterday"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="limit" required="false"  type="xsd:string" style="query" default="3"><notes>Limit the number of items returned.</notes></param>
@@ -1058,7 +1081,7 @@
 					<tag>Connection</tag>
 					<tag>Television</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/user"/>
 				<example url="/{user}/television"/>
 				<notes>The television listed on the user's profile</notes>
@@ -1067,7 +1090,7 @@
 			</method>
 		</resource>
 		<resource path="{user}/likes">
-			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="btaylor"><notes>Represents the ID of the user object.</notes></param>
+			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="robertscoble"><notes>Represents the ID of the user object.</notes></param>
 			<param name="since" required="false"  type="xsd:string" style="query" default="last week"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="until" required="false"  type="xsd:string" style="query" default="yesterday"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="limit" required="false"  type="xsd:string" style="query" default="3"><notes>Limit the number of items returned.</notes></param>
@@ -1078,7 +1101,7 @@
 					<tag>Connection</tag>
 					<tag>Likes</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/user"/>
 				<example url="/{user}/likes"/>
 				<notes>All the pages this user has liked. Requires the user_likes or friend_likes permission</notes>
@@ -1087,7 +1110,7 @@
 			</method>
 		</resource>
 		<resource path="{user}/photos">
-			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="btaylor"><notes>Represents the ID of the user object.</notes></param>
+			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="robertscoble"><notes>Represents the ID of the user object.</notes></param>
 			<param name="since" required="false"  type="xsd:string" style="query" default="last week"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="until" required="false"  type="xsd:string" style="query" default="yesterday"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="limit" required="false"  type="xsd:string" style="query" default="3"><notes>Limit the number of items returned.</notes></param>
@@ -1098,7 +1121,7 @@
 					<tag>Connection</tag>
 					<tag>Photos</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/user"/>
 				<example url="/{user}/photos"/>
 				<notes>The photos this user is tagged in. Requires the user_photos or friend_photos permission</notes>
@@ -1107,7 +1130,7 @@
 			</method>
 		</resource>
 		<resource path="{user}/albums">
-			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="btaylor"><notes>Represents the ID of the user object.</notes></param>
+			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="robertscoble"><notes>Represents the ID of the user object.</notes></param>
 			<param name="since" required="false"  type="xsd:string" style="query" default="last week"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="until" required="false"  type="xsd:string" style="query" default="yesterday"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="limit" required="false"  type="xsd:string" style="query" default="3"><notes>Limit the number of items returned.</notes></param>
@@ -1118,7 +1141,7 @@
 					<tag>Connection</tag>
 					<tag>Albums</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/user"/>
 				<example url="/{user}/albums"/>
 				<notes>The photo albums this user has created. Requires the user_photos or friend_photos permission</notes>
@@ -1127,7 +1150,7 @@
 			</method>
 		</resource>
 		<resource path="{user}/videos">
-			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="btaylor"><notes>Represents the ID of the user object.</notes></param>
+			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="robertscoble"><notes>Represents the ID of the user object.</notes></param>
 			<param name="since" required="false"  type="xsd:string" style="query" default="last week"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="until" required="false"  type="xsd:string" style="query" default="yesterday"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="limit" required="false"  type="xsd:string" style="query" default="3"><notes>Limit the number of items returned.</notes></param>
@@ -1138,7 +1161,7 @@
 					<tag>Connection</tag>
 					<tag>Videos</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/user"/>
 				<example url="/{user}/videos"/>
 				<notes>The videos this user has been tagged in. Requires the user_videos or friend_videos permission.</notes>
@@ -1147,7 +1170,7 @@
 			</method>
 		</resource>
 		<resource path="{user}/groups">
-			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="btaylor"><notes>Represents the ID of the user object.</notes></param>
+			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="robertscoble"><notes>Represents the ID of the user object.</notes></param>
 			<param name="since" required="false"  type="xsd:string" style="query" default="last week"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="until" required="false"  type="xsd:string" style="query" default="yesterday"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="limit" required="false"  type="xsd:string" style="query" default="3"><notes>Limit the number of items returned.</notes></param>
@@ -1158,7 +1181,7 @@
 					<tag>Connection</tag>
 					<tag>Groups</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/user"/>
 				<example url="/{user}/groups"/>
 				<notes>The groups this user is a member of. Requires the user_groups or friend_groups permission</notes>
@@ -1167,7 +1190,7 @@
 			</method>
 		</resource>
 		<resource path="{user}/statuses">
-			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="btaylor"><notes>Represents the ID of the user object.</notes></param>
+			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="robertscoble"><notes>Represents the ID of the user object.</notes></param>
 			<param name="since" required="false"  type="xsd:string" style="query" default="last week"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="until" required="false"  type="xsd:string" style="query" default="yesterday"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="limit" required="false"  type="xsd:string" style="query" default="3"><notes>Limit the number of items returned.</notes></param>
@@ -1178,7 +1201,7 @@
 					<tag>Connection</tag>
 					<tag>Statuses</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/user"/>
 				<example url="/{user}/statuses"/>
 				<notes>The user's status updates. Requires the read_stream permission</notes>
@@ -1187,7 +1210,7 @@
 			</method>
 		</resource>
 		<resource path="{user}/links">
-			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="btaylor"><notes>Represents the ID of the user object.</notes></param>
+			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="robertscoble"><notes>Represents the ID of the user object.</notes></param>
 			<param name="since" required="false"  type="xsd:string" style="query" default="last week"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="until" required="false"  type="xsd:string" style="query" default="yesterday"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="limit" required="false"  type="xsd:string" style="query" default="3"><notes>Limit the number of items returned.</notes></param>
@@ -1198,7 +1221,7 @@
 					<tag>Connection</tag>
 					<tag>Links</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/user"/>
 				<example url="/{user}/links"/>
 				<notes>The user's posted links. Requires the read_stream permission</notes>
@@ -1207,7 +1230,7 @@
 			</method>
 		</resource>
 		<resource path="{user}/notes">
-			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="btaylor"><notes>Represents the ID of the user object.</notes></param>
+			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="robertscoble"><notes>Represents the ID of the user object.</notes></param>
 			<param name="since" required="false"  type="xsd:string" style="query" default="last week"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="until" required="false"  type="xsd:string" style="query" default="yesterday"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="limit" required="false"  type="xsd:string" style="query" default="3"><notes>Limit the number of items returned.</notes></param>
@@ -1218,7 +1241,7 @@
 					<tag>Connection</tag>
 					<tag>Notes</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/user"/>
 				<example url="/{user}/notes"/>
 				<notes>The user's notes. Requires the read_stream permission</notes>
@@ -1227,7 +1250,7 @@
 			</method>
 		</resource>
 		<resource path="{user}/events">
-			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="btaylor"><notes>Represents the ID of the user object.</notes></param>
+			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="robertscoble"><notes>Represents the ID of the user object.</notes></param>
 			<param name="since" required="false"  type="xsd:string" style="query" default="last week"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="until" required="false"  type="xsd:string" style="query" default="yesterday"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="limit" required="false"  type="xsd:string" style="query" default="3"><notes>Limit the number of items returned.</notes></param>
@@ -1238,7 +1261,7 @@
 					<tag>Connection</tag>
 					<tag>Events</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/user"/>
 				<example url="/{user}/events"/>
 				<notes>The events this user is attending. Requires the user_events or friend_events permission</notes>
@@ -1247,7 +1270,7 @@
 			</method>
 		</resource>
 		<resource path="{user}/inbox">
-			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="btaylor"><notes>Represents the ID of the user object.</notes></param>
+			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="robertscoble"><notes>Represents the ID of the user object.</notes></param>
 			<param name="since" required="false"  type="xsd:string" style="query" default="last week"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="until" required="false"  type="xsd:string" style="query" default="yesterday"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="limit" required="false"  type="xsd:string" style="query" default="3"><notes>Limit the number of items returned.</notes></param>
@@ -1258,7 +1281,7 @@
 					<tag>Connection</tag>
 					<tag>Inbox</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/user"/>
 				<example url="/{user}/inbox"/>
 				<notes>The threads in this user's inbox. Requires the read_mailbox permission</notes>
@@ -1267,7 +1290,7 @@
 			</method>
 		</resource>
 		<resource path="{user}/outbox">
-			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="btaylor"><notes>Represents the ID of the user object.</notes></param>
+			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="robertscoble"><notes>Represents the ID of the user object.</notes></param>
 			<param name="since" required="false"  type="xsd:string" style="query" default="last week"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="until" required="false"  type="xsd:string" style="query" default="yesterday"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="limit" required="false"  type="xsd:string" style="query" default="3"><notes>Limit the number of items returned.</notes></param>
@@ -1278,7 +1301,7 @@
 					<tag>Connection</tag>
 					<tag>Outbox</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/user"/>
 				<example url="/{user}/outbox"/>
 				<notes>The messages in this user's outbox. Requires the read_mailbox permission</notes>
@@ -1287,7 +1310,7 @@
 			</method>
 		</resource>
 		<resource path="{user}/updates">
-			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="btaylor"><notes>Represents the ID of the user object.</notes></param>
+			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="robertscoble"><notes>Represents the ID of the user object.</notes></param>
 			<param name="since" required="false"  type="xsd:string" style="query" default="last week"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="until" required="false"  type="xsd:string" style="query" default="yesterday"><notes>A unix timestamp or any date accepted by strtotime</notes></param>
 			<param name="limit" required="false"  type="xsd:string" style="query" default="3"><notes>Limit the number of items returned.</notes></param>
@@ -1298,7 +1321,7 @@
 					<tag>Connection</tag>
 					<tag>Updates</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/user"/>
 				<example url="/{user}/updates"/>
 				<notes>The updates in this user's inbox. Requires the read_mailbox permission</notes>
@@ -1314,7 +1337,7 @@
 					<tag primary="true">Video</tag>
 					<tag>Object</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/video"/>
 				<example url="/{video}"/>
 				<notes>An individual video</notes>
@@ -1341,7 +1364,7 @@
 					<tag>Connection</tag>
 					<tag>Comments</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/reference/api/video"/>
 				<example url="/{video}/comments"/>
 				<notes>All of the comments on this video</notes>
@@ -1363,7 +1386,7 @@
 					<tag>Feed</tag>
 					<tag>Profile</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/api"/>
 				<example url="/{profile_id}/feed"/>
 				<notes>Write to the given profile's feed/wall.</notes>
@@ -1377,7 +1400,7 @@
 					<tag primary="true">Publish</tag>
 					<tag>Post</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/api"/>
 				<example url="/{post_id}/comments"/>
 				<notes>Comment on the given post</notes>
@@ -1391,7 +1414,7 @@
 					<tag>Post</tag>
 					<tag>Like</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/api"/>
 				<example url="/{post_id}/like"/>
 				<notes>Write to the given profile's feed/wall.</notes>
@@ -1405,7 +1428,7 @@
 					<tag primary="true">Publish</tag>
 					<tag>Post</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/api"/>
 				<example url="/{post_id}/comments"/>
 				<notes>Comment on the given post</notes>
@@ -1421,7 +1444,7 @@
 					<tag>Notes</tag>
 					<tag>Profile</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/api"/>
 				<example url="/{profile_id}/notes"/>
 				<notes>Write a note on the given profile.</notes>
@@ -1437,7 +1460,7 @@
 					<tag>Links</tag>
 					<tag>Profile</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/api"/>
 				<example url="/{profile_id}/links"/>
 				<notes>Write a note on the given profile.</notes>
@@ -1450,7 +1473,7 @@
 					<tag primary="true">Publish</tag>
 					<tag>Event</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/api"/>
 				<example url="/{event_id}/attending"/>
 				<notes>Attend the given event.</notes>
@@ -1463,7 +1486,7 @@
 					<tag primary="true">Publish</tag>
 					<tag>Event</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/api"/>
 				<example url="/{event_id}/attending"/>
 				<notes>Maybe attend the given event.</notes>
@@ -1476,7 +1499,7 @@
 					<tag primary="true">Publish</tag>
 					<tag>Event</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/api"/>
 				<example url="/{event_id}/declined"/>
 				<notes>Decline the given event.</notes>
@@ -1492,7 +1515,7 @@
 					<tag>Albums</tag>
 					<tag>Profile</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/api"/>
 				<example url="/{profile_id}/albums"/>
 				<notes>Create an album.</notes>
@@ -1508,7 +1531,7 @@
 					<tag>Albums</tag>
 					<tag>Photos</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/api"/>
 				<example url="/{album_id}/photos"/>
 				<notes>Upload a photo to an album.</notes>
@@ -1520,7 +1543,7 @@
 				<tags>
 					<tag primary="true">Delete</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/api"/>
 				<example url="/{object_id}"/>
 				<notes>Delete an object in the graph.</notes>
@@ -1532,7 +1555,7 @@
 				<tags>
 					<tag primary="true">Delete</tag>
 				</tags>
-				<authentication required="false"/>
+				<authentication required="true"/>
 				<docs url="http://developers.facebook.com/docs/api"/>
 				<example url="/{post_id}"/likes>
 				<notes>Remove a 'like' from a post.</notes>
@@ -1541,5 +1564,8 @@
 	</resources>
 </application>
 <!-- Should consider wrapping the param items in a params element
+06.21 - added search methods, changed btaylor to robertscoble who is more public, added user/me optional search query param
 06.15 - added authdefaults and defaults for {user} methods
+check for insight and application methods
+! methods can requrie authentication at the parameter level, meaning current structure is not flexible enough.
 -->
