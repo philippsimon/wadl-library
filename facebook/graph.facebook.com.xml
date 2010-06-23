@@ -1567,5 +1567,5 @@
 06.21 - added search methods, changed btaylor to robertscoble who is more public, added user/me optional search query param
 06.15 - added authdefaults and defaults for {user} methods
 check for insight and application methods
-! methods can require authentication at the parameter level, meaning current structure is not flexible enough.
+!methods can require authentication at the parameter level, meaning current structure is not flexible enough.
 -->
