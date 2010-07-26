@@ -33,5 +33,40 @@
 				<notes>Delete a record</notes>
 			</method>
 		</resource>
+		<resource path="records/{layer}/{id}/history.json">
+			<param name="layer" required="true" type="xsd:string" style="query" default="com.simplegeo.test"/>
+			<param name="id" required="true" type="xsd:string" style="query" default="1234"/>
+			<param name="limit" required="false" type="xsd:string" style="query" default="20"/>
+			<param name="start" required="false" type="xsd:string" style="query" default="1270000000"/>
+			<param name="end" required="false" type="xsd:string" style="query" default="1290000000"/>
+			<method name="GET" id="get_history">
+				<authentication required="true"/>
+				<docs url="https://simplegeo.tenderapp.com/faqs/api-documentation/endpoints"/>
+				<notes>Gets the history of a record</notes>
+			</method>
+			<method name="PUT" id="get_history_reverse">
+				<authentication required="true"/>
+				<docs url="https://simplegeo.tenderapp.com/faqs/api-documentation/endpoints"/>
+				<notes>Gets the history of a record, in reverse order</notes>
+			</method>
+		</resource>
+		<resource path="records/{layer}/nearby/{geohash}.json">
+			<param name="layer" required="true" type="xsd:string" style="query" default="com.simplegeo.test"/>
+			<param name="geohash" required="true" type="xsd:string" style="query" default="9q8yyk8y"/>
+			<method name="GET" id="get_nearby_geohash">
+				<authentication required="true"/>
+				<docs url="https://simplegeo.tenderapp.com/faqs/api-documentation/endpoints"/>
+				<notes>Gets the nearby points from a given geohash. Returns records in a given geohash for the given layer. By nature, a geohash is a bounding box, which means that no radius or center point is needed. Searching by a simple geohash is the fastest way to do a nearby query with the API.</notes>
+			</method>
+		</resource>
+		<resource path="records/{layer}/nearby/{geohash}.json">
+			<param name="layer" required="true" type="xsd:string" style="query" default="com.simplegeo.test"/>
+			<param name="geohash" required="true" type="xsd:string" style="query" default="9q8yyk8y"/>
+			<method name="GET" id="get_nearby_geohash">
+				<authentication required="true"/>
+				<docs url="https://simplegeo.tenderapp.com/faqs/api-documentation/endpoints"/>
+				<notes>Gets the nearby points from a given geohash</notes>
+			</method>
+		</resource>
 	</resources>
 </application>
