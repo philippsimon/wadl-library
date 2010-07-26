@@ -59,13 +59,74 @@
 				<notes>Gets the nearby points from a given geohash. Returns records in a given geohash for the given layer. By nature, a geohash is a bounding box, which means that no radius or center point is needed. Searching by a simple geohash is the fastest way to do a nearby query with the API.</notes>
 			</method>
 		</resource>
-		<resource path="records/{layer}/nearby/{geohash}.json">
+		<resource path="records/{layer}/nearby/{lat},{lon}.json">
 			<param name="layer" required="true" type="xsd:string" style="query" default="com.simplegeo.test"/>
-			<param name="geohash" required="true" type="xsd:string" style="query" default="9q8yyk8y"/>
-			<method name="GET" id="get_nearby_geohash">
+			<param name="lat" required="true" type="xsd:string" style="query" default="37.77275"/>
+			<param name="lon" required="true" type="xsd:string" style="query" default="-122.40572"/>
+			<method name="GET" id="get_nearby">
 				<authentication required="true"/>
 				<docs url="https://simplegeo.tenderapp.com/faqs/api-documentation/endpoints"/>
-				<notes>Gets the nearby points from a given geohash</notes>
+				<notes>Search the API using a given latitude and longitude. The default radius is 1 kilometer and 25 records are returned by default. Specifying start and end in the request will search the API within a given time interval. Specifying start and end in the request will search the API within a given time interval. To make use of our time based index, the difference between start and end must not be greater than 60 minutes.</notes>
+			</method>
+		</resource>
+		<resource path="nearby/address/{lat},{lon}.json">
+			<param name="lat" required="true" type="xsd:string" style="query" default="37.77275"/>
+			<param name="lon" required="true" type="xsd:string" style="query" default="-122.40572"/>
+			<method name="GET" id="get_nearby_address">
+				<authentication required="true"/>
+				<docs url="https://simplegeo.tenderapp.com/faqs/api-documentation/endpoints"/>
+				<notes>Does a reverse geocode lookup, which converts the given latitude and longitude into a human readable point with address, street, city, state, and county depending on where the person is currently located. NOTE: The reverse geocoder only works for coordinates in the US currently.</notes>
+			</method>
+		</resource>
+		<resource path="contains/{lat},{lon}.json">
+			<param name="lat" required="true" type="xsd:string" style="query" default="37.77275"/>
+			<param name="lon" required="true" type="xsd:string" style="query" default="-122.40572"/>
+			<method name="GET" id="contains">
+				<authentication required="true"/>
+				<docs url="https://simplegeo.tenderapp.com/faqs/api-documentation/endpoints"/>
+				<notes>Does a "pushpin" query through a series of polygon layers and identifies the "cone" of administrative and other boundaries in which the point lies. Returns a list of features containing id, name, abbr, type and bounds fields.</notes>
+			</method>
+		</resource>
+		<resource path="overlaps/{south},{west},{north},{east}.json">
+			<param name="south" required="true" type="xsd:string" style="query" default="42.4166"/>
+			<param name="west" required="true" type="xsd:string" style="query" default="-82.9189"/>
+			<param name="north" required="true" type="xsd:string" style="query" default="42.4465"/>
+			<param name="east" required="true" type="xsd:string" style="query" default="-82.8753"/>
+			<param name="limit" required="false" type="xsd:string" style="query" default="20"/>
+			<param name="type" required="false" type="xsd:string" style="query" default="Neighborhood"/>
+			<method name="GET" id="overlaps">
+				<authentication required="true"/>
+				<docs url="https://simplegeo.tenderapp.com/faqs/api-documentation/endpoints"/>
+				<notes>Queries a series of polygon layers and identifies the "cone" of administrative and other boundaries that overlap with the given bounding box. The arguments are expected in units of latitude and longitude. The results are returned in the same form as the contains query.</notes>
+			</method>
+		</resource>
+		<resource path="boundary/{id}.json">
+			<param name="lon" required="true" type="xsd:string" style="query" default="Urban_Area:San_Francisco1:9q9jsg"/>
+			<method name="GET" id="boundary">
+				<authentication required="true"/>
+				<docs url="https://simplegeo.tenderapp.com/faqs/api-documentation/endpoints"/>
+				<notes>Returns a feature object from the SimpleGeo gazetteer, as above, along with the geometry of the feature in GeoJSON format in the geometry field. The id parameter to this method should given in the same form as returned by the contains method above.</notes>
+			</method>
+		</resource>
+		<resource path="density/{dayname}/{hour}/{lat},{lon}.json">
+			<param name="dayname" required="true" type="xsd:string" style="query" default="mon"/>
+			<param name="hour" required="true" type="xsd:string" style="query" default="15"/>
+			<param name="lat" required="true" type="xsd:string" style="query" default="37.77275"/>
+			<param name="lon" required="true" type="xsd:string" style="query" default="-122.40572"/>
+			<method name="GET" id="density_hour">
+				<authentication required="true"/>
+				<docs url="https://simplegeo.tenderapp.com/faqs/api-documentation/endpoints"/>
+				<notes>Returns the Skyhook SpotRank data for the requested location on a given day and hour. dayname is one of: mon, tue, wed, thu, fri, sat, or sun. hour is between 0-23.</notes>
+			</method>
+		</resource>
+		<resource path="density/{dayname}/{lat},{lon}.json">
+			<param name="dayname" required="true" type="xsd:string" style="query" default="mon"/>
+			<param name="lat" required="true" type="xsd:string" style="query" default="37.77275"/>
+			<param name="lon" required="true" type="xsd:string" style="query" default="-122.40572"/>
+			<method name="GET" id="boundary">
+				<authentication required="true"/>
+				<docs url="https://simplegeo.tenderapp.com/faqs/api-documentation/endpoints"/>
+				<notes>Returns the Skyhook SpotRank data for the requested location on a given day. dayname is one of: mon, tue, wed, thu, fri, sat, or sun.</notes>
 			</method>
 		</resource>
 	</resources>
