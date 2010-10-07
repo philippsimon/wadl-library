@@ -1,0 +1,80 @@
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://research.sun.com/wadl/2006/10                      https://wadl.dev.java.net/wadl20061109.xsd" xmlns="http://research.sun.com/wadl/2006/10" xmlns:t="urn:soundcloudsandbox:soundcloudsandboxresponse"> 
+
+  <!-- We would like to have these on all requests:
+       {format} => {'json', 'xml'} at the end of the resource after a dot
+       {consumer_key} as query parameter, since we have api key enforcement on all public calls, oauth calls are authenticated already
+  -->
+
+  <resources base="http://api.sandbox-soundcloud.com/"> 
+    
+    <!-- BEGIN tracks -->
+    <resource path="tracks">
+      <param name="q" required="false" type="xsd:string" style="query" default=""/>
+      <!--Tags are a comma separated list-->
+      <param name="tags" required="false" type="xsd:string" style="query" default=""/>
+      <!--Filter is an enumeration and can be one of these values (all,public,private,streamable,downloadable)-->
+      <param name="filter" required="false" type="xsd:string" style="query" default="all">
+        <option value="all"/>
+        <option value="public"/>
+        <option value="private"/>
+        <option value="streamable"/>
+        <option value="downloadable"/>
+      </param>
+      <!--Order is an enumeration and can be one of these values (created_at, hotness)-->
+      <param name="order" required="false" type="xsd:string" style="query" default="create_at">
+        <option value="created_at"/>
+        <option value="hotness"/>
+      </param>
+      <!--BPM in an integer between 0 and 999-->
+      <param name="bpm[from]" required="false" type="xsd:string" style="query" default=""/>
+      <param name="bpm[to]" required="false" type="xsd:string" style="query" default=""/>
+      <!--Duration is an integer representing milliseconds-->
+      <param name="duration[from]" required="false" type="xsd:string" style="query" default=""/>
+      <param name="duration[to]" required="false" type="xsd:string" style="query" default=""/>
+      <!--Created_at is a date in the format yyyy-mm-dd hh:mm:ss-->
+      <param name="created_at[from]" required="false" type="xsd:string" style="query" default=""/>
+      <param name="created_at[to]" required="false" type="xsd:string" style="query" default=""/>
+      <!--Ids is a comma separated list of Ids-->
+      <param name="ids" required="false" type="xsd:string" style="query" default=""/>
+      <!--Genres is a comma separated list of Genres-->
+      <param name="ids" required="false" type="xsd:string" style="query" default=""/>
+      <param name="order" required="false" type="xsd:string" style="query" default="">
+          <option value="original"/>
+          <option value="remix"/>
+          <option value="live"/>
+          <option value="recording"/>
+          <option value="spoken"/>
+          <option value="podcast"/>
+          <option value="demo"/>
+          <option value="in progress"/>
+          <option value="stem"/>
+          <option value="loop"/>
+          <option value="sound effect"/>
+          <option value="sample"/>
+          <option value="other"/>
+      </param>
+      <method name="GET" id="get_tracks">
+        <authentication required="false"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks">Returns a collection of tracks</doc>
+      </method>
+    </resource>
+
+    <resource path="tracks/{track_id}">
+      <method name="GET" id="get_track">
+        <authentication required="false"/>
+        <param name="track_id" required="true" type="xsd:string" style="query" default="291"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks">Returns a track by track id</doc>
+      </method>
+    </resource>
+
+    <resource path="tracks/{track_id/comments}">
+      <method name="GET" id="get_track_comments">
+        <authentication required="false"/>
+        <param name="track_id" required="true" type="xsd:string" style="query" default="291"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks">Returns comments of a track by track id</doc>
+      </method>
+    </resource>
+    <!-- END tracks -->
+  
+  </resources>
+</application>
