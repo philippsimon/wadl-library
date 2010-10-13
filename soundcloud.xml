@@ -168,5 +168,63 @@
       </method>
     </resource>
     <!-- END playlists -->
+
+    <!-- BEGIN groups -->
+    <resource path="groups">
+      <method name="GET" id="get_groups">
+        <authentication required="false"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.4-Resources:-groups">Returns a collection of groups</doc>
+      </method>
+    </resource>
+
+    <resource path="groups/{group_id}">
+      <method name="GET" id="get_group">
+        <authentication required="false"/>
+        <param name="group_id" required="true" type="xsd:string" style="query" default="3"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.4-Resources:-groups">Returns a group by group id</doc>
+      </method>
+    </resource>
+    
+    <resource path="groups/{group_id}/users">
+      <method name="GET" id="get_group_users">
+        <authentication required="false"/>
+        <param name="group_id" required="true" type="xsd:string" style="query" default="3"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.4-Resources:-groups">Returns a combined collection of moderators, members and contributors of the group with group id</doc>
+      </method>
+    </resource>
+
+    <resource path="groups/{group_id}/moderators">
+      <method name="GET" id="get_group_moderators">
+        <authentication required="false"/>
+        <param name="group_id" required="true" type="xsd:string" style="query" default="3"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.4-Resources:-groups">Returns a collection of moderators of the group with group id</doc>
+      </method>
+    </resource>
+
+    <resource path="groups/{group_id}/members">
+      <method name="GET" id="get_group_members">
+        <authentication required="false"/>
+        <param name="group_id" required="true" type="xsd:string" style="query" default="3"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.4-Resources:-groups">Returns a collection of members of the group with group id</doc>
+      </method>
+    </resource>
+
+    <resource path="groups/{group_id}/contributors">
+      <method name="GET" id="get_group_contributors">
+        <authentication required="false"/>
+        <param name="group_id" required="true" type="xsd:string" style="query" default="3"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.4-Resources:-groups">Returns a collection of contributors of the group with group id</doc>
+      </method>
+    </resource>
+
+    <resource path="groups/{group_id}/tracks">
+      <method name="GET" id="get_group_tracks">
+        <authentication required="false"/>
+        <param name="group_id" required="true" type="xsd:string" style="query" default="3"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.4-Resources:-groups">Returns a collection of tracks contributed to the group with group id</doc>
+      </method>
+    </resource>
+    <!-- END groups -->
+
   </resources>
 </application>
