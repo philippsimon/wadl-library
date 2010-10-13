@@ -226,5 +226,15 @@
     </resource>
     <!-- END groups -->
 
+    <!-- BEGIN comments -->
+    <resource path="comments/{comment_id}">
+      <method name="GET" id="get_comment">
+        <authentication required="false"/>
+        <param name="comment_id" required="true" type="xsd:string" style="query" default="301920"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.5-Resources:-comments">Returns a comment by comment id</doc>
+      </method>
+    </resource>
+    <!-- END comments -->
+    
   </resources>
 </application>
