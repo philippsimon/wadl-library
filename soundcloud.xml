@@ -235,6 +235,16 @@
       </method>
     </resource>
     <!-- END comments -->
-    
+
+    <!-- BEGIN resolver -->
+    <resource path="resolve">
+      <param name="url" required="true" type="xsd:string" style="query" default="http://soundcloud.com/forss"/>
+      <method name="GET" id="resolve">
+        <authentication required="false"/>
+        <doc url="http://github.com/soundcloud/api/wiki/12-Resolver">Translates a website URI into an API URI</doc>
+      </method>
+    </resource>
+    <!-- END resolver -->
+
   </resources>
 </application>
