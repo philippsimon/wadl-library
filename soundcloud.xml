@@ -4,7 +4,7 @@
              xmlns="http://wadl.dev.java.net/2009/02">
 
   <resources base="http://api.sandbox-soundcloud.com"> 
-    <param name="consumer_key" required="true" type="xsd:string" style="query" default=""/>
+    <param name="consumer_key" required="true" type="xsd:string" style="query" default="enter_your_consumer_key_please"/>
     <param name="format" type="xsd:string" style="template" required="true" default="json">
       <option value="xml" mediaType="application/xml"/>
       <option value="json" mediaType="application/json"/>
@@ -58,18 +58,20 @@
       <method name="GET" id="get_tracks">
         <authentication required="false"/>
         <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks">Returns a collection of tracks</doc>
+        <example url="/tracks.{format}"/>
       </method>
     </resource>
 
-    <resource path="tracks/{track_id}">
+    <resource path="tracks/{track_id}.{format}">
       <method name="GET" id="get_track">
         <authentication required="false"/>
         <param name="track_id" required="true" type="xsd:string" style="query" default="291"/>
         <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks">Returns a track by track id</doc>
+        <example url="tracks/{track_id}.{format}"/>
       </method>
     </resource>
 
-    <resource path="tracks/{track_id/comments}">
+    <resource path="tracks/{track_id/comments}.{format}">
       <method name="GET" id="get_track_comments">
         <authentication required="false"/>
         <param name="track_id" required="true" type="xsd:string" style="query" default="291"/>
@@ -79,7 +81,7 @@
     <!-- END tracks -->
 
     <!-- BEGIN users -->
-    <resource path="users">
+    <resource path="users.{format}">
       <param name="q" required="false" type="xsd:string" style="query" default=""/>
       <method name="GET" id="get_users">
         <authentication required="false"/>
@@ -87,7 +89,7 @@
       </method>
     </resource>
 
-    <resource path="users/{user_id}">
+    <resource path="users/{user_id}.{format}">
       <method name="GET" id="get_user">
         <authentication required="false"/>
         <param name="user_id" required="true" type="xsd:string" style="query" default="183"/>
@@ -95,7 +97,7 @@
       </method>
     </resource>
 
-    <resource path="users/{user_id}/tracks">
+    <resource path="users/{user_id}/tracks.{format}">
       <method name="GET" id="get_user_tracks">
         <authentication required="false"/>
         <param name="user_id" required="true" type="xsd:string" style="query" default="183"/>
@@ -103,7 +105,7 @@
       </method>
     </resource>
 
-    <resource path="users/{user_id}/comments">
+    <resource path="users/{user_id}/comments.{format}">
       <method name="GET" id="get_user_comments">
         <authentication required="false"/>
         <param name="user_id" required="true" type="xsd:string" style="query" default="183"/>
@@ -111,7 +113,7 @@
       </method>
     </resource>
 
-    <resource path="users/{user_id}/followings">
+    <resource path="users/{user_id}/followings.{format}">
       <method name="GET" id="get_user_followings">
         <authentication required="false"/>
         <param name="user_id" required="true" type="xsd:string" style="query" default="183"/>
@@ -119,7 +121,7 @@
       </method>
     </resource>
 
-    <resource path="users/{user_id}/followers">
+    <resource path="users/{user_id}/followers.{format}">
       <method name="GET" id="get_user_followers">
         <authentication required="false"/>
         <param name="user_id" required="true" type="xsd:string" style="query" default="183"/>
@@ -127,7 +129,7 @@
       </method>
     </resource>
 
-    <resource path="users/{user_id}/favorites">
+    <resource path="users/{user_id}/favorites.{format}">
       <method name="GET" id="get_user_favorites">
         <authentication required="false"/>
         <param name="user_id" required="true" type="xsd:string" style="query" default="183"/>
@@ -135,7 +137,7 @@
       </method>
     </resource>
 
-    <resource path="users/{user_id}/groups">
+    <resource path="users/{user_id}/groups.{format}">
       <param name="q" required="false" type="xsd:string" style="query" default=""/>
 
       <method name="GET" id="get_user_groups">
@@ -147,7 +149,7 @@
     <!-- END users -->
 
     <!-- BEGIN playlists -->
-    <resource path="playlists">
+    <resource path="playlists.{format}">
       <param name="q" required="false" type="xsd:string" style="query" default=""/>
       <param name="filter" required="false" type="xsd:string" style="query" default="all">
         <option value="all"/>
@@ -160,7 +162,7 @@
       </method>
     </resource>
 
-    <resource path="playlists/{playlist_id}">
+    <resource path="playlists/{playlist_id}.{format}">
       <method name="GET" id="get_playlist">
         <authentication required="false"/>
         <param name="playlist_id" required="true" type="xsd:string" style="query" default="18"/>
@@ -170,14 +172,14 @@
     <!-- END playlists -->
 
     <!-- BEGIN groups -->
-    <resource path="groups">
+    <resource path="groups.{format}">
       <method name="GET" id="get_groups">
         <authentication required="false"/>
         <doc url="http://github.com/soundcloud/api/wiki/10.4-Resources:-groups">Returns a collection of groups</doc>
       </method>
     </resource>
 
-    <resource path="groups/{group_id}">
+    <resource path="groups/{group_id}.{format}">
       <method name="GET" id="get_group">
         <authentication required="false"/>
         <param name="group_id" required="true" type="xsd:string" style="query" default="3"/>
@@ -185,7 +187,7 @@
       </method>
     </resource>
     
-    <resource path="groups/{group_id}/users">
+    <resource path="groups/{group_id}/users.{format}">
       <method name="GET" id="get_group_users">
         <authentication required="false"/>
         <param name="group_id" required="true" type="xsd:string" style="query" default="3"/>
@@ -193,7 +195,7 @@
       </method>
     </resource>
 
-    <resource path="groups/{group_id}/moderators">
+    <resource path="groups/{group_id}/moderators.{format}">
       <method name="GET" id="get_group_moderators">
         <authentication required="false"/>
         <param name="group_id" required="true" type="xsd:string" style="query" default="3"/>
@@ -201,7 +203,7 @@
       </method>
     </resource>
 
-    <resource path="groups/{group_id}/members">
+    <resource path="groups/{group_id}/members.{format}">
       <method name="GET" id="get_group_members">
         <authentication required="false"/>
         <param name="group_id" required="true" type="xsd:string" style="query" default="3"/>
@@ -209,7 +211,7 @@
       </method>
     </resource>
 
-    <resource path="groups/{group_id}/contributors">
+    <resource path="groups/{group_id}/contributors.{format}">
       <method name="GET" id="get_group_contributors">
         <authentication required="false"/>
         <param name="group_id" required="true" type="xsd:string" style="query" default="3"/>
@@ -217,7 +219,7 @@
       </method>
     </resource>
 
-    <resource path="groups/{group_id}/tracks">
+    <resource path="groups/{group_id}/tracks.{format}">
       <method name="GET" id="get_group_tracks">
         <authentication required="false"/>
         <param name="group_id" required="true" type="xsd:string" style="query" default="3"/>
@@ -227,7 +229,7 @@
     <!-- END groups -->
 
     <!-- BEGIN comments -->
-    <resource path="comments/{comment_id}">
+    <resource path="comments/{comment_id}.{format}">
       <method name="GET" id="get_comment">
         <authentication required="false"/>
         <param name="comment_id" required="true" type="xsd:string" style="query" default="301920"/>
@@ -237,7 +239,7 @@
     <!-- END comments -->
 
     <!-- BEGIN resolver -->
-    <resource path="resolve">
+    <resource path="resolve.{format}">
       <param name="url" required="true" type="xsd:string" style="query" default="http://soundcloud.com/forss"/>
       <method name="GET" id="resolve">
         <authentication required="false"/>
