@@ -56,6 +56,9 @@
           <option value="other"/>
       </param>
       <method name="GET" id="get_tracks">
+        <tags>
+          <tag primary="true">Tracks</tag>
+        </tags>
         <authentication required="false"/>
         <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks">Returns a collection of tracks</doc>
         <example url="/tracks.{format}?consumer_key={consumer_key}"/>
@@ -64,6 +67,10 @@
 
     <resource path="tracks/{track_id}.{format}">
       <method name="GET" id="get_track">
+        <tags>
+          <tag primary="true">Tracks</tag>
+          <tag>Track</tag>
+        </tags>
         <authentication required="false"/>
         <param name="track_id" required="true" type="xsd:string" style="query" default="291"/>
         <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks">Returns a track by track id</doc>
@@ -73,6 +80,11 @@
 
     <resource path="tracks/{track_id}/comments.{format}">
       <method name="GET" id="get_track_comments">
+        <tags>
+          <tag primary="true">Tracks</tag>
+          <tag>Track</tag>
+          <tag>Comments</tag>
+        </tags>
         <authentication required="false"/>
         <param name="track_id" required="true" type="xsd:string" style="query" default="291"/>
         <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks">Returns comments of a track by track id</doc>
@@ -85,6 +97,9 @@
     <resource path="users.{format}">
       <param name="q" required="false" type="xsd:string" style="query" default=""/>
       <method name="GET" id="get_users">
+        <tags>
+          <tag primary="true">Users</tag>
+        </tags>
         <authentication required="false"/>
         <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a collection of users</doc>
         <example url="/users.{format}?consumer_key={consumer_key}"/>
@@ -93,6 +108,10 @@
 
     <resource path="users/{user_id}.{format}">
       <method name="GET" id="get_user">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>User</tag>
+        </tags>
         <authentication required="false"/>
         <param name="user_id" required="true" type="xsd:string" style="query" default="183"/>
         <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a user by user id</doc>
@@ -102,6 +121,11 @@
 
     <resource path="users/{user_id}/tracks.{format}">
       <method name="GET" id="get_user_tracks">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>User</tag>
+          <tag>Track</tag>
+        </tags>
         <authentication required="false"/>
         <param name="user_id" required="true" type="xsd:string" style="query" default="183"/>
         <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a collection of tracks uploaded by user id</doc>
@@ -111,6 +135,11 @@
 
     <resource path="users/{user_id}/comments.{format}">
       <method name="GET" id="get_user_comments">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>User</tag>
+          <tag>Comments</tag>
+        </tags>
         <authentication required="false"/>
         <param name="user_id" required="true" type="xsd:string" style="query" default="183"/>
         <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a collection of comments made by user id</doc>
@@ -120,6 +149,11 @@
 
     <resource path="users/{user_id}/followings.{format}">
       <method name="GET" id="get_user_followings">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>User</tag>
+          <tag>Followings</tag>
+        </tags>
         <authentication required="false"/>
         <param name="user_id" required="true" type="xsd:string" style="query" default="183"/>
         <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a collection of users the user with user id is following</doc>
@@ -129,6 +163,11 @@
 
     <resource path="users/{user_id}/followers.{format}">
       <method name="GET" id="get_user_followers">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>User</tag>
+          <tag>Followers</tag>
+        </tags>
         <authentication required="false"/>
         <param name="user_id" required="true" type="xsd:string" style="query" default="183"/>
         <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a collection of users who follow the user with user id</doc>
@@ -138,6 +177,11 @@
 
     <resource path="users/{user_id}/favorites.{format}">
       <method name="GET" id="get_user_favorites">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>User</tag>
+          <tag>Favorites</tag>
+        </tags>
         <authentication required="false"/>
         <param name="user_id" required="true" type="xsd:string" style="query" default="183"/>
         <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a collection of tracks favorited user with user id</doc>
@@ -149,6 +193,11 @@
       <param name="q" required="false" type="xsd:string" style="query" default=""/>
 
       <method name="GET" id="get_user_groups">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>User</tag>
+          <tag>Groups</tag>
+        </tags>
         <authentication required="false"/>
         <param name="user_id" required="true" type="xsd:string" style="query" default="183"/>
         <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a collection of groups joined by user with user id</doc>
@@ -166,6 +215,9 @@
         <option value="private"/>
       </param>
       <method name="GET" id="get_playlists">
+        <tags>
+          <tag primary="true">Playlists</tag>
+        </tags>
         <authentication required="false"/>
         <doc url="http://github.com/soundcloud/api/wiki/10.3-Resources:-playlists">Returns a collection of playlists</doc>
         <example url="/playlists.{format}?consumer_key={consumer_key}"/>
@@ -174,6 +226,10 @@
 
     <resource path="playlists/{playlist_id}.{format}">
       <method name="GET" id="get_playlist">
+        <tags>
+          <tag primary="true">Playlists</tag>
+          <tag>Playlist</tag>
+        </tags>
         <authentication required="false"/>
         <param name="playlist_id" required="true" type="xsd:string" style="query" default="18"/>
         <doc url="http://github.com/soundcloud/api/wiki/10.3-Resources:-playlists">Returns a playlist by playlist id</doc>
@@ -185,6 +241,9 @@
     <!-- BEGIN groups -->
     <resource path="groups.{format}">
       <method name="GET" id="get_groups">
+        <tags>
+          <tag primary="true">Groups</tag>
+        </tags>
         <authentication required="false"/>
         <doc url="http://github.com/soundcloud/api/wiki/10.4-Resources:-groups">Returns a collection of groups</doc>
         <example url="/groups.{format}?consumer_key={consumer_key}"/>
@@ -193,6 +252,10 @@
 
     <resource path="groups/{group_id}.{format}">
       <method name="GET" id="get_group">
+        <tags>
+          <tag primary="true">Groups</tag>
+          <tag>Group</tag>
+        </tags>
         <authentication required="false"/>
         <param name="group_id" required="true" type="xsd:string" style="query" default="3"/>
         <doc url="http://github.com/soundcloud/api/wiki/10.4-Resources:-groups">Returns a group by group id</doc>
@@ -202,6 +265,11 @@
     
     <resource path="groups/{group_id}/users.{format}">
       <method name="GET" id="get_group_users">
+        <tags>
+          <tag primary="true">Groups</tag>
+          <tag>Group</tag>
+          <tag>Users</tag>
+        </tags>
         <authentication required="false"/>
         <param name="group_id" required="true" type="xsd:string" style="query" default="3"/>
         <doc url="http://github.com/soundcloud/api/wiki/10.4-Resources:-groups">Returns a combined collection of moderators, members and contributors of the group with group id</doc>
@@ -211,6 +279,11 @@
 
     <resource path="groups/{group_id}/moderators.{format}">
       <method name="GET" id="get_group_moderators">
+        <tags>
+          <tag primary="true">Groups</tag>
+          <tag>Group</tag>
+          <tag>Moderators</tag>
+        </tags>
         <authentication required="false"/>
         <param name="group_id" required="true" type="xsd:string" style="query" default="3"/>
         <doc url="http://github.com/soundcloud/api/wiki/10.4-Resources:-groups">Returns a collection of moderators of the group with group id</doc>
@@ -220,6 +293,11 @@
 
     <resource path="groups/{group_id}/members.{format}">
       <method name="GET" id="get_group_members">
+        <tags>
+          <tag primary="true">Groups</tag>
+          <tag>Group</tag>
+          <tag>Members</tag>
+        </tags>
         <authentication required="false"/>
         <param name="group_id" required="true" type="xsd:string" style="query" default="3"/>
         <doc url="http://github.com/soundcloud/api/wiki/10.4-Resources:-groups">Returns a collection of members of the group with group id</doc>
@@ -229,6 +307,11 @@
 
     <resource path="groups/{group_id}/contributors.{format}">
       <method name="GET" id="get_group_contributors">
+        <tags>
+          <tag primary="true">Groups</tag>
+          <tag>Group</tag>
+          <tag>Contributors</tag>
+        </tags>
         <authentication required="false"/>
         <param name="group_id" required="true" type="xsd:string" style="query" default="3"/>
         <doc url="http://github.com/soundcloud/api/wiki/10.4-Resources:-groups">Returns a collection of contributors of the group with group id</doc>
@@ -238,6 +321,11 @@
 
     <resource path="groups/{group_id}/tracks.{format}">
       <method name="GET" id="get_group_tracks">
+        <tags>
+          <tag primary="true">Groups</tag>
+          <tag>Group</tag>
+          <tag>Tracks</tag>
+        </tags>
         <authentication required="false"/>
         <param name="group_id" required="true" type="xsd:string" style="query" default="3"/>
         <doc url="http://github.com/soundcloud/api/wiki/10.4-Resources:-groups">Returns a collection of tracks contributed to the group with group id</doc>
@@ -249,6 +337,10 @@
     <!-- BEGIN comments -->
     <resource path="comments/{comment_id}.{format}">
       <method name="GET" id="get_comment">
+        <tags>
+          <tag primary="true">Comments</tag>
+          <tag>Comment</tag>
+        </tags>
         <authentication required="false"/>
         <param name="comment_id" required="true" type="xsd:string" style="query" default="301920"/>
         <doc url="http://github.com/soundcloud/api/wiki/10.5-Resources:-comments">Returns a comment by comment id</doc>
@@ -261,6 +353,9 @@
     <resource path="resolve.{format}">
       <param name="url" required="true" type="xsd:string" style="query" default="http://soundcloud.com/forss"/>
       <method name="GET" id="resolve">
+        <tags>
+          <tag primary="true">Resolver</tag>
+        </tags>
         <authentication required="false"/>
         <doc url="http://github.com/soundcloud/api/wiki/12-Resolver">Translates a website URI into an API URI</doc>
         <example url="/resolve.{format}?consumer_key={consumer_key}&amp;url={url}"/>
