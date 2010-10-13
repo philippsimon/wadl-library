@@ -3,15 +3,12 @@
              xmlns:apigee="http://www.apigee.com/schema/2010/07/wadl/"
              xmlns="http://wadl.dev.java.net/2009/02">
 
-  <!-- We would like to have these on all requests:
-       {format} => {'json', 'xml'} at the end of the resource after a dot
-  -->
-
   <resources base="http://api.sandbox-soundcloud.com"> 
-	<param name="format" type="xsd:string" style="template" required="true" default="json">
-		<option value="xml" mediaType="application/xml"/>
-		<option value="json" mediaType="application/json"/>
-	</param>
+    <param name="consumer_key" required="true" type="xsd:string" style="query" default=""/>
+    <param name="format" type="xsd:string" style="template" required="true" default="json">
+      <option value="xml" mediaType="application/xml"/>
+      <option value="json" mediaType="application/json"/>
+    </param>
     <!-- BEGIN tracks -->
     <resource path="tracks.{format}">
       <param name="q" required="false" type="xsd:string" style="query" default="summer"/>
