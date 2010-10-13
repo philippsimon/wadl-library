@@ -5,13 +5,16 @@
        {consumer_key} as query parameter, since we have api key enforcement on all public calls, oauth calls are authenticated already
   -->
 
-  <resources base="http://api.sandbox-soundcloud.com/"> 
-    
+  <resources base="http://api.sandbox-soundcloud.com"> 
+	<param name="format" type="xsd:string" style="template" required="true" default="json">
+		<option value="xml" mediaType="application/xml"/>
+		<option value="json" mediaType="application/json"/>
+	</param>
     <!-- BEGIN tracks -->
-    <resource path="tracks">
-      <param name="q" required="false" type="xsd:string" style="query" default=""/>
+    <resource path="tracks.{format}">
+      <param name="q" required="false" type="xsd:string" style="query" default="summer"/>
       <!--Tags are a comma separated list-->
-      <param name="tags" required="false" type="xsd:string" style="query" default=""/>
+      <param name="tags" required="false" type="xsd:string" style="query" default="pop"/>
       <!--Filter is an enumeration and can be one of these values (all,public,private,streamable,downloadable)-->
       <param name="filter" required="false" type="xsd:string" style="query" default="all">
         <option value="all"/>
