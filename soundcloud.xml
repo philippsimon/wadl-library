@@ -136,6 +136,8 @@
     </resource>
 
     <resource path="users/{user_id}/groups">
+      <param name="q" required="false" type="xsd:string" style="query" default=""/>
+
       <method name="GET" id="get_user_groups">
         <authentication required="false"/>
         <param name="user_id" required="true" type="xsd:string" style="query" default="183"/>
@@ -143,5 +145,28 @@
       </method>
     </resource>
     <!-- END users -->
+
+    <!-- BEGIN playlists -->
+    <resource path="playlists">
+      <param name="q" required="false" type="xsd:string" style="query" default=""/>
+      <param name="filter" required="false" type="xsd:string" style="query" default="all">
+        <option value="all"/>
+        <option value="public"/>
+        <option value="private"/>
+      </param>
+      <method name="GET" id="get_playlists">
+        <authentication required="false"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.3-Resources:-playlists">Returns a collection of playlists</doc>
+      </method>
+    </resource>
+
+    <resource path="playlists/{playlist_id}">
+      <method name="GET" id="get_playlist">
+        <authentication required="false"/>
+        <param name="playlist_id" required="true" type="xsd:string" style="query" default="18"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.3-Resources:-playlists">Returns a playlist by playlist id</doc>
+      </method>
+    </resource>
+    <!-- END playlists -->
   </resources>
 </application>
