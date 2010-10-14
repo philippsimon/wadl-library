@@ -204,6 +204,22 @@
         <example url="/users/{user_id}/groups.{format}?consumer_key={consumer_key}"/>
       </method>
     </resource>
+
+    <resource path="users/{user_id}/playlists.{format}">
+      <param name="q" required="false" type="xsd:string" style="query" default=""/>
+
+      <method name="GET" id="get_user_playlists">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>User</tag>
+          <tag>Playlists</tag>
+        </tags>
+        <authentication required="false"/>
+        <param name="user_id" required="true" type="xsd:string" style="query" default="183"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a collection of playlists created by user with user id</doc>
+        <example url="/users/{user_id}/playlists.{format}?consumer_key={consumer_key}"/>
+      </method>
+    </resource>
     <!-- END users -->
 
     <!-- BEGIN playlists -->
