@@ -64,6 +64,7 @@
         <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks">Returns a collection of tracks</doc>
         <example url="/tracks.{format}?consumer_key={consumer_key}"/>
         <response>
+					 <!-- TODO: add other optional properties -->
            <property name="uri" oembed="true">The canonical location of the track.</property>
            <property name="id">Unique identification number for the track.</property>
            <property name="user">Information related to the user associated with the track.
@@ -71,6 +72,26 @@
            </property>
         </response>
       </method>
+
+			<param name="title" required="true" type="xsd:string" style="header" default="A Track Title" />
+			<param name="asset_data" required="true" type="xsd:string" style="header" default="" />
+			<!-- IMPORTANT, NEED TO BE ABLE TO CHOOSE A FILE! or maybe even supply a url, though that could be confusing. &-->
+			<!-- TODO: add other optional params -->
+      <method name="POST" id="post_tracks">
+        <tags>
+          <tag primary="true">Tracks</tag>
+        </tags>			
+        <authentication required="false"/>
+	      <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks">Uploads a tracks</doc>
+	      <example url="/tracks.{format}"/>
+	      <response>
+	         <property name="uri" oembed="true">The canonical location of the track.</property>
+	         <property name="id">Unique identification number for the track.</property>
+	         <property name="user">Information related to the user associated with the track.
+	           <property name="uri" oembed="true">The canonical location of the user.</property>
+	         </property>
+	      </response>
+			</method>
     </resource>
 
     <resource path="tracks/{track_id}.{format}">
