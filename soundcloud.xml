@@ -341,6 +341,20 @@
         <example url="/users/{user_id}/followings.{format}?consumer_key={consumer_key}"/>
       </method>
     </resource>
+
+    <resource path="users/{user_id}/followings/{contact_id}.{format}">      
+      <method name="PUT" id="put_user_followings">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>User</tag>
+          <tag>Followings</tag>
+        </tags>
+        <authentication required="true"/>
+        <param name="user_id" required="true" type="xsd:string" style="query" default="183"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Adds the user with the id contact_id to the givens user's list of contacts.</doc>
+        <example url="/users/{user_id}/followings/{contact_id}.{format}"/>
+      </method>
+    </resource>
     
     <resource path="me/followings.{format}">
       <method name="GET" id="get_me_followings">
@@ -354,6 +368,19 @@
         <example url="/me/followings.{format}"/>
       </method>
     </resource>    
+
+    <resource path="me/followings/{contact_id}.{format}">      
+      <method name="PUT" id="put_me_followings">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>Me</tag>
+          <tag>Followings</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Adds the user with the id contact_id to the logged-in user's list of contacts.</doc>
+        <example url="/me/followings/{contact_id}.{format}"/>
+      </method>
+    </resource>
 
     <resource path="users/{user_id}/followers.{format}">
       <method name="GET" id="get_user_followers">
