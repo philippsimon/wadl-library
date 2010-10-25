@@ -249,6 +249,30 @@
         <example url="/users/{user_id}.{format}?consumer_key={consumer_key}"/>
       </method>
     </resource>
+    
+    <resource path="me.{format}">     
+      <!-- Same as GET users/{user_id} -->
+      <method name="GET" id="get_me">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>Me</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns the logged-in user</doc>
+        <example url="/me.{format}"/>
+      </method>      
+           
+      <method name="PUT" id="put_me">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>Me</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Updates the logged-in user</doc>
+        <example url="/me.{format}"/>
+        <!-- TODO: What properties an be updated? -->
+      </method>
+    </resource>
 
     <resource path="users/{user_id}/tracks.{format}">
       <method name="GET" id="get_user_tracks">
