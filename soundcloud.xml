@@ -314,6 +314,19 @@
         <example url="/users/{user_id}/comments.{format}?consumer_key={consumer_key}"/>
       </method>
     </resource>
+    
+    <resource path="me/comments.{format}">
+      <method name="GET" id="get_me_comments">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>Me</tag>
+          <tag>Comments</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a collection of comments made by logged-in user</doc>
+        <example url="/me/comments.{format}"/>
+      </method>
+    </resource>    
 
     <resource path="users/{user_id}/followings.{format}">
       <method name="GET" id="get_user_followings">
@@ -328,6 +341,19 @@
         <example url="/users/{user_id}/followings.{format}?consumer_key={consumer_key}"/>
       </method>
     </resource>
+    
+    <resource path="me/followings.{format}">
+      <method name="GET" id="get_me_followings">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>Me</tag>
+          <tag>Followings</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a collection of users the logged-in user is following</doc>
+        <example url="/me/followings.{format}"/>
+      </method>
+    </resource>    
 
     <resource path="users/{user_id}/followers.{format}">
       <method name="GET" id="get_user_followers">
