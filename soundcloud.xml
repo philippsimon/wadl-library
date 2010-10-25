@@ -80,6 +80,7 @@
       <method name="POST" id="post_tracks">
         <tags>
           <tag primary="true">Tracks</tag>
+          <tag>Track</tag>
         </tags>			
         <authentication required="false"/>
 	      <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks">Uploads a tracks</doc>
@@ -104,6 +105,40 @@
         <param name="track_id" required="true" type="xsd:string" style="query" default="291"/>
         <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks">Returns a track by track id</doc>
         <example url="tracks/{track_id}.{format}?consumer_key={consumer_key}"/>
+      </method>
+
+			<!-- TODO: This is the same as POST /tracks, so update that first and then copy -->
+			<!-- Difference is method, tags, doc -->
+			<param name="title" required="true" type="xsd:string" style="header" default="A Track Title" />
+			<param name="asset_data" required="true" type="xsd:string" style="header" default="" />
+			<!-- IMPORTANT, NEED TO BE ABLE TO CHOOSE A FILE! or maybe even supply a url, though that could be confusing. &-->
+			<!-- TODO: add other optional params -->
+      <method name="PUT" id="put_track">
+        <tags>
+          <tag primary="true">Tracks</tag>
+          <tag>Track</tag>
+        </tags>			
+        <authentication required="true"/>
+	      <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks-continued">Updates a given track</doc>
+	      <example url="/tracks.{format}"/>
+	      <response>
+	         <property name="uri" oembed="true">The canonical location of the track.</property>
+	         <property name="id">Unique identification number for the track.</property>
+	         <property name="user">Information related to the user associated with the track.
+	           <property name="uri" oembed="true">The canonical location of the user.</property>
+	         </property>
+	      </response>
+			</method>
+
+     <method name="DELETE" id="delete_track">
+        <tags>
+          <tag primary="true">Tracks</tag>
+          <tag>Track</tag>
+        </tags>
+        <authentication required="true"/>
+        <param name="track_id" required="true" type="xsd:string" style="query" default="291"/>
+	      <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks-continued">Deletes a given track</doc>
+        <example url="tracks/{track_id}.{format}"/>
       </method>
     </resource>
 
