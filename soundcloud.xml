@@ -143,6 +143,7 @@
     </resource>
 
     <resource path="tracks/{track_id}/comments.{format}">
+      <param name="track_id" required="true" type="xsd:string" style="query" default="291"/>
       <method name="GET" id="get_track_comments">
         <tags>
           <tag primary="true">Tracks</tag>
@@ -150,9 +151,19 @@
           <tag>Comments</tag>
         </tags>
         <authentication required="false"/>
-        <param name="track_id" required="true" type="xsd:string" style="query" default="291"/>
-        <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks">Returns comments of a track by track id</doc>
+        <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks-continued">Returns comments of a track by track id</doc>
         <example url="/tracks/{track_id}/comments.{format}?consumer_key={consumer_key}"/>
+      </method>
+
+      <method name="POST" id="post_track_comments">
+        <tags>
+          <tag primary="true">Tracks</tag>
+          <tag>Track</tag>
+          <tag>Comments</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks-continued">Posts a comments to a track by track id</doc>
+        <example url="/tracks/{track_id}/comments.{format}"/>
       </method>
     </resource>
     <!-- END tracks -->
