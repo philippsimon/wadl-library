@@ -512,8 +512,6 @@
     </resource>
 
     <resource path="users/{user_id}/groups.{format}">
-      <param name="q" required="false" type="xsd:string" style="query" default=""/>
-
       <method name="GET" id="get_user_groups">
         <tags>
           <tag primary="true">Users</tag>
@@ -526,10 +524,21 @@
         <example url="/users/{user_id}/groups.{format}?consumer_key={consumer_key}"/>
       </method>
     </resource>
+    
+    <resource path="me/groups.{format}">
+      <method name="GET" id="get_me_groups">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>Me</tag>
+          <tag>Groups</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a collection of groups joined by logged-in user</doc>
+        <example url="/me/groups.{format}"/>
+      </method>
+    </resource>    
 
     <resource path="users/{user_id}/playlists.{format}">
-      <param name="q" required="false" type="xsd:string" style="query" default=""/>
-
       <method name="GET" id="get_user_playlists">
         <tags>
           <tag primary="true">Users</tag>
@@ -542,6 +551,19 @@
         <example url="/users/{user_id}/playlists.{format}?consumer_key={consumer_key}"/>
       </method>
     </resource>
+
+    <resource path="me/playlists.{format}">
+      <method name="GET" id="get_me_playlists">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>Me</tag>
+          <tag>Playlists</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a collection of playlists created by the logged-in user</doc>
+        <example url="/me/playlists.{format}"/>
+      </method>
+    </resource>    
     <!-- END users -->
 
     <!-- BEGIN playlists -->
