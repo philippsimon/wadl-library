@@ -419,6 +419,19 @@
         <example url="/users/{user_id}/followers.{format}?consumer_key={consumer_key}"/>
       </method>
     </resource>
+    
+    <resource path="me/followers.{format}">
+      <method name="GET" id="get_me_followers">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>User</tag>
+          <tag>Followers</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a collection of users who follow the logged-in user</doc>
+        <example url="/me/followers.{format}"/>
+      </method>
+    </resource>    
 
     <resource path="users/{user_id}/favorites.{format}">
       <method name="GET" id="get_user_favorites">
