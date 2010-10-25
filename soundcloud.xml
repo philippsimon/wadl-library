@@ -279,12 +279,25 @@
         <tags>
           <tag primary="true">Users</tag>
           <tag>User</tag>
-          <tag>Track</tag>
+          <tag>Tracks</tag>
         </tags>
         <authentication required="false"/>
         <param name="user_id" required="true" type="xsd:string" style="query" default="183"/>
         <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a collection of tracks uploaded by user id</doc>
         <example url="/users/{user_id}/tracks.{format}?consumer_key={consumer_key}"/>
+      </method>
+    </resource>
+
+    <resource path="me/tracks.{format}">
+      <method name="GET" id="get_me_tracks">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>Me</tag>
+          <tag>Tracks</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a collection of tracks uploaded by logged-in user</doc>
+        <example url="/me/tracks.{format}"/>
       </method>
     </resource>
 
