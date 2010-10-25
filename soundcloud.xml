@@ -355,6 +355,17 @@
         <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Adds the user with the id contact_id to the givens user's list of contacts.</doc>
         <example url="/users/{user_id}/followings/{contact_id}.{format}"/>
       </method>
+      
+      <method name="DELETE" id="delete_user_followings">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>User</tag>
+          <tag>Followings</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Removes the user with the id contact_id from the givens user's list of contacts.</doc>
+        <example url="/users/{user_id}/followings/{contact_id}.{format}"/>
+      </method>     
     </resource>
     
     <resource path="me/followings.{format}">
@@ -380,6 +391,17 @@
         </tags>
         <authentication required="true"/>
         <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Adds the user with the id contact_id to the logged-in user's list of contacts.</doc>
+        <example url="/me/followings/{contact_id}.{format}"/>
+      </method>
+
+      <method name="DELETE" id="delete_me_followings">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>Me</tag>
+          <tag>Followings</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Deletes the user with the id contact_id from the logged-in user's list of contacts.</doc>
         <example url="/me/followings/{contact_id}.{format}"/>
       </method>
     </resource>
