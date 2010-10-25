@@ -64,7 +64,7 @@
         <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks">Returns a collection of tracks</doc>
         <example url="/tracks.{format}?consumer_key={consumer_key}"/>
         <response>
-					 <!-- TODO: add other optional properties -->
+           <!-- TODO: add other optional properties -->
            <property name="uri" oembed="true">The canonical location of the track.</property>
            <property name="id">Unique identification number for the track.</property>
            <property name="user">Information related to the user associated with the track.
@@ -73,26 +73,26 @@
         </response>
       </method>
 
-			<param name="title" required="true" type="xsd:string" style="header" default="A Track Title" />
-			<param name="asset_data" required="true" type="xsd:string" style="header" default="" />
-			<!-- IMPORTANT, NEED TO BE ABLE TO CHOOSE A FILE! or maybe even supply a url, though that could be confusing. &-->
-			<!-- TODO: add other optional params -->
+      <param name="title" required="true" type="xsd:string" style="header" default="A Track Title" />
+      <param name="asset_data" required="true" type="xsd:string" style="header" default="" />
+      <!-- IMPORTANT, NEED TO BE ABLE TO CHOOSE A FILE! or maybe even supply a url, though that could be confusing. &-->
+      <!-- TODO: add other optional params -->
       <method name="POST" id="post_tracks">
         <tags>
           <tag primary="true">Tracks</tag>
           <tag>Track</tag>
-        </tags>			
+        </tags>     
         <authentication required="false"/>
-	      <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks">Uploads a tracks</doc>
-	      <example url="/tracks.{format}"/>
-	      <response>
-	         <property name="uri" oembed="true">The canonical location of the track.</property>
-	         <property name="id">Unique identification number for the track.</property>
-	         <property name="user">Information related to the user associated with the track.
-	           <property name="uri" oembed="true">The canonical location of the user.</property>
-	         </property>
-	      </response>
-			</method>
+        <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks">Uploads a tracks</doc>
+        <example url="/tracks.{format}"/>
+        <response>
+           <property name="uri" oembed="true">The canonical location of the track.</property>
+           <property name="id">Unique identification number for the track.</property>
+           <property name="user">Information related to the user associated with the track.
+             <property name="uri" oembed="true">The canonical location of the user.</property>
+           </property>
+        </response>
+      </method>
     </resource>
 
     <resource path="tracks/{track_id}.{format}">
@@ -107,28 +107,28 @@
         <example url="tracks/{track_id}.{format}?consumer_key={consumer_key}"/>
       </method>
 
-			<!-- TODO: This is the same as POST /tracks, so update that first and then copy -->
-			<!-- Difference is method, tags, doc -->
-			<param name="title" required="true" type="xsd:string" style="header" default="A Track Title" />
-			<param name="asset_data" required="true" type="xsd:string" style="header" default="" />
-			<!-- IMPORTANT, NEED TO BE ABLE TO CHOOSE A FILE! or maybe even supply a url, though that could be confusing. &-->
-			<!-- TODO: add other optional params -->
+      <!-- TODO: This is the same as POST /tracks, so update that first and then copy -->
+      <!-- Difference is method, tags, doc -->
       <method name="PUT" id="put_track">
         <tags>
           <tag primary="true">Tracks</tag>
           <tag>Track</tag>
-        </tags>			
+        </tags>     
         <authentication required="true"/>
-	      <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks-continued">Updates a given track</doc>
-	      <example url="/tracks.{format}"/>
-	      <response>
-	         <property name="uri" oembed="true">The canonical location of the track.</property>
-	         <property name="id">Unique identification number for the track.</property>
-	         <property name="user">Information related to the user associated with the track.
-	           <property name="uri" oembed="true">The canonical location of the user.</property>
-	         </property>
-	      </response>
-			</method>
+        <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks-continued">Updates a given track</doc>
+        <example url="/tracks.{format}"/>
+        <param name="title" required="true" type="xsd:string" style="header" default="A Track Title" />
+        <param name="asset_data" required="true" type="xsd:string" style="header" default="" />
+        <!-- IMPORTANT, NEED TO BE ABLE TO CHOOSE A FILE! or maybe even supply a url, though that could be confusing. &-->
+        <!-- TODO: add other optional params -->
+        <response>
+           <property name="uri" oembed="true">The canonical location of the track.</property>
+           <property name="id">Unique identification number for the track.</property>
+           <property name="user">Information related to the user associated with the track.
+             <property name="uri" oembed="true">The canonical location of the user.</property>
+           </property>
+        </response>
+      </method>
 
      <method name="DELETE" id="delete_track">
         <tags>
@@ -137,7 +137,7 @@
         </tags>
         <authentication required="true"/>
         <param name="track_id" required="true" type="xsd:string" style="query" default="291"/>
-	      <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks-continued">Deletes a given track</doc>
+        <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks-continued">Deletes a given track</doc>
         <example url="tracks/{track_id}.{format}"/>
       </method>
     </resource>
@@ -164,6 +164,62 @@
         <authentication required="true"/>
         <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks-continued">Posts a comments to a track by track id</doc>
         <example url="/tracks/{track_id}/comments.{format}"/>
+      </method>
+    </resource>
+
+    <resource path="tracks/{track_id}/permissions.{format}">
+      <param name="track_id" required="true" type="xsd:string" style="query" default="291"/>
+      <method name="GET" id="get_track_permissions">
+        <tags>
+          <tag primary="true">Tracks</tag>
+          <tag>Track</tag>
+          <tag>Permissions</tag>
+        </tags>
+        <authentication required="false"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks-continued">Returns all users with permission for a track by track id</doc>
+        <example url="/tracks/{track_id}/permissions.{format}?consumer_key={consumer_key}"/>
+      </method>
+
+      <method name="PUT" id="put_track_permissions">
+        <tags>
+          <tag primary="true">Tracks</tag>
+          <tag>Track</tag>
+          <tag>Permissions</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks-continued">Updates the list of permitted users for a track by track id</doc>
+        <example url="/tracks/{track_id}/permissions.{format}"/>
+        <!-- TODO: How do we represent this structure to be sent?
+        <permissions>
+          <user-id>2</user-id>
+          <user-id>3</user-id>
+        </permissions>
+        -->
+      </method>
+    </resource>
+
+    <resource path="tracks/{track_id}/secret-token.{format}">
+      <param name="track_id" required="true" type="xsd:string" style="query" default="291"/>
+      <method name="GET" id="get_track_secret-token">
+        <tags>
+          <tag primary="true">Tracks</tag>
+          <tag>Track</tag>
+          <tag>Secret Token</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks-continued">Returns the secret token for a track by track id. This resource can only be used by used by the track owner.</doc>
+        <example url="/tracks/{track_id}/secret-token.{format}"/>
+      </method>
+
+      <method name="PUT" id="put_track_secret_token">
+        <tags>
+          <tag primary="true">Tracks</tag>
+          <tag>Track</tag>
+          <tag>Secret Token</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks-continued">Resets the secret token for a track by track id. The secret token can not be specified but will be randomly chosen on the server and returned. This resource can only be used by used by the track owner.</doc>
+        <example url="/tracks/{track_id}/secret-token.{format}"/>
       </method>
     </resource>
     <!-- END tracks -->
