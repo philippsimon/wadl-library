@@ -446,6 +446,32 @@
         <example url="/users/{user_id}/favorites.{format}?consumer_key={consumer_key}"/>
       </method>
     </resource>
+
+    <resource path="users/{user_id}/favorites/{track_id}.{format}">      
+      <param name="user_id" required="true" type="xsd:string" style="query" default="183"/>
+      <param name="track_id" required="true" type="xsd:string" style="query" default="291"/>      
+      <method name="PUT" id="put_user_favorites">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>User</tag>
+          <tag>Favorites</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Adds the given track to the given user's list of favorites.</doc>
+        <example url="/users/{user_id}/favorites/{track_id}.{format}"/>
+      </method>
+
+      <method name="DELETE" id="delete_user_favorites">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>User</tag>
+          <tag>Favorites</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Deletes the given track from the given user's list of favorites.</doc>
+        <example url="/users/{user_id}/favorites/{track_id}.{format}"/>
+      </method>      
+    </resource>
     
     <resource path="me/favorites.{format}">
       <method name="GET" id="get_me_favorites">
@@ -459,6 +485,31 @@
         <example url="/me/favorites.{format}"/>
       </method>
     </resource>    
+
+    <resource path="me/favorites/{track_id}.{format}">      
+      <param name="track_id" required="true" type="xsd:string" style="query" default="291"/>      
+      <method name="PUT" id="put_me_favorites">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>Me</tag>
+          <tag>Favorites</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Adds the given track to the logged-in user's list of favorites.</doc>
+        <example url="/me/favorites/{track_id}.{format}"/>
+      </method>
+
+      <method name="DELETE" id="delete_me_favorites">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>Me</tag>
+          <tag>Favorites</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Deletes the given track from the logged-in user's list of favorites.</doc>
+        <example url="/me/favorites/{track_id}.{format}"/>
+      </method>      
+    </resource>
 
     <resource path="users/{user_id}/groups.{format}">
       <param name="q" required="false" type="xsd:string" style="query" default=""/>
