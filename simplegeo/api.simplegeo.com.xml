@@ -107,7 +107,7 @@
 			<param name="dayname" required="true" type="xsd:string" style="query" default="mon"/>
 			<param name="lat" required="true" type="xsd:string" style="query" default="37.77275"/>
 			<param name="lon" required="true" type="xsd:string" style="query" default="-122.40572"/>
-			<method name="GET" id="boundary">
+			<method name="GET" id="density">
 				<authentication required="true"/>
 				<doc url="https://simplegeo.zendesk.com/entries/208976-api-endpoints">Returns the Skyhook SpotRank data for the requested location on a given day. dayname is one of: mon, tue, wed, thu, fri, sat, or sun.</doc>
 				
