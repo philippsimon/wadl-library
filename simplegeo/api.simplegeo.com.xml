@@ -36,6 +36,14 @@
 				<doc url="https://simplegeo.zendesk.com/entries/208976-api-endpoints">Gets the history of a record, in reverse order</doc>
 			</method>
 		</resource>
+		<resource path="records/{layer}/nearby/{IP}.json">
+			<param name="layer" required="true" type="xsd:string" style="query" default="com.simplegeo.test"/>
+			<param name="IP" required="true" type="xsd:string" style="query" default="173.164.32.246"/>
+			<method name="GET" id="get_nearby_ip">
+				<authentication required="true"/>
+				<doc url="http://simplegeo.com/docs/api-endpoints/querying-layers#nearby-ip-address">Returns records nearby a given IP address for the given layer. Specifying start and end in the request will search the API within a given time interval. To make use of our time based index, the difference between start and end must not be greater than 60 minutes.</doc>
+			</method>
+		</resource>
 		<resource path="records/{layer}/nearby/{geohash}.json">
 			<param name="layer" required="true" type="xsd:string" style="query" default="com.simplegeo.test"/>
 			<param name="geohash" required="true" type="xsd:string" style="query" default="9q8yyk8y"/>
