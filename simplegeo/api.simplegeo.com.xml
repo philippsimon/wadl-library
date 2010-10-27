@@ -92,6 +92,14 @@
 				
 			</method>
 		</resource>
+		<resource path="locate/{IP}.json">
+			<param name="IP" required="true" type="xsd:string" style="query" default="173.164.32.246"/>
+			<method name="GET" id="locate">
+				<authentication required="true"/>
+				<doc url="http://simplegeo.com/docs/api-endpoints/geoip#latitude-longitude-ip-address">Takes an IP address and returns a latitude and longitude in GeoJSON.</doc>
+				
+			</method>
+		</resource>
 		<resource path="density/{dayname}/{hour}/{lat},{lon}.json">
 			<param name="dayname" required="true" type="xsd:string" style="query" default="mon"/>
 			<param name="hour" required="true" type="xsd:string" style="query" default="15"/>
