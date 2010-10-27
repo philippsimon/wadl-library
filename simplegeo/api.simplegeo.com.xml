@@ -1,6 +1,4 @@
 <application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://research.sun.com/wadl/2006/10                      https://wadl.dev.java.net/wadl20061109.xsd" xmlns="http://research.sun.com/wadl/2006/10" xmlns:t="urn:simplegeo:simplegeoresponse"> 
-
-	
 	<resources base="http://api.simplegeo.com/0.1"> 
 		<resource path="records/{layer}/{id}.json">
 			<param name="layer" required="true" type="xsd:string" style="query" default="com.simplegeo.test"/>
@@ -8,17 +6,14 @@
 			<method name="GET" id="get_records">
 				<authentication required="true"/>
 				<doc url="https://simplegeo.zendesk.com/entries/208976-api-endpoints">Fetch a Record </doc>
-				
 			</method>
 			<method name="PUT" id="add_records">
 				<authentication required="true"/>
 				<doc url="https://simplegeo.zendesk.com/entries/208976-api-endpoints">Post a record</doc>
-				
 			</method>
 			<method name="DELETE" id="delete_records">
 				<authentication required="true"/>
 				<doc url="https://simplegeo.zendesk.com/entries/208976-api-endpoints">Delete a record</doc>
-				
 			</method>
 		</resource>
 		<resource path="records/{layer}/{id}/history.json">
@@ -67,7 +62,6 @@
 			<method name="GET" id="get_nearby_address">
 				<authentication required="true"/>
 				<doc url="https://simplegeo.zendesk.com/entries/208976-api-endpoints">Does a reverse geocode lookup, which converts the given latitude and longitude into a human readable point with address, street, city, state, and county depending on where the person is currently located. NOTE: The reverse geocoder only works for coordinates in the US currently.</doc>
-				
 			</method>
 		</resource>
 		<resource path="contains/{lat},{lon}.json">
@@ -76,7 +70,13 @@
 			<method name="GET" id="contains">
 				<authentication required="true"/>
 				<doc url="https://simplegeo.zendesk.com/entries/208976-api-endpoints"/>Does a "pushpin" query through a series of polygon layers and identifies the "cone" of administrative and other boundaries in which the point lies. Returns a list of features containing id, name, abbr, type and bounds fields.</doc>
-				
+			</method>
+		</resource>
+		<resource path="contains/{IP}.json">
+			<param name="IP" required="true" type="xsd:string" style="query" default="173.164.32.246"/>
+			<method name="GET" id="contains">
+				<authentication required="true"/>
+				<doc url="http://simplegeo.com/docs/api-endpoints/pushpin-querying#contains-ip-address"/>Does a "pushpin" query through a series of polygon layers and identifies the "cone" of administrative and other boundaries in which the point lies. Returns a list of features containing id, name, abbr, type and bounds fields.</doc>
 			</method>
 		</resource>
 		<resource path="overlaps/{south},{west},{north},{east}.json">
@@ -89,7 +89,6 @@
 			<method name="GET" id="overlaps">
 				<authentication required="true"/>
 				<doc url="https://simplegeo.zendesk.com/entries/208976-api-endpoints">Queries a series of polygon layers and identifies the "cone" of administrative and other boundaries that overlap with the given bounding box. The arguments are expected in units of latitude and longitude. The results are returned in the same form as the contains query.</doc>
-				
 			</method>
 		</resource>
 		<resource path="boundary/{id}.json">
@@ -97,7 +96,6 @@
 			<method name="GET" id="boundary">
 				<authentication required="true"/>
 				<doc url="https://simplegeo.zendesk.com/entries/208976-api-endpoints">Returns a feature object from the SimpleGeo gazetteer, as above, along with the geometry of the feature in GeoJSON format in the geometry field. The id parameter to this method should given in the same form as returned by the contains method above.</doc>
-				
 			</method>
 		</resource>
 		<resource path="locate/{IP}.json">
@@ -105,7 +103,6 @@
 			<method name="GET" id="locate">
 				<authentication required="true"/>
 				<doc url="http://simplegeo.com/docs/api-endpoints/geoip#latitude-longitude-ip-address">Takes an IP address and returns a latitude and longitude in GeoJSON.</doc>
-				
 			</method>
 		</resource>
 		<resource path="density/{dayname}/{hour}/{lat},{lon}.json">
@@ -116,7 +113,6 @@
 			<method name="GET" id="density_hour">
 				<authentication required="true"/>
 				<doc url="https://simplegeo.zendesk.com/entries/208976-api-endpoints">Returns the Skyhook SpotRank data for the requested location on a given day and hour. dayname is one of: mon, tue, wed, thu, fri, sat, or sun. hour is between 0-23.</doc>
-				
 			</method>
 		</resource>
 		<resource path="density/{dayname}/{lat},{lon}.json">
@@ -126,7 +122,6 @@
 			<method name="GET" id="density">
 				<authentication required="true"/>
 				<doc url="https://simplegeo.zendesk.com/entries/208976-api-endpoints">Returns the Skyhook SpotRank data for the requested location on a given day. dayname is one of: mon, tue, wed, thu, fri, sat, or sun.</doc>
-				
 			</method>
 		</resource>
 	</resources>
