@@ -56,6 +56,13 @@
 				<doc url="https://simplegeo.zendesk.com/entries/208976-api-endpoints">Search the API using a given latitude and longitude. The default radius is 1 kilometer and 25 records are returned by default. Specifying start and end in the request will search the API within a given time interval. Specifying start and end in the request will search the API within a given time interval. To make use of our time based index, the difference between start and end must not be greater than 60 minutes.</doc>
 			</method>
 		</resource>
+		<resource path="geocode/address.json">
+			<param name="q" required="true" type="xsd:string" style="query" default="41 Decatur St, San Francisco, 94103"/>
+			<method name="GET" id="geocode_address">
+				<authentication required="true"/>
+				<doc url="http://simplegeo.com/docs/api-endpoints/geocoding#forward-geocoder">Geocodes a human readable address (street, city, state, zip, etc) and returns a latitude and longitude. NOTE: This geocoder only works for US addresses only right now.</doc>
+			</method>
+		</resource>
 		<resource path="nearby/address/{lat},{lon}.json">
 			<param name="lat" required="true" type="xsd:string" style="query" default="37.77275"/>
 			<param name="lon" required="true" type="xsd:string" style="query" default="-122.40572"/>
