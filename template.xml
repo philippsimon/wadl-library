@@ -1,0 +1,90 @@
+<application xmlns="http://wadl.dev.java.net/2009/02"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://www.w3.org/Submission/wadl/wadl.xsd"
+             xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+             >
+
+	<authentication_schemes>
+		<choice required="true" count_max="1">
+			<scheme name="three-legged-oauth1.0a" style="query"></scheme>
+			<scheme name="three-legged-oauth1.0a" style="header"></scheme>
+		</choice>
+	</authentication_schemes>
+	<grammars>
+		<response-codes>
+			<code name="200" value="OK: Success!" />
+			<code name="400" value="Bad Request: The request was invalid. An accompanying error message will explain why." />
+			<code name="404" value="Not Found: The URI requested is invalid or the resource requested does not exist." />
+			<code name="500" value="Internal Server Error." />
+			<code name="503" value="Service Unavailable: The servers are up, but overloaded with requests. Try again later." />
+		</response-codes>
+	</grammars>
+
+<representation id="responseCodes" element="responseCodes"/>
+	
+<!-- base defines the domain of the endpoint -->
+<resources base="http://api.mydomain.com">
+	<!-- parameters can be defined at the resources level, if they apply to all children. -->
+	<!-- "template" denotes a mutable part of the path. defaults are strongly recommended -->
+	<param name="format" type="xsd:string" style="template" required="true" default="json">
+		<!-- options may be enumerated -->
+		<option value="xml" mediaType="application/xml"/>
+		<option value="json" mediaType="application/json"/>
+		<option value="rss" mediaType="application/rss+xml"/>
+		<option value="atom" mediaType="application/atom+xml"/>
+	</param>
+
+		<resource path="statuses/public_timeline.{format}">
+			<!-- resources that are the same but have multiple verbs can have multiple method items in the WADL -->
+			<!-- methods should all have a unique id -->
+			<method name="GET" id="statusespublic_timeline">
+				<!-- Tags are used to group APIs. The primary tag denotes the default listing. -->
+				<tags>
+					<tag primary="true">Timeline</tag>
+					<tag>Status</tag>
+				</tags>
+				<!-- this is a public method, so no auth required -->
+				<authentication required="false"/>
+				<!-- examples may be deprecated in favor of default and required parameters, but for now they are what auto-complete matches against. -->
+				<example url="/statuses/public_timeline.{format}"/>
+				<!-- url denotes the canonical documentation page. -->
+				<doc url="http://dev.twitter.com/doc/get/statuses/public_timeline">Returns the 20 most recent statuses from non-protected users who have set a custom user icon. <a href="http://groups.google.com/group/twitter-development-talk/browse_thread/thread/f881564598a947a7#">The public timeline is cached for 60 seconds</a> so requesting it more often than that is a waste of resources.</doc>
+			</method>
+		</resource>
+		<resource path="statuses/home_timeline.{format}">
+			<!-- a "query" style denotes a query parameter. "header" is common as well. -->
+			<param name="count" required="false" type="xsd:string" style="query" default="5">
+				<!-- docs are optional, but recommended. -->
+				<doc>Specifies the number of records to retrieve. Must be less than or equal to 200.</doc>
+			</param>
+			<param name="page" required="false" type="xsd:string" style="query" default="2">
+				<doc>Specifies the page of results to retrieve.</doc>
+			</param>
+			<param name="max_id" required="false" type="xsd:string" style="query" default="54321">
+				<doc>Returns results with an ID less than (that is, older than) or equal to the specified ID.</doc>
+			</param>
+			<param name="since_id" required="false" type="xsd:string" style="query" default="12345">
+				<doc>Returns results with an ID greater than (that is, more recent than) the specified ID. There are limits to the number of Tweets which can be accessed through the API. If the limit of Tweets has occured since the since_id, the since_id will be forced to the oldest ID available.</doc>
+			</param>
+			<param name="trim_user" required="false" type="xsd:string" style="query" default="true">
+				<doc>When set to either true, t or 1, each tweet returned in a timeline will include a user object including only the status authors numerical ID. Omit this parameter to receive the complete user object.</doc>
+			</param>
+			<param name="include_entities" required="false" type="xsd:string" style="query" default="true">
+				<doc>When set to either true, t or 1, each tweet will include a node called "entities,". This node offers a variety of metadata about the tweet in a discreet structure, including: user_mentions, urls, and hashtags. While entities are opt-in on timelines at present, they will be made a default component of output in the future. See Tweet Entities for more detail on entities.</doc>
+			</param>
+			<method name="GET" id="statuseshome_timeline">
+				<tags>
+					<tag primary="true">Timeline</tag>
+					<tag>Status</tag>
+				</tags>
+				<!-- required="true" means some sort of auth schema should have been defined above. -->
+				<authentication required="true"/>
+				<example url="/statuses/home_timeline.{format}"/>
+				<!-- We strip html for now, but someday we might prefer it, no? -->
+				<docs url="http://dev.twitter.com/doc/get/statuses/home_timeline"><p>Returns the 20 most recent statuses, including retweets, posted by the authenticating user and that user's friends. This is the equivalent of /timeline/home on the Web.</p>
+				<p><b>Usage note:</b> This home_timeline is identical to statuses/friends_timeline except it also contains retweets, which statuses/friends_timeline does not (for backwards compatibility reasons). In a future version of the API, statuses/friends_timeline will go away and be replaced by home_timeline.</p></notes>
+			</method>
+		</resource>
+</resources>
+</application>

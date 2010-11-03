@@ -1,0 +1,415 @@
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+             xsi:schemaLocation="http://research.sun.com/wadl/2006/10" 
+             xmlns:apigee="http://www.apigee.com/schema/2010/07/wadl" 
+             xmlns="http://wadl.dev.java.net/2009/02">
+  <resources base="http://api.locomatix.com"> 
+    <resource path="feed/{feed}/object/Create.json">
+      <param name="oid" required="true" type="xsd:string" style="query">
+        <doc>A string that uniquely identifies the object within the feed.</doc>
+      </param>
+      <param name="feed" required="true" type="xsd:string" style="query" default="locomatix-test-feed">
+        <doc>A string that specifies the name of the feed to create the object.</doc>
+      </param>
+      <method name="PUT">
+	<authentication required="true"/>
+	<doc url="https://www.locomatix.com/docs/0.9/rest_api">Create an object in the feed.</doc>
+        <tags>
+          <tag primary="true">Objects</tag>
+        </tags>
+      </method>
+    </resource>
+    <resource path="feed/{feed}/object/Delete.json">
+      <param name="oid" required="true" type="xsd:string" style="query">
+        <doc>A string that uniquely identifies the object within the feed.</doc>
+      </param>
+      <param name="feed" required="true" type="xsd:string" style="query" default="locomatix-test-feed">
+        <doc>A string that specifies the name of the feed to delete the object.</doc>
+      </param>
+      <method name="DELETE">
+	<authentication required="true"/>
+	<doc url="https://www.locomatix.com/docs/0.9/rest_api">Delete an object in the feed.</doc>
+        <tags>
+          <tag primary="true">Objects</tag>
+        </tags>
+      </method>
+    </resource>
+    <resource path="feed/{feed}/object/GetAttributes.json">
+      <param name="oid" required="true" type="xsd:string" style="query">
+        <doc>A string that uniquely identifies the object within the feed.</doc>
+      </param>
+      <param name="feed" required="true" type="xsd:string" style="query" default="locomatix-test-feed">
+        <doc>A string that specifies the name of the feed containing the object.</doc>
+      </param>
+      <method name="GET">
+	<authentication required="true"/>
+	<doc url="https://www.locomatix.com/docs/0.9/rest_api">Get the attributes of an object.</doc>
+        <tags>
+          <tag primary="true">Objects</tag>
+        </tags>
+      </method>
+    </resource>
+    <resource path="feed/{feed}/object/UpdateAttributes.json">
+      <param name="oid" required="true" type="xsd:string" style="query">
+        <doc>A string that uniquely identifies the object within the feed.</doc>
+      </param>
+      <param name="feed" required="true" type="xsd:string" style="query" default="locomatix-test-feed">
+        <doc>A string that specifies the name of the feed containing the object.</doc>
+      </param>
+      <method name="PUT">
+	<authentication required="true"/>
+	<doc url="https://www.locomatix.com/docs/0.9/rest_api">Update the attributes of an object in the feed.</doc>
+        <tags>
+          <tag primary="true">Objects</tag>
+        </tags>
+      </method>
+    </resource>
+    <resource path="feed/{feed}/ListObjects.json">
+      <param name="feed" required="true" type="xsd:string" style="query" default="locomatix-test-feed">
+        <doc>A string that specifies the name of the feed.</doc>
+      </param>
+      <param name="startkey" required="false" type="xsd:string" style="query" default="">
+        <doc>A string that identifies the object to begin the fetch. Defaults to empty.</doc>
+      </param>
+      <param name="fetchsize" required="false" type="xsd:string" style="query" default="20">
+        <doc>A integer that limits the number of objects to be fetched. Defaults to 20.</doc>
+      </param>
+      <method name="GET">
+	<authentication required="true"/>
+	<doc url="https://www.locomatix.com/docs/0.9/rest_api">List objects in the feed.</doc>
+        <tags>
+          <tag primary="true">Objects</tag>
+        </tags>
+      </method>
+    </resource>
+    <resource path="feed/{feed}/object/UpdateLocation.json">
+      <param name="oid" required="true" type="xsd:string" style="query">
+        <doc>A string that uniquely identifies the object within the feed.</doc>
+      </param>
+      <param name="feed" required="true" type="xsd:string" style="query" default="locomatix-test-feed">
+        <doc>A string that specifies the name of the feed containing the object.</doc>
+      </param>
+      <param name="longitude" required="true" type="xsd:string" style="query">
+        <doc>A float point number that represents the longitude of the location.</doc>
+      </param>
+      <param name="latitude" required="true" type="xsd:string" style="query">
+        <doc>A float point number that represents the latitude of the location.</doc>
+      </param>
+      <param name="time" required="true" type="xsd:string" style="query">
+        <doc>A unix epoch timestamp that represents the time of the location.</doc>
+      </param>
+      <method name="PUT">
+	<authentication required="true"/>
+	<doc url="https://www.locomatix.com/docs/0.9/rest_api">Update the location of the object.</doc>
+        <tags>
+          <tag primary="true">Locations</tag>
+        </tags>
+      </method>
+    </resource>
+    <resource path="feed/{feed}/object/GetLocation.json">
+      <param name="oid" required="true" type="xsd:string" style="query">
+        <doc>A string that uniquely identifies the object within the feed.</doc>
+      </param>
+      <param name="feed" required="true" type="xsd:string" style="query" default="locomatix-test-feed">
+        <doc>A string that specifies the name of the feed containing the object.</doc>
+      </param>
+      <method name="GET">
+	<authentication required="true"/>
+	<doc url="https://www.locomatix.com/docs/0.9/rest_api">Get the last known location of the object.</doc>
+        <tags>
+          <tag primary="true">Locations</tag>
+        </tags>
+      </method>
+    </resource>
+    <resource path="search/NearbyObject.json">
+      <param name="oid" required="true" type="xsd:string" style="query">
+        <doc>A string that uniquely identifies the object within the feed.</doc>
+      </param>
+      <param name="feed" required="true" type="xsd:string" style="query" default="locomatix-test-feed">
+        <doc>A string that specifies the name of the feed containing the object.</doc>
+      </param>
+      <param name="region" required="true" type="xsd:string" style="query" default="Circle">
+        <doc>A string that specifies the type of search region around the object. Circle only supported for now.</doc>
+      </param>
+      <param name="radius" required="true" type="xsd:string" style="query">
+        <doc>An integer that represents the radius of the circle region around the object in meters.</doc>
+      </param>
+      <param name="feeds" required="true" type="xsd:string" style="query" default="locomatix-test-feed">
+        <doc>A comma seperated list of feeds to search. Defaults to the feed of the object</doc>
+      </param>
+      <param name="startkey" required="false" type="xsd:string" style="query" default="">
+        <doc>A string that identifies the object to begin the fetch. Defaults to empty.</doc>
+      </param>
+      <param name="fetchsize" required="false" type="xsd:string" style="query" default="20">
+        <doc>A integer that limits the number of objects to be fetched. Defaults to 20.</doc>
+      </param>
+      <method name="GET">
+	<authentication required="true"/>
+	<doc url="https://www.locomatix.com/docs/0.9/rest_api">Search near the location of an object.</doc>
+        <tags>
+          <tag primary="true">Searching</tag>
+        </tags>
+      </method>
+    </resource>
+    <resource path="search/Region.json">
+      <param name="region" required="true" type="xsd:string" style="query" default="Circle">
+        <doc>A string that specifies the type of search region. Circle only supported for now.</doc>
+      </param>
+      <param name="longitude" required="true" type="xsd:string" style="query">
+        <doc>A float point number that represents the center longitude of the circle region.</doc>
+      </param>
+      <param name="latitude" required="true" type="xsd:string" style="query">
+        <doc>A float point number that represents the center latitude of the circle region.</doc>
+      </param>
+      <param name="radius" required="true" type="xsd:string" style="query">
+        <doc>An integer that represents the radius of the circle region in meters.</doc>
+      </param>
+      <param name="feeds" required="true" type="xsd:string" style="query" default="locomatix-test-feed">
+        <doc>A comma seperated list of feeds to search.</doc>
+      </param>
+      <param name="startkey" required="false" type="xsd:string" style="query" default="">
+        <doc>A string that identifies the object to begin the fetch. Defaults to empty.</doc>
+      </param>
+      <param name="fetchsize" required="false" type="xsd:string" style="query" default="20">
+        <doc>A integer that limits the number of objects to be fetched. Defaults to 20.</doc>
+      </param>
+      <method name="GET">
+	<authentication required="true"/>
+	<doc url="https://www.locomatix.com/docs/0.9/rest_api">Search a region.</doc>
+        <tags>
+          <tag primary="true">Searching</tag>
+        </tags>
+      </method>
+    </resource>
+    <resource path="zone/{feed}/Create.json">
+      <param name="zoneid" required="true" type="xsd:string" style="query">
+        <doc>A string that uniquely identifies the zone around the object.</doc>
+      </param>
+      <param name="oid" required="true" type="xsd:string" style="query">
+        <doc>A string that uniquely identifies the object within the feed.</doc>
+      </param>
+      <param name="feed" required="true" type="xsd:string" style="query" default="locomatix-test-feed">
+        <doc>A string that specifies the name of the feed containing the object.</doc>
+      </param>
+      <param name="region" required="true" type="xsd:string" style="query" default="Circle">
+        <doc>A string that specifies the type of region around the object. Circle only supported for now.</doc>
+      </param>
+      <param name="radius" required="true" type="xsd:string" style="query">
+        <doc>An integer that represents the radius of the circle region around the object in meters.</doc>
+      </param>
+      <param name="trigger" required="true" type="xsd:string" style="query" default="Ingress">
+        <doc>An enum string that specifies the trigger condition. Valid values are Ingress, Egress, IngressAndEgress.</doc>
+      </param>
+      <param name="callbacktype" required="true" type="xsd:string" style="query" default="URL">
+        <doc>A string that indicates how to post the notification. Currently, URL is only supported. </doc>
+      </param>
+      <param name="callbackurl" required="true" type="xsd:string" style="query">
+        <doc>An URL string to post the notification. </doc>
+      </param>
+      <param name="feeds" required="false" type="xsd:string" style="query" default="locomatix-test-feed">
+        <doc>A comma seperated list of feeds whose objects trigger this zone. Defaults to feed of the object.</doc>
+      </param>
+      <method name="POST">
+	<authentication required="true"/>
+	<doc url="https://www.locomatix.com/docs/0.9/rest_api">Create a zone around the object.</doc>
+        <tags>
+          <tag primary="true">Zones</tag>
+        </tags>
+      </method>
+    </resource>
+    <resource path="zone/{feed}/Delete.json">
+      <param name="zoneid" required="true" type="xsd:string" style="query">
+        <doc>A string that uniquely identifies the zone around the object.</doc>
+      </param>
+      <param name="oid" required="true" type="xsd:string" style="query">
+        <doc>A string that uniquely identifies the object within the feed.</doc>
+      </param>
+      <param name="feed" required="true" type="xsd:string" style="query" default="locomatix-test-feed">
+        <doc>A string that specifies the name of the feed containing the object.</doc>
+      </param>
+      <method name="DELETE">
+	<authentication required="true"/>
+	<doc url="https://www.locomatix.com/docs/0.9/rest_api">Delete a zone around the object.</doc>
+        <tags>
+          <tag primary="true">Zones</tag>
+        </tags>
+      </method>
+    </resource>
+    <resource path="zone/{feed}/Get.json">
+      <param name="zoneid" required="true" type="xsd:string" style="query">
+        <doc>A string that uniquely identifies the zone around the object.</doc>
+      </param>
+      <param name="oid" required="true" type="xsd:string" style="query">
+        <doc>A string that uniquely identifies the object within the feed.</doc>
+      </param>
+      <param name="feed" required="true" type="xsd:string" style="query" default="locomatix-test-feed">
+        <doc>A string that specifies the name of the feed containing the object.</doc>
+      </param>
+      <method name="GET">
+	<authentication required="true"/>
+	<doc url="https://www.locomatix.com/docs/0.9/rest_api">Get the details of a zone from the feed.</doc>
+        <tags>
+          <tag primary="true">Zones</tag>
+        </tags>
+      </method>
+    </resource>
+    <resource path="zone/{feed}/List.json">
+      <param name="oid" required="true" type="xsd:string" style="query">
+        <doc>A string that uniquely identifies the object within the feed.</doc>
+      </param>
+      <param name="feed" required="true" type="xsd:string" style="query" default="locomatix-test-feed">
+        <doc>A string that specifies the name of the feed containing the object.</doc>
+      </param>
+      <param name="startkey" required="false" type="xsd:string" style="query" default="">
+        <doc>A string that identifies the zone to begin the fetch. Defaults to empty.</doc>
+      </param>
+      <param name="fetchsize" required="false" type="xsd:string" style="query" default="20">
+        <doc>A integer that limits the number of zones to be fetched. Defaults to 20.</doc>
+      </param>
+      <method name="GET">
+	<authentication required="true"/>
+	<doc url="https://www.locomatix.com/docs/0.9/rest_api">List all the zones around an object.</doc>
+        <tags>
+          <tag primary="true">Zones</tag>
+        </tags>
+      </method>
+    </resource>
+    <resource path="fence/Create.json">
+      <param name="fenceid" required="true" type="xsd:string" style="query">
+        <doc>A string that uniquely identifies the geofence.</doc>
+      </param>
+      <param name="region" required="true" type="xsd:string" style="query" default="Circle">
+        <doc>A string that specifies the type of region for the geofence. Circle only supported for now.</doc>
+      </param>
+      <param name="longitude" required="true" type="xsd:string" style="query">
+        <doc>A float point number that represents the center longitude of the circle region.</doc>
+      </param>
+      <param name="latitude" required="true" type="xsd:string" style="query">
+        <doc>A float point number that represents the center latitude of the circle region.</doc>
+      </param>
+      <param name="radius" required="true" type="xsd:string" style="query">
+        <doc>An integer that represents the radius of the circle region in meters.</doc>
+      </param>
+      <param name="trigger" required="true" type="xsd:string" style="query" default="Ingress">
+        <doc>An enum string that specifies the trigger condition. Valid values are Ingress, Egress, IngressAndEgress.</doc>
+      </param>
+      <param name="callbacktype" required="true" type="xsd:string" style="query" default="URL">
+        <doc>A string that indicates how to post the notification. Currently, URL is only supported. </doc>
+      </param>
+      <param name="callbackurl" required="true" type="xsd:string" style="query">
+        <doc>An URL string to post the notification. </doc>
+      </param>
+      <param name="feeds" required="false" type="xsd:string" style="query">
+        <doc>A comma seperated list of feeds whose objects trigger this geofence.</doc>
+      </param>
+      <method name="PUT">
+	<authentication required="true"/>
+	<doc url="https://www.locomatix.com/docs/0.9/rest_api">Create a geofence.</doc>
+        <tags>
+          <tag primary="true">Fences</tag>
+        </tags>
+      </method>
+    </resource>
+    <resource path="fence/Delete.json">
+      <param name="fenceid" required="true" type="xsd:string" style="query">
+        <doc>A string that uniquely identifies the geofence.</doc>
+      </param>
+      <method name="DELETE">
+	<authentication required="true"/>
+	<doc url="https://www.locomatix.com/docs/0.9/rest_api">Delete a geofence.</doc>
+        <tags>
+          <tag primary="true">Fences</tag>
+        </tags>
+      </method>
+    </resource>
+    <resource path="fence/Get.json">
+      <param name="fenceid" required="true" type="xsd:string" style="query">
+        <doc>A string that uniquely identifies the geofence.</doc>
+      </param>
+      <method name="GET">
+	<authentication required="true"/>
+	<doc url="https://www.locomatix.com/docs/0.9/rest_api">Get the details of a geofence.</doc>
+        <tags>
+          <tag primary="true">Fences</tag>
+        </tags>
+      </method>
+    </resource>
+    <resource path="fence/List.json">
+      <param name="startkey" required="false" type="xsd:string" style="query" default="">
+        <doc>A string that identifies the geofence to begin the fetch. Defaults to empty.</doc>
+      </param>
+      <param name="fetchsize" required="false" type="xsd:string" style="query" default="20">
+        <doc>A integer that limits the number of geofences to be fetched. Defaults to 20.</doc>
+      </param>
+      <method name="GET">
+	<authentication required="true"/>
+	<doc url="https://www.locomatix.com/docs/0.9/rest_api">List all the geofences.</doc>
+        <tags>
+          <tag primary="true">Fences</tag>
+        </tags>
+      </method>
+    </resource>
+    <resource path="analytics/{feed}/object/Trail.json">
+      <param name="oid" required="true" type="xsd:string" style="query">
+        <doc>A string that uniquely identifies the object within the feed.</doc>
+      </param>
+      <param name="feed" required="true" type="xsd:string" style="query" default="locomatix-test-feed">
+        <doc>A string that specifies the name of the feed containing the object.</doc>
+      </param>
+      <param name="starttime" required="false" type="xsd:string" style="query">
+        <doc>A unix epoch timestamp that represents the start time for location history.</doc>
+      </param>
+      <param name="endtime" required="false" type="xsd:string" style="query">
+        <doc>A unix epoch timestamp that represents the end time for space activity.</doc>
+      </param>
+      <param name="startkey" required="false" type="xsd:string" style="query" default="">
+        <doc>A string that identifies the object to begin the fetch. Defaults to empty.</doc>
+      </param>
+      <param name="fetchsize" required="false" type="xsd:string" style="query" default="20">
+        <doc>A integer that limits the number of objects to be fetched. Defaults to 20.</doc>
+      </param>
+      <method name="GET">
+	<authentication required="true"/>
+	<doc url="https://www.locomatix.com/docs/0.9/rest_api">Get location history of the object.</doc>
+        <tags>
+          <tag primary="true">Analytics</tag>
+        </tags>
+      </method>
+    </resource>
+    <resource path="analytics/{feed}/SpaceActivity.json">
+      <param name="feed" required="true" type="xsd:string" style="query" default="locomatix-test-feed">
+        <doc>A string that specifies the name of the feed.</doc>
+      </param>
+      <param name="region" required="true" type="xsd:string" style="query" default="Circle">
+        <doc>A string that specifies the type of region. Circle only supported for now.</doc>
+      </param>
+      <param name="longitude" required="true" type="xsd:string" style="query">
+        <doc>A float point number that represents the center longitude of the circle region.</doc>
+      </param>
+      <param name="latitude" required="true" type="xsd:string" style="query">
+        <doc>A float point number that represents the center latitude of the circle region.</doc>
+      </param>
+      <param name="radius" required="true" type="xsd:string" style="query">
+        <doc>An integer that represents the radius of the circle region in meters.</doc>
+      </param>
+      <param name="starttime" required="false" type="xsd:string" style="query">
+        <doc>A unix epoch timestamp that represents the start time for space activity.</doc>
+      </param>
+      <param name="endtime" required="false" type="xsd:string" style="query">
+        <doc>A unix epoch timestamp that represents the end time for space activity.</doc>
+      </param>
+      <param name="startkey" required="false" type="xsd:string" style="query" default="">
+        <doc>A string that identifies the object to begin the fetch. Defaults to empty.</doc>
+      </param>
+      <param name="fetchsize" required="false" type="xsd:string" style="query" default="20">
+        <doc>A integer that limits the number of objects to be fetched. Defaults to 20.</doc>
+      </param>
+      <method name="GET">
+	<authentication required="true"/>
+	<doc url="https://www.locomatix.com/docs/0.9/rest_api">Get location history of the object.</doc>
+        <tags>
+          <tag primary="true">Analytics</tag>
+        </tags>
+      </method>
+    </resource>
+  </resources>
+</application>
