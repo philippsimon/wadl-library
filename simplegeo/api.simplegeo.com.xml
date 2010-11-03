@@ -5,15 +5,15 @@
 			<param name="id" required="true" type="xsd:string" style="query" default="1234"/>
 			<method name="GET" id="get_records">
 				<authentication required="true"/>
-				<doc url="https://simplegeo.zendesk.com/entries/208976-api-endpoints">Fetch a Record </doc>
+                <doc url="http://simplegeo.com/docs/api-endpoints/record-management#single-record">Fetch a Record </doc>
 			</method>
 			<method name="PUT" id="add_records">
 				<authentication required="true"/>
-				<doc url="https://simplegeo.zendesk.com/entries/208976-api-endpoints">Post a record</doc>
+                <doc url="http://simplegeo.com/docs/api-endpoints/record-management#single-record">Post a record</doc>
 			</method>
 			<method name="DELETE" id="delete_records">
 				<authentication required="true"/>
-				<doc url="https://simplegeo.zendesk.com/entries/208976-api-endpoints">Delete a record</doc>
+                <doc url="http://simplegeo.com/docs/api-endpoints/record-management#single-record">Delete a record</doc>
 			</method>
 		</resource>
 		<resource path="records/{layer}/{id}/history.json">
@@ -28,7 +28,7 @@
 			</method>
 			<method name="PUT" id="get_history_reverse">
 				<authentication required="true"/>
-				<doc url="https://simplegeo.zendesk.com/entries/208976-api-endpoints">Gets the history of a record, in reverse order</doc>
+                <doc url="http://simplegeo.com/docs/api-endpoints/querying-layers#record-history">Gets the history of a record, in reverse order</doc>
 			</method>
 		</resource>
 		<resource path="records/{layer}/nearby/{IP}.json">
@@ -44,7 +44,7 @@
 			<param name="geohash" required="true" type="xsd:string" style="query" default="9q8yyk8y"/>
 			<method name="GET" id="get_nearby_geohash">
 				<authentication required="true"/>
-				<doc url="https://simplegeo.zendesk.com/entries/208976-api-endpoints">Gets the nearby points from a given geohash. Returns records in a given geohash for the given layer. By nature, a geohash is a bounding box, which means that no radius or center point is needed. Searching by a simple geohash is the fastest way to do a nearby query with the API.</doc>
+                <doc url="http://simplegeo.com/docs/api-endpoints/querying-layers#nearby-geohash">Gets the nearby points from a given geohash. Returns records in a given geohash for the given layer. By nature, a geohash is a bounding box, which means that no radius or center point is needed. Searching by a simple geohash is the fastest way to do a nearby query with the API.</doc>
 			</method>
 		</resource>
 		<resource path="records/{layer}/nearby/{lat},{lon}.json">
@@ -53,7 +53,7 @@
 			<param name="lon" required="true" type="xsd:string" style="query" default="-122.40572"/>
 			<method name="GET" id="get_nearby">
 				<authentication required="true"/>
-				<doc url="https://simplegeo.zendesk.com/entries/208976-api-endpoints">Search the API using a given latitude and longitude. The default radius is 1 kilometer and 25 records are returned by default. Specifying start and end in the request will search the API within a given time interval. Specifying start and end in the request will search the API within a given time interval. To make use of our time based index, the difference between start and end must not be greater than 60 minutes.</doc>
+                <doc url="http://simplegeo.com/docs/api-endpoints/querying-layers#nearby-latitude-longitude">Search the API using a given latitude and longitude. The default radius is 1 kilometer and 25 records are returned by default. Specifying start and end in the request will search the API within a given time interval. Specifying start and end in the request will search the API within a given time interval. To make use of our time based index, the difference between start and end must not be greater than 60 minutes.</doc>
 			</method>
 		</resource>
 		<resource path="geocode/address.json">
@@ -68,7 +68,7 @@
 			<param name="lon" required="true" type="xsd:string" style="query" default="-122.40572"/>
 			<method name="GET" id="get_nearby_address">
 				<authentication required="true"/>
-				<doc url="https://simplegeo.zendesk.com/entries/208976-api-endpoints">Does a reverse geocode lookup, which converts the given latitude and longitude into a human readable point with address, street, city, state, and county depending on where the person is currently located. NOTE: The reverse geocoder only works for coordinates in the US currently.</doc>
+                <doc url="http://simplegeo.com/docs/api-endpoints/geocoding#reverse-geocoding">Does a reverse geocode lookup, which converts the given latitude and longitude into a human readable point with address, street, city, state, and county depending on where the person is currently located. NOTE: The reverse geocoder only works for coordinates in the US currently.</doc>
 			</method>
 		</resource>
 		<resource path="contains/{lat},{lon}.json">
@@ -76,7 +76,7 @@
 			<param name="lon" required="true" type="xsd:string" style="query" default="-122.40572"/>
 			<method name="GET" id="contains">
 				<authentication required="true"/>
-				<doc url="https://simplegeo.zendesk.com/entries/208976-api-endpoints"/>Does a "pushpin" query through a series of polygon layers and identifies the "cone" of administrative and other boundaries in which the point lies. Returns a list of features containing id, name, abbr, type and bounds fields.</doc>
+                <doc url="http://simplegeo.com/docs/api-endpoints/pushpin-querying#contains"/>Does a "pushpin" query through a series of polygon layers and identifies the "cone" of administrative and other boundaries in which the point lies. Returns a list of features containing id, name, abbr, type and bounds fields.</doc>
 			</method>
 		</resource>
 		<resource path="contains/{IP}.json">
@@ -95,14 +95,14 @@
 			<param name="type" required="false" type="xsd:string" style="query" default="Neighborhood"/>
 			<method name="GET" id="overlaps">
 				<authentication required="true"/>
-				<doc url="https://simplegeo.zendesk.com/entries/208976-api-endpoints">Queries a series of polygon layers and identifies the "cone" of administrative and other boundaries that overlap with the given bounding box. The arguments are expected in units of latitude and longitude. The results are returned in the same form as the contains query.</doc>
+                <doc url="http://simplegeo.com/docs/api-endpoints/pushpin-querying#bounding-box">Queries a series of polygon layers and identifies the "cone" of administrative and other boundaries that overlap with the given bounding box. The arguments are expected in units of latitude and longitude. The results are returned in the same form as the contains query.</doc>
 			</method>
 		</resource>
 		<resource path="boundary/{id}.json">
 			<param name="lon" required="true" type="xsd:string" style="query" default="Urban_Area:San_Francisco1:9q9jsg"/>
 			<method name="GET" id="boundary">
 				<authentication required="true"/>
-				<doc url="https://simplegeo.zendesk.com/entries/208976-api-endpoints">Returns a feature object from the SimpleGeo gazetteer, as above, along with the geometry of the feature in GeoJSON format in the geometry field. The id parameter to this method should given in the same form as returned by the contains method above.</doc>
+                <doc url="http://simplegeo.com/docs/api-endpoints/pushpin-querying#boundry">Returns a feature object from the SimpleGeo gazetteer, as above, along with the geometry of the feature in GeoJSON format in the geometry field. The id parameter to this method should given in the same form as returned by the contains method above.</doc>
 			</method>
 		</resource>
 		<resource path="locate/{IP}.json">
@@ -119,7 +119,7 @@
 			<param name="lon" required="true" type="xsd:string" style="query" default="-122.40572"/>
 			<method name="GET" id="density_hour">
 				<authentication required="true"/>
-				<doc url="https://simplegeo.zendesk.com/entries/208976-api-endpoints">Returns the Skyhook SpotRank data for the requested location on a given day and hour. dayname is one of: mon, tue, wed, thu, fri, sat, or sun. hour is between 0-23.</doc>
+                <doc url="http://simplegeo.com/docs/api-endpoints/spotrank#density-hour">Returns the Skyhook SpotRank data for the requested location on a given day and hour. dayname is one of: mon, tue, wed, thu, fri, sat, or sun. hour is between 0-23.</doc>
 			</method>
 		</resource>
 		<resource path="density/{dayname}/{lat},{lon}.json">
@@ -128,7 +128,7 @@
 			<param name="lon" required="true" type="xsd:string" style="query" default="-122.40572"/>
 			<method name="GET" id="density">
 				<authentication required="true"/>
-				<doc url="https://simplegeo.zendesk.com/entries/208976-api-endpoints">Returns the Skyhook SpotRank data for the requested location on a given day. dayname is one of: mon, tue, wed, thu, fri, sat, or sun.</doc>
+                <doc url="http://simplegeo.com/docs/api-endpoints/spotrank#spotrank">Returns the Skyhook SpotRank data for the requested location on a given day. dayname is one of: mon, tue, wed, thu, fri, sat, or sun.</doc>
 			</method>
 		</resource>
 	</resources>
