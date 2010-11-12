@@ -583,6 +583,31 @@
         <example url="/playlists/{playlist_id}.{format}?consumer_key={consumer_key}"/>
       </method>
     </resource>
+
+    <resource path="playlists/{playlist_id}/secret-token.{format}">
+      <param name="playlist_id" required="true" type="xsd:string" style="query"/>
+      <method name="GET" id="get_playlist_secret-token">
+        <tags>
+          <tag primary="true">Playlists</tag>
+          <tag>Playlist</tag>
+          <tag>Secret Token</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="https://github.com/soundcloud/api/wiki/10.3-Resources:-playlists">Returns the secret token for a playlist by playlist id. This resource can only be used by used by the playlist owner.</doc>
+        <example url="/playlists/{playlist_id}/secret-token.{format}"/>
+      </method>
+
+      <method name="PUT" id="put_playlist_secret_token">
+        <tags>
+          <tag primary="true">Playlists</tag>
+          <tag>Playlist</tag>
+          <tag>Secret Token</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="https://github.com/soundcloud/api/wiki/10.3-Resources:-playlists">Resets the secret token for a playlist by playlist id. The secret token can not be specified but will be randomly chosen on the server and returned. This resource can only be used by used by the playlist owner.</doc>
+        <example url="/playlists/{playlist_id}/secret-token.{format}"/>
+      </method>
+    </resource>
     <!-- END playlists -->
 
     <!-- BEGIN groups -->
