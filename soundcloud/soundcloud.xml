@@ -1,0 +1,787 @@
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xsi:schemaLocation="http://www.w3.org/Submission/wadl/wadl.xsd"
+             xmlns:apigee="http://www.apigee.com/schema/2010/07/wadl/"
+             xmlns="http://wadl.dev.java.net/2009/02">
+
+  <resources base="http://api.sandbox-soundcloud.com"> 
+    <param name="consumer_key" required="true" type="xsd:string" style="query" default="enter_your_consumer_key_please"/>
+    <param name="format" type="xsd:string" style="template" required="true" default="json">
+      <option value="xml" mediaType="application/xml"/>
+      <option value="json" mediaType="application/json"/>
+    </param>
+    <renderer type="oembed" base="http://soundcloud.com/oembed"/>
+    <!-- BEGIN users -->
+    <resource path="users.{format}">
+      <param name="q" required="false" type="xsd:string" style="query" default=""/>
+      <method name="GET" id="get_users">
+        <tags>
+          <tag primary="true">Users</tag>
+        </tags>
+        <authentication required="false"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a collection of users</doc>
+        <example url="/users.{format}?consumer_key={consumer_key}"/>
+      </method>
+    </resource>
+
+    <resource path="users/{user_id}.{format}">
+      <method name="GET" id="get_user">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>User</tag>
+        </tags>
+        <authentication required="false"/>
+        <param name="user_id" required="true" type="xsd:string" style="query" default="183"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a user by user id</doc>
+        <example url="/users/{user_id}.{format}?consumer_key={consumer_key}"/>
+      </method>
+    </resource>
+    
+    <resource path="me.{format}">     
+      <!-- Same as GET users/{user_id} -->
+      <method name="GET" id="get_me">
+        <tags>
+          <tag primary="true">Me</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns the logged-in user</doc>
+        <example url="/me.{format}"/>
+      </method>      
+           
+      <method name="PUT" id="put_me">
+        <tags>
+          <tag primary="true">Me</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Updates the logged-in user</doc>
+        <example url="/me.{format}"/>
+        <!-- TODO: What properties an be updated? -->
+      </method>
+    </resource>
+
+    <resource path="users/{user_id}/tracks.{format}">
+      <method name="GET" id="get_user_tracks">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>User</tag>
+          <tag>Tracks</tag>
+        </tags>
+        <authentication required="false"/>
+        <param name="user_id" required="true" type="xsd:string" style="query" default="183"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a collection of tracks uploaded by user id</doc>
+        <example url="/users/{user_id}/tracks.{format}?consumer_key={consumer_key}"/>
+      </method>
+    </resource>
+
+    <resource path="me/tracks.{format}">
+      <method name="GET" id="get_me_tracks">
+        <tags>
+          <tag primary="true">Me</tag>
+          <tag>Tracks</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a collection of tracks uploaded by logged-in user</doc>
+        <example url="/me/tracks.{format}"/>
+      </method>
+    </resource>
+
+    <resource path="users/{user_id}/comments.{format}">
+      <method name="GET" id="get_user_comments">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>User</tag>
+          <tag>Comments</tag>
+        </tags>
+        <authentication required="false"/>
+        <param name="user_id" required="true" type="xsd:string" style="query" default="183"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a collection of comments made by user id</doc>
+        <example url="/users/{user_id}/comments.{format}?consumer_key={consumer_key}"/>
+      </method>
+    </resource>
+    
+    <resource path="me/comments.{format}">
+      <method name="GET" id="get_me_comments">
+        <tags>
+          <tag primary="true">Me</tag>
+          <tag>Comments</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a collection of comments made by logged-in user</doc>
+        <example url="/me/comments.{format}"/>
+      </method>
+    </resource>    
+
+    <resource path="users/{user_id}/followings.{format}">
+      <method name="GET" id="get_user_followings">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>User</tag>
+          <tag>Followings</tag>
+        </tags>
+        <authentication required="false"/>
+        <param name="user_id" required="true" type="xsd:string" style="query" default="183"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a collection of users the user with user id is following</doc>
+        <example url="/users/{user_id}/followings.{format}?consumer_key={consumer_key}"/>
+      </method>
+    </resource>
+
+    <resource path="users/{user_id}/followings/{contact_id}.{format}">      
+      <param name="user_id" required="true" type="xsd:string" style="query" default="183"/>
+      <param name="contact_id" required="true" type="xsd:string" style="query" default="193"/>
+      <method name="GET" id="get_user_following">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>User</tag>
+          <tag>Following</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a 303 if the user with the id user_id is following the user with id contact_id. Returns a 404 if that is not the case.</doc>
+        <example url="/users/{user_id}/followings/{contact_id}.{format}"/>
+      </method>
+
+      <method name="PUT" id="put_user_following">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>User</tag>
+          <tag>Following</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Adds the user with the id contact_id to the givens user's list of contacts.</doc>
+        <example url="/users/{user_id}/followings/{contact_id}.{format}"/>
+      </method>
+      
+      <method name="DELETE" id="delete_user_following">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>User</tag>
+          <tag>Following</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Removes the user with the id contact_id from the givens user's list of contacts.</doc>
+        <example url="/users/{user_id}/followings/{contact_id}.{format}"/>
+      </method>     
+    </resource>
+    
+    <resource path="me/followings.{format}">
+      <method name="GET" id="get_me_followings">
+        <tags>
+          <tag primary="true">Me</tag>
+          <tag>Followings</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a collection of users the logged-in user is following</doc>
+        <example url="/me/followings.{format}"/>
+      </method>
+    </resource>    
+
+    <resource path="me/followings/{contact_id}.{format}">
+      <param name="contact_id" required="true" type="xsd:string" style="query" default="183"/>           
+      <method name="GET" id="get_me_following">
+        <tags>
+          <tag primary="true">Me</tag>
+          <tag>Following</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a 303 if the logged-in user is following the user with the id contact_id. Returns a 404 if that is not the case.</doc>
+        <example url="/me/followings/{contact_id}.{format}"/>
+      </method>
+
+      <method name="PUT" id="put_me_following">
+        <tags>
+          <tag primary="true">Me</tag>
+          <tag>Following</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Adds the user with the id contact_id to the logged-in user's list of contacts.</doc>
+        <example url="/me/followings/{contact_id}.{format}"/>
+      </method>
+
+      <method name="DELETE" id="delete_me_following">
+        <tags>
+          <tag primary="true">Me</tag>
+          <tag>Following</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Deletes the user with the id contact_id from the logged-in user's list of contacts.</doc>
+        <example url="/me/followings/{contact_id}.{format}"/>
+      </method>
+    </resource>
+
+    <resource path="users/{user_id}/followers.{format}">
+      <method name="GET" id="get_user_followers">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>User</tag>
+          <tag>Followers</tag>
+        </tags>
+        <authentication required="false"/>
+        <param name="user_id" required="true" type="xsd:string" style="query" default="183"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a collection of users who follow the user with user id</doc>
+        <example url="/users/{user_id}/followers.{format}?consumer_key={consumer_key}"/>
+      </method>
+    </resource>
+    
+    <resource path="me/followers.{format}">
+      <method name="GET" id="get_me_followers">
+        <tags>
+          <tag primary="true">Me</tag>
+          <tag>Followers</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a collection of users who follow the logged-in user</doc>
+        <example url="/me/followers.{format}"/>
+      </method>
+    </resource>
+
+    <resource path="users/{user_id}/followers/{contact_id}.{format}">
+      <method name="GET" id="get_user_follower">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>User</tag>
+          <tag>Follower</tag>
+        </tags>
+        <authentication required="false"/>
+        <param name="user_id" required="true" type="xsd:string" style="query" default="183"/>
+        <param name="contact_id" required="true" type="xsd:string" style="query" default="193"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a 303 if the user with id contact_id is a follower of the user with id user_id. Returns a 404 if that is not the case.</doc>
+        <example url="/users/{user_id}/followers/{contact_id}.{format}?consumer_key={consumer_key}"/>
+      </method>
+    </resource>
+
+    <resource path="me/followers/{contact_id}.{format}">
+      <method name="GET" id="get_me_follower">
+        <tags>
+          <tag primary="true">Me</tag>
+          <tag>Follower</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a 303 if the user with id contact_id is a follower of the logged-in user. Returns a 404 if that is not the case.</doc>
+        <example url="/me/followers/{contact_id}.{format}"/>
+      </method>
+    </resource>
+
+    <resource path="users/{user_id}/favorites.{format}">
+      <method name="GET" id="get_user_favorites">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>User</tag>
+          <tag>Favorites</tag>
+        </tags>
+        <authentication required="false"/>
+        <param name="user_id" required="true" type="xsd:string" style="query" default="183"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a collection of tracks favorited by the user with user id</doc>
+        <example url="/users/{user_id}/favorites.{format}?consumer_key={consumer_key}"/>
+      </method>
+    </resource>
+
+    <resource path="users/{user_id}/favorites/{track_id}.{format}">      
+      <param name="user_id" required="true" type="xsd:string" style="query" default="183"/>
+      <param name="track_id" required="true" type="xsd:string" style="query" default="291"/>      
+      <method name="PUT" id="put_user_favorites">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>User</tag>
+          <tag>Favorites</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Adds the given track to the given user's list of favorites.</doc>
+        <example url="/users/{user_id}/favorites/{track_id}.{format}"/>
+      </method>
+
+      <method name="DELETE" id="delete_user_favorites">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>User</tag>
+          <tag>Favorites</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Deletes the given track from the given user's list of favorites.</doc>
+        <example url="/users/{user_id}/favorites/{track_id}.{format}"/>
+      </method>      
+    </resource>
+    
+    <resource path="me/favorites.{format}">
+      <method name="GET" id="get_me_favorites">
+        <tags>
+          <tag primary="true">Me</tag>
+          <tag>Favorites</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a collection of tracks favorited by the logged-in user</doc>
+        <example url="/me/favorites.{format}"/>
+      </method>
+    </resource>    
+
+    <resource path="me/favorites/{track_id}.{format}">      
+      <param name="track_id" required="true" type="xsd:string" style="query" default="291"/>      
+      <method name="PUT" id="put_me_favorites">
+        <tags>
+          <tag primary="true">Me</tag>
+          <tag>Favorites</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Adds the given track to the logged-in user's list of favorites.</doc>
+        <example url="/me/favorites/{track_id}.{format}"/>
+      </method>
+
+      <method name="DELETE" id="delete_me_favorites">
+        <tags>
+          <tag primary="true">Me</tag>
+          <tag>Favorites</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Deletes the given track from the logged-in user's list of favorites.</doc>
+        <example url="/me/favorites/{track_id}.{format}"/>
+      </method>      
+    </resource>
+
+    <resource path="users/{user_id}/groups.{format}">
+      <method name="GET" id="get_user_groups">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>User</tag>
+          <tag>Groups</tag>
+        </tags>
+        <authentication required="false"/>
+        <param name="user_id" required="true" type="xsd:string" style="query" default="183"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a collection of groups joined by user with user id</doc>
+        <example url="/users/{user_id}/groups.{format}?consumer_key={consumer_key}"/>
+      </method>
+    </resource>
+    
+    <resource path="me/groups.{format}">
+      <method name="GET" id="get_me_groups">
+        <tags>
+          <tag primary="true">Me</tag>
+          <tag>Groups</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a collection of groups joined by logged-in user</doc>
+        <example url="/me/groups.{format}"/>
+      </method>
+    </resource>    
+
+    <resource path="users/{user_id}/playlists.{format}">
+      <method name="GET" id="get_user_playlists">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>User</tag>
+          <tag>Playlists</tag>
+        </tags>
+        <authentication required="false"/>
+        <param name="user_id" required="true" type="xsd:string" style="query" default="183"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a collection of playlists created by user with user id</doc>
+        <example url="/users/{user_id}/playlists.{format}?consumer_key={consumer_key}"/>
+      </method>
+    </resource>
+
+    <resource path="me/playlists.{format}">
+      <method name="GET" id="get_me_playlists">
+        <tags>
+          <tag primary="true">Me</tag>
+          <tag>Playlists</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a collection of playlists created by the logged-in user</doc>
+        <example url="/me/playlists.{format}"/>
+      </method>
+    </resource>    
+    <!-- END users -->
+
+    <!-- BEGIN tracks -->
+    <resource path="tracks.{format}">
+      <param name="q" required="false" type="xsd:string" style="query" default="summer"/>
+      <!--Tags are a comma separated list-->
+      <param name="tags" required="false" type="xsd:string" style="query" default="pop"/>
+      <!--Filter is an enumeration and can be one of these values (all,public,private,streamable,downloadable)-->
+      <param name="filter" required="false" type="xsd:string" style="query" default="all">
+        <option value="all"/>
+        <option value="public"/>
+        <option value="private"/>
+        <option value="streamable"/>
+        <option value="downloadable"/>
+      </param>
+      <!--Order is an enumeration and can be one of these values (created_at, hotness)-->
+      <param name="order" required="false" type="xsd:string" style="query" default="create_at">
+        <option value="created_at"/>
+        <option value="hotness"/>
+      </param>
+      <!--BPM in an integer between 0 and 999-->
+      <param name="bpm[from]" required="false" type="xsd:string" style="query" default=""/>
+      <param name="bpm[to]" required="false" type="xsd:string" style="query" default=""/>
+      <!--Duration is an integer representing milliseconds-->
+      <param name="duration[from]" required="false" type="xsd:string" style="query" default=""/>
+      <param name="duration[to]" required="false" type="xsd:string" style="query" default=""/>
+      <!--Created_at is a date in the format yyyy-mm-dd hh:mm:ss-->
+      <param name="created_at[from]" required="false" type="xsd:string" style="query" default=""/>
+      <param name="created_at[to]" required="false" type="xsd:string" style="query" default=""/>
+      <!--Ids is a comma separated list of Ids-->
+      <param name="ids" required="false" type="xsd:string" style="query" default=""/>
+      <!--Genres is a comma separated list of Genres-->
+      <param name="ids" required="false" type="xsd:string" style="query" default=""/>
+      <param name="order" required="false" type="xsd:string" style="query" default="">
+          <option value="original"/>
+          <option value="remix"/>
+          <option value="live"/>
+          <option value="recording"/>
+          <option value="spoken"/>
+          <option value="podcast"/>
+          <option value="demo"/>
+          <option value="in progress"/>
+          <option value="stem"/>
+          <option value="loop"/>
+          <option value="sound effect"/>
+          <option value="sample"/>
+          <option value="other"/>
+      </param>
+      <method name="GET" id="get_tracks">
+        <tags>
+          <tag primary="true">Tracks</tag>
+        </tags>
+        <authentication required="false"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks">Returns a collection of tracks</doc>
+        <example url="/tracks.{format}?consumer_key={consumer_key}"/>
+        <response>
+           <!-- TODO: add other optional properties -->
+           <property name="uri" oembed="true">The canonical location of the track.</property>
+           <property name="id">Unique identification number for the track.</property>
+           <property name="user">Information related to the user associated with the track.
+             <property name="uri" oembed="true">The canonical location of the user.</property>
+           </property>
+        </response>
+      </method>
+
+      <param name="title" required="true" type="xsd:string" style="header" default="A Track Title" />
+      <param name="asset_data" required="true" type="xsd:string" style="header" default="" />
+      <!-- IMPORTANT, NEED TO BE ABLE TO CHOOSE A FILE! or maybe even supply a url, though that could be confusing. &-->
+      <!-- TODO: add other optional params -->
+      <method name="POST" id="post_tracks">
+        <tags>
+          <tag primary="true">Tracks</tag>
+          <tag>Track</tag>
+        </tags>     
+        <authentication required="false"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks">Uploads a tracks</doc>
+        <example url="/tracks.{format}"/>
+        <response>
+           <property name="uri" oembed="true">The canonical location of the track.</property>
+           <property name="id">Unique identification number for the track.</property>
+           <property name="user">Information related to the user associated with the track.
+             <property name="uri" oembed="true">The canonical location of the user.</property>
+           </property>
+        </response>
+      </method>
+    </resource>
+
+    <resource path="tracks/{track_id}.{format}">
+      <method name="GET" id="get_track">
+        <tags>
+          <tag primary="true">Tracks</tag>
+          <tag>Track</tag>
+        </tags>
+        <authentication required="false"/>
+        <param name="track_id" required="true" type="xsd:string" style="query" default="291"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks">Returns a track by track id</doc>
+        <example url="tracks/{track_id}.{format}?consumer_key={consumer_key}"/>
+      </method>
+
+      <!-- TODO: This is the same as POST /tracks, so update that first and then copy -->
+      <!-- Difference is method, tags, doc -->
+      <method name="PUT" id="put_track">
+        <tags>
+          <tag primary="true">Tracks</tag>
+          <tag>Track</tag>
+        </tags>     
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks-continued">Updates a given track</doc>
+        <example url="/tracks.{format}"/>
+        <param name="title" required="true" type="xsd:string" style="header" default="A Track Title" />
+        <param name="asset_data" required="true" type="xsd:string" style="header" default="" />
+        <!-- IMPORTANT, NEED TO BE ABLE TO CHOOSE A FILE! or maybe even supply a url, though that could be confusing. &-->
+        <!-- TODO: add other optional params -->
+        <response>
+           <property name="uri" oembed="true">The canonical location of the track.</property>
+           <property name="id">Unique identification number for the track.</property>
+           <property name="user">Information related to the user associated with the track.
+             <property name="uri" oembed="true">The canonical location of the user.</property>
+           </property>
+        </response>
+      </method>
+
+     <method name="DELETE" id="delete_track">
+        <tags>
+          <tag primary="true">Tracks</tag>
+          <tag>Track</tag>
+        </tags>
+        <authentication required="true"/>
+        <param name="track_id" required="true" type="xsd:string" style="query" default="291"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks-continued">Deletes a given track</doc>
+        <example url="tracks/{track_id}.{format}"/>
+      </method>
+    </resource>
+
+    <resource path="tracks/{track_id}/comments.{format}">
+      <param name="track_id" required="true" type="xsd:string" style="query" default="291"/>
+      <method name="GET" id="get_track_comments">
+        <tags>
+          <tag primary="true">Tracks</tag>
+          <tag>Track</tag>
+          <tag>Comments</tag>
+        </tags>
+        <authentication required="false"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks-continued">Returns comments of a track by track id</doc>
+        <example url="/tracks/{track_id}/comments.{format}?consumer_key={consumer_key}"/>
+      </method>
+
+      <method name="POST" id="post_track_comments">
+        <tags>
+          <tag primary="true">Tracks</tag>
+          <tag>Track</tag>
+          <tag>Comments</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks-continued">Posts a comments to a track by track id</doc>
+        <example url="/tracks/{track_id}/comments.{format}"/>
+      </method>
+    </resource>
+
+    <resource path="tracks/{track_id}/permissions.{format}">
+      <param name="track_id" required="true" type="xsd:string" style="query" default="291"/>
+      <method name="GET" id="get_track_permissions">
+        <tags>
+          <tag primary="true">Tracks</tag>
+          <tag>Track</tag>
+          <tag>Permissions</tag>
+        </tags>
+        <authentication required="false"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks-continued">Returns all users with permission for a track by track id</doc>
+        <example url="/tracks/{track_id}/permissions.{format}?consumer_key={consumer_key}"/>
+      </method>
+
+      <method name="PUT" id="put_track_permissions">
+        <tags>
+          <tag primary="true">Tracks</tag>
+          <tag>Track</tag>
+          <tag>Permissions</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks-continued">Updates the list of permitted users for a track by track id</doc>
+        <example url="/tracks/{track_id}/permissions.{format}"/>
+        <!-- TODO: How do we represent this structure to be sent?
+        <permissions>
+          <user-id>2</user-id>
+          <user-id>3</user-id>
+        </permissions>
+        -->
+      </method>
+    </resource>
+
+    <resource path="tracks/{track_id}/secret-token.{format}">
+      <param name="track_id" required="true" type="xsd:string" style="query" default="291"/>
+      <method name="GET" id="get_track_secret-token">
+        <tags>
+          <tag primary="true">Tracks</tag>
+          <tag>Track</tag>
+          <tag>Secret Token</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks-continued">Returns the secret token for a track by track id. This resource can only be used by used by the track owner.</doc>
+        <example url="/tracks/{track_id}/secret-token.{format}"/>
+      </method>
+
+      <method name="PUT" id="put_track_secret_token">
+        <tags>
+          <tag primary="true">Tracks</tag>
+          <tag>Track</tag>
+          <tag>Secret Token</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.2-Resources:-tracks-continued">Resets the secret token for a track by track id. The secret token can not be specified but will be randomly chosen on the server and returned. This resource can only be used by used by the track owner.</doc>
+        <example url="/tracks/{track_id}/secret-token.{format}"/>
+      </method>
+    </resource>
+    <!-- END tracks -->
+
+    <!-- BEGIN playlists -->
+    <resource path="playlists.{format}">
+      <param name="q" required="false" type="xsd:string" style="query" default=""/>
+      <param name="filter" required="false" type="xsd:string" style="query" default="all">
+        <option value="all"/>
+        <option value="public"/>
+        <option value="private"/>
+      </param>
+      <method name="GET" id="get_playlists">
+        <tags>
+          <tag primary="true">Playlists</tag>
+        </tags>
+        <authentication required="false"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.3-Resources:-playlists">Returns a collection of playlists</doc>
+        <example url="/playlists.{format}?consumer_key={consumer_key}"/>
+      </method>
+    </resource>
+
+    <resource path="playlists/{playlist_id}.{format}">
+      <method name="GET" id="get_playlist">
+        <tags>
+          <tag primary="true">Playlists</tag>
+          <tag>Playlist</tag>
+        </tags>
+        <authentication required="false"/>
+        <param name="playlist_id" required="true" type="xsd:string" style="query" default="18"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.3-Resources:-playlists">Returns a playlist by playlist id</doc>
+        <example url="/playlists/{playlist_id}.{format}?consumer_key={consumer_key}"/>
+      </method>
+    </resource>
+
+    <resource path="playlists/{playlist_id}/secret-token.{format}">
+      <param name="playlist_id" required="true" type="xsd:string" style="query"/>
+      <method name="GET" id="get_playlist_secret-token">
+        <tags>
+          <tag primary="true">Playlists</tag>
+          <tag>Playlist</tag>
+          <tag>Secret Token</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="https://github.com/soundcloud/api/wiki/10.3-Resources:-playlists">Returns the secret token for a playlist by playlist id. This resource can only be used by used by the playlist owner.</doc>
+        <example url="/playlists/{playlist_id}/secret-token.{format}"/>
+      </method>
+
+      <method name="PUT" id="put_playlist_secret_token">
+        <tags>
+          <tag primary="true">Playlists</tag>
+          <tag>Playlist</tag>
+          <tag>Secret Token</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="https://github.com/soundcloud/api/wiki/10.3-Resources:-playlists">Resets the secret token for a playlist by playlist id. The secret token can not be specified but will be randomly chosen on the server and returned. This resource can only be used by used by the playlist owner.</doc>
+        <example url="/playlists/{playlist_id}/secret-token.{format}"/>
+      </method>
+    </resource>
+    <!-- END playlists -->
+
+    <!-- BEGIN groups -->
+    <resource path="groups.{format}">
+      <method name="GET" id="get_groups">
+        <tags>
+          <tag primary="true">Groups</tag>
+        </tags>
+        <authentication required="false"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.4-Resources:-groups">Returns a collection of groups</doc>
+        <example url="/groups.{format}?consumer_key={consumer_key}"/>
+      </method>
+    </resource>
+
+    <resource path="groups/{group_id}.{format}">
+      <method name="GET" id="get_group">
+        <tags>
+          <tag primary="true">Groups</tag>
+          <tag>Group</tag>
+        </tags>
+        <authentication required="false"/>
+        <param name="group_id" required="true" type="xsd:string" style="query" default="3"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.4-Resources:-groups">Returns a group by group id</doc>
+        <example url="/groups/{group_id}.{format}?consumer_key={consumer_key}"/>
+      </method>
+    </resource>
+    
+    <resource path="groups/{group_id}/users.{format}">
+      <method name="GET" id="get_group_users">
+        <tags>
+          <tag primary="true">Groups</tag>
+          <tag>Group</tag>
+          <tag>Users</tag>
+        </tags>
+        <authentication required="false"/>
+        <param name="group_id" required="true" type="xsd:string" style="query" default="3"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.4-Resources:-groups">Returns a combined collection of moderators, members and contributors of the group with group id</doc>
+        <example url="/groups/{group_id}/users.{format}?consumer_key={consumer_key}"/>
+      </method>
+    </resource>
+
+    <resource path="groups/{group_id}/moderators.{format}">
+      <method name="GET" id="get_group_moderators">
+        <tags>
+          <tag primary="true">Groups</tag>
+          <tag>Group</tag>
+          <tag>Moderators</tag>
+        </tags>
+        <authentication required="false"/>
+        <param name="group_id" required="true" type="xsd:string" style="query" default="3"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.4-Resources:-groups">Returns a collection of moderators of the group with group id</doc>
+        <example url="/groups/{group_id}/moderators.{format}?consumer_key={consumer_key}"/>
+      </method>
+    </resource>
+
+    <resource path="groups/{group_id}/members.{format}">
+      <method name="GET" id="get_group_members">
+        <tags>
+          <tag primary="true">Groups</tag>
+          <tag>Group</tag>
+          <tag>Members</tag>
+        </tags>
+        <authentication required="false"/>
+        <param name="group_id" required="true" type="xsd:string" style="query" default="3"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.4-Resources:-groups">Returns a collection of members of the group with group id</doc>
+        <example url="/groups/{group_id}/members.{format}?consumer_key={consumer_key}"/>
+      </method>
+    </resource>
+
+    <resource path="groups/{group_id}/contributors.{format}">
+      <method name="GET" id="get_group_contributors">
+        <tags>
+          <tag primary="true">Groups</tag>
+          <tag>Group</tag>
+          <tag>Contributors</tag>
+        </tags>
+        <authentication required="false"/>
+        <param name="group_id" required="true" type="xsd:string" style="query" default="3"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.4-Resources:-groups">Returns a collection of contributors of the group with group id</doc>
+        <example url="/groups/{group_id}/contributors.{format}?consumer_key={consumer_key}"/>
+      </method>
+    </resource>
+
+    <resource path="groups/{group_id}/tracks.{format}">
+      <method name="GET" id="get_group_tracks">
+        <tags>
+          <tag primary="true">Groups</tag>
+          <tag>Group</tag>
+          <tag>Tracks</tag>
+        </tags>
+        <authentication required="false"/>
+        <param name="group_id" required="true" type="xsd:string" style="query" default="3"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.4-Resources:-groups">Returns a collection of tracks contributed to the group with group id</doc>
+        <example url="/groups/{group_id}/tracks.{format}?consumer_key={consumer_key}"/>
+      </method>
+    </resource>
+    <!-- END groups -->
+
+    <!-- BEGIN comments -->
+    <resource path="comments/{comment_id}.{format}">
+      <method name="GET" id="get_comment">
+        <tags>
+          <tag primary="true">Comments</tag>
+          <tag>Comment</tag>
+        </tags>
+        <authentication required="false"/>
+        <param name="comment_id" required="true" type="xsd:string" style="query" default="301920"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.5-Resources:-comments">Returns a comment by comment id</doc>
+        <example url="/comments/{comment_id}.{format}?consumer_key={consumer_key}"/>
+      </method>
+    </resource>
+    <!-- END comments -->
+
+    <!-- BEGIN resolver -->
+    <resource path="resolve.{format}">
+      <param name="url" required="true" type="xsd:string" style="query" default="http://soundcloud.com/forss"/>
+      <method name="GET" id="resolve">
+        <tags>
+          <tag primary="true">Resolver</tag>
+        </tags>
+        <authentication required="false"/>
+        <doc url="http://github.com/soundcloud/api/wiki/12-Resolver">Translates a website URI into an API URI</doc>
+        <example url="/resolve.{format}?consumer_key={consumer_key}&amp;url={url}"/>
+      </method>
+    </resource>
+    <!-- END resolver -->
+
+  </resources>
+</application>
