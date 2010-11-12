@@ -254,8 +254,7 @@
       <!-- Same as GET users/{user_id} -->
       <method name="GET" id="get_me">
         <tags>
-          <tag primary="true">Users</tag>
-          <tag>Me</tag>
+          <tag primary="true">Me</tag>
         </tags>
         <authentication required="true"/>
         <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns the logged-in user</doc>
@@ -264,8 +263,7 @@
            
       <method name="PUT" id="put_me">
         <tags>
-          <tag primary="true">Users</tag>
-          <tag>Me</tag>
+          <tag primary="true">Me</tag>
         </tags>
         <authentication required="true"/>
         <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Updates the logged-in user</doc>
@@ -291,8 +289,7 @@
     <resource path="me/tracks.{format}">
       <method name="GET" id="get_me_tracks">
         <tags>
-          <tag primary="true">Users</tag>
-          <tag>Me</tag>
+          <tag primary="true">Me</tag>
           <tag>Tracks</tag>
         </tags>
         <authentication required="true"/>
@@ -318,8 +315,7 @@
     <resource path="me/comments.{format}">
       <method name="GET" id="get_me_comments">
         <tags>
-          <tag primary="true">Users</tag>
-          <tag>Me</tag>
+          <tag primary="true">Me</tag>
           <tag>Comments</tag>
         </tags>
         <authentication required="true"/>
@@ -371,8 +367,7 @@
     <resource path="me/followings.{format}">
       <method name="GET" id="get_me_followings">
         <tags>
-          <tag primary="true">Users</tag>
-          <tag>Me</tag>
+          <tag primary="true">Me</tag>
           <tag>Followings</tag>
         </tags>
         <authentication required="true"/>
@@ -385,8 +380,7 @@
       <param name="contact_id" required="true" type="xsd:string" style="query" default="183"/>           
       <method name="PUT" id="put_me_followings">
         <tags>
-          <tag primary="true">Users</tag>
-          <tag>Me</tag>
+          <tag primary="true">Me</tag>
           <tag>Followings</tag>
         </tags>
         <authentication required="true"/>
@@ -396,8 +390,7 @@
 
       <method name="DELETE" id="delete_me_followings">
         <tags>
-          <tag primary="true">Users</tag>
-          <tag>Me</tag>
+          <tag primary="true">Me</tag>
           <tag>Followings</tag>
         </tags>
         <authentication required="true"/>
@@ -423,8 +416,7 @@
     <resource path="me/followers.{format}">
       <method name="GET" id="get_me_followers">
         <tags>
-          <tag primary="true">Users</tag>
-          <tag>Me</tag>
+          <tag primary="true">Me</tag>
           <tag>Followers</tag>
         </tags>
         <authentication required="true"/>
@@ -476,8 +468,7 @@
     <resource path="me/favorites.{format}">
       <method name="GET" id="get_me_favorites">
         <tags>
-          <tag primary="true">Users</tag>
-          <tag>Me</tag>
+          <tag primary="true">Me</tag>
           <tag>Favorites</tag>
         </tags>
         <authentication required="true"/>
@@ -490,8 +481,7 @@
       <param name="track_id" required="true" type="xsd:string" style="query" default="291"/>      
       <method name="PUT" id="put_me_favorites">
         <tags>
-          <tag primary="true">Users</tag>
-          <tag>Me</tag>
+          <tag primary="true">Me</tag>
           <tag>Favorites</tag>
         </tags>
         <authentication required="true"/>
@@ -501,8 +491,7 @@
 
       <method name="DELETE" id="delete_me_favorites">
         <tags>
-          <tag primary="true">Users</tag>
-          <tag>Me</tag>
+          <tag primary="true">Me</tag>
           <tag>Favorites</tag>
         </tags>
         <authentication required="true"/>
@@ -528,8 +517,7 @@
     <resource path="me/groups.{format}">
       <method name="GET" id="get_me_groups">
         <tags>
-          <tag primary="true">Users</tag>
-          <tag>Me</tag>
+          <tag primary="true">Me</tag>
           <tag>Groups</tag>
         </tags>
         <authentication required="true"/>
@@ -555,8 +543,7 @@
     <resource path="me/playlists.{format}">
       <method name="GET" id="get_me_playlists">
         <tags>
-          <tag primary="true">Users</tag>
-          <tag>Me</tag>
+          <tag primary="true">Me</tag>
           <tag>Playlists</tag>
         </tags>
         <authentication required="true"/>
