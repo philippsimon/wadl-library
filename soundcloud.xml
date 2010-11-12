@@ -126,23 +126,34 @@
 
     <resource path="users/{user_id}/followings/{contact_id}.{format}">      
       <param name="user_id" required="true" type="xsd:string" style="query" default="183"/>
-      <param name="contact_id" required="true" type="xsd:string" style="query" default="183"/>
-      <method name="PUT" id="put_user_followings">
+      <param name="contact_id" required="true" type="xsd:string" style="query" default="193"/>
+      <method name="GET" id="get_user_following">
         <tags>
           <tag primary="true">Users</tag>
           <tag>User</tag>
-          <tag>Followings</tag>
+          <tag>Following</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a 303 if the user with the id user_id is following the user with id contact_id. Returns a 404 if that is not the case.</doc>
+        <example url="/users/{user_id}/followings/{contact_id}.{format}"/>
+      </method>
+
+      <method name="PUT" id="put_user_following">
+        <tags>
+          <tag primary="true">Users</tag>
+          <tag>User</tag>
+          <tag>Following</tag>
         </tags>
         <authentication required="true"/>
         <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Adds the user with the id contact_id to the givens user's list of contacts.</doc>
         <example url="/users/{user_id}/followings/{contact_id}.{format}"/>
       </method>
       
-      <method name="DELETE" id="delete_user_followings">
+      <method name="DELETE" id="delete_user_following">
         <tags>
           <tag primary="true">Users</tag>
           <tag>User</tag>
-          <tag>Followings</tag>
+          <tag>Following</tag>
         </tags>
         <authentication required="true"/>
         <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Removes the user with the id contact_id from the givens user's list of contacts.</doc>
@@ -164,20 +175,30 @@
 
     <resource path="me/followings/{contact_id}.{format}">
       <param name="contact_id" required="true" type="xsd:string" style="query" default="183"/>           
-      <method name="PUT" id="put_me_followings">
+      <method name="GET" id="get_me_following">
         <tags>
           <tag primary="true">Me</tag>
-          <tag>Followings</tag>
+          <tag>Following</tag>
+        </tags>
+        <authentication required="true"/>
+        <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Returns a 303 if the logged-in user is following the user with the id contact_id. Returns a 404 if that is not the case.</doc>
+        <example url="/me/followings/{contact_id}.{format}"/>
+      </method>
+
+      <method name="PUT" id="put_me_following">
+        <tags>
+          <tag primary="true">Me</tag>
+          <tag>Following</tag>
         </tags>
         <authentication required="true"/>
         <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Adds the user with the id contact_id to the logged-in user's list of contacts.</doc>
         <example url="/me/followings/{contact_id}.{format}"/>
       </method>
 
-      <method name="DELETE" id="delete_me_followings">
+      <method name="DELETE" id="delete_me_following">
         <tags>
           <tag primary="true">Me</tag>
-          <tag>Followings</tag>
+          <tag>Following</tag>
         </tags>
         <authentication required="true"/>
         <doc url="http://github.com/soundcloud/api/wiki/10.1-Resources:-users">Deletes the user with the id contact_id from the logged-in user's list of contacts.</doc>
