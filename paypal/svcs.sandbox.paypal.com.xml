@@ -1,0 +1,315 @@
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xsi:schemaLocation="http://research.sun.com/wadl/2006/10                      https://wadl.dev.java.net/wadl20061109.xsd"
+	xmlns="http://research.sun.com/wadl/2006/10" xmlns:t="urn:paypal:paypalresponset"
+	xmlns:apigee="http://www.apigee.com/schema/2010/07/wadl/">
+	<grammars>
+		<response-codes>
+		</response-codes>
+	</grammars>
+
+	<representation id="responseCodes" element="responseCodes" />
+
+	<resources base="https://svcs.sandbox.paypal.com/AdaptivePayments/">
+		<resource path="Pay">
+			<!--
+				<param name="format" type="xsd:string" style="template"
+				required="false" default="json"> <option value="json"
+				mediaType="application/json"/> </param>
+			-->
+			<method name="POST" id="Pay">
+				<tags>
+					<tag primary="true">Adaptive Payments</tag>
+					<tag>Pay</tag>
+				</tags>
+				<authentication required="true" />
+				<docs url="https://www.x.com/docs/DOC-1414" />
+				<example url="/AdaptivePayments/Pay" />
+				<notes>Transfers funds from a sender’s PayPal account to one or more
+					receivers’ PayPal accounts (up to 6 receivers). More documentation at https://www.x.com/docs/DOC-1414
+				</notes>
+				<payload>
+				<![CDATA[
+{
+  "actionType" : "PAY",
+  "currencyCode" : "USD",
+  "receiverList" : {
+                     "receiver":[{"amount":"1.00","email":"seller_1288085303_biz@gmail.com"}]
+                   },
+  "returnUrl" : "http://app.apigee.com/console/-1/handlePaypalReturn",
+  "cancelUrl" : "http://app.apigee.com/console/-1/handlePaypalCancel?",
+  "requestEnvelope" : {"errorLanguage":"en_US", "detailLevel":"ReturnAll"}
+}
+				]]>
+                 </payload>
+			</method>
+		</resource>
+
+		<resource path="PaymentDetails">
+			<method name="POST" id="PaymentDetails">
+				<tags>
+					<tag primary="true">Adaptive Payments</tag>
+					<tag>PaymentDetails</tag>
+				</tags>
+				<authentication required="true" />
+				<docs url="https://www.x.com/docs/DOC-1416" />
+				<example url="/AdaptivePayments/PaymentDetails" />
+				<notes>
+					Obtains information about a payment. More documentation at https://www.x.com/docs/DOC-1416					
+				</notes>
+				<payload>
+					<![CDATA[
+{
+ "payKey" : "AP-9JK61721EP167721B",
+ "requestEnvelope" : {"errorLanguage":"en_US", "detailLevel":"ReturnAll"}
+}
+					]]>
+				</payload>
+			</method>
+		</resource>
+
+
+		<resource path="Preapproval">
+			<method name="POST" id="Preapproval">
+				<tags>
+					<tag primary="true">Adaptive Payments</tag>
+					<tag>Preapproval</tag>
+				</tags>
+				<authentication required="true" />
+				<docs url="https://www.x.com/docs/DOC-1419" />
+				<example url="/AdaptivePayments/Preapproval" />
+				<notes>Sets up preapprovals, which is an approval to make payments
+					on the sender’s behalf. More documentation at https://www.x.com/docs/DOC-1419
+				</notes>
+				<payload>
+					<![CDATA[
+{
+ "senderEmail" : "buyer_1288085239_per@gmail.com",
+ "startingDate" : "2011-01-21",
+ "endingDate" : "2011-10-21",
+ "maxAmountPerPayment" : "1.00",
+ "maxNumberOfPayments" : "10",
+ "maxTotalAmountOfAllPayments" : "50.00",
+
+ "currencyCode" : "USD",
+ "dayOfWeek" : "SUNDAY",
+ "paymentPeriod" : "WEEKLY",
+ "memo"	: "Setting the preapproval for this month",
+ "pinType" : "NOT_REQUIRED",
+
+ "returnUrl" :"http://app.apigee.com/handle_paypal_return.html",
+ "cancelUrl" :"http://app.apigee.com/handle_paypal_cancel.html",
+ "ipnNotificationUrl":"http://app.apigee.com/handle_paypal_ipn.html",
+
+ "clientDetails" : { "ipAddress" : "127.0.0.1",
+                     "deviceId" : "platformSDKSample",
+                     "applicationId" : "APP-80W284485P519543T"
+						 },
+ "requestEnvelope" : {"errorLanguage":"en_US", "detailLevel":"ReturnAll"}
+
+}
+					]]>
+				</payload>
+			</method>
+		</resource>
+
+		<resource path="PreapprovalDetails">
+			<method name="POST" id="PreapprovalDetails">
+				<tags>
+					<tag primary="true">Adaptive Payments</tag>
+					<tag>PreapprovalDetails</tag>
+				</tags>
+				<authentication required="true" />
+				<docs url="https://www.x.com/docs/DOC-1421" />
+				<example url="/AdaptivePayments/PreapprovalDetails" />
+				<notes>Obtains information about a preapproval.More documentation at https://www.x.com/docs/DOC-1421</notes>					
+				<payload>
+					<![CDATA[
+{
+ "preapprovalKey" : "PA-11B737485G431220H",
+ "requestEnvelope" : {"errorLanguage":"en_US", "detailLevel":"ReturnAll"}
+}
+					]]>
+				</payload>
+			</method>
+		</resource>
+
+		<resource path="CancelPreapproval">
+			<method name="POST" id="CancelPreapproval">
+				<tags>
+					<tag primary="true">Adaptive Payments</tag>
+					<tag>CancelPreapproval</tag>
+				</tags>
+				<authentication required="true" />
+				<docs url="https://www.x.com/docs/DOC-1396" />
+				<example url="/AdaptivePayments/CancelPreapproval" />
+				<notes>Cancels a preapproval. More documentation at https://www.x.com/docs/DOC-1396</notes>					
+				<payload>
+					<![CDATA[
+{
+ "requestEnvelope" : {"errorLanguage":"en_US", "detailLevel":"ReturnAll"},
+ "preapprovalKey" : "PA-11B737485G431220H"
+}
+					]]>
+				</payload>
+			</method>
+		</resource>
+
+		<resource path="ConvertCurrency">
+			<method name="POST" id="ConvertCurrency">
+				<tags>
+					<tag primary="true">Adaptive Payments</tag>
+					<tag>ConvertCurrency</tag>
+				</tags>
+				<authentication required="true" />
+				<docs url="https://www.x.com/docs/DOC-1401" />
+				<example url="/AdaptivePayments/ConvertCurrency" />
+				<notes>Obtains Foreign Exchange currency conversion rates for a list
+					of amounts. More documentation at https://www.x.com/docs/DOC-1401
+				</notes>
+				<payload>
+					<![CDATA[
+{
+ "baseAmountList" : { "currency" : {"code":"USD", "amount":"1.00"} },
+ "convertToCurrencyList" : { "currencyCode":["CAD", "USD"] },
+ "requestEnvelope" : { "errorLanguage":"en_US", "detailLevel":"ReturnAll"}
+}
+					]]>
+				</payload>
+			</method>
+		</resource>
+
+		<resource path="Refund">
+			<method name="POST" id="Refund">
+				<tags>
+					<tag primary="true">Adaptive Payments</tag>
+					<tag>Refund</tag>
+				</tags>
+				<authentication required="true" />
+				<docs url="https://www.x.com/docs/DOC-1426" />
+				<example url="/AdaptivePayments/Refund" />
+				<notes>Refunds all or part of a payment.More documentation at https://www.x.com/docs/DOC-1426</notes>
+				<payload>
+					<![CDATA[
+{
+ "payKey" : "AP-9JK61721EP167721B",
+ "receiverList" : { 
+                    "receiver" : [{ "amount":"1.0", "email" : "seller_1288085303_biz@gmail.com" }]
+                  },
+ "currencyCode" : "USD",
+ "requestEnvelope" : {"errorLanguage":"en_US", "detailLevel":"ReturnAll"}
+}
+					]]>
+				</payload>
+			</method>
+		</resource>
+
+		<resource path="GetPaymentOptions">
+			<method name="POST" id="GetPaymentOptions">
+				<tags>
+					<tag primary="true">Adaptive Payments</tag>
+					<tag>GetPaymentOptions</tag>
+				</tags>
+				<authentication required="true" />
+				<example url="/AdaptivePayments/GetPaymentOptions" />
+				<notes>Obtains information about a payment</notes>
+				<payload>
+					<![CDATA[
+{
+ "payKey" : "AP-9JK61721EP167721B",
+ "requestEnvelope" : {"errorLanguage":"en_US", "detailLevel":"ReturnAll"}
+}
+					]]>
+				</payload>
+			</method>
+		</resource>
+
+		<resource path="SetPaymentOptions">
+			<method name="POST" id="SetPaymentOptions">
+				<tags>
+					<tag primary="true">Adaptive Payments</tag>
+					<tag>SetPaymentOptions</tag>
+				</tags>
+				<authentication required="true" />
+				<example url="/AdaptivePayments/SetPaymentOptions" />
+				<notes>
+					Sets information about a payment.
+					Make a Pay request with "actionType":"CREATE" , use the response "payKey" here.					
+				</notes>
+				<payload>
+					<![CDATA[
+{
+ "payKey" : "AP-9JK61721EP167721B",
+ "requestEnvelope" : {"errorLanguage":"en_US", "detailLevel":"ReturnAll"}
+}
+					]]>
+				</payload>
+			</method>
+		</resource>
+
+		<resource path="ExecutePayment">
+			<method name="POST" id="ExecutePayment">
+				<tags>
+					<tag primary="true">Adaptive Payments</tag>
+					<tag>ExecutePayment</tag>
+				</tags>
+				<authentication required="true" />
+				<example url="/AdaptivePayments/ExecutePayment" />
+				<notes>
+					The request to execute the payment request.
+					Make a Pay request with "actionType":"CREATE" , use the response "payKey" here.
+				</notes>
+				<payload>
+					<![CDATA[
+{
+ "payKey" : "AP-9JK61721EP167721B",
+ "requestEnvelope" : {"errorLanguage":"en_US", "detailLevel":"ReturnAll"}
+}
+					]]>
+				</payload>
+			</method>
+		</resource>
+
+		<resource path="GetShippingAddresses">
+			<method name="POST" id="ExecutePayment">
+				<tags>
+					<tag primary="true">Adaptive Payments</tag>
+					<tag>GetShippingAddresses</tag>
+				</tags>
+				<authentication required="true" />
+				<example url="/AdaptivePayments/GetShippingAddresses" />
+				<notes>
+					The key for which to provide the available addresses. Key can be an AdaptivePayments key such as payKey or preapprovalKey.
+				</notes>
+				<payload>
+					<![CDATA[
+{
+ "key" : "AP-9JK61721EP167721B",
+ "requestEnvelope" : {"errorLanguage":"en_US", "detailLevel":"ReturnAll"}
+}
+					]]>
+				</payload>
+			</method>
+		</resource>
+
+		<resource path="GetFundingPlans">
+			<method name="POST" id="ExecutePayment">
+				<tags>
+					<tag primary="true">Adaptive Payments</tag>
+					<tag>GetFundingPlans</tag>
+				</tags>
+				<authentication required="true" />
+				<example url="/AdaptivePayments/GetFundingPlans" />
+				<notes>The request to get the funding plans available for a payment.</notes>
+				<payload>
+					<![CDATA[
+{
+ "payKey" : "AP-9JK61721EP167721B",
+ "requestEnvelope" : {"errorLanguage":"en_US", "detailLevel":"ReturnAll"}
+}
+					]]>
+				</payload>
+			</method>
+		</resource>
+	</resources>
+</application>

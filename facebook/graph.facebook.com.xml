@@ -4,6 +4,29 @@
              xmlns="http://wadl.dev.java.net/2009/02">
 
     <resources base="https://graph.facebook.com">
+		<resource path="search">
+			<param name="q" required="true"  type="xsd:string" style="query" default="apigee"><notes>The search string</notes></param>
+			<param name="object" type="xsd:string" style="query" required="false" default="post">
+				<option value="post"/>
+				<option value="user"/>
+				<option value="page"/>
+				<option value="event"/>
+				<option value="group"/>
+				<option value="checkin"/>
+				<notes>Supports these types of objects: All public posts (post), people (user), pages (page), events (event), groups (group), check-ins (checkin)</notes>
+			</param>
+			<method name="GET" id="search">
+				<tags>
+					<tag primary="true">Search</tag>
+				</tags>
+				<authentication required="false"/>
+				<docs url="http://developers.facebook.com/docs/api"/>
+				<example url="/search?q={q}"/>
+				<notes>Search over all public objects in the social graph</notes>
+				<response>
+				</response>
+			</method>
+		</resource>
         <resource path="{album}">
             <param name="album" required="true" type="xsd:string" style="template" default="99394368305">
                 <notes>Represents the ID of the album object.</notes>
@@ -1146,20 +1169,16 @@
             </method>
         </resource>
         <resource path="{user}">
-            <param name="user" required="true" type="xsd:string" style="template" default="me">
+			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="robertscoble">
                 <notes>Represents the ID of the user object.</notes>
             </param>
-            <param name="metadata" required="false" type="xsd:string" style="query" default="0">
-                <notes>The Graph API supports introspection of objects, which enables you to see all of the connections
-                    an object has without knowing its type ahead of time.
-                </notes>
-            </param>
+			<param name="metadata" required="false"  type="xsd:string" style="query" default="0"><notes>The Graph API supports introspection of objects, which enables you to see all of the connections an object has without knowing its type ahead of time.</notes></param>
             <method name="GET" id="getuser">
                 <tags>
                     <tag primary="true">User</tag>
                     <tag>Object</tag>
                 </tags>
-                <authentication required="true"/>
+				<authentication required="false"/>
                 <docs url="http://developers.facebook.com/docs/reference/api/user"/>
                 <example url="/{user}"/>
                 <notes>A user profile.</notes>
@@ -1178,6 +1197,23 @@
                 </response>
             </method>
         </resource>
+		<resource path="{user}/home">
+			<param name="user" required="true"  type="xsd:string" style="template" authdefault="me" default="robertscoble"><notes>Represents the ID of the user object.</notes></param>
+			<param name="metadata" required="false"  type="xsd:string" style="query" default="0"><notes>The Graph API supports introspection of objects, which enables you to see all of the connections an object has without knowing its type ahead of time.</notes></param>
+			<param name="q" required="false"  type="xsd:string" style="query" default="facebook"><notes>The text for which to search.</notes></param>
+			<method name="GET" id="getusersearch">
+				<tags>
+					<tag primary="true">Search</tag>
+					<tag>User</tag>
+				</tags>
+				<authentication required="true"/>
+				<docs url="http://developers.facebook.com/docs/reference/api/user"/>
+				<example url="/{user}/home?q={q}"/>
+				<notes>Search an individual user's News Feed, restricted to that user's friends</notes>
+				<response>
+				</response>
+			</method>
+		</resource>
         <resource path="{user}/home">
             <param name="user" required="true" type="xsd:string" style="template" default="me">
                 <notes>Represents the ID of the user object.</notes>
@@ -1383,6 +1419,37 @@
                 </response>
             </method>
         </resource>
+        <resource path="{user}/checkins">
+            <param name="user" required="true" type="xsd:string" style="template" default="me">
+                <notes>Represents the ID of the user object.</notes>
+            </param>
+            <param name="since" required="false" type="xsd:string" style="query" default="last week">
+                <notes>A unix timestamp or any date accepted by strtotime</notes>
+            </param>
+            <param name="until" required="false" type="xsd:string" style="query" default="yesterday">
+                <notes>A unix timestamp or any date accepted by strtotime</notes>
+            </param>
+            <param name="limit" required="false" type="xsd:string" style="query" default="3">
+                <notes>Limit the number of items returned.</notes>
+            </param>
+            <param name="offset" required="false" type="xsd:string" style="query" default="2">
+                <notes>An offset to the response. Useful for paging.</notes>
+            </param>
+            <method name="GET" id="getusercheckins">
+                <tags>
+                    <tag primary="true">User</tag>
+                    <tag>Connection</tag>
+                    <tag>Places</tag>
+                </tags>
+                <authentication required="true"/>
+                <docs url="http://developers.facebook.com/docs/api#places"/>
+                <example url="/{user}/checkins"/>
+                <notes>The music listed on the user's profile</notes>
+                <response>
+                </response>
+            </method>
+        </resource>
+
         <resource path="{user}/interests">
             <param name="user" required="true" type="xsd:string" style="template" default="me">
                 <notes>Represents the ID of the user object.</notes>
@@ -2182,6 +2249,29 @@
                 <notes>Remove a 'like' from a post.</notes>
             </method>
         </resource>
+		<resource path="{checkin}">
+			<param name="checkin" required="true"  type="xsd:string" style="template" authdefault="me" default="robertscoble"><notes>Represents the ID of the checkin object.</notes></param>
+			<param name="metadata" required="false"  type="xsd:string" style="query" default="0"><notes>The Graph API supports introspection of objects, which enables you to see all of the connections an object has without knowing its type ahead of time.</notes></param>
+			<method name="GET" id="getcheckin">
+				<tags>
+					<tag primary="true">Places</tag>
+				</tags>
+				<authentication required="false"/>
+				<docs url="http://developers.facebook.com/docs/reference/api/checkin"/>
+				<example url="/{checkin}"/>
+				<notes>A check-in that was made through Facebook Places.</notes>
+				<response>
+					<property name="id">The checkin id</property>
+					<property name="from">The ID and name of the user who made the check-in.</property>
+					<property name="tags">The users the author tagged in the check-in.</property>
+					<property name="place">The ID, name, and location of the Facebook Page that represents the location of the check-in.</property>
+					<property name="message">The message the user added to the check-in.</property>
+					<property name="coordinates">The latitude and longitude of the check-in location.</property>
+					<property name="application">The ID and name of the application that made the check-in.</property>
+					<property name="created_time">The time the check-in was created.</property>
+				</response>
+			</method>
+		</resource>
     </resources>
 </application>
         <!-- Should consider wrapping the param items in a params element-->
