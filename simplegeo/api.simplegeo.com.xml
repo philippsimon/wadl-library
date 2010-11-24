@@ -71,6 +71,14 @@
                 <doc url="http://simplegeo.com/docs/api-endpoints/geocoding#reverse-geocoding">Does a reverse geocode lookup, which converts the given latitude and longitude into a human readable point with address, street, city, state, and county depending on where the person is currently located. NOTE: The reverse geocoder only works for coordinates in the US currently.</doc>
 			</method>
 		</resource>
+		<resource path="context/{lat},{lon}.json">
+			<param name="lat" required="true" type="xsd:string" style="query" default="37.77275"/>
+			<param name="lon" required="true" type="xsd:string" style="query" default="-122.40572"/>
+			<method name="GET" id="contains">
+				<authentication required="true"/>
+                <doc url="http://simplegeo.com/docs/api-endpoints/context"/>Does a SimpleGeo Context query, returning polygons and other data related to a coordinate.</doc>
+			</method>
+		</resource>
 		<resource path="contains/{lat},{lon}.json">
 			<param name="lat" required="true" type="xsd:string" style="query" default="37.77275"/>
 			<param name="lon" required="true" type="xsd:string" style="query" default="-122.40572"/>
