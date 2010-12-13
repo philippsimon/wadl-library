@@ -20,7 +20,7 @@
 			<param name="lon" required="true" type="xsd:string" style="query" default="-122.40572"/>
 			<method name="GET" id="places">
 				<authentication required="true"/>
-                <doc url="http://simplegeo.com/docs/api-endpoints/simplegeo-places">Returns a feature object. It could be a place (point) or area (polygon).</doc>
+                <doc url="http://simplegeo.com/docs/api-endpoints/simplegeo-places">Does a SimpleGeo Places query, returning 25 features near a given point.</doc>
 			</method>
 		</resource>
 	</resources>
