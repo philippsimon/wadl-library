@@ -2,1064 +2,967 @@
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.w3.org/Submission/wadl/wadl.xsd"
 	xmlns:apigee="http://www.apigee.com/schema/2010/07/wadl/" xmlns="http://wadl.dev.java.net/2009/02">
 
-	<grammars>
+    <grammars>
 		<response-codes>
 			<code name="200" value="OK: Success!" />
-			<code name="304" value="Not Modified: There was no new data to return." />
 			<code name="400"
-				value="Bad Request: The request was invalid. An accompanying error message will explain why. This is the status code will be returned during rate limiting." />
+				value="Bad Request: Any case where a parameter is invalid, or a required parameter is
+				missing. This includes the case where no OAuth token is provided and the case where a
+				resource ID is specified incorrectly in a path." />
 			<code name="401"
-				value="Unauthorized: Authentication credentials were missing or incorrect." />
+				value="Unauthorized: The OAuth token was provided but was invalid." />
 			<code name="403"
-				value="Forbidden: The request is understood, but it has been refused. An accompanying error message will explain why. This code is used when requests are being denied due to update limits." />
+				value="Forbidden: The requested information cannot be viewed by the acting user,
+				       for example, because they are not friends with the user whose data they
+				       are trying to read." />
 			<code name="404"
-				value="Not Found: The URI requested is invalid or the resource requested, such as a user, does not exists." />
-			<code name="406"
-				value="Not Acceptable: Returned by the Search API when an invalid format is specified in the request." />
-			<code name="420"
-				value="Enhance Your Calm: Returned by some API  when you are being rate limited." />
+				value="Not Found: Endpoint does not exist." />
+            <code name="405"
+				value="Method Not Allowed: Attempting to use POST with a GET-only endpoint, or vice-versa." />
 			<code name="500"
-				value="Internal Server Error: Something is broken. Please post to the group so the Foursquare team can investigate." />
-			<code name="502" value="Bad Gateway: Foursquare is down or being upgraded." />
-			<code name="503"
-				value="Service Unavailable: The Foursquare servers are up, but overloaded with requests. Try again later." />
+				value="Internal Server Error: Foursquare's servers are unhappy. The request is probably valid but needs to be retried later." />
 		</response-codes>
 	</grammars>
 
 	<representation id="responseCodes" element="responseCodes" />
 
-	<resources base="http://api.foursquare.com/v1">
+    <resources base="https://api.foursquare.com/v2">
 
-		<resource path="checkins.{format}">
-			<param name="format" type="xsd:string" style="template"
-				required="true" default="json">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+     <resource path="users/{USER_ID}">
+			<param name="USER_ID" type="xsd:string" style="template" required="true">
+                <notes>Identity of the user to get details for.
+                    Pass self to get details of the acting user.</notes>
 			</param>
-			<param name="geolat" required="false" type="xsd:string" style="query"
-				default="40.01685">
-				<notes>Geographical Latitude</notes>
-			</param>
-			<param name="geolong" required="false" type="xsd:string" style="query"
-				default="-105.276489">
-				<notes>Geographical Longitude</notes>
-			</param>
-			<method name="GET" id="checkins">
+			<method name="GET" id="getuser">
 				<tags>
-					<tag primary="true">Check in methods</tag>
-					<tag>Checkins</tag>
+					<tag primary="true">User methods</tag>
+					<tag>Getuser</tag>
 				</tags>
 				<authentication required="true" />
 				<docs
-					url="http://groups.google.com/group/foursquare-api/web/api-documentation" />
-				<example url="/checkins.{format}?geolat={geolat}&amp;geolong={geolong}" />
+					url="http://developer.foursquare.com/docs/users/users.html" />
+				<example url="/users/{USER_ID}" />
 				<notes>
-					Returns a list of recent checkins from friends.If you pass in
-					a geolat/geolong pair (optional, but recommended), we'll send you
-					back a distance inside each checkin object that you can use to sort
-					your results.
+					Returns profile information for a given user, including selected badges and mayorships.
+                    If the user is a friend, contact information, Facebook ID, and Twitter handle and the user's last
+                    checkin may also be present.In addition, the pings field will indicate whether checkins from this
+                    user will trigger a ping (notifications to mobile devices). This setting can be changed via setpings.
+                    Note that this setting is overriden if pings is false in settings (no pings will be sent, even if
+                    this user is set to true). 
                 </notes>
 			</method>
-		</resource>
+	 </resource>
 
-		<resource path="checkin.{format}">
-			<param name="format" type="xsd:string" style="template"
-				required="true" default="json">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+        <resource path="users/search">
+			<param name="phone" type="xsd:string" style="query" required="false">
+                <notes>A comma-delimited list of phone numbers to look for</notes>
 			</param>
-			<param name="geolat" required="false" type="xsd:string" style="query"
-				default="40.01685">
-				<notes>Geographical Latitude (optional, but recommended)</notes>
+            <param name="email" type="xsd:string" style="query" required="false">
+                <notes>A comma-delimited list of email addresses to look for</notes>
 			</param>
-			<param name="geolong" required="false" type="xsd:string" style="query"
-				default="-105.276489">
-				<notes>Geographical Longitude (optional, but recommended)</notes>
+            <param name="twitter" type="xsd:string" style="query" required="false">
+                <notes>A comma-delimited list of Twitter handles to look for</notes>
 			</param>
-			<param name="vid" required="false" type="xsd:string" style="query"
-				default="1">
-				<notes>ID of the venue where you want to check-in.Optional, not
-					necessary if you are 'shouting' or have a venue name.
+            <param name="twitterSource" type="xsd:string" style="query" required="false">
+                <notes>A single Twitter handle. Results will be friends of this user who use Foursquare</notes>
+			</param>
+            <param name="fbid" type="xsd:string" style="query" required="false">
+                <notes>A comma-delimited list of Facebook ID's to look for</notes>
+			</param>
+            <param name="name" type="xsd:string" style="query" required="false">
+                <notes>A single string to search for in users' names</notes>
+			</param>
+
+			<method name="GET" id="searchuser">
+				<tags>
+					<tag primary="true">User methods</tag>
+					<tag>SearchUser</tag>
+				</tags>
+				<authentication required="true" />
+				<docs
+					url="http://developer.foursquare.com/docs/users/search.html" />
+				<example url="/users/search?email={email_address}" />
+				<notes>
+					Returns an array of compact user objects with Twitter or Facebook information and friend status.
                 </notes>
+			</method>
+	 </resource>
+
+      <resource path="users/search">
+			<param name="phone" type="xsd:string" style="query" required="false">
+                <notes>A comma-delimited list of phone numbers to look for</notes>
 			</param>
-			<param name="venue" required="false" type="xsd:string" style="query"
-				default="Rome">
-				<notes>If you don't have a venue ID or would rather prefer a
-					'venueless' checkin, pass the venue name as a string using this
-					parameter. It will become an 'orphan' (no address or venueid but
-					with geolat, geolong). Optional, not necessary if you are
-					'shouting' or have a vid. 
-                </notes>
+            <param name="email" type="xsd:string" style="query" required="false">
+                <notes>A comma-delimited list of email addresses to look for</notes>
 			</param>
-			<param name="shout" required="false" type="xsd:string" style="query"
-				default="shout">
-				<notes>(optional) a message about your check-in. the maximum length
-					of this field is 140 characters
-                </notes>
+            <param name="twitter" type="xsd:string" style="query" required="false">
+                <notes>A comma-delimited list of Twitter handles to look for</notes>
 			</param>
-			<param name="private" required="false" type="xsd:string" style="query"
-				default="0">
-				<notes>(optional). "1" means "don't show your friends". "0" means
-					"show everyone" 
-                </notes>
+            <param name="twitterSource" type="xsd:string" style="query" required="false">
+                <notes>A single Twitter handle. Results will be friends of this user who use Foursquare</notes>
 			</param>
-			<param name="twitter" required="false" type="xsd:string" style="query"
-				default="0">
-				<notes>(optional, defaults to the user's setting). "1" means "send
-					to Twitter". "0" means "don't send to Twitter" 
-                </notes>
+            <param name="fbid" type="xsd:string" style="query" required="false">
+                <notes>A comma-delimited list of Facebook ID's to look for</notes>
 			</param>
-			<param name="facebook" required="false" type="xsd:string"
-				style="query" default="0">
-				<notes>(optional, defaults to the user's setting). "1" means "send
-					to Facebook". "0" means "don't send to Facebook"
+            <param name="name" type="xsd:string" style="query" required="false">
+                <notes>A single string to search for in users' names</notes>
+			</param>
+
+			<method name="POST" id="searchuser">
+				<tags>
+					<tag primary="true">User methods</tag>
+					<tag>SearchUser</tag>
+				</tags>
+				<authentication required="true" />
+				<docs
+					url="http://developer.foursquare.com/docs/users/search.html" />
+				<example url="/users/search?email={email_address}" />
+				<notes>
+					Returns an array of compact user objects with Twitter or Facebook information and friend status.
                 </notes>
+			</method>
+	 </resource>
+
+     <resource path="users/requests">
+			<method name="GET" id="getRequests">
+				<tags>
+					<tag primary="true">User methods</tag>
+					<tag>GetRequests</tag>
+				</tags>
+				<authentication required="true" />
+				<docs
+					url="http://developer.foursquare.com/docs/users/requests.html" />
+				<example url="/users/requests" />
+				<notes>
+					Shows a user the list of users with whom they have a pending friend request 
+					(i.e., someone tried to add the acting user as a friend, but the acting user has not accepted). 
+                </notes>
+			</method>
+	 </resource>
+   
+      <resource path="users/{USER_ID}/badges">
+			<param name="USER_ID" type="xsd:string" style="template" required="true">
+                <notes>ID for user to view badges for.
+                    Pass self to get details of the acting user.</notes>
+			</param>
+			<method name="GET" id="getBadges">
+				<tags>
+					<tag primary="true">User methods</tag>
+					<tag>GetBadges</tag>
+				</tags>
+				<authentication required="true" />
+				<docs
+					url="http://developer.foursquare.com/docs/users/badges.html" />
+				<example url="/users/{USER_ID}/badges" />
+				<notes>
+					Returns badges for a given user. 
+                </notes>
+			</method>
+	 </resource>
+	
+	 <resource path="users/{USER_ID}/checkins">
+			<param name="USER_ID" type="xsd:string" style="template" required="true">
+                <notes>Identity of the user to get details for.
+                    Pass self to get details of the acting user.
+                    For now, only "self" is supported</notes>
+			</param>
+			<param name="limit" type="xsd:string" style="template" required="false">
+                <notes>	Number of results to return, up to 500.</notes>
+			</param>
+			<param name="offset" type="xsd:string" style="template" required="false">
+                <notes>Used to page through results.</notes>
+			</param>
+			<param name="afterTimestamp" type="xsd:string" style="template" required="false">
+                <notes>Retrieve the first results to follow these seconds since epoch. This should be useful for paging forward in time, or when polling for changes. 
+                To avoid missing results when polling, we recommend subtracting several seconds from the last poll time and then de-deduplicating.</notes>
+			</param>
+			<param name="beforeTimestamp" type="xsd:string" style="template" required="false">
+                <notes>Retrieve the first results prior to these seconds since epoch. Useful for paging backward in time.</notes>
+			</param>
+			<method name="GET" id="getUserCheckins">
+				<tags>
+					<tag primary="true">User methods</tag>
+					<tag>GetUserCheckins</tag>
+				</tags>
+				<authentication required="true" />
+				<docs
+					url="http://developer.foursquare.com/docs/users/checkins.html" />
+				<example url="/users/{USER_ID}/checkins" />
+				<notes>
+					Returns a history of checkins for the authenticated user. 
+                </notes>
+			</method>
+	 </resource> 
+   
+     <resource path="users/{USER_ID}/friends">
+			<param name="USER_ID" type="xsd:string" style="template" required="true">
+                <notes>Identity of the user to get friends of. 
+                Pass self to get friends of the acting user.</notes>
+			</param>
+			<method name="GET" id="getFriends">
+				<tags>
+					<tag primary="true">User methods</tag>
+					<tag>GetFriends</tag>
+				</tags>
+				<authentication required="true" />
+				<docs
+					url="http://developer.foursquare.com/docs/users/friends.html" />
+				<example url="/users/{USER_ID}/friends" />
+				<notes>
+					Returns an array of a user's friends. 
+                </notes>
+			</method>
+	 </resource>
+	 
+	 <resource path="users/{USER_ID}/tips">
+			<param name="USER_ID" type="xsd:string" style="template" required="true">
+                <notes>Identity of the user to get tips from.
+                 Pass self to get tips of the acting user.</notes>
+			</param>
+			<param name="sort" type="xsd:string" style="template" required="false">
+                <notes>One of recent, nearby, or popular. Nearby requires geolat and geolong to be provided.</notes>
+			</param>
+			<param name="ll" type="xsd:string" style="template" required="false">
+                <notes>Latitude and longitude of the user's location.</notes>
+			</param>
+			<method name="GET" id="getTips">
+				<tags>
+					<tag primary="true">User methods</tag>
+					<tag>GetTips</tag>
+				</tags>
+				<authentication required="true" />
+				<docs
+					url="http://developer.foursquare.com/docs/users/tips.html" />
+				<example url="/users/{USER_ID}/tips" />
+				<notes>
+					Returns tips from a user. 
+                </notes>
+			</method>
+	 </resource>
+	 
+	  <resource path="users/{USER_ID}/todos">
+			<param name="USER_ID" type="xsd:string" style="template" required="true">
+                <notes>Identity of the user to get todos for. 
+                       Pass self to get todos of the acting user.</notes>
+			</param>
+			<param name="sort" type="xsd:string" style="template" required="false">
+                <notes>One of recent or popular. Nearby requires geolat and geolong to be provided.</notes>
+			</param>
+			<param name="ll" type="xsd:string" style="template" required="false">
+                <notes>Latitude and longitude of the user's location.</notes>
+			</param>
+			<method name="GET" id="getTodos">
+				<tags>
+					<tag primary="true">User methods</tag>
+					<tag>GetTodos</tag>
+				</tags>
+				<authentication required="true" />
+				<docs
+					url="http://developer.foursquare.com/docs/users/todos.html" />
+				<example url="/users/{USER_ID}/todos" />
+				<notes>
+					Returns todos from a user. 
+                </notes>
+			</method>
+	 </resource>
+	 
+	  <resource path="users/{USER_ID}/venuehistory">
+			<param name="USER_ID" type="xsd:string" style="template" required="true">
+                <notes>Identity of the user to get details for.
+                    Pass self to get details of the acting user.
+                    For now, only "self" is supported</notes>
+			</param>
+			<method name="GET" id="getVenueHistory">
+				<tags>
+					<tag primary="true">User methods</tag>
+					<tag>GetVenueHistory</tag>
+				</tags>
+				<authentication required="true" />
+				<docs
+					url="http://developer.foursquare.com/docs/users/venuehistory.html" />
+				<example url="/users/{USER_ID}/venuehistory" />
+				<notes>
+					Returns a list of all venues visited by the specified user, along with how many visits and when they were last there.
+                </notes>
+			</method>
+	 </resource>
+	 
+	 <resource path="users/{USER_ID}/request">
+			<param name="USER_ID" type="xsd:string" style="template" required="true">
+                <notes>The user ID to which a request will be sent.</notes>
+			</param>
+			<method name="POST" id="sendRequest">
+				<tags>
+					<tag primary="true">User methods</tag>
+					<tag>SendRequest</tag>
+				</tags>
+				<authentication required="true" />
+				<docs
+					url="http://developer.foursquare.com/docs/users/request.html" />
+				<example url="/users/{USER_ID}/request" />
+				<notes>
+					Sends a friend request to another user. 
+                </notes>
+			</method>
+	 </resource>
+	 
+	  <resource path="users/{USER_ID}/unfriend">
+			<param name="USER_ID" type="xsd:string" style="template" required="true">
+                <notes>Identity of the user to unfriend.</notes>
+			</param>
+			<method name="POST" id="unfriendUser">
+				<tags>
+					<tag primary="true">User methods</tag>
+					<tag>UnfriendUser</tag>
+				</tags>
+				<authentication required="true" />
+				<docs
+					url="http://developer.foursquare.com/docs/users/unfriend.html" />
+				<example url="/users/{USER_ID}/unfriend" />
+				<notes>
+					Cancels any relationship between the acting user and the specified user.
+					Removes a friend, unfollows a celebrity, or cancels a pending friend request. 
+                </notes>
+			</method>
+	 </resource>
+	 
+	 <resource path="users/{USER_ID}/approve">
+			<param name="USER_ID" type="xsd:string" style="template" required="true">
+                <notes>The user ID of a pending friend.</notes>
+			</param>
+			<method name="POST" id="approveFriend">
+				<tags>
+					<tag primary="true">User methods</tag>
+					<tag>ApproveFriend</tag>
+				</tags>
+				<authentication required="true" />
+				<docs
+					url="http://developer.foursquare.com/docs/users/approve.html" />
+				<example url="/users/{USER_ID}/approve" />
+				<notes>
+					Approves a pending friend request from another user.  
+                </notes>
+			</method>
+	 </resource>
+	 
+	  <resource path="users/{USER_ID}/deny">
+			<param name="USER_ID" type="xsd:string" style="template" required="true">
+                <notes>The user ID of a pending friend.</notes>
+			</param>
+			<method name="POST" id="denyFriend">
+				<tags>
+					<tag primary="true">User methods</tag>
+					<tag>DenyFriend</tag>
+				</tags>
+				<authentication required="true" />
+				<docs
+					url="http://developer.foursquare.com/docs/users/deny.html" />
+				<example url="/users/{USER_ID}/deny" />
+				<notes>
+					Denies a pending friend request from another user. 
+                </notes>
+			</method>
+	 </resource>
+	 
+	  <resource path="users/{USER_ID}/setpings">
+			<param name="USER_ID" type="xsd:string" style="template" required="true">
+                <notes>The user ID of a friend.</notes>
+			</param>
+			<param name="value" type="xsd:string" style="query" required="true">
+                <notes>True or false.</notes>
+			</param>
+			<method name="POST" id="setPings">
+				<tags>
+					<tag primary="true">User methods</tag>
+					<tag>SetPings</tag>
+				</tags>
+				<authentication required="true" />
+				<docs
+					url="http://developer.foursquare.com/docs/users/setpings.html" />
+				<example url="/users/{USER_ID}/setpings?value={value}" />
+				<notes>
+					Changes whether the acting user will receive pings (phone notifications) when the specified user checks in. 
+                </notes>
+			</method>
+	 </resource>
+	 
+	  <resource path="venues/{VENUE_ID}">
+			<param name="VENUE_ID" type="xsd:string" style="template" required="true">
+                <notes>ID of venue to retrieve.</notes>
+			</param>
+			<method name="GET" id="getVenue">
+				<tags>
+					<tag primary="true">Venue methods</tag>
+					<tag>GetVenue</tag>
+				</tags>
+				<authentication required="false" />
+				<docs
+					url="http://developer.foursquare.com/docs/venues/venues.html" />
+				<example url="/venues/{VENUE_ID}" />
+				<notes>
+					Gives details about a venue, including location, mayorship, tags, tips, specials, and category
+					Authenticated users will also receive information about who is here now.If the venue ID given 
+					is one that has been merged into another "master" venue, the response will show data about the 
+					"master" instead of giving you an error. 
+                </notes>
+			</method>
+	 </resource>
+
+     <resource path="venues/add">
+			<param name="name" type="xsd:string" style="query" required="true">
+                <notes>The name of the venue.</notes>
+			</param>
+			<param name="address" type="xsd:string" style="query" required="false">
+                <notes>The address of the venue.</notes>
+			</param>
+			<param name="crossStreet" type="xsd:string" style="query" required="false">
+                <notes>The nearest intersecting street or streets.</notes>
+			</param>
+			<param name="city" type="xsd:string" style="query" required="false">
+                <notes>The city name where this venue is.</notes>
+			</param>
+			<param name="state" type="xsd:string" style="query" required="false">
+                <notes>The nearest state or province to the venue.</notes>
+			</param>
+			<param name="zip" type="xsd:string" style="query" required="false">
+                <notes>The zip or postal code for the venue.</notes>
+			</param>
+			<param name="phone" type="xsd:string" style="query" required="false">
+                <notes>The phone number of the venue.</notes>
+			</param>
+			<param name="ll" type="xsd:string" style="query" required="true">
+                <notes>Latitude and longitude of the venue, as accurate as is known.</notes>
+			</param>
+			<param name="primaryCategoryId" type="xsd:string" style="query" required="false">
+                <notes>The ID of the category to which you want to assign this venue.</notes>
+			</param>
+			<method name="POST" id="addVenue">
+				<tags>
+					<tag primary="true">Venue methods</tag>
+					<tag>AddVenue</tag>
+				</tags>
+				<authentication required="true" />
+				<docs
+					url="http://developer.foursquare.com/docs/venues/add.html" />
+				<example url="/venues/add?name={name}&amp;ll={lat},{long}" />
+				<notes>
+					Allows users to add a new venue.
+					If this method returns an error, give the user the option to edit her inputs.
+					In addition to this, give users the ability to say "never mind, check-in here anyway" 
+					and perform a manual ("venueless") checkin by specifying just the venue name. This is 
+					rare, but there's a chance you'll see this case if the user wants to force a duplicate venue.
+					All fields are optional, but one of either a valid address or a geolat/geolong pair must be 
+					provided. We recommend that developers provide a geolat/geolong pair in every case.
+					Caller may also, optionally, pass in a category (primarycategoryid) to which you want this 
+					venue assigned. You can browse a full list of categories using the /categories method. On 
+					adding venue, we recommend that applications show the user this hierarchy and allow them to 
+					choose something suitable. 
+                </notes>
+			</method>
+	 </resource>
+	 
+	 <resource path="venues/categories">
+			<method name="GET" id="getCategories">
+				<tags>
+					<tag primary="true">Venue methods</tag>
+					<tag>GetCategories</tag>
+				</tags>
+				<authentication required="false" />
+				<docs
+					url="http://developer.foursquare.com/docs/venues/categories.html" />
+				<example url="/venues/categories" />
+				<notes>
+					Returns a hierarchical list of categories applied to venues. 
+					Note that top-level categories do not have IDs because they cannot be assigned to a venue. 
+                </notes>
+			</method>
+	 </resource>
+	 
+	 <resource path="venues/search">
+	        <param name="ll" type="xsd:string" style="query" required="true">
+                <notes>Latitude and longitude of the user's location, so response can include distance.</notes>
+			</param>
+			 <param name="llAcc" type="xsd:string" style="query" required="false">
+                <notes>Accuracy of latitude and longitude, in meters.</notes>
+			</param>
+			 <param name="alt" type="xsd:string" style="query" required="false">
+                <notes>Altitude of the user's location, in meters.</notes>
+			</param>
+			 <param name="altAcc" type="xsd:string" style="query" required="false">
+                <notes>Accuracy of the user's altitude, in meters.</notes>
+			</param>
+			 <param name="query" type="xsd:string" style="query" required="false">
+                <notes>A search term to be applied against titles.</notes>
+			</param>
+			<param name="limit" type="xsd:string" style="query" required="false">
+                <notes>Number of results to return, up to 500.</notes>
+			</param>
+			
+			<method name="GET" id="searchVenue">
+				<tags>
+					<tag primary="true">Venue methods</tag>
+					<tag>SearchVenue</tag>
+				</tags>
+				<authentication required="false" />
+				<docs
+					url="http://developer.foursquare.com/docs/venues/search.html" />
+				<example url="/venues/search?ll={lat},{long}" />
+				<notes>
+					Returns a list of venues near the current location, optionally matching the search term.
+					If lat and long is provided, each venue includes a distance. If authenticated, the method 
+					will return venue metadata related to you and your friends. If you do not authenticate, 
+					you will not get this data. 
+                </notes>
+			</method>
+	 </resource>
+	 
+	 <resource path="venues/{VENUE_ID}/herenow">
+			<param name="VENUE_ID" type="xsd:string" style="template" required="true">
+                <notes>ID of venue to retrieve</notes>
+			</param>
+			<method name="GET" id="getVenueDetails">
+				<tags>
+					<tag primary="true">Venue methods</tag>
+					<tag>GetVenueDetails</tag>
+				</tags>
+				<authentication required="false" />
+				<docs
+					url="http://developer.foursquare.com/docs/venues/herenow.html" />
+				<example url="/venues/{VENUE_ID}/herenow" />
+				<notes>
+					Provides a count of how many people are at a given venue, plus the first page
+					of the users there, friends-first, and if the current user is authenticated. 
+                </notes>
+			</method>
+	 </resource>
+	 
+	 <resource path="venues/{VENUE_ID}/tips">
+			<param name="VENUE_ID" type="xsd:string" style="template" required="true">
+                <notes>The venue where you want to add this tip.</notes>
+			</param>
+			<param name="sort" type="xsd:string" style="query" required="false">
+                <notes>	One of recent or popular.</notes>
+			</param>
+			<method name="GET" id="getVenueTips">
+				<tags>
+					<tag primary="true">Venue methods</tag>
+					<tag>GetVenueTips</tag>
+				</tags>
+				<authentication required="false" />
+				<docs
+					url="http://developer.foursquare.com/docs/venues/tips.html" />
+				<example url="/venues/{VENUE_ID}/tips" />
+				<notes>
+					Returns tips for a venue. 
+                </notes>
+			</method>
+	 </resource>
+	 
+	  <resource path="venues/{VENUE_ID}/marktodo">
+			<param name="VENUE_ID" type="xsd:string" style="template" required="true">
+                <notes>The venue you want to mark to-do.</notes>
+			</param>
+			<param name="text" type="xsd:string" style="query" required="false">
+                <notes>	The text of the tip.</notes>
+			</param>
+			<method name="POST" id="markToDo">
+				<tags>
+					<tag primary="true">Venue methods</tag>
+					<tag>MarkVenueToDo</tag>
+				</tags>
+				<authentication required="true" />
+				<docs
+					url="http://developer.foursquare.com/docs/venues/marktodo.html" />
+				<example url="/venues/{VENUE_ID}/marktodo" />
+				<notes>
+					Allows you to mark a venue to-do, with optional text.
+                </notes>
+			</method>
+	 </resource>
+	 
+	 <resource path="venues/{VENUE_ID}/flag">
+			<param name="VENUE_ID" type="xsd:string" style="template" required="true">
+                <notes>The venue id for which an edit is being proposed.</notes>
+			</param>
+			<param name="problem" type="xsd:string" style="query" required="true">
+                <notes>	One of mislocated, closed, duplicate.</notes>
+			</param>
+			<method name="POST" id="flagVenue">
+				<tags>
+					<tag primary="true">Venue methods</tag>
+					<tag>FlagVenue</tag>
+				</tags>
+				<authentication required="true" />
+				<docs
+					url="http://developer.foursquare.com/docs/venues/flag.html" />
+				<example url="/venues/{VENUE_ID}/flag?problem={problem}" />
+				<notes>
+					Allows users to indicate a venue is incorrect in some way.
+					Flags are pushed into a moderation queue. If a closed flag 
+					is approved, the venue will no longer show up in search results. 
+					Moderators will attempt to correct cases of mislocated or duplicate 
+					venues as appropriate. If the user has the correct address for a 
+					mislocated venue, use proposeedit instead. 
+                </notes>
+			</method>
+	 </resource>
+	 
+	  <resource path="venues/{VENUE_ID}/proposeedit">
+			<param name="VENUE_ID" type="xsd:string" style="template" required="true">
+                <notes>The venue id for which an edit is being proposed.</notes>
+			</param>
+			<param name="name" type="xsd:string" style="query" required="false">
+                <notes>	The name of the venue.</notes>
+			</param>
+			<param name="address" type="xsd:string" style="query" required="false">
+                <notes>The address of the venue.</notes>
+			</param>
+			<param name="crossStreet" type="xsd:string" style="query" required="false">
+                <notes>The nearest intersecting street or streets.</notes>
+			</param>
+			<param name="city" type="xsd:string" style="query" required="false">
+                <notes>The city name where this venue is.</notes>
+			</param>
+			<param name="state" type="xsd:string" style="query" required="false">
+                <notes>The nearest state or province to the venue.</notes>
+			</param>
+			<param name="zip" type="xsd:string" style="query" required="false">
+                <notes>The zip or postal code for the venue.</notes>
+			</param>
+			<param name="phone" type="xsd:string" style="query" required="false">
+                <notes>The phone number of the venue.</notes>
+			</param>
+			<param name="ll" type="xsd:string" style="query" required="false">
+                <notes>Latitude and longitude of the venue, as accurate as is known.</notes>
+			</param>
+			<param name="primaryCategoryId" type="xsd:string" style="query" required="false">
+                <notes>The ID of the category to which you want to assign this venue.</notes>
+			</param>
+			<method name="POST" id="editVenue">
+				<tags>
+					<tag primary="true">Venue methods</tag>
+					<tag>EditVenue</tag>
+				</tags>
+				<authentication required="true" />
+				<docs
+					url="http://developer.foursquare.com/docs/venues/proposeedit.html" />
+				<example url="/venues/{VENUE_ID}/proposeedit?name={name}" />
+				<notes>
+					Allows you to propose a change to a venue.If the user knows a correct address, use this method to save it. 
+					Otherwise, use flag to flag the venue instead (you need not specify a new address or geolat/geolong in that case). 
+                </notes>
+			</method>
+	 </resource>
+	 
+	  <resource path="tips/{TIP_ID}">
+			<param name="TIP_ID" type="xsd:string" style="template" required="true">
+                <notes>ID of tip to retrieve.</notes>
+			</param>
+			<method name="GET" id="getTip">
+				<tags>
+					<tag primary="true">Tip methods</tag>
+					<tag>GetTip</tag>
+				</tags>
+				<authentication required="false" />
+				<docs
+					url="http://developer.foursquare.com/docs/tips/tips.html" />
+				<example url="/tips/{TIP_ID}" />
+				<notes>
+					Gives details about a tip, including which users (especially friends) have marked the tip to-do or done.
+                </notes>
+			</method>
+	 </resource>
+	 
+	  <resource path="tips/add">
+			<param name="venueId" type="xsd:string" style="query" required="true">
+                <notes>The venue where you want to add this tip.</notes>
+			</param>
+			<param name="text" type="xsd:string" style="query" required="true">
+                <notes>The text of the tip.</notes>
+			</param>
+			<param name="url" type="xsd:string" style="query" required="false">
+                <notes>A URL related to this tip.</notes>
+			</param>
+			<method name="POST" id="addTip">
+				<tags>
+					<tag primary="true">Tip methods</tag>
+					<tag>AddTip</tag>
+				</tags>
+				<authentication required="true" />
+				<docs
+					url="http://developer.foursquare.com/docs/tips/add.html" />
+				<example url="/tips/add?venueId={venueId}&amp;text={text}" />
+				<notes>
+					Allows you to add a new tip at a venue. 
+                </notes>
+			</method>
+	 </resource>
+	 
+	 <resource path="tips/search">
+			<param name="ll" type="xsd:string" style="query" required="true">
+                <notes>Latitude and longitude of the user's location.</notes>
+			</param>
+			<param name="limit" type="xsd:string" style="query" required="false">
+                <notes>Number of results to return, up to 500.</notes>
+			</param>
+			<param name="offset" type="xsd:string" style="query" required="false">
+                <notes>Used to page through results.</notes>
+			</param>
+			<param name="filter" type="xsd:string" style="query" required="false">
+                <notes>If set to friends, only show nearby tips from friends.</notes>
+			</param>
+			<param name="query" type="xsd:string" style="query" required="false">
+                <notes>Only find tips matching the given term, cannot be used in conjunction with friends filter.</notes>
+			</param>
+			<method name="GET" id="getTips">
+				<tags>
+					<tag primary="true">Tip methods</tag>
+					<tag>GetTips</tag>
+				</tags>
+				<authentication required="false" />
+				<docs
+					url="http://developer.foursquare.com/docs/tips/search.html" />
+				<example url="/tips/search?ll={lat},{long}" />
+				<notes>
+					Returns a list of tips near the area secified.  
+                </notes>
+			</method>
+	 </resource>
+	 
+	  <resource path="tips/{TIP_ID}/marktodo">
+			<param name="TIP_ID" type="xsd:string" style="template" required="true">
+                <notes>The tip you want to mark to-do.</notes>
+			</param>
+			<method name="POST" id="markToDoTip">
+				<tags>
+					<tag primary="true">Tip methods</tag>
+					<tag>MarkToDoTip</tag>
+				</tags>
+				<authentication required="true" />
+				<docs
+					url="http://developer.foursquare.com/docs/tips/marktodo.html" />
+				<example url="/tips/{TIP_ID}/marktodo" />
+				<notes>
+					Allows you to mark a tip to-do. 
+                </notes>
+			</method>
+	 </resource>
+	 
+	  <resource path="tips/{TIP_ID}/markdone">
+			<param name="TIP_ID" type="xsd:string" style="template" required="true">
+                <notes>The tip you want to mark done.</notes>
+			</param>
+			<method name="POST" id="markdoneTip">
+				<tags>
+					<tag primary="true">Tip methods</tag>
+					<tag>MarkDoneTip</tag>
+				</tags>
+				<authentication required="true" />
+				<docs
+					url="http://developer.foursquare.com/docs/tips/markdone.html" />
+				<example url="/tips/{TIP_ID}/markdone" />
+				<notes>
+					Allows the acting user to mark a tip done. 
+                </notes>
+			</method>
+	 </resource>
+	 
+	 <resource path="tips/{TIP_ID}/unmark">
+			<param name="TIP_ID" type="xsd:string" style="template" required="true">
+                <notes>The tip you want to unmark.</notes>
+			</param>
+			<method name="POST" id="unmarkTip">
+				<tags>
+					<tag primary="true">Tip methods</tag>
+					<tag>UnmarkTip</tag>
+				</tags>
+				<authentication required="true" />
+				<docs
+					url="http://developer.foursquare.com/docs/tips/unmark.html" />
+				<example url="/tips/{TIP_ID}/unmark" />
+				<notes>
+					Allows you to remove a tip from your to-do list or done list. 
+                </notes>
+			</method>
+	 </resource>
+	 
+	  <resource path="checkins/{CHECKIN_ID}">
+			<param name="CHECKIN_ID" type="xsd:string" style="template" required="true">
+                <notes>The ID of the checkin to retrieve additional information for.</notes>
+			</param>
+			<method name="GET" id="getCheckinDetails">
+				<tags>
+					<tag primary="true">Checkin methods</tag>
+					<tag>GetCheckinDetails</tag>
+				</tags>
+				<authentication required="true" />
+				<docs
+					url="http://developer.foursquare.com/docs/checkins/checkins.html" />
+				<example url="/checkins/{CHECKIN_ID}" />
+				<notes>
+					Get details of a checkin. 
+                </notes>
+			</method>
+	 </resource>
+	 
+	  <resource path="checkins/add">
+			<param name="venueId" type="xsd:string" style="query" required="false">
+                <notes>The venue where the user is checking in. No venueid is needed if 
+                shouting or just providing a venue name. Find venue IDs by searching or 
+                from historical APIs.</notes>
+			</param>
+			<param name="venue" type="xsd:string" style="query" required="false">
+                <notes>If are not shouting, but you don't have a venue ID or would rather
+                 prefer a 'venueless' checkin, pass the venue name as a string using this 
+                 parameter. It will become an 'orphan' (no address or venueid but with 
+                 geolat, geolong).</notes>
+			</param>
+			<param name="shout" type="xsd:string" style="query" required="false">
+                <notes>A message about your check-in. The maximum length of this field is 140 
+                characters.</notes>
+			</param>
+			<param name="broadcast" type="xsd:string" style="query" required="true">
+                <notes>How much to broadcast this check-in, ranging from private (off-the-grid)
+                 to public,faceboook,twitter. Can also be just public or public,facebook, for
+                  example. If no valid value is found, the default is public. Shouts cannot be 
+                  private.</notes>
+			</param>
+			<param name="ll" type="xsd:string" style="query" required="false">
+                <notes>Latitude and longitude of the user's location.</notes>
+			</param>
+			<param name="llAcc" type="xsd:string" style="query" required="false">
+                <notes>Accuracy of the user's latitude and longitude, in meters.</notes>
+			</param>
+			<param name="alt" type="xsd:string" style="query" required="false">
+                <notes>Altitude of the user's location, in meters.</notes>
+			</param>
+			<param name="altAcc" type="xsd:string" style="query" required="false">
+                <notes>Vertical accuracy of the user's location, in meters.</notes>
 			</param>
 			<method name="POST" id="checkin">
 				<tags>
-					<tag primary="true">Check in methods</tag>
-					<tag>Check-in</tag>
+					<tag primary="true">Checkin methods</tag>
+					<tag>Checkin</tag>
 				</tags>
 				<authentication required="true" />
 				<docs
-					url="http://groups.google.com/group/foursquare-api/web/api-documentation" />
-				<example url="/checkin.{format}?vid={vid}" />
+					url="http://developer.foursquare.com/docs/checkins/add.html" />
+				<example url="/checkins/add?broadcast={broadcast}" />
 				<notes>
-					Allows you to check-in to a place. A mayor block will be
-					returned if there's any mayor information for this place. A
-					specials block will be returned if there are any specials
-					associated with this check-in.Optional, but recommended -
-					geolat/geolong pair.
+					Allows you to check in to a place. 
                 </notes>
 			</method>
-		</resource>
-
-		<resource path="history.{format}">
-			<param name="format" type="xsd:string" style="template"
-				required="true" default="json">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+	 </resource>
+	 
+	  <resource path="checkins/recent">
+			<param name="ll" type="xsd:string" style="query" required="false">
+                <notes>Latitude and longitude of the user's location, so response can include distance.</notes>
 			</param>
-			<param name="l" required="false" type="xsd:string" style="query"
-				default="20">
-				<notes>limit of results (optional, default: 20, max: 250). number of
-					checkins to return
-                </notes>
+			<param name="limit" type="xsd:string" style="query" required="false">
+                <notes>Number of results to return, up to 500.</notes>
 			</param>
-			<param name="sinceid" required="false" type="xsd:string" style="query"
-				default="2010">
-				<notes>id to start returning results from (optional, if omitted
-					returns most recent results)
-                </notes>
+			<param name="offset" type="xsd:string" style="query" required="false">
+                <notes>Used to page through results.</notes>
 			</param>
-			<method name="GET" id="history">
+			<param name="afterTimestamp" type="xsd:string" style="query" required="false">
+                <notes>Seconds after which to look for checkins, e.g. for looking for 
+                new checkins since the last fetch. If more than limit results are new 
+                since then, this is ignored.</notes>
+			</param>
+			<method name="GET" id="getCheckins">
 				<tags>
-					<tag primary="true">Check in methods</tag>
-					<tag>History</tag>
+					<tag primary="true">Checkin methods</tag>
+					<tag>GetCheckins</tag>
 				</tags>
 				<authentication required="true" />
 				<docs
-					url="http://groups.google.com/group/foursquare-api/web/api-documentation" />
-				<example url="/history.json" />
+					url="http://developer.foursquare.com/docs/checkins/recent.html" />
+				<example url="/checkins/recent" />
 				<notes>
-					Returns a history of checkins for the authenticated user.
-				</notes>
+					Returns a list of recent checkins from friends. 
+                </notes>
 			</method>
-		</resource>
-
-		<resource path="user.{format}">
-			<param name="format" type="xsd:string" style="template"
-				required="true" default="json">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+	 </resource>
+	 
+	 
+	  <resource path="settings/{SETTING_ID}">
+			<param name="SETTING_ID" type="xsd:string" style="template" required="true">
+                <notes>The name of a setting.</notes>
 			</param>
-			<param name="uid" type="xsd:string" style="query" required="false"
-				default="1">
-				<notes>userid for the user whose information you want to retrieve.
-					if you do not specify a 'uid', the authenticated user's profile
-					data will be returned.
-                </notes>
-			</param>
-			<param name="twitter" required="false" type="xsd:string" style="query"
-				default="apigee">
-				<notes>twitter handle for the user whose information you want to
-					retrieve. if you specify both 'uid' and 'twitter', 'uid' will take
-					precedence.
-                </notes>
-			</param>
-			<param name="badges" required="false" type="xsd:string" style="query"
-				default="0">
-				<notes>(optional, default: false) set to true ("1") to also show
-					badges for this user. by default, this will show badges earned
-					worldwide.
-                </notes>
-			</param>
-			<param name="mayor" required="false" type="xsd:string" style="query"
-				default="0">
-				<notes>(optional, default: false) set to true ("1") to also show
-					venues for which this user is a mayor. by default, this will show
-					mayorships worldwide.
-                </notes>
-			</param>
-			<method name="GET" id="user_details">
+			<method name="GET" id="getSetting">
 				<tags>
-					<tag primary="true">User methods</tag>
-					<tag>User detail</tag>
+					<tag primary="true">Setting methods</tag>
+					<tag>GetSetting</tag>
 				</tags>
 				<authentication required="true" />
 				<docs
-					url="http://groups.google.com/group/foursquare-api/web/api-documentation" />
-				<example url="/user.json" />
+					url="http://developer.foursquare.com/docs/settings/settings.html" />
+				<example url="/settings/{SETTING_ID}" />
 				<notes>
-					Returns profile information (badges, etc) for a given user.
-					If the user has recent check-in data (ie, if the user is self or is
-					a friend of the authenticating user), this data will be returned as
-					well in a checkin block.
+					Returns a setting for the acting user. SETTING_ID can be any of the three: 
+					receivePings, sendToTwitter, sendToFacebook
                 </notes>
 			</method>
-		</resource>
-
-		<resource path="friends.{format}">
-			<param name="format" type="xsd:string" style="template"
-				required="true" default="json">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
-			</param>
-			<param name="uid" type="xsd:string" style="query" required="false"
-				default="1">
-				<notes>user id of the person for whom you want to pull a friend
-					graph (optional)
-                </notes>
-			</param>
-			<method name="GET" id="friends">
+	 </resource>
+	 
+	  <resource path="settings/all">
+			<method name="GET" id="getAllSettings">
 				<tags>
-					<tag primary="true">User methods</tag>
-					<tag>Friends</tag>
+					<tag primary="true">Setting methods</tag>
+					<tag>getAllSettings</tag>
 				</tags>
 				<authentication required="true" />
 				<docs
-					url="http://groups.google.com/group/foursquare-api/web/api-documentation" />
-				<example url="/friends.json" />
+					url="http://developer.foursquare.com/docs/settings/all.html" />
+				<example url="/settings/all" />
 				<notes>
-					Returns a list of friends. If you do not specify uid, the
-					authenticating user's list of friends will be returned. If the
-					friend has allowed it, you'll also see links to their Twitter and
-					Facebook accounts.
+					Returns the settings of the acting user. 
                 </notes>
 			</method>
-		</resource>
-
-		<resource path="venues.{format}">
-			<param name="format" type="xsd:string" style="template"
-				required="true" default="json">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+	 </resource>
+	 
+	  <resource path="settings/{SETTING_ID}/set">
+			<param name="SETTING_ID" type="xsd:string" style="template" required="true">
+                <notes>Name of setting to change, sendToTwitter, sendToFacebook, receivePings.</notes>
 			</param>
-			<param name="geolat" required="true" type="xsd:string" style="query"
-				default="40.01685">
-				<notes>Geographical Latitude (optional, but recommended)</notes>
+			<param name="value" type="xsd:string" style="query" required="true">
+                <notes>1 for true, and 0 for false.</notes>
 			</param>
-			<param name="geolong" required="true" type="xsd:string" style="query"
-				default="-105.276489">
-				<notes>Geographical Longitude (optional, but recommended)</notes>
-			</param>
-			<param name="l" required="false" type="xsd:string" style="query"
-				default="10">
-				<notes>limit of results (optional, default 10, maximum 50)</notes>
-			</param>
-			<param name="q" required="false" type="xsd:string" style="query"
-				default="Rome">
-				<notes>keyword search (optional)</notes>
-			</param>
-			<method name="GET" id="nearby_and_search">
+			<method name="POST" id="setSetting">
 				<tags>
-					<tag primary="true">Venue methods</tag>
-					<tag>Nearby and search</tag>
+					<tag primary="true">Setting methods</tag>
+					<tag>SetSetting</tag>
 				</tags>
 				<authentication required="true" />
 				<docs
-					url="http://groups.google.com/group/foursquare-api/web/api-documentation" />
-				<example url="/venues.{format}?geolat={geolat}&amp;geolong={geolong}" />
+					url="http://developer.foursquare.com/docs/settings/set.html" />
+				<example url="/settings/{SETTING_ID}/set?value={value}" />
 				<notes>
-					Returns a list of venues near the area specified or that
-					match the search term. (The distance returned is in meters). If you
-					authenticate, the method will return venue meta-data related to you
-					and your friends. If you do not authenticate, you will not get this
-					data.
+					Change a setting for the given user. 
                 </notes>
 			</method>
-		</resource>
-
-		<resource path="venue.{format}">
-			<param name="format" type="xsd:string" style="template"
-				required="true" default="json">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+	 </resource>
+	 
+	  <resource path="multi">
+			<param name="requests" type="xsd:string" style="query" required="true">
+                <notes>A comma-delimited list of API requests, each URI encoded 
+                      (meaning that already-encoded elements are double-encoded)</notes>
 			</param>
-			<param name="vid" required="false" type="xsd:string" style="query"
-				default="49049">
-				<notes>The ID for the venue for which you want information </notes>
-			</param>
-			<method name="GET" id="venue_details">
+			<method name="GET" id="multipleRequests">
 				<tags>
-					<tag primary="true">Venue methods</tag>
-					<tag>Venue details</tag>
-				</tags>
-				<authentication required="false" />
-				<docs
-					url="http://groups.google.com/group/foursquare-api/web/api-documentation" />
-				<example url="/venue.{format}?vid={vid}" />
-				<notes>
-					When given a venue identifier (vid), returns venue data,
-					including mayorship, tips/to-dos and tags. If the vid given is one
-					that has been merged into another "master" venue, the response will
-					show data about the "master" instead of giving you an error.
-				</notes>
-			</method>
-		</resource>
-
-		<resource path="categories.{format}">
-			<param name="format" type="xsd:string" style="template"
-				required="true" default="json">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
-			</param>
-
-			<method name="GET" id="categories_list">
-				<tags>
-					<tag primary="true">Venue methods</tag>
-					<tag>Categories list</tag>
-				</tags>
-				<authentication required="false" />
-				<docs
-					url="http://groups.google.com/group/foursquare-api/web/api-documentation" />
-				<example url="/categories.{format}" />
-				<notes>
-					Returns a hierarchical list of categories currently supported
-					by the platform.
-                </notes>
-				<response>
-					<property name="categories"> an array of subcategories</property>
-					<property name="id">the category id at this level (to be used as primarycategoryid when passed to /addvenue) </property>
-					<property name="fullpathname">a colon (":") delimited path to the category </property>
-					<property name="nodename"> name of the current category (to be displayed in your interface)</property>
-					<property name="iconurl">URL to the category icon (cache these per session or max, per week as they are subject to change) </property>
-				</response>
-			</method>
-		</resource>
-
-		<resource path="addvenue.{format}">
-			<param name="format" type="xsd:string" style="template"
-				required="true" default="json">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
-			</param>
-			<param name="name" required="true" type="xsd:string" style="query"
-				default="Pig &amp; Whistle">
-				<notes>The name of the venue</notes>
-			</param>
-			<param name="address" required="false" type="xsd:string" style="query"
-				default="202 1st Avenue">
-				<notes> (optional) the address of the venue</notes>
-			</param>
-			<param name="crossstreet" required="false" type="xsd:string"
-				style="query" default="btw Grand &amp; Broome">
-				<notes>(optional) the cross streets</notes>
-			</param>
-			<param name="city" required="false" type="xsd:string" style="query"
-				default="Rome">
-				<notes> (optional) the city name where this venue is</notes>
-			</param>
-			<param name="state" required="false" type="xsd:string" style="query"
-				default="Italy">
-				<notes> (optional) the state where the city is</notes>
-			</param>
-			<param name="zip" required="false" type="xsd:string" style="query"
-				default="10002">
-				<notes>(optional) the ZIP code for the venue </notes>
-			</param>
-			<param name="phone" required="false" type="xsd:string" style="query"
-				default="2025551212">
-				<notes>(optional) the phone number for the venue </notes>
-			</param>
-			<param name="geolat" required="false" type="xsd:string" style="query"
-				default="40.01685">
-				<notes>Geographical Latitude</notes>
-			</param>
-			<param name="geolong" required="false" type="xsd:string" style="query"
-				default="-105.276489">
-				<notes>Geographical Longitude</notes>
-			</param>
-			<param name="primarycategoryid" required="false" type="xsd:string"
-				style="query" default="12345">
-				<notes>(optional) the ID of the category to which you want to assign
-					this venue
-                </notes>
-			</param>
-			<method name="POST" id="add_venue">
-				<tags>
-					<tag primary="true">Venue methods</tag>
-					<tag>Add venue</tag>
+					<tag primary="true">Multiple Request method</tag>
+					<tag>MultipleRequests</tag>
 				</tags>
 				<authentication required="true" />
 				<docs
-					url="http://groups.google.com/group/foursquare-api/web/api-documentation" />
-				<example
-					url="/addvenue.{format}?name={name}&amp;geolat={geolat}&amp;geolong={geolong}" />
+					url="http://developer.foursquare.com/docs/multi/multi.html" />
+				<example url="/multi?requests={request1},{request2},...{requestN}" />
 				<notes>
-					Allows you to add a new venue. geolat/geolong pair are
-					optional, but recommended.
+					Does multiple requests at once.  
                 </notes>
 			</method>
-		</resource>
-
-		<resource path="venue/proposeedit.{format}">
-			<param name="format" type="xsd:string" style="template"
-				required="true" default="json">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
-			</param>
-			<param name="vid" required="true" type="xsd:string" style="query"
-				default="49049">
-				<notes>the venue for which you want to propose an edit</notes>
-			</param>
-			<param name="name" required="true" type="xsd:string" style="query"
-				default="Pig &amp; Whistle">
-				<notes>The name of the venue</notes>
-			</param>
-			<param name="address" required="true" type="xsd:string" style="query"
-				default="202 1st Avenue">
-				<notes> the address of the venue</notes>
-			</param>
-			<param name="crossstreet" required="true" type="xsd:string"
-				style="query" default="btw Grand &amp; Broome">
-				<notes>the cross streets</notes>
-			</param>
-			<param name="city" required="true" type="xsd:string" style="query"
-				default="Rome">
-				<notes> the city name where this venue is</notes>
-			</param>
-			<param name="state" required="true" type="xsd:string" style="query"
-				default="Italy">
-				<notes> the state where the city is</notes>
-			</param>
-			<param name="zip" required="false" type="xsd:string" style="query"
-				default="10002">
-				<notes>(optional) the ZIP code for the venue </notes>
-			</param>
-			<param name="phone" required="false" type="xsd:string" style="query"
-				default="2025551212">
-				<notes>(optional) the phone number for the venue </notes>
-			</param>
-			<param name="geolat" required="false" type="xsd:string" style="query"
-				default="40.01685">
-				<notes>Geographical Latitude (optional, but recommended)</notes>
-			</param>
-			<param name="geolong" required="true" type="xsd:string" style="query"
-				default="-105.276489">
-				<notes>Geographical Longitude (optional, but recommended)</notes>
-			</param>
-			<method name="POST" id="propose_venue_edit">
-				<tags>
-					<tag primary="true">Venue methods</tag>
-					<tag>Propose venue edit</tag>
-				</tags>
-				<authentication required="true" />
-				<docs
-					url="http://groups.google.com/group/foursquare-api/web/api-documentation" />
-				<example
-					url="/venue/proposeedit.{format}?vid={vid}&amp;name={name}&amp;address={address}&amp;crossstreet={crossstreet}&amp;city={city}&amp;state={state}&amp;geolat={geolat}&amp;geolong={geolong}" />
-				<notes>
-					Allows you to flag/propose a change to a venue. If the user
-					knows the
-					correct address, use this method to save it. Otherwise,
-					use
-					/flagmislocated to flag the venue instead (you need not specify
-					a
-					new address or geolat/geolong in that case).		
-                </notes>
-			</method>
-		</resource>
-
-		<resource path="venue/flagclosed.{format}">
-			<param name="format" type="xsd:string" style="template"
-				required="true" default="json">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
-			</param>
-			<param name="vid" required="true" type="xsd:string" style="query"
-				default="49049">
-				<notes>the venue that you want marked closed</notes>
-			</param>
-			<method name="POST" id="flag_venue_as_closed">
-				<tags>
-					<tag primary="true">Venue methods</tag>
-					<tag>Flag venue as closed</tag>
-				</tags>
-				<authentication required="true" />
-				<docs
-					url="http://groups.google.com/group/foursquare-api/web/api-documentation" />
-				<example url="/venue/flagclosed.json?vid={vid}" />
-				<notes>
-					Allows you to flag a venue as a 'closed' venue. The flag
-					action will be pushed into a moderation queue. Once a venue is
-					approved closed, it will no longer show up in search results.
-				</notes>
-			</method>
-		</resource>
-
-		<resource path="venue/flagmislocated.{format}">
-			<param name="format" type="xsd:string" style="template"
-				required="true" default="json">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
-			</param>
-			<param name="vid" required="true" type="xsd:string" style="query"
-				default="49049">
-				<notes>The venue that you want marked mislocated</notes>
-			</param>
-			<method name="POST" id="flag_venue_as_mislocated">
-				<tags>
-					<tag primary="true">Venue methods</tag>
-					<tag>Flag venue as mislocated</tag>
-				</tags>
-				<authentication required="true" />
-				<docs
-					url="http://groups.google.com/group/foursquare-api/web/api-documentation" />
-				<example url="/venue/flagmislocated.json?vid={vid}" />
-				<notes>
-					Allows you to flag a venue that might be geocoded improperly.
-					The flag action will be pushed into a queue as a hint. If the user
-					knows the correct address, use /proposeedit to save it. If they
-					know a venue is in the wrong place, but do not know the address,
-					it's enough to provide this mislocated hint to the system instead.
-				</notes>
-			</method>
-		</resource>
-
-		<resource path="venue/flagduplicate.{format}">
-			<param name="format" type="xsd:string" style="template"
-				required="true" default="json">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
-			</param>
-			<param name="vid" required="true" type="xsd:string" style="query"
-				default="49049">
-				<notes>The venue that you want marked as a duplicate</notes>
-			</param>
-			<method name="POST" id="flag_venue_as_duplicated">
-				<tags>
-					<tag primary="true">Venue methods</tag>
-					<tag>Flag venue as duplicate</tag>
-				</tags>
-				<authentication required="true" />
-				<docs
-					url="http://groups.google.com/group/foursquare-api/web/api-documentation" />
-				<example url="/venue/flagduplicate.json?vid={vid}" />
-				<notes>
-					Allows you to flag a venue that might be a duplicate. The
-					flag action will be pushed into a queue as a hint.				
-                </notes>
-			</method>
-		</resource>
-
-		<resource path="tips.{format}">
-			<param name="format" type="xsd:string" style="template"
-				required="true" default="json">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
-			</param>
-			<param name="geolat" required="true" type="xsd:string" style="query"
-				default="40.01685">
-				<notes>Geographical Latitude</notes>
-			</param>
-			<param name="geolong" required="true" type="xsd:string" style="query"
-				default="-105.276489">
-				<notes>Geographical Longitude</notes>
-			</param>
-			<param name="filter" required="true" type="xsd:string" style="query"
-				default="nearby">
-				<notes>one of "nearby" or "friends" indicating whether to return all
-					nearby tips, or just nearby tips from friends (required, unless uid
-					is specified)
-                </notes>
-			</param>
-			<param name="uid" required="false" type="xsd:string" style="query"
-				default="49049">
-				<notes>a particular user id to get tips from (optional, see filter)
-				</notes>
-			</param>
-			<param name="sort" required="false" type="xsd:string" style="query"
-				default="nearby">
-				<notes>one of "nearby", "recent", or "popular" (optional, only
-					applies if uid is specified, for which it is required)
-                </notes>
-			</param>
-			<param name="l" required="false" type="xsd:string" style="query"
-				default="30">
-				<notes>limit of results (optional, default 30)</notes>
-			</param>
-			<method name="GET" id="nearby">
-				<tags>
-					<tag primary="true">Tip methods</tag>
-					<tag>Nearby</tag>
-				</tags>
-				<authentication required="false" />
-				<docs
-					url="http://groups.google.com/group/foursquare-api/web/api-documentation" />
-				<example
-					url="/tips.json?geolat={geolat}&amp;geolong={geolong}&amp;filter={filter}" />
-				<notes>
-					Returns a list of tips and todos (todos are in a group called
-					"Me" if the user is logged in) near the area specified. (The
-					distance returned is in meters).
-                </notes>
-			</method>
-		</resource>
-
-		<resource path="addtip.{format}">
-			<param name="format" type="xsd:string" style="template"
-				required="true" default="json">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
-			</param>
-			<param name="geolat" required="false" type="xsd:string" style="query"
-				default="40.01685">
-				<notes>Geographical Latitude</notes>
-			</param>
-			<param name="geolong" required="false" type="xsd:string" style="query"
-				default="-105.276489">
-				<notes>Geographical Longitude</notes>
-			</param>
-			<param name="vid" required="true" type="xsd:string" style="query"
-				default="49049">
-				<notes>the venue where you want to add this tip (required)</notes>
-			</param>
-			<param name="text" required="false" type="xsd:string" style="query"
-				default="nearby">
-				<notes>the text of the tip (required)</notes>
-			</param>
-			<method name="POST" id="add_tip">
-				<tags>
-					<tag primary="true">Tip methods</tag>
-					<tag>Add tip</tag>
-				</tags>
-				<authentication required="true" />
-				<docs
-					url="http://groups.google.com/group/foursquare-api/web/api-documentation" />
-				<example
-					url="/addtip.json?vid={vid}&amp;text={text}&amp;geolat={geolat}&amp;geolong={geolong}" />
-				<notes>
-					Allows you to add a new tip or to-do at a venue. 
-					geolat/geolong pair are optional, but recommended. 
-                </notes>
-			</method>
-		</resource>
-
-		<resource path="tip/marktodo.{format}">
-			<param name="format" type="xsd:string" style="template"
-				required="true" default="json">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
-			</param>
-			<param name="tid" required="true" type="xsd:string" style="query"
-				default="">
-				<notes>the tip that you want to mark to-do (required)</notes>
-			</param>
-			<method name="POST" id="mark_tip_as_to_do">
-				<tags>
-					<tag primary="true">Tip methods</tag>
-					<tag>Mark tip as to-do</tag>
-				</tags>
-				<authentication required="true" />
-				<docs
-					url="http://groups.google.com/group/foursquare-api/web/api-documentation" />
-				<example url="/tip/marktodo.json?tid={tid}" />
-				<notes>
-					Allows you to mark a tip as a to-do item.
-                </notes>
-			</method>
-		</resource>
-
-		<resource path="tip/markdone.{format}">
-			<param name="format" type="xsd:string" style="template"
-				required="true" default="json">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
-			</param>
-			<param name="tid" required="true" type="xsd:string" style="query"
-				default="">
-				<notes>the tip that you want to mark done (required)</notes>
-			</param>
-			<method name="POST" id="mark_tip_as_done">
-				<tags>
-					<tag primary="true">Tip methods</tag>
-					<tag>Mark tip as done</tag>
-				</tags>
-				<authentication required="true" />
-				<docs
-					url="http://groups.google.com/group/foursquare-api/web/api-documentation" />
-				<example url="/tip/markdone.json?tid={tid}" />
-				<notes>
-					Allows you to mark a tip as done.
-                </notes>
-			</method>
-		</resource>
-
-		<resource path="tip/unmark.{format}">
-			<param name="format" type="xsd:string" style="template"
-				required="true" default="json">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
-			</param>
-			<param name="tid" required="true" type="xsd:string" style="query"
-				default="">
-				<notes>the tip that you want to unmark (required)</notes>
-			</param>
-			<method name="POST" id="unmark_a_tip">
-				<tags>
-					<tag primary="true">Tip methods</tag>
-					<tag>Unmark a tip</tag>
-				</tags>
-				<authentication required="true" />
-				<docs
-					url="http://groups.google.com/group/foursquare-api/web/api-documentation" />
-				<example url="/tip/unmark.json?tid={tid}" />
-				<notes>
-					Allows you to unmark a tip (it will revert the previous
-					action, if there was any on the tip). For example, if a tip was on
-					your to-do list, it would be taken off.                
-                </notes>
-			</method>
-		</resource>
-
-		<resource path="tip/detail.{format}">
-			<param name="format" type="xsd:string" style="template"
-				required="true" default="json">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
-			</param>
-			<param name="tid" required="true" type="xsd:string" style="query"
-				default="">
-				<notes>the tip that you want details for (required)</notes>
-			</param>
-			<method name="GET" id="get_tip_details">
-				<tags>
-					<tag primary="true">Tip methods</tag>
-					<tag>Get tip details</tag>
-				</tags>
-				<authentication required="true" />
-				<docs
-					url="http://groups.google.com/group/foursquare-api/web/api-documentation" />
-				<example url="/tip/detail.json?tid={tid}" />
-				<notes>
-					Get the details of a tip, including who has marked it todo or
-					done.
-                </notes>
-			</method>
-		</resource>
-
-		<resource path="todos.{format}">
-			<param name="format" type="xsd:string" style="template"
-				required="true" default="json">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
-			</param>
-			<param name="geolat" required="true" type="xsd:string" style="query"
-				default="40.01685">
-				<notes>Geographical Latitude</notes>
-			</param>
-			<param name="geolong" required="true" type="xsd:string" style="query"
-				default="-105.276489">
-				<notes>Geographical Longitude</notes>
-			</param>
-			<param name="uid" required="false" type="xsd:string" style="query"
-				default="49049">
-				<notes>a particular user id to get tips from (optional, defaults to
-					authenticated user)
-                </notes>
-			</param>
-			<param name="sort" required="false" type="xsd:string" style="query"
-				default="nearby">
-				<notes>
-					one of "nearby" or "recent"
-                </notes>
-			</param>
-			<param name="l" required="false" type="xsd:string" style="query"
-				default="30">
-				<notes>limit of results (optional, default 30)</notes>
-			</param>
-			<method name="GET" id="get_a_list_of_to_dos">
-				<tags>
-					<tag primary="true">Tip methods</tag>
-					<tag>Get a list of to-dos</tag>
-				</tags>
-				<authentication required="true" />
-				<docs
-					url="http://groups.google.com/group/foursquare-api/web/api-documentation" />
-				<example url="/todos.json?geolat={geolat}&amp;geolong={geolong}" />
-				<notes>
-					Get the list of to-dos for a user.
-                </notes>
-			</method>
-		</resource>
-
-		<resource path="friend/requests.{format}">
-			<param name="format" type="xsd:string" style="template"
-				required="true" default="json">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
-			</param>
-			<method name="GET" id="pending_friend_request">
-				<tags>
-					<tag primary="true">Friend methods</tag>
-					<tag>Pending friend requests</tag>
-				</tags>
-				<authentication required="true" />
-				<docs
-					url="http://groups.google.com/group/foursquare-api/web/api-documentation" />
-				<example url="/friend/requests.json" />
-				<notes>
-					Shows you a list of users with whom you have a pending friend
-					request (ie, they've requested to add you as a friend, but you have
-					not approved).
-                </notes>
-			</method>
-		</resource>
-
-		<resource path="friend/approve.{format}">
-			<param name="format" type="xsd:string" style="template"
-				required="true" default="json">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
-			</param>
-			<param name="uid" required="false" type="xsd:string" style="query"
-				default="49049">
-				<notes>
-					the user ID of the user who you want to approve
-                </notes>
-			</param>
-			<method name="POST" id="approve_friend_request">
-				<tags>
-					<tag primary="true">Friend methods</tag>
-					<tag>Approve friend request</tag>
-				</tags>
-				<authentication required="true" />
-				<docs
-					url="http://groups.google.com/group/foursquare-api/web/api-documentation" />
-				<example url="/friend/approve.json?uid={uid}" />
-				<notes>
-					Approves a pending friend request from another user. On
-					success, returns the user object.
-                </notes>
-			</method>
-		</resource>
-
-		<resource path="friend/deny.{format}">
-			<param name="format" type="xsd:string" style="template"
-				required="true" default="json">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
-			</param>
-			<param name="uid" required="false" type="xsd:string" style="query"
-				default="49049">
-				<notes>
-					the user ID of the user who you want to deny
-                </notes>
-			</param>
-			<method name="POST" id="deny_friend_request">
-				<tags>
-					<tag primary="true">Friend methods</tag>
-					<tag>Deny friend request</tag>
-				</tags>
-				<authentication required="true" />
-				<docs
-					url="http://groups.google.com/group/foursquare-api/web/api-documentation" />
-				<example url="/friend/deny.json?uid={uid}" />
-				<notes>
-					Denies a pending friend request from another user. On
-					success, returns the user object.
-                </notes>
-			</method>
-		</resource>
-
-		<resource path="friend/sendrequest.{format}">
-			<param name="format" type="xsd:string" style="template"
-				required="true" default="json">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
-			</param>
-			<param name="uid" required="false" type="xsd:string" style="query"
-				default="49049">
-				<notes>
-					the user ID of the user who you want to deny
-                </notes>
-			</param>
-			<method name="POST" id="send_friend_request">
-				<tags>
-					<tag primary="true">Friend methods</tag>
-					<tag>Send friend request</tag>
-				</tags>
-				<authentication required="true" />
-				<docs
-					url="http://groups.google.com/group/foursquare-api/web/api-documentation" />
-				<example url="/friend/sendrequest.json?uid={uid}" />
-				<notes>
-					The user ID of the user to whom you want to send a friend
-					request
-                </notes>
-			</method>
-		</resource>
-
-		<resource path="findfriends/byname.{format}">
-			<param name="format" type="xsd:string" style="template"
-				required="true" default="json">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
-			</param>
-			<param name="q" required="true" type="xsd:string" style="query"
-				default="John">
-				<notes>
-					the string you want to use to search firstnames and lastnames
-				</notes>
-			</param>
-			<method name="GET" id="find_friends_by_name">
-				<tags>
-					<tag primary="true">Friend methods</tag>
-					<tag>Find friends by name</tag>
-				</tags>
-				<authentication required="true" />
-				<docs
-					url="http://groups.google.com/group/foursquare-api/web/api-documentation" />
-				<example url="/findfriends/byname.json?q={q}" />
-				<notes>
-					When passed a free-form text string, returns a list of
-					matching user objects. The method only returns matches of people
-					with whom you are not already friends. 
-                </notes>
-			</method>
-		</resource>
-
-		<resource path="findfriends/byphone.{format}">
-			<param name="format" type="xsd:string" style="template"
-				required="true" default="json">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
-			</param>
-			<param name="q" required="true" type="xsd:string" style="query"
-				default="2025551212">
-				<notes>
-					the string you want to use to search for phone numbers
-				</notes>
-			</param>
-			<method name="GET" id="find_friends_by_phone">
-				<tags>
-					<tag primary="true">Friend methods</tag>
-					<tag>Find friends by phone</tag>
-				</tags>
-				<authentication required="true" />
-				<docs
-					url="http://groups.google.com/group/foursquare-api/web/api-documentation" />
-				<example url="/findfriends/byphone.json?q={q}" />
-				<notes>
-					When passed phone number(s), returns a list of matching user
-					objects. The method only returns matches of people with whom you
-					are not already friends. You can pass a single number as a
-					parameter, or you can pass multiple numbers separated by commas.
-				</notes>
-			</method>
-		</resource>
-
-		<resource path="findfriends/bytwitter.{format}">
-			<param name="format" type="xsd:string" style="template"
-				required="true" default="json">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
-			</param>
-			<param name="q" required="true" type="xsd:string" style="query"
-				default="apigee">
-				<notes>
-					(optional) the Twitter name you want to use to search
-                </notes>
-			</param>
-			<method name="GET" id="find_friends_by_twitter_name">
-				<tags>
-					<tag primary="true">Friend methods</tag>
-					<tag>Find friends by using a Twitter name</tag>
-				</tags>
-				<authentication required="true" />
-				<docs
-					url="http://groups.google.com/group/foursquare-api/web/api-documentation" />
-				<example url="/findfriends/bytwitter.json?q={q}" />
-				<notes>
-					When passed a Twitter name (user A), returns a list of
-					matching user objects that correspond to user A's friends on
-					Twitter. The method only returns matches of people with whom you
-					are not already friends. If you don't pass in a Twitter name, it
-					will attempt to use the Twitter name associated with the
-					authenticating user. 
-                </notes>
-			</method>
-		</resource>
-
-		<resource path="settings/setpings.{format}">
-			<param name="format" type="xsd:string" style="template"
-				required="true" default="json">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
-			</param>
-			<param name="self" required="true" type="xsd:string" style="query"
-				default="on">
-				<notes>
-					the ping status for yourself (globally). possible values are
-					on and
-					off.
-                </notes>
-			</param>
-			<param name="[uid]" required="false" type="xsd:string" style="query"
-				default="off">
-				<notes>
-					set the ping status for a friend. possible values are on and
-					off.
-				</notes>
-			</param>
-			<method name="POST" id="set_pings">
-				<tags>
-					<tag primary="true">Settings methods</tag>
-					<tag>Set pings</tag>
-				</tags>
-				<authentication required="true" />
-				<docs
-					url="http://groups.google.com/group/foursquare-api/web/api-documentation" />
-				<example url="/settings/setpings?self={on/off}" />
-				<notes>
-					Allows you to change notification options for yourself (self)
-					globally as well as for each individual friend (identified by their
-					uid). For example: To set pings on for a user identified by UID 33:
-					"33=on". To set pings to 'off' for yourself: "self=off". 
-                </notes>
-			</method>
-		</resource>
-
-		<resource path="test.{format}">
-			<param name="format" type="xsd:string" style="template"
-				required="true" default="json">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
-			</param>
-			<method name="GET" id="test">
-				<tags>
-					<tag primary="true">Other methods</tag>
-					<tag>Test</tag>
-				</tags>
-				<authentication required="false" />
-				<docs
-					url="http://groups.google.com/group/foursquare-api/web/api-documentation" />
-				<example url="/test.json" />
-				<notes>
-					Returns String "OK" 
-                </notes>
-			</method>
-		</resource>
-	</resources>
+	 </resource>
+	 
+    </resources>
+    
 </application>

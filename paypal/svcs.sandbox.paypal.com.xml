@@ -1,35 +1,31 @@
-<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-	xsi:schemaLocation="http://research.sun.com/wadl/2006/10                      https://wadl.dev.java.net/wadl20061109.xsd"
-	xmlns="http://research.sun.com/wadl/2006/10" xmlns:t="urn:paypal:paypalresponset"
-	xmlns:apigee="http://www.apigee.com/schema/2010/07/wadl/">
-	<grammars>
-		<response-codes>
-		</response-codes>
-	</grammars>
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:apigee="http://api.apigee.com/wadl/2010/07/" xmlns="http://wadl.dev.java.net/2009/02"
+             xsi:schemaLocation="http://wadl.dev.java.net/2009/02 ../../resources/wadl-schema.xsd    http://api.apigee.com/wadl/2010/07/ ../../resources/apigee-wadl-extensions.xsd">
 
-	<representation id="responseCodes" element="responseCodes" />
 
-	<resources base="https://svcs.sandbox.paypal.com/AdaptivePayments/">
-		<resource path="Pay">
-			<!--
-				<param name="format" type="xsd:string" style="template"
-				required="false" default="json"> <option value="json"
-				mediaType="application/json"/> </param>
-			-->
-			<method name="POST" id="Pay">
-				<tags>
-					<tag primary="true">Adaptive Payments</tag>
-					<tag>Pay</tag>
-				</tags>
-				<authentication required="true" />
-				<docs url="https://www.x.com/docs/DOC-1414" />
-				<example url="/AdaptivePayments/Pay" />
-				<notes>Transfers funds from a sender’s PayPal account to one or more
+    <resources base="https://svcs.sandbox.paypal.com/AdaptivePayments/">
+        <resource path="Pay">
+            <!--
+                   <param name="format" type="xsd:string" style="template"
+                   required="false" default="json"> <option value="json"
+                   mediaType="application/json"/> </param>
+               -->
+            <method id="Pay" name="POST">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Adaptive Payments</apigee:tag>
+                    <apigee:tag>Pay</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/AdaptivePayments/Pay"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="https://www.x.com/docs/DOC-1414"><![CDATA[Transfers funds from a sender’s PayPal account to one or more
 					receivers’ PayPal accounts (up to 6 receivers). More documentation at https://www.x.com/docs/DOC-1414
-				</notes>
-				<payload>
-				<![CDATA[
+				]]></doc>
+                <request xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <representation>
+                        <apigee:payload><![CDATA[
+
 {
   "actionType" : "PAY",
   "currencyCode" : "USD",
@@ -40,49 +36,58 @@
   "cancelUrl" : "http://app.apigee.com/console/-1/handlePaypalCancel?",
   "requestEnvelope" : {"errorLanguage":"en_US", "detailLevel":"ReturnAll"}
 }
-				]]>
-                 </payload>
-			</method>
-		</resource>
 
-		<resource path="PaymentDetails">
-			<method name="POST" id="PaymentDetails">
-				<tags>
-					<tag primary="true">Adaptive Payments</tag>
-					<tag>PaymentDetails</tag>
-				</tags>
-				<authentication required="true" />
-				<docs url="https://www.x.com/docs/DOC-1416" />
-				<example url="/AdaptivePayments/PaymentDetails" />
-				<notes>
-					Obtains information about a payment. More documentation at https://www.x.com/docs/DOC-1416					
-				</notes>
-				<payload>
-					<![CDATA[
+                 ]]></apigee:payload>
+                    </representation>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="PaymentDetails">
+            <method id="PaymentDetails" name="POST">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Adaptive Payments</apigee:tag>
+                    <apigee:tag>PaymentDetails</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                                url="/AdaptivePayments/PaymentDetails"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="https://www.x.com/docs/DOC-1416"><![CDATA[
+					Obtains information about a payment. More documentation at https://www.x.com/docs/DOC-1416
+				]]></doc>
+                <request xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <representation>
+                        <apigee:payload><![CDATA[
+
 {
  "payKey" : "AP-9JK61721EP167721B",
  "requestEnvelope" : {"errorLanguage":"en_US", "detailLevel":"ReturnAll"}
 }
-					]]>
-				</payload>
-			</method>
-		</resource>
+
+				]]></apigee:payload>
+                    </representation>
+                </request>
+            </method>
+        </resource>
 
 
-		<resource path="Preapproval">
-			<method name="POST" id="Preapproval">
-				<tags>
-					<tag primary="true">Adaptive Payments</tag>
-					<tag>Preapproval</tag>
-				</tags>
-				<authentication required="true" />
-				<docs url="https://www.x.com/docs/DOC-1419" />
-				<example url="/AdaptivePayments/Preapproval" />
-				<notes>Sets up preapprovals, which is an approval to make payments
+        <resource path="Preapproval">
+            <method id="Preapproval" name="POST">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Adaptive Payments</apigee:tag>
+                    <apigee:tag>Preapproval</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/AdaptivePayments/Preapproval"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="https://www.x.com/docs/DOC-1419"><![CDATA[Sets up preapprovals, which is an approval to make payments
 					on the sender’s behalf. More documentation at https://www.x.com/docs/DOC-1419
-				</notes>
-				<payload>
-					<![CDATA[
+				]]></doc>
+                <request xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <representation>
+                        <apigee:payload><![CDATA[
+
 {
  "senderEmail" : "buyer_1288085239_per@gmail.com",
  "startingDate" : "2011-01-21",
@@ -108,208 +113,263 @@
  "requestEnvelope" : {"errorLanguage":"en_US", "detailLevel":"ReturnAll"}
 
 }
-					]]>
-				</payload>
-			</method>
-		</resource>
 
-		<resource path="PreapprovalDetails">
-			<method name="POST" id="PreapprovalDetails">
-				<tags>
-					<tag primary="true">Adaptive Payments</tag>
-					<tag>PreapprovalDetails</tag>
-				</tags>
-				<authentication required="true" />
-				<docs url="https://www.x.com/docs/DOC-1421" />
-				<example url="/AdaptivePayments/PreapprovalDetails" />
-				<notes>Obtains information about a preapproval.More documentation at https://www.x.com/docs/DOC-1421</notes>					
-				<payload>
-					<![CDATA[
+				]]></apigee:payload>
+                    </representation>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="PreapprovalDetails">
+            <method id="PreapprovalDetails" name="POST">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Adaptive Payments</apigee:tag>
+                    <apigee:tag>PreapprovalDetails</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                                url="/AdaptivePayments/PreapprovalDetails"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="https://www.x.com/docs/DOC-1421">
+                    <![CDATA[Obtains information about a preapproval.More documentation at https://www.x.com/docs/DOC-1421]]></doc>
+                <request xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <representation>
+                        <apigee:payload><![CDATA[
+
 {
  "preapprovalKey" : "PA-11B737485G431220H",
  "requestEnvelope" : {"errorLanguage":"en_US", "detailLevel":"ReturnAll"}
 }
-					]]>
-				</payload>
-			</method>
-		</resource>
 
-		<resource path="CancelPreapproval">
-			<method name="POST" id="CancelPreapproval">
-				<tags>
-					<tag primary="true">Adaptive Payments</tag>
-					<tag>CancelPreapproval</tag>
-				</tags>
-				<authentication required="true" />
-				<docs url="https://www.x.com/docs/DOC-1396" />
-				<example url="/AdaptivePayments/CancelPreapproval" />
-				<notes>Cancels a preapproval. More documentation at https://www.x.com/docs/DOC-1396</notes>					
-				<payload>
-					<![CDATA[
+				]]></apigee:payload>
+                    </representation>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="CancelPreapproval">
+            <method id="CancelPreapproval" name="POST">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Adaptive Payments</apigee:tag>
+                    <apigee:tag>CancelPreapproval</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                                url="/AdaptivePayments/CancelPreapproval"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="https://www.x.com/docs/DOC-1396">
+                    <![CDATA[Cancels a preapproval. More documentation at https://www.x.com/docs/DOC-1396]]></doc>
+                <request xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <representation>
+                        <apigee:payload><![CDATA[
+
 {
  "requestEnvelope" : {"errorLanguage":"en_US", "detailLevel":"ReturnAll"},
  "preapprovalKey" : "PA-11B737485G431220H"
 }
-					]]>
-				</payload>
-			</method>
-		</resource>
 
-		<resource path="ConvertCurrency">
-			<method name="POST" id="ConvertCurrency">
-				<tags>
-					<tag primary="true">Adaptive Payments</tag>
-					<tag>ConvertCurrency</tag>
-				</tags>
-				<authentication required="true" />
-				<docs url="https://www.x.com/docs/DOC-1401" />
-				<example url="/AdaptivePayments/ConvertCurrency" />
-				<notes>Obtains Foreign Exchange currency conversion rates for a list
+				]]></apigee:payload>
+                    </representation>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="ConvertCurrency">
+            <method id="ConvertCurrency" name="POST">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Adaptive Payments</apigee:tag>
+                    <apigee:tag>ConvertCurrency</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                                url="/AdaptivePayments/ConvertCurrency"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="https://www.x.com/docs/DOC-1401"><![CDATA[Obtains Foreign Exchange currency conversion rates for a list
 					of amounts. More documentation at https://www.x.com/docs/DOC-1401
-				</notes>
-				<payload>
-					<![CDATA[
+				]]></doc>
+                <request xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <representation>
+                        <apigee:payload><![CDATA[
+
 {
  "baseAmountList" : { "currency" : {"code":"USD", "amount":"1.00"} },
  "convertToCurrencyList" : { "currencyCode":["CAD", "USD"] },
  "requestEnvelope" : { "errorLanguage":"en_US", "detailLevel":"ReturnAll"}
 }
-					]]>
-				</payload>
-			</method>
-		</resource>
 
-		<resource path="Refund">
-			<method name="POST" id="Refund">
-				<tags>
-					<tag primary="true">Adaptive Payments</tag>
-					<tag>Refund</tag>
-				</tags>
-				<authentication required="true" />
-				<docs url="https://www.x.com/docs/DOC-1426" />
-				<example url="/AdaptivePayments/Refund" />
-				<notes>Refunds all or part of a payment.More documentation at https://www.x.com/docs/DOC-1426</notes>
-				<payload>
-					<![CDATA[
+				]]></apigee:payload>
+                    </representation>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="Refund">
+            <method id="Refund" name="POST">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Adaptive Payments</apigee:tag>
+                    <apigee:tag>Refund</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/AdaptivePayments/Refund"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="https://www.x.com/docs/DOC-1426">
+                    <![CDATA[Refunds all or part of a payment.More documentation at https://www.x.com/docs/DOC-1426]]></doc>
+                <request xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <representation>
+                        <apigee:payload><![CDATA[
+
 {
  "payKey" : "AP-9JK61721EP167721B",
- "receiverList" : { 
+ "receiverList" : {
                     "receiver" : [{ "amount":"1.0", "email" : "seller_1288085303_biz@gmail.com" }]
                   },
  "currencyCode" : "USD",
  "requestEnvelope" : {"errorLanguage":"en_US", "detailLevel":"ReturnAll"}
 }
-					]]>
-				</payload>
-			</method>
-		</resource>
 
-		<resource path="GetPaymentOptions">
-			<method name="POST" id="GetPaymentOptions">
-				<tags>
-					<tag primary="true">Adaptive Payments</tag>
-					<tag>GetPaymentOptions</tag>
-				</tags>
-				<authentication required="true" />
-				<example url="/AdaptivePayments/GetPaymentOptions" />
-				<notes>Obtains information about a payment</notes>
-				<payload>
-					<![CDATA[
+				]]></apigee:payload>
+                    </representation>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="GetPaymentOptions">
+            <method id="GetPaymentOptions" name="POST">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Adaptive Payments</apigee:tag>
+                    <apigee:tag>GetPaymentOptions</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                                url="/AdaptivePayments/GetPaymentOptions"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="https://www.x.com/docs/DOC-1426"><![CDATA[Obtains information about a payment]]></doc>
+                <request xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <representation>
+                        <apigee:payload><![CDATA[
+
 {
  "payKey" : "AP-9JK61721EP167721B",
  "requestEnvelope" : {"errorLanguage":"en_US", "detailLevel":"ReturnAll"}
 }
-					]]>
-				</payload>
-			</method>
-		</resource>
 
-		<resource path="SetPaymentOptions">
-			<method name="POST" id="SetPaymentOptions">
-				<tags>
-					<tag primary="true">Adaptive Payments</tag>
-					<tag>SetPaymentOptions</tag>
-				</tags>
-				<authentication required="true" />
-				<example url="/AdaptivePayments/SetPaymentOptions" />
-				<notes>
+				]]></apigee:payload>
+                    </representation>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="SetPaymentOptions">
+            <method id="SetPaymentOptions" name="POST">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Adaptive Payments</apigee:tag>
+                    <apigee:tag>SetPaymentOptions</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                                url="/AdaptivePayments/SetPaymentOptions"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="https://www.x.com/docs/DOC-1426"><![CDATA[
 					Sets information about a payment.
-					Make a Pay request with "actionType":"CREATE" , use the response "payKey" here.					
-				</notes>
-				<payload>
-					<![CDATA[
+					Make a Pay request with "actionType":"CREATE" , use the response "payKey" here.
+				]]></doc>
+                <request xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <representation>
+                        <apigee:payload><![CDATA[
+
 {
  "payKey" : "AP-9JK61721EP167721B",
  "requestEnvelope" : {"errorLanguage":"en_US", "detailLevel":"ReturnAll"}
 }
-					]]>
-				</payload>
-			</method>
-		</resource>
 
-		<resource path="ExecutePayment">
-			<method name="POST" id="ExecutePayment">
-				<tags>
-					<tag primary="true">Adaptive Payments</tag>
-					<tag>ExecutePayment</tag>
-				</tags>
-				<authentication required="true" />
-				<example url="/AdaptivePayments/ExecutePayment" />
-				<notes>
+				]]></apigee:payload>
+                    </representation>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="ExecutePayment">
+            <method id="ExecutePayment" name="POST">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Adaptive Payments</apigee:tag>
+                    <apigee:tag>ExecutePayment</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                                url="/AdaptivePayments/ExecutePayment"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="https://www.x.com/docs/DOC-1426"><![CDATA[
 					The request to execute the payment request.
 					Make a Pay request with "actionType":"CREATE" , use the response "payKey" here.
-				</notes>
-				<payload>
-					<![CDATA[
+				]]></doc>
+                <request xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <representation>
+                        <apigee:payload><![CDATA[
+
 {
  "payKey" : "AP-9JK61721EP167721B",
  "requestEnvelope" : {"errorLanguage":"en_US", "detailLevel":"ReturnAll"}
 }
-					]]>
-				</payload>
-			</method>
-		</resource>
 
-		<resource path="GetShippingAddresses">
-			<method name="POST" id="ExecutePayment">
-				<tags>
-					<tag primary="true">Adaptive Payments</tag>
-					<tag>GetShippingAddresses</tag>
-				</tags>
-				<authentication required="true" />
-				<example url="/AdaptivePayments/GetShippingAddresses" />
-				<notes>
+				]]></apigee:payload>
+                    </representation>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="GetShippingAddresses">
+            <method id="ExecutePayment1" name="POST">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Adaptive Payments</apigee:tag>
+                    <apigee:tag>GetShippingAddresses</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                                url="/AdaptivePayments/GetShippingAddresses"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="https://www.x.com/docs/DOC-1426"><![CDATA[
 					The key for which to provide the available addresses. Key can be an AdaptivePayments key such as payKey or preapprovalKey.
-				</notes>
-				<payload>
-					<![CDATA[
+				]]></doc>
+                <request xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <representation>
+                        <apigee:payload><![CDATA[
+
 {
  "key" : "AP-9JK61721EP167721B",
  "requestEnvelope" : {"errorLanguage":"en_US", "detailLevel":"ReturnAll"}
 }
-					]]>
-				</payload>
-			</method>
-		</resource>
 
-		<resource path="GetFundingPlans">
-			<method name="POST" id="ExecutePayment">
-				<tags>
-					<tag primary="true">Adaptive Payments</tag>
-					<tag>GetFundingPlans</tag>
-				</tags>
-				<authentication required="true" />
-				<example url="/AdaptivePayments/GetFundingPlans" />
-				<notes>The request to get the funding plans available for a payment.</notes>
-				<payload>
-					<![CDATA[
+				]]></apigee:payload>
+                    </representation>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="GetFundingPlans">
+            <method id="ExecutePayment2" name="POST">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Adaptive Payments</apigee:tag>
+                    <apigee:tag>GetFundingPlans</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                                url="/AdaptivePayments/GetFundingPlans"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="https://www.x.com/docs/DOC-1426">
+                    <![CDATA[The request to get the funding plans available for a payment.]]></doc>
+                <request xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <representation>
+                        <apigee:payload><![CDATA[
+
 {
  "payKey" : "AP-9JK61721EP167721B",
  "requestEnvelope" : {"errorLanguage":"en_US", "detailLevel":"ReturnAll"}
 }
-					]]>
-				</payload>
-			</method>
-		</resource>
-	</resources>
+
+				]]></apigee:payload>
+                    </representation>
+                </request>
+            </method>
+        </resource>
+    </resources>
 </application>

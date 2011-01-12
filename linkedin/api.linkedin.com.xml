@@ -1,283 +1,330 @@
-<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.w3.org/Submission/wadl/wadl.xsd"
-	xmlns:apigee="http://www.apigee.com/schema/2010/07/wadl/" xmlns="http://wadl.dev.java.net/2009/02">
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:apigee="http://api.apigee.com/wadl/2010/07/" xmlns="http://wadl.dev.java.net/2009/02"
+             xsi:schemaLocation="http://wadl.dev.java.net/2009/02 ../../resources/wadl-schema.xsd    http://api.apigee.com/wadl/2010/07/ ../../resources/apigee-wadl-extensions.xsd">
 
-    <grammars>
-        <response-codes>
-            <code name="200" value="OK: Success!" />
-            <code name="304" value="Not Modified: There was no new data to return." />
-            <code name="400" value="Bad Request: The request was invalid. An accompanying error message will explain why. This is the status code will be returned during rate limiting." />
-            <code name="401" value="Unauthorized: Authentication credentials were missing or incorrect." />
-            <code name="403" value="Forbidden: The request is understood, but it has been refused. An accompanying error message will explain why. This code is used when requests are being denied due to update limits." />
-            <code name="404" value="Not Found: The URI requested is invalid or the resource requested, such as a user, does not exists." />
-            <code name="406" value="Not Acceptable: Returned by the Search API when an invalid format is specified in the request." />
-            <code name="420" value="Enhance Your Calm: Returned by some API  when you are being rate limited." />
-            <code name="500" value="Internal Server Error: Something is broken. Please post to the group so the LinkedIn team can investigate." />
-            <code name="502" value="Bad Gateway: LinkedIn is down or being upgraded." />
-            <code name="503" value="Service Unavailable: The LinkedIn servers are up, but overloaded with requests. Try again later." />
-        </response-codes>
-    </grammars>
-
-    <representation id="responseCodes" element="responseCodes" />
 
     <resources base="http://api.linkedin.com/v1">
 
         <resource path="people/~">
-            <method name="GET" id="profile_api">
-                <tags>
-                    <tag primary="true">Profile API</tag>
-                </tags>
-                <authentication required="true" />
-                <docs url="http://developer.linkedin.com/docs/DOC-1002" />
-                <notes>
+            <method id="profile_api" name="GET">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Profile API</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/people/~"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="http://developer.linkedin.com/docs/DOC-1002"><![CDATA[
                 The Profile API returns a member's LinkedIn profile.Use the tilde character to indicate that you want the profile of the current	user. The access token will be used to determine the profile to	return.
-                </notes>
-                <example url="/people/~" />
+                ]]></doc>
             </method>
         </resource>
 
         <resource path="people/id">
-            <method name="GET" id="profile_id_api">
-                <tags>
-                    <tag primary="true">Profile API</tag>
-                </tags>
-                <authentication required="true" />
-                <docs url="http://developer.linkedin.com/docs/DOC-1002" />
-                <notes>
+            <method id="profile_id_api" name="GET">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Profile API</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/people/id={id}"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="http://developer.linkedin.com/docs/DOC-1002"><![CDATA[
                     The Profile API returns a member's LinkedIn profile.If you know the member token of the profile you want to display, you can use it as the key value for this API call. You should include id= to indicate that you are using a member token. Requesting by member token only returns a profile from the logged in person's three degree network and doesn't return any out-of-network profiles. You cannot use a member token to get a public profile. To see just a thumbnail version of the profile, do not include anything after the	profile key value. To select your own fields, use the field selector notation- :(field1,field2,field3...). When using field selectors, all fields must be at the same level of depth in the XML
-                </notes>
-                <example url="/people/id={id}" />
+                ]]></doc>
             </method>
         </resource>
 
         <resource path="people/url">
-            <method name="GET" id="profile_url_api">
-                <tags>
-                    <tag primary="true">Profile API</tag>
-                </tags>
-                <authentication required="true" />
-                <docs url="http://developer.linkedin.com/docs/DOC-1002" />
-                <notes>
+            <method id="profile_url_api" name="GET">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Profile API</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                                url="/people/url={public-profile-url}"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="http://developer.linkedin.com/docs/DOC-1002"><![CDATA[
                     The Profile API returns a member's LinkedIn profile.Using the Public Profile URL will return a profile from inside or outside the logged in member's three degree network. The Public Profile URL must be URL escaped.The URL to retrieve the standard and public	profiles are the same. To return a public profile, simply add :public to the end of the profile. Without that, the call will return a standard profile.
-                </notes>
-                <example url="/people/url={public-profile-url}" />
+                ]]></doc>
             </method>
         </resource>
 
         <resource path="people-search">
             <param name="keywords" type="xsd:string" style="query" required="false" default="Princess">
-                <notes>
-					Members who have all the keywords anywhere in their profile, including name. Use this field if you have a name that you don't know how to accurately split into a first and last name, such as Mao Ze Dong or Jennifer Love Hewitt. Multiple words should be separated by a space. (Don't forget to URL encode this data.)
-                </notes>
+                <doc>
+                    Members who have all the keywords anywhere in their profile, including name. Use this field if you
+                    have a name that you don't know how to accurately split into a first and last name, such as Mao Ze
+                    Dong or Jennifer Love Hewitt. Multiple words should be separated by a space. (Don't forget to URL
+                    encode this data.)
+                </doc>
             </param>
             <param name="first-name" type="xsd:string" style="query" required="false" default="Clair">
-                <notes>
-                    Members with a matching first name. Matches must be exact. Multiple words should be separated by a space.
-                </notes>
+                <doc>
+                    Members with a matching first name. Matches must be exact. Multiple words should be separated by a
+                    space.
+                </doc>
             </param>
             <param name="last-name" type="xsd:string" style="query" required="false" default="Standish">
-                <notes>
-                    Members with a matching last name. Matches must be exactly. Multiple words should be separated by a space.
-                </notes>
+                <doc>
+                    Members with a matching last name. Matches must be exactly. Multiple words should be separated by a
+                    space.
+                </doc>
             </param>
-            <param name="company-name" type="xsd:string" style="query" required="false" default="Shermer%20High%20School">
-                <notes>
-                    Members who have a matching company name on their profile. company-name can be combined with the current-company parameter to specifies whether the person is or is not still working at the company. It's often valuable to not be too specific with the company name. LinkedIn has made great efforts at standardizing company names, but including suffixes such as "Inc" and "Company" may overly limit your search, missing people who did not include those suffixes on their company names. It's usually better to  search for the basic name of the company and all different versions will be returned. This does increase the possibility of a false positive match return, though, so consider the most specific terms you can use. For example, consider using "Acme" instead of "Acme, Inc" to find people from a company called Acme, Inc. But this runs the risk of finding people from different companies with Acme in the title, such as "Acme Vending" and "Acme Services".
-                </notes>
+            <param name="company-name" type="xsd:string" style="query" required="false"
+                   default="Shermer%20High%20School">
+                <doc>
+                    Members who have a matching company name on their profile. company-name can be combined with the
+                    current-company parameter to specifies whether the person is or is not still working at the company.
+                    It's often valuable to not be too specific with the company name. LinkedIn has made great efforts at
+                    standardizing company names, but including suffixes such as "Inc" and "Company" may overly limit
+                    your search, missing people who did not include those suffixes on their company names. It's usually
+                    better to search for the basic name of the company and all different versions will be returned. This
+                    does increase the possibility of a false positive match return, though, so consider the most
+                    specific terms you can use. For example, consider using "Acme" instead of "Acme, Inc" to find people
+                    from a company called Acme, Inc. But this runs the risk of finding people from different companies
+                    with Acme in the title, such as "Acme Vending" and "Acme Services".
+                </doc>
             </param>
             <param name="current-company" type="xsd:string" style="query" required="false" default="Tim%20O%5CReilly">
-                <notes>
-                    Valid values are true or false. A value of true matches members who currently work at the company specified in the company-name parameter. A value of false matches members who once worked at the company. Omitting the parameter matches members who currently or once worked the company.
-                </notes>
+                <doc>
+                    Valid values are true or false. A value of true matches members who currently work at the company
+                    specified in the company-name parameter. A value of false matches members who once worked at the
+                    company. Omitting the parameter matches members who currently or once worked the company.
+                </doc>
             </param>
             <param name="title" type="xsd:string" style="query" required="false" default="engineer">
-                <notes>
+                <doc>
                     Matches members with that title on their profile. Works with the current-title parameter.
-                </notes>
+                </doc>
             </param>
             <param name="current-title" type="xsd:string" style="query" required="false" default="false">
-                <notes>
-                    Valid values are true or false. A value of true matches members whose title is currently the one specified in the title-name parameter. A value of false matches members who once had that title. Omitting the parameter matches members who currently or once had that title.
-                </notes>
+                <doc>
+                    Valid values are true or false. A value of true matches members whose title is currently the one
+                    specified in the title-name parameter. A value of false matches members who once had that title.
+                    Omitting the parameter matches members who currently or once had that title.
+                </doc>
             </param>
-            <param name="school-name" type="xsd:string" style="query" required="false" default="Shermer%20High%20School">
-                <notes>
-                    Members who have a matching school name on their profile. school-name can be combined with the current-school parameter to specifies whether the person is or is not still at the school. It's often valuable to not be too specific with the school name. The same explation provided with company name applies: "Yale" vs. "Yale University".
-                </notes>
+            <param name="school-name" type="xsd:string" style="query" required="false"
+                   default="Shermer%20High%20School">
+                <doc>
+                    Members who have a matching school name on their profile. school-name can be combined with the
+                    current-school parameter to specifies whether the person is or is not still at the school. It's
+                    often valuable to not be too specific with the school name. The same explation provided with company
+                    name applies: "Yale" vs. "Yale University".
+                </doc>
             </param>
             <param name="current-school" type="xsd:string" style="query" required="false" default="false">
-                <notes>
-                    Valid values are true or false. A value of true matches members who currently attend the school specified in the school-name parameter. A value of false matches members who once attended the school. Omitting the parameter matches members who currently or once attended the school.
-                </notes>
+                <doc>
+                    Valid values are true or false. A value of true matches members who currently attend the school
+                    specified in the school-name parameter. A value of false matches members who once attended the
+                    school. Omitting the parameter matches members who currently or once attended the school.
+                </doc>
             </param>
             <param name="country-code" type="xsd:string" style="query" required="false" default=".us">
-                <notes>
-                    Matches members with a location in a specific country. Values are defined in by ISO 3166 standard. Country codes must be in all lower case.
-                </notes>
+                <doc>
+                    Matches members with a location in a specific country. Values are defined in by ISO 3166 standard.
+                    Country codes must be in all lower case.
+                </doc>
             </param>
             <param name="postal-code" type="xsd:string" style="query" required="false" default="10002">
-                <notes>
-                    Matches members centered around a Postal Code. Must be combined with the country-code parameter. Not supported for all countries.
-                </notes>
+                <doc>
+                    Matches members centered around a Postal Code. Must be combined with the country-code parameter. Not
+                    supported for all countries.
+                </doc>
             </param>
             <param name="distance" type="xsd:string" style="query" required="false" default="1000">
-                <notes>
-                    Matches members within a distance from a central point. This is measured in miles. This is best used in combination with both country-code and postal-code.
-                </notes>
+                <doc>
+                    Matches members within a distance from a central point. This is measured in miles. This is best used
+                    in combination with both country-code and postal-code.
+                </doc>
             </param>
             <param name="facet" type="xsd:string" style="query" required="false" default="">
-                <notes>
-                    Facet values to search over. Facets provide you with data similar to what appears on left-hand side of the LinkedIn Search results page. Use facets to discover for a member:* Who in their network works at a specific company, or group of companies.* How the people their network cluster together. What locations or industries are the most popular? * Where their connections graduated from school. There are many facet types. Use these values to both receive a bucketed histogram of information about a type and also to filter your search query based on that data. To retrieve facet histograms, specify both the list of facets you want to retrieve and fields you want for each facet. Eg: people-search:(facets:(code,buckets:(code,name,count)))?facets=location&amp;facet=location,us:84,fr:0
-                </notes>
+                <doc>
+                    Facet values to search over. Facets provide you with data similar to what appears on left-hand side
+                    of the LinkedIn Search results page. Use facets to discover for a member:* Who in their network
+                    works at a specific company, or group of companies.* How the people their network cluster together.
+                    What locations or industries are the most popular? * Where their connections graduated from school.
+                    There are many facet types. Use these values to both receive a bucketed histogram of information
+                    about a type and also to filter your search query based on that data. To retrieve facet histograms,
+                    specify both the list of facets you want to retrieve and fields you want for each facet. Eg:
+                    people-search:(facets:(code,buckets:(code,name,count)))?facets=location&amp;facet=location,us:84,fr:0
+                </doc>
             </param>
             <param name="facets" type="xsd:string" style="query" required="false" default="">
-                <notes>
-                    	Facet buckets to return. Facets provide you with data similar to what appears on left-hand side of the LinkedIn Search results page. Use facets to discover for a member:* Who in their network works at a specific company, or group of companies.* How the people their network cluster together. What locations or industries are the most popular? * Where their connections graduated from school. There are many facet types. Use these values to both receive a bucketed histogram of information about a type and also to filter your search query based on that data. To retrieve facet histograms, specify both the list of facets you want to retrieve and fields you want for each facet Eg: people-search:(facets:(code,buckets:(code,name,count)))?facets=location,network&amp;facet=location,us:84&amp;facet=network,facet
-                </notes>
+                <doc>
+                    Facet buckets to return. Facets provide you with data similar to what appears on left-hand side of
+                    the LinkedIn Search results page. Use facets to discover for a member:* Who in their network works
+                    at a specific company, or group of companies.* How the people their network cluster together. What
+                    locations or industries are the most popular? * Where their connections graduated from school. There
+                    are many facet types. Use these values to both receive a bucketed histogram of information about a
+                    type and also to filter your search query based on that data. To retrieve facet histograms, specify
+                    both the list of facets you want to retrieve and fields you want for each facet Eg:
+                    people-search:(facets:(code,buckets:(code,name,count)))?facets=location,network&amp;facet=location,us:84&amp;facet=network,facet
+                </doc>
             </param>
             <param name="start" type="xsd:string" style="query" required="false" default="0">
-                <notes>
-                    Start location within the result set for paginated returns. This is the zero-based ordinal number of the search return, not the number of the page. To see the second page of 10 results per page, specify 10, not 1. Ranges are specified with a starting index and a number of results (count) to return. The default value is 0.
-                </notes>
+                <doc>
+                    Start location within the result set for paginated returns. This is the zero-based ordinal number of
+                    the search return, not the number of the page. To see the second page of 10 results per page,
+                    specify 10, not 1. Ranges are specified with a starting index and a number of results (count) to
+                    return. The default value is 0.
+                </doc>
             </param>
             <param name="count" type="xsd:string" style="query" required="false" default="10">
-                <notes>
-                    The number of profiles to return. Values can range between 0 and 25. The default value is 10. The total results available to any user depends on their account level.
-                </notes>
+                <doc>
+                    The number of profiles to return. Values can range between 0 and 25. The default value is 10. The
+                    total results available to any user depends on their account level.
+                </doc>
             </param>
             <param name="sort" type="xsd:string" style="query" required="false" default="connections">
-                <notes>
-                    Controls the search result order. There are four options:1-connections: Number of connections per person, from largest to smallest. 2-recommenders: Number of recommendations per person, from largest to smallest.3-distance: Degree of separation within the member's network, from first degree to out of network.4-relevance: Relevance of results based on the query, from most to least relevant.By default, results are ordered by the number of connections.
-                </notes>
+                <doc>
+                    Controls the search result order. There are four options:1-connections: Number of connections per
+                    person, from largest to smallest. 2-recommenders: Number of recommendations per person, from largest
+                    to smallest.3-distance: Degree of separation within the member's network, from first degree to out
+                    of network.4-relevance: Relevance of results based on the query, from most to least relevant.By
+                    default, results are ordered by the number of connections.
+                </doc>
             </param>
-            <method name="GET" id="people_search_api">
-                <tags>
-                    <tag primary="true">People Search API</tag>
-                </tags>
-                <authentication required="true" />
-                <docs url="http://developer.linkedin.com/docs/DOC-1191" />
-                <notes>
+            <method id="people_search_api" name="GET">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">People Search API</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/people-search"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="http://developer.linkedin.com/docs/DOC-1191"><![CDATA[
                     The People Search API returns information about people.
-                </notes>
-                <example url="/people-search" />
+                ]]></doc>
             </method>
         </resource>
 
         <resource path="people/~/connections">
             <param name="start" type="xsd:string" style="query" required="false" default="connections">
-                <notes>
-                    Starting location within the result set for paginated returns. Ranges are specified with a starting index and a number of results (count) to return. The default value for this parameter is 0.
-                </notes>
+                <doc>
+                    Starting location within the result set for paginated returns. Ranges are specified with a starting
+                    index and a number of results (count) to return. The default value for this parameter is 0.
+                </doc>
             </param>
             <param name="count" type="xsd:string" style="query" required="false" default="0">
-                <notes>
-                    Ranges are specified with a starting index and a number of results to return. You may specify any number.
-                </notes>
+                <doc>
+                    Ranges are specified with a starting index and a number of results to return. You may specify any
+                    number.
+                </doc>
             </param>
             <param name="modified" type="xsd:string" style="query" required="false" default="new">
-                <notes>
+                <doc>
                     Values are updated or new.
-                </notes>
+                </doc>
             </param>
             <param name="modified-since" type="xsd:string" style="query" required="false" default="1262304000">
-                <notes>
-                    Value as a Unix time stamp of milliseconds since epoch. This provides you with the most efficient set of results in the least amount of time.
-                </notes>
+                <doc>
+                    Value as a Unix time stamp of milliseconds since epoch. This provides you with the most efficient
+                    set of results in the least amount of time.
+                </doc>
             </param>
-            <method name="GET" id="connection_api">
-                <tags>
-                    <tag primary="true">Connections API</tag>
-                </tags>
-                <authentication required="true" />
-                <docs url="http://developer.linkedin.com/docs/DOC-1004" />
-                <notes>
+            <method id="connection_api" name="GET">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Connections API</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/people/~/connections"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="http://developer.linkedin.com/docs/DOC-1004"><![CDATA[
                     The Connections API returns a list of connections for a user who has granted access to his/her account. You can control the fields you want to have returned and the number of connections returned for each call.You can use any of three ways of identifying the user: ~, member ID, or public profile URL.If you don't specify any parameters in the URL, you get full details of all connections. If your application iteratively polls to find the latest set of a member's connections, please make a call like: http://api.linkedin.com/v1/people/~/connections?modified=new&amp;modified-since=1267401600000
-                </notes>
-                <example url="/people/~/connections" />
+                ]]></doc>
             </method>
         </resource>
 
         <resource path="people/id/connections">
             <param name="start" type="xsd:string" style="query" required="false" default="connections">
-                <notes>
-                    Starting location within the result set for paginated returns. Ranges are specified with a starting index and a number of results (count) to return. The default value for this parameter is 0.
-                </notes>
+                <doc>
+                    Starting location within the result set for paginated returns. Ranges are specified with a starting
+                    index and a number of results (count) to return. The default value for this parameter is 0.
+                </doc>
             </param>
             <param name="count" type="xsd:string" style="query" required="false" default="0">
-                <notes>
-                    Ranges are specified with a starting index and a number of results to return. You may specify any number.
-                </notes>
+                <doc>
+                    Ranges are specified with a starting index and a number of results to return. You may specify any
+                    number.
+                </doc>
             </param>
             <param name="modified" type="xsd:string" style="query" required="false" default="new">
-                <notes>
+                <doc>
                     Values are updated or new.
-                </notes>
+                </doc>
             </param>
             <param name="modified-since" type="xsd:string" style="query" required="false" default="1262304000">
-                <notes>
-                    Value as a Unix time stamp of milliseconds since epoch. This provides you with the most efficient set of results in the least amount of time.
-                </notes>
+                <doc>
+                    Value as a Unix time stamp of milliseconds since epoch. This provides you with the most efficient
+                    set of results in the least amount of time.
+                </doc>
             </param>
-            <method name="GET" id="connection_id_api">
-                <tags>
-                    <tag primary="true">Connections API</tag>
-                </tags>
-                <authentication required="true" />
-                <docs url="http://developer.linkedin.com/docs/DOC-1004" />
-                <notes>
+            <method id="connection_id_api" name="GET">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Connections API</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/people/id={id}/connections"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="http://developer.linkedin.com/docs/DOC-1004"><![CDATA[
                     The Connections API returns a list of connections for a user who has granted access to his/her account. You can control the fields you want to have returned and the number of connections returned for each call.You can use any of three ways of identifying the user: ~, member ID, or public profile URL.If you don't specify any parameters in the URL, you get full details of all connections.
-                </notes>
-                <example url="/people/id={id}/connections" />
+                ]]></doc>
             </method>
         </resource>
 
         <resource path="people/url/connections">
             <param name="start" type="xsd:string" style="query" required="false" default="connections">
-                <notes>
-                    Starting location within the result set for paginated returns. Ranges are specified with a starting index and a number of results (count) to return. The default value for this parameter is 0.
-                </notes>
+                <doc>
+                    Starting location within the result set for paginated returns. Ranges are specified with a starting
+                    index and a number of results (count) to return. The default value for this parameter is 0.
+                </doc>
             </param>
             <param name="count" type="xsd:string" style="query" required="false" default="0">
-                <notes>
-                    Ranges are specified with a starting index and a number of results to return. You may specify any number.
-                </notes>
+                <doc>
+                    Ranges are specified with a starting index and a number of results to return. You may specify any
+                    number.
+                </doc>
             </param>
             <param name="modified" type="xsd:string" style="query" required="false" default="new">
-                <notes>
+                <doc>
                     Values are updated or new.
-                </notes>
+                </doc>
             </param>
             <param name="modified-since" type="xsd:string" style="query" required="false" default="1262304000">
-                <notes>
-                    Value as a Unix time stamp of milliseconds since epoch. This provides you with the most efficient set of results in the least amount of time.
-                </notes>
+                <doc>
+                    Value as a Unix time stamp of milliseconds since epoch. This provides you with the most efficient
+                    set of results in the least amount of time.
+                </doc>
             </param>
-            <method name="GET" id="connection_url_api">
-                <tags>
-                    <tag primary="true">Connections API</tag>
-                </tags>
-                <authentication required="true" />
-                <docs url="http://developer.linkedin.com/docs/DOC-1004" />
-                <notes>
+            <method id="connection_url_api" name="GET">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Connections API</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                                url="/people/url={public-profile-url}/connections"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="http://developer.linkedin.com/docs/DOC-1004"><![CDATA[
                     The Connections API returns a list of connections for a user who has granted access to his/her account. You can control the fields you want to have returned and the number of connections returned for each call.You can use any of three ways of identifying the user: ~, member ID, or public profile URL.If you don't specify any parameters in the URL, you get full details of all connections.
-                </notes>
-                <example url="/people/url={public-profile-url}/connections" />
+                ]]></doc>
             </method>
         </resource>
 
         <resource path="people/~/mailbox">
-            <method name="POST" id="messaging_api">
-                <tags>
-                    <tag primary="true">Messaging API</tag>
-                </tags>
-                <authentication required="true" />
-                <docs url="http://developer.linkedin.com/docs/DOC-1044" />
-                <notes>
+            <method id="messaging_api" name="POST">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Messaging API</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/people/~/mailbox"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="http://developer.linkedin.com/docs/DOC-1044"><![CDATA[
 					LinkedIn offers a simple API for sending messages via LinkedIn between two or more individuals connected to the member sending the message. A 201 Created HTTP status indicates successful creation of a message.Message will be represented as XML POST Body, given a sample.
-				</notes>
-                <example url="/people/~/mailbox" />
-                <payload>
-                	<![CDATA[
+				]]></doc>
+                <request xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <representation>
+                        <apigee:payload><![CDATA[
+
 <mailbox-item>
   <recipients>
     <recipient>
@@ -290,24 +337,28 @@
   <subject>Congratulations on your new position.</subject>
   <body>You're certainly the best person for the job!</body>
 </mailbox-item>
-					]]>
-                </payload>
+
+                ]]></apigee:payload>
+                    </representation>
+                </request>
             </method>
         </resource>
 
         <resource path="people/~/mailbox">
-            <method name="POST" id="invitation_api">
-                <tags>
-                    <tag primary="true">Invitation API</tag>
-                </tags>
-                <authentication required="true" />
-                <docs url="http://developer.linkedin.com/docs/DOC-1012" />
-                <notes>
+            <method id="invitation_api" name="POST">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Invitation API</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/people/~/mailbox"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="http://developer.linkedin.com/docs/DOC-1012"><![CDATA[
 					The Invitation API allows your users to invite people they find in your application to their LinkedIn network. To send an invitation, you POST the invitation XML. You have control over the message subject and text and can invite people by email or member id. Sample XML is given.
-                </notes>
-                <example url="/people/~/mailbox" />
-                <payload>
-                	<![CDATA[
+                ]]></doc>
+                <request xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <representation>
+                        <apigee:payload><![CDATA[
+
 <mailbox-item>
   <recipients>
     <recipient>
@@ -325,177 +376,201 @@
     </invitation-request>
   </item-content>
 </mailbox-item>
-					]]>
-                </payload>
+
+                ]]></apigee:payload>
+                    </representation>
+                </request>
             </method>
         </resource>
 
         <resource path="people/~/network/updates">
             <param name="scope" type="xsd:string" style="query" required="false" default="self">
-                <notes>
+                <doc>
                     self to return member's feed. Omitted to return aggregated network feed.
-                </notes>
+                </doc>
             </param>
             <param name="type" type="xsd:string" style="query" required="false" default="ANSW">
-                <notes>
-                    Any valid Network Update Type among ANSW,APPS,CONN,JOBS,JGRP,PICT,PRFX,RECU,PRFU,QSTN,SHAR. Types must be in all capital letters. To specify more than one Network Update type, add the type parameter to the resource URL for each type.
-                </notes>
+                <doc>
+                    Any valid Network Update Type among ANSW,APPS,CONN,JOBS,JGRP,PICT,PRFX,RECU,PRFU,QSTN,SHAR. Types
+                    must be in all capital letters. To specify more than one Network Update type, add the type parameter
+                    to the resource URL for each type.
+                </doc>
             </param>
             <param name="count" type="xsd:string" style="query" required="false" default="10">
-                <notes>
+                <doc>
                     Maximum number of updates to return
-                </notes>
+                </doc>
             </param>
             <param name="start" type="xsd:string" style="query" required="false" default="10">
-                <notes>
+                <doc>
                     The offset by which to start Network Update pagination
-                </notes>
+                </doc>
             </param>
             <param name="after" type="xsd:string" style="query" required="false" default="1243834824000">
-                <notes>
+                <doc>
                     Timestamp after which to retrieve updates for .Note: precision is milliseconds since the epoch
-                </notes>
+                </doc>
             </param>
             <param name="before" type="xsd:string" style="query" required="false" default="1243834824000">
-                <notes>
+                <doc>
                     Timestamp before which to retrieve updates for .Note: precision is milliseconds since the epoch
-                </notes>
+                </doc>
             </param>
             <param name="show-hidden-members" type="xsd:string" style="query" required="false" default="false">
-                <notes>
-                    true or false. default is false. Whether to display updates from people the member has chosen to "hide" from their update stream.
-                </notes>
+                <doc>
+                    true or false. default is false. Whether to display updates from people the member has chosen to
+                    "hide" from their update stream.
+                </doc>
             </param>
-            <method name="GET" id="network_updates_api">
-                <tags>
-                    <tag primary="true">Network Updates API</tag>
-                </tags>
-                <authentication required="true" />
-                <docs url="http://developer.linkedin.com/docs/DOC-1006" />
-                <notes>
+            <method id="network_updates_api" name="GET">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Network Updates API</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/people/~/network/updates"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="http://developer.linkedin.com/docs/DOC-1006"><![CDATA[
                     The Get Network Updates API returns the users network updates, which is the LinkedIn term for the user's feed. This call returns most of what shows up in the middle column of the LinkedIn.com home page, either for the member or the member's connections.Returns a feed of event items. Each item contains a core set of information, such as when it occured, what type of event took place, and whether you can comment and like the item.However, the format of the event's information can vary widely from type to type. Information about changing a profile is not similar to the status published by an application. Each event type needs to be parsed differently.We may perodically add new event types to this feed, or deprecate old ones.
-                </notes>
-                <example url="/people/~/network/updates" />
+                ]]></doc>
             </method>
         </resource>
 
         <resource path="people/~/network/network-stats">
-            <method name="GET" id="network_stats_api">
-                <tags>
-                    <tag primary="true">Network Statistics API</tag>
-                </tags>
-                <authentication required="true" />
-                <docs url="http://developer.linkedin.com/docs/DOC-1006" />
-                <notes>
+            <method id="network_stats_api" name="GET">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Network Statistics API</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                                url="/people/~/network/network-stats"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="http://developer.linkedin.com/docs/DOC-1006"><![CDATA[
                     Information about the member's network, such as how many connections they have one and two degrees away.
-                </notes>
-                <example url="/people/~/network/network-stats" />
+                ]]></doc>
             </method>
         </resource>
 
         <resource path="people/~/person-activities">
-            <method name="POST" id="post_network_update_api">
-                <tags>
-                    <tag primary="true">Post Network Update API</tag>
-                </tags>
-                <authentication required="true" />
-                <docs url="http://developer.linkedin.com/docs/DOC-1009" />
-                <notes>
+            <method id="post_network_update_api" name="POST">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Post Network Update API</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/people/~/person-activities"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="http://developer.linkedin.com/docs/DOC-1009"><![CDATA[
 					The Post Network Update API allows you to send in an activity from your site to be posted to the first degree connections of the LinkedIn user. Network updates are the LinkedIn term for news feed activities. Once a network update is posted, it cannot be removed or deleted. A successful response will be indicated by a 201 Created HTTP status code and an empty response body. Invitation should be of POST XML Body, given a sample.
-				</notes>
-                <example url="/people/~/person-activities" />
-                <payload>
-                	<![CDATA[
+				]]></doc>
+                <request xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <representation>
+                        <apigee:payload><![CDATA[
+
 <activity locale="en_US">
 	<content-type>linkedin-html</content-type>
 	<body>&lt;a href=&quot;http://www.linkedin.com/profile?viewProfile=&amp;key=ABCDEFG&quot;&gt;Richard Brautigan&lt;/a&gt; is reading about &lt;a href=&quot;http://www.tigers.com&quot;&gt;Tigers&lt;/a&gt;http://www.tigers.com&gt;Tigers&lt;/a&gt;.</body>
 </activity>
-					]]>
-                </payload>
+
+                ]]></apigee:payload>
+                    </representation>
+                </request>
             </method>
         </resource>
 
         <resource path="people/~/network/updates/update-comments">
-            <method name="GET" id="get_update_comments_api">
-                <tags>
-                    <tag primary="true">Comments and Likes API</tag>
-                </tags>
-                <authentication required="true" />
-                <docs url="http://developer.linkedin.com/docs/DOC-1043" />
-                <notes>
+            <method id="get_update_comments_api" name="GET">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Comments and Likes API</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                                url="/people/~/network/updates/key={NETWORK-UPDATE-KEY}/update-comments"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="http://developer.linkedin.com/docs/DOC-1043"><![CDATA[
                     Some Network Updates may have comments attached to them. These kind of updates are called commentable network updates. They are indicated by the presence of the string "true" within the node of update/is-commentable. By default, a network update containing more than 5 comments will only return you the most recent five. This API is used to retrieve all comments for a given network update,where NETWORK UPDATE KEY is a update/update-key representing an update.
-                </notes>
-                <example url="/people/~/network/updates/key={NETWORK-UPDATE-KEY}/update-comments" />
+                ]]></doc>
             </method>
         </resource>
 
         <resource path="people/~/network/updates/likes">
-            <method name="GET" id="get_update_likes_api">
-                <tags>
-                    <tag primary="true">Comments and Likes API</tag>
-                </tags>
-                <authentication required="true" />
-                <docs url="http://developer.linkedin.com/docs/DOC-1043" />
-                <notes>
+            <method id="get_update_likes_api" name="GET">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Comments and Likes API</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                                url="/people/~/network/updates/key={NETWORK-UPDATE-KEY}/likes"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="http://developer.linkedin.com/docs/DOC-1043"><![CDATA[
                     Some Network Updates may have likes attached to them. These kind of updates are called likeable network updates. They are indicated by the presence of the string "true" within the node of update/is-likeable. This API is used to retrive the complete list of people who liked an update,where NETWORK UPDATE KEY is a update/update-key representing an update.
-                </notes>
-                <example url="/people/~/network/updates/key={NETWORK-UPDATE-KEY}/likes" />
+                ]]></doc>
             </method>
         </resource>
 
         <resource path="people/~/network/updates/update-comments">
-            <method name="POST" id="post_update_comments_api">
-                <tags>
-                    <tag primary="true">Comments and Likes API</tag>
-                </tags>
-                <authentication required="true" />
-                <docs url="http://developer.linkedin.com/docs/DOC-1043" />
-                <notes>
+            <method id="post_update_comments_api" name="POST">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Comments and Likes API</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                                url="/people/~/network/updates/key={NETWORK-UPDATE-KEY}/update-comments"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="http://developer.linkedin.com/docs/DOC-1043"><![CDATA[
                     When you want to post a new comment to an existing update,1. Ensure the node update/is-commentable in Network Update Comment XML POST Body is set to true 2. Take the update/update-key from an existing update and POST to the URL structure. A successful comment POST will return a 201 Content Created status code. Comments have a maximum length of 700 characters.
-                </notes>
-                <example url="/people/~/network/updates/key={NETWORK-UPDATE-KEY}/update-comments" />
-                <payload>
-                	<![CDATA[
+                ]]></doc>
+                <request xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <representation>
+                        <apigee:payload><![CDATA[
+
 <update-comment>
   <comment>Save me a trout, Richard!</comment>
 </update-comment>
-					]]>
-                </payload>
+
+                ]]></apigee:payload>
+                    </representation>
+                </request>
             </method>
         </resource>
 
         <resource path="people/~/network/updates/is-liked">
-            <method name="PUT" id="post_update_likes_api">
-                <tags>
-                    <tag primary="true">Comments and Likes API</tag>
-                </tags>
-                <authentication required="true" />
-                <docs url="http://developer.linkedin.com/docs/DOC-1043" />
-                <notes>
+            <method id="post_update_likes_api" name="PUT">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Comments and Likes API</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                                url="/people/~/network/updates/key={NETWORK-UPDATE-KEY}/is-liked"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="http://developer.linkedin.com/docs/DOC-1043"><![CDATA[
                     When you want to Like or Unlike an existing update, 1. Ensure the node update/is-likeable in Network Update Like XML POST Body is set to true 2. Use the same update/update-key and PUT to the URL. A successful comment PUT will return a 201 Content Created status code.
-                </notes>
-                <example url="/people/~/network/updates/key={NETWORK-UPDATE-KEY}/is-liked" />
-                <payload>
-                	<![CDATA[
+                ]]></doc>
+                <request xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <representation>
+                        <apigee:payload><![CDATA[
+
 <is-liked>true</is-liked>
-					]]>
-                </payload>
+
+                ]]></apigee:payload>
+                    </representation>
+                </request>
             </method>
         </resource>
 
         <resource path="people/~/shares">
-            <method name="POST" id="post_update_likes_api">
-                <tags>
-                    <tag primary="true">Add Shares API</tag>
-                </tags>
-                <authentication required="true" />
-                <docs url="http://developer.linkedin.com/docs/DOC-1212" />
-                <notes>
+            <method id="post_update_likes_api1" name="POST">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Add Shares API</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/people/~/shares"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="http://developer.linkedin.com/docs/DOC-1212"><![CDATA[
                     Use the Share API to have a member share content with their network or with all of LinkedIn. This can be a simple short text update, similar to Twitter.  Or a URL with a title and optional photo. Or both. You can also forward the shared content to Twitter and reshare another member's share. To add a new share, you markup the content in XML and issue a  HTTP POST to this API.To have LinkedIn pass the status message along to a member's tethered Twitter account, if they have one, modify the URL to include a query string of twitter-post=true.Returns 201 Created on success. It will also provide a Location  HTTP header with a URL for the created resource. However, at this time, you cannot retrieve the Share from that location. It's there for future compatibility.
-                </notes>
-                <example url="/people/~/shares" />
-                <payload>
-                	<![CDATA[
+                ]]></doc>
+                <request xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <representation>
+                        <apigee:payload><![CDATA[
+
 <share>
   <comment>83% of employers will use social media to hire: 78% LinkedIn, 55% Facebook, 45% Twitter [SF Biz Times] http://bit.ly/cCpeOD</comment>
   <content>
@@ -507,24 +582,28 @@
      <code>anyone</code>
   </visibility>
 </share>
-					]]>
-                </payload>
+
+                ]]></apigee:payload>
+                    </representation>
+                </request>
             </method>
         </resource>
 
         <resource path="people/~/shares">
-            <method name="POST" id="post_update_likes_api">
-                <tags>
-                    <tag primary="true">ReShare API</tag>
-                </tags>
-                <authentication required="true" />
-                <docs url="http://developer.linkedin.com/docs/DOC-1212" />
-                <notes>
+            <method id="post_update_likes_api2" name="POST">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">ReShare API</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/people/~/shares"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="http://developer.linkedin.com/docs/DOC-1212"><![CDATA[
                     When a member does a reshare, they can pass along a previously shared item to their network. This can either be as-is, or they can annotate the share to provide their own thoughts. The process is similar to creating a new share, but you provide an attribution/id value instead of a content block.You can only reshare a share with a content block. If this block is empty, you will get a 400 error saying "Specified share {s28311617} has no content". Read Retrieving Share Information for instructions to retrieve these value using the API.Returns 201 Created on success. It will also provide a Location  HTTP header with a URL for the created resource. However, at this time, you cannot retrieve the Share from that location. It's there for future compatibility. To reshare, you markup the content in XML and issue a  HTTP POST to this API.
-                </notes>
-                <example url="/people/~/shares" />
-                <payload>
-                	<![CDATA[
+                ]]></doc>
+                <request xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <representation>
+                        <apigee:payload><![CDATA[
+
 <share>
   <comment>Check out this story! I can't believe it.</comment>
   <attribution>
@@ -536,116 +615,123 @@
      <code>connections-only</code>
   </visibility>
 </share>
-					]]>
-                </payload>
+
+                ]]></apigee:payload>
+                    </representation>
+                </request>
             </method>
         </resource>
 
         <resource path="people/~:(current-share)">
-            <method name="GET" id="post_update_likes_api">
-                <tags>
-                    <tag primary="true">Retrieving Share API</tag>
-                </tags>
-                <authentication required="true" />
-                <docs url="http://developer.linkedin.com/docs/DOC-1212" />
-                <notes>
+            <method id="post_update_likes_api3" name="GET">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Retrieving Share API</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/people/~:(current-share)"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="http://developer.linkedin.com/docs/DOC-1212"><![CDATA[
                     A particular member's current share is detailed in their Profile API, so you can get a member's current share by requesting this API.Use the ~, id, or public profile URL to identify the user.
-                </notes>
-                <example url="/people/~:(current-share)" />
+                ]]></doc>
             </method>
         </resource>
 
         <resource path="people/~/network">
             <param name="type" type="xsd:string" style="query" required="true" default="ANSW">
-                <notes>
+                <doc>
                     Network Update Type.
-                </notes>
+                </doc>
             </param>
             <param name="scope" type="xsd:string" style="query" required="false" default="self">
-                <notes>
+                <doc>
                     self to return member's feed. Omitted to return aggregated network feed.
-                </notes>
+                </doc>
             </param>
-            <method name="GET" id="post_update_likes_api">
-                <tags>
-                    <tag primary="true">Retrieving Share API</tag>
-                </tags>
-                <authentication required="true" />
-                <docs url="http://developer.linkedin.com/docs/DOC-1212" />
-                <notes>
+            <method id="post_update_likes_api4" name="GET">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Retrieving Share API</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/people/~/network?type=SHAR"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="http://developer.linkedin.com/docs/DOC-1212"><![CDATA[
                     To retrieve a stream of shares for the member or their member first degree network, use the Get Network Updates API resource requesting the SHAR update type. For the specified member also use a query parameter of scope=self.Omit the scope for their first degree network.
-                </notes>
-                <example url="/people/~/network?type=SHAR" />
+                ]]></doc>
             </method>
         </resource>
 
         <resource path="people/~:">
-            <method name="GET" id="post_update_likes_api">
-                <tags>
-                    <tag primary="true">Field Selectors Usage</tag>
-                </tags>
-                <authentication required="true" />
-                <docs url="http://developer.linkedin.com/docs/DOC-1014" />
-                <notes>
+            <method id="post_update_likes_api5" name="GET">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Field Selectors Usage</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                                url="/people/~:(id,first-name,last-name,industry)"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="http://developer.linkedin.com/docs/DOC-1014"><![CDATA[
                     Many of our resources allow you to specify what fields you want returned. We call this syntax field selectors. By indicating exactly the information you need, we can optimize the amount of time needed to return your results. It also reduces the amount of data passing across the wire. The two combine to make our APIs speedy and efficient, a critical factor in any web application, and more so for anyone relying on external APIs. Remember, each field you select adds computation time to your API request. It's best to be very specific as to what fields you want returned in each API call you make. Field selectors are supported for most GET-based resources. See Profile Fields  for a full account of available fields. Not all fields are available in all scenarios. The most common areas where you will want to use field selectors are:* Standard &amp; Public Profile,* Connections API,* Search API. Field selectors are specified after the resource identifiers and path components of a resource, prefixed by a colon, contained within parenthesis, and separated by commas. Fields will be returned in the order specified. When URL-encoding your resource URLs, ensure that the parenthesis used in selectors remain unescaped. Use this API to get a member's ID, first name, last name, and industry.
-                </notes>
-                <example url="/people/~:(id,first-name,last-name,industry)" />
+                ]]></doc>
             </method>
         </resource>
 
         <resource path="people/~/connections:">
-            <method name="GET" id="post_update_likes_api">
-                <tags>
-                    <tag primary="true">Field Selectors Usage</tag>
-                </tags>
-                <authentication required="true" />
-                <docs url="http://developer.linkedin.com/docs/DOC-1014" />
-                <notes>
+            <method id="post_update_likes_api6" name="GET">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Field Selectors Usage</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                                url="/people/~/connections:(id,first-name,last-name,industry)"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="http://developer.linkedin.com/docs/DOC-1014"><![CDATA[
                     Use this API to get the same set of informations for their connections.
-                </notes>
-                <example url="/people/~/connections:(id,first-name,last-name,industry)" />
+                ]]></doc>
             </method>
         </resource>
 
         <resource path="people/~/connections:">
-            <method name="GET" id="post_update_likes_api">
-                <tags>
-                    <tag primary="true">Field Selectors Usage</tag>
-                </tags>
-                <authentication required="true" />
-                <docs url="http://developer.linkedin.com/docs/DOC-1014" />
-                <notes>
+            <method id="post_update_likes_api7" name="GET">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Field Selectors Usage</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                                url="/people/~/connections:(id,first-name,last-name,positions:(title))"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="http://developer.linkedin.com/docs/DOC-1014"><![CDATA[
                     Fields selectors can be nested. To get just the job titles and not the rest of the information about positions, Try this API.
-                </notes>
-                <example url="/people/~/connections:(id,first-name,last-name,positions:(title))" />
+                ]]></doc>
             </method>
         </resource>
 
         <resource path="people::">
-            <method name="GET" id="post_update_likes_api">
-                <tags>
-                    <tag primary="true">Field Selectors Usage</tag>
-                </tags>
-                <authentication required="true" />
-                <docs url="http://developer.linkedin.com/docs/DOC-1014" />
-                <notes>
+            <method id="post_update_likes_api8" name="GET">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Field Selectors Usage</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                                url="/people::(~,id={id},url={url})"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="http://developer.linkedin.com/docs/DOC-1014"><![CDATA[
                     Field selectors with resource identifiers allow you to request information about multiple entities at once. Specify them similarly, but append a double colon. Here's an example getting profile information about thee members: the first is the current member, indicated by a tilde; the next has an id; and the last has a public profile URL with URL escaping.
-                </notes>
-                <example url="/people::(~,id={id},url={url})" />
+                ]]></doc>
             </method>
         </resource>
 
         <resource path="people::">
-            <method name="GET" id="post_update_likes_api">
-                <tags>
-                    <tag primary="true">Field Selectors Usage</tag>
-                </tags>
-                <authentication required="true" />
-                <docs url="http://developer.linkedin.com/docs/DOC-1014" />
-                <notes>
+            <method id="post_update_likes_api9" name="GET">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Field Selectors Usage</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                                url="/people::(~,id={id},url={url}):(id,first-name,last-name)"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="http://developer.linkedin.com/docs/DOC-1014"><![CDATA[
                    However APIs can be combined to specify both resources and fields.
-                </notes>
-                <example url="/people::(~,id={id},url={url}):(id,first-name,last-name)" />
+                ]]></doc>
             </method>
         </resource>
 
