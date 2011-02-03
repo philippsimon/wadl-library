@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
              xmlns:apigee="http://api.apigee.com/wadl/2010/07/" xmlns="http://wadl.dev.java.net/2009/02"
-             xsi:schemaLocation="http://wadl.dev.java.net/2009/02 ../../resources/wadl-schema.xsd    http://api.apigee.com/wadl/2010/07/ ../../resources/apigee-wadl-extensions.xsd">
+             xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/resources/wadl-schema.xsd    http://api.apigee.com/wadl/2010/07/ http://apigee.com/resources/apigee-wadl-extensions.xsd">
 
 
     <resources base="http://api.linkedin.com/v1">
@@ -9,7 +9,7 @@
         <resource path="people/~">
             <method id="profile_api" name="GET">
                 <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
-                    <apigee:tag primary="true">Profile API</apigee:tag>
+                    <apigee:tag primary="true">Profile</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
                 <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/people/~"/>
@@ -23,7 +23,7 @@
         <resource path="people/id">
             <method id="profile_id_api" name="GET">
                 <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
-                    <apigee:tag primary="true">Profile API</apigee:tag>
+                    <apigee:tag primary="true">Profile</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
                 <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/people/id={id}"/>
@@ -37,7 +37,7 @@
         <resource path="people/url">
             <method id="profile_url_api" name="GET">
                 <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
-                    <apigee:tag primary="true">Profile API</apigee:tag>
+                    <apigee:tag primary="true">Profile</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
                 <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
@@ -187,7 +187,7 @@
             </param>
             <method id="people_search_api" name="GET">
                 <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
-                    <apigee:tag primary="true">People Search API</apigee:tag>
+                    <apigee:tag primary="true">People Search</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
                 <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/people-search"/>
@@ -224,7 +224,7 @@
             </param>
             <method id="connection_api" name="GET">
                 <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
-                    <apigee:tag primary="true">Connections API</apigee:tag>
+                    <apigee:tag primary="true">Connections</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
                 <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/people/~/connections"/>
@@ -261,7 +261,7 @@
             </param>
             <method id="connection_id_api" name="GET">
                 <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
-                    <apigee:tag primary="true">Connections API</apigee:tag>
+                    <apigee:tag primary="true">Connections</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
                 <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/people/id={id}/connections"/>
@@ -298,7 +298,7 @@
             </param>
             <method id="connection_url_api" name="GET">
                 <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
-                    <apigee:tag primary="true">Connections API</apigee:tag>
+                    <apigee:tag primary="true">Connections</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
                 <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
@@ -313,7 +313,7 @@
         <resource path="people/~/mailbox">
             <method id="messaging_api" name="POST">
                 <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
-                    <apigee:tag primary="true">Messaging API</apigee:tag>
+                    <apigee:tag primary="true">Messaging</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
                 <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/people/~/mailbox"/>
@@ -347,7 +347,7 @@
         <resource path="people/~/mailbox">
             <method id="invitation_api" name="POST">
                 <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
-                    <apigee:tag primary="true">Invitation API</apigee:tag>
+                    <apigee:tag primary="true">Invitation</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
                 <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/people/~/mailbox"/>
@@ -424,7 +424,7 @@
             </param>
             <method id="network_updates_api" name="GET">
                 <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
-                    <apigee:tag primary="true">Network Updates API</apigee:tag>
+                    <apigee:tag primary="true">Network Updates</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
                 <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/people/~/network/updates"/>
@@ -438,7 +438,7 @@
         <resource path="people/~/network/network-stats">
             <method id="network_stats_api" name="GET">
                 <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
-                    <apigee:tag primary="true">Network Statistics API</apigee:tag>
+                    <apigee:tag primary="true">Network Statistics</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
                 <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
@@ -453,7 +453,7 @@
         <resource path="people/~/person-activities">
             <method id="post_network_update_api" name="POST">
                 <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
-                    <apigee:tag primary="true">Post Network Update API</apigee:tag>
+                    <apigee:tag primary="true">Post Network Update</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
                 <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/people/~/person-activities"/>
@@ -479,7 +479,7 @@
         <resource path="people/~/network/updates/update-comments">
             <method id="get_update_comments_api" name="GET">
                 <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
-                    <apigee:tag primary="true">Comments and Likes API</apigee:tag>
+                    <apigee:tag primary="true">Comments and Likes</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
                 <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
@@ -494,7 +494,7 @@
         <resource path="people/~/network/updates/likes">
             <method id="get_update_likes_api" name="GET">
                 <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
-                    <apigee:tag primary="true">Comments and Likes API</apigee:tag>
+                    <apigee:tag primary="true">Comments and Likes</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
                 <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
@@ -509,7 +509,7 @@
         <resource path="people/~/network/updates/update-comments">
             <method id="post_update_comments_api" name="POST">
                 <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
-                    <apigee:tag primary="true">Comments and Likes API</apigee:tag>
+                    <apigee:tag primary="true">Comments and Likes</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
                 <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
@@ -535,7 +535,7 @@
         <resource path="people/~/network/updates/is-liked">
             <method id="post_update_likes_api" name="PUT">
                 <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
-                    <apigee:tag primary="true">Comments and Likes API</apigee:tag>
+                    <apigee:tag primary="true">Comments and Likes</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
                 <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
@@ -559,7 +559,7 @@
         <resource path="people/~/shares">
             <method id="post_update_likes_api1" name="POST">
                 <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
-                    <apigee:tag primary="true">Add Shares API</apigee:tag>
+                    <apigee:tag primary="true">Add Shares</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
                 <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/people/~/shares"/>
@@ -592,7 +592,7 @@
         <resource path="people/~/shares">
             <method id="post_update_likes_api2" name="POST">
                 <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
-                    <apigee:tag primary="true">ReShare API</apigee:tag>
+                    <apigee:tag primary="true">ReShare</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
                 <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/people/~/shares"/>
@@ -625,7 +625,7 @@
         <resource path="people/~:(current-share)">
             <method id="post_update_likes_api3" name="GET">
                 <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
-                    <apigee:tag primary="true">Retrieving Share API</apigee:tag>
+                    <apigee:tag primary="true">Retrieving Share</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
                 <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/people/~:(current-share)"/>
@@ -649,7 +649,7 @@
             </param>
             <method id="post_update_likes_api4" name="GET">
                 <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
-                    <apigee:tag primary="true">Retrieving Share API</apigee:tag>
+                    <apigee:tag primary="true">Retrieving Share</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
                 <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/people/~/network?type=SHAR"/>
