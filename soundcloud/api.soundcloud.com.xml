@@ -2,7 +2,7 @@
 	xmlns:apigee="http://api.apigee.com/wadl/2010/07/" xmlns="http://wadl.dev.java.net/2009/02"
 	xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
 
-	<resources base="http://api.sandbox-soundcloud.com">
+	<resources base="http://api.soundcloud.com">
 		<!-- COMMENTING OUT UNSUPPORTED ELEMENTS - NOT AS PER WADL SCHEMA.
 			<param name="consumer_key" required="true" type="xsd:string" style="query" default="enter_your_consumer_key_please" />
 			<param name="format" type="xsd:string" style="template" required="true" default="json">
