@@ -132,6 +132,25 @@
 
 		</resource>
 
+        <resource path="http://api.simplegeo.com/0.1/records/{layer}/{id}.format">
+			<param name="layer" required="true" type="xsd:string" style="query" default="com.simplegeo.global.flickr" />
+			<param name="id" required="true" type="xsd:string" style="query" default="5023789288" />
+			<param name="format" type="xsd:string" style="template" required="true" default="json">
+				<option value="json" mediaType="application/json" />
+			</param>
+			<method id="places_ip" name="GET">
+				<apigee:tags>
+					<apigee:tag primary="true">Storage</apigee:tag>
+				</apigee:tags>
+				<apigee:authentication required="true" />
+                <apigee:example url="records/{layer}/{id}.format" />
+				<doc title="" apigee:url="http://simplegeo.com/docs/api-endpoints/simplegeo-storage">
+					Retrieve a SimpleGeo Storage record by ID.
+				</doc>
+			</method>
+
+		</resource>
+
 	</resources>
 
 </application>
