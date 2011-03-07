@@ -132,7 +132,7 @@
 
 		</resource>
 
-        <resource path="http://api.simplegeo.com/0.1/records/{layer}/{id}.format">
+        <resource path="/0.1/records/{layer}/{id}.json">
 			<param name="layer" required="true" type="xsd:string" style="query" default="com.simplegeo.global.flickr" />
 			<param name="id" required="true" type="xsd:string" style="query" default="5023789288" />
 			<param name="format" type="xsd:string" style="template" required="true" default="json">
@@ -143,7 +143,7 @@
 					<apigee:tag primary="true">Storage</apigee:tag>
 				</apigee:tags>
 				<apigee:authentication required="true" />
-                <apigee:example url="records/{layer}/{id}.format" />
+                <apigee:example url="records/{layer}/{id}.json" />
 				<doc title="" apigee:url="http://simplegeo.com/docs/api-endpoints/simplegeo-storage">
 					Retrieve a SimpleGeo Storage record by ID.
 				</doc>
@@ -151,7 +151,7 @@
 
 		</resource>
 
-        <resource path="http://api.simplegeo.com/0.1/records/{layer}/{id}/history.format">
+        <resource path="/0.1/records/{layer}/{id}/history.json">
 			<param name="layer" required="true" type="xsd:string" style="query" default="com.simplegeo.global.flickr" />
 			<param name="id" required="true" type="xsd:string" style="query" default="5023789288" />
 			<param name="format" type="xsd:string" style="template" required="true" default="json">
@@ -162,7 +162,7 @@
 					<apigee:tag primary="true">Storage</apigee:tag>
 				</apigee:tags>
 				<apigee:authentication required="true" />
-                <apigee:example url="records/{layer}/{id}/history.format" />
+                <apigee:example url="records/{layer}/{id}/history.json" />
 				<doc title="" apigee:url="http://simplegeo.com/docs/api-endpoints/simplegeo-storage">
 					Retrieve the location history of a SimpleGeo Storage record.
 				</doc>
@@ -170,19 +170,19 @@
 
 		</resource>
 
-        <resource path="http://api.simplegeo.com/0.1/records/{layer}/nearby/{lat},{lon}.format">
+        <resource path="/0.1/records/{layer}/nearby/{lat},{lon}.json">
 			<param name="layer" required="true" type="xsd:string" style="query" default="com.simplegeo.global.flickr" />
             <param name="lat" required="true" type="xsd:string" style="query" default="37.7747" />
             <param name="lon" required="true" type="xsd:string" style="query" default="-122.4198" />
 			<param name="format" type="xsd:string" style="template" required="true" default="json">
 				<option value="json" mediaType="application/json" />
 			</param>
-			<method id="get_record_history" name="GET">
+			<method id="get_record_history_2" name="GET">
 				<apigee:tags>
 					<apigee:tag primary="true">Storage</apigee:tag>
 				</apigee:tags>
 				<apigee:authentication required="true" />
-                <apigee:example url="records/{layer}/nearby/{lat},{lon}.format" />
+                <apigee:example url="records/{layer}/nearby/{lat},{lon}.json" />
 				<doc title="" apigee:url="http://simplegeo.com/docs/api-endpoints/simplegeo-storage">
 					Search for nearby SimpleGeo Storage records around a given coordinate.
 				</doc>
