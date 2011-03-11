@@ -1,17 +1,18 @@
 <application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
              xmlns:apigee="http://api.apigee.com/wadl/2010/07/" xmlns="http://wadl.dev.java.net/2009/02"
-             xsi:schemaLocation="http://wadl.dev.java.net/2009/02 ../../resources/wadl-schema.xsd
-             http://api.apigee.com/wadl/2010/07/ ../../resources/apigee-wadl-extensions.xsd">
-    <resources base="http://openapi.etsy.com/v2/sandbox">
-        <resource path="/private/countries/{country_id}">
+             xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd
+             http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
+             
+    <resources base="http://openapi.etsy.com/v2/sandbox/private">
+        <resource path="/countries/{country_id}">
             <param name="country_id" type="array" style="template" required="true" default=""/>
             <method name="GET" apigee:displayName="getCountry" id="getCountry">
                 <apigee:tags>
                     <apigee:tag primary="true">Country</apigee:tag>
                     <apigee:tag>getCountry</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/countries/{country_id}"/>                
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/countries/{country_id}"/>                
                 <doc apigee:url="http://developer.etsy.com/docs/resource_country#getcountry">
                 	<![CDATA[Retrieves a Country by id.]]>
                 </doc>
@@ -19,20 +20,20 @@
             </method>
         </resource>
 
-        <resource path="/private/countries">
+        <resource path="/countries">
             <method name="GET" apigee:displayName="findAllCountry" id="findAllCountry">
                 <apigee:tags>
                     <apigee:tag primary="true">Country</apigee:tag>
                     <apigee:tag>findAllCountry</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/countries"/>                
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/countries"/>                
                 <doc apigee:url="http://developer.etsy.com/docs/resource_country#findallcountry">
                 	<![CDATA[Finds all Country.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/users/{user_id}/favorites/listings">
+        <resource path="/users/{user_id}/favorites/listings">
             <param name="user_id" type="user_id_or_name" style="template" required="true" default="__SELF__"/>
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
@@ -41,14 +42,14 @@
                     <apigee:tag primary="true">FavoriteListing</apigee:tag>
                     <apigee:tag>findAllUserFavoriteListings</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/users/__SELF__/favorites/listings?limit=25&amp;offset=0"/>                
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/users/__SELF__/favorites/listings?limit=25&amp;offset=0"/>                
                 <doc apigee:url="http://developer.etsy.com/docs/resource_favoritelisting#findalluserfavoritelistings">                	
                 	<![CDATA[Finds all favorite listings for a user]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/users/{user_id}/favorites/listings/{listing_id}">
+        <resource path="/users/{user_id}/favorites/listings/{listing_id}">
             <param name="user_id" type="user_id_or_name" style="template" required="true" default="__SELF__"/>
             <param name="listing_id" type="int" style="template" required="true" default=""/>
             <method name="GET" apigee:displayName="findUserFavoriteListings" id="findUserFavoriteListings">
@@ -56,14 +57,14 @@
                     <apigee:tag primary="true">FavoriteListing</apigee:tag>
                     <apigee:tag>findUserFavoriteListings</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/users/__SELF__/favorites/listings/{listing_id}"/>                
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/users/__SELF__/favorites/listings/{listing_id}"/>                
                 <doc apigee:url="http://developer.etsy.com/docs/resource_favoritelisting#finduserfavoritelistings">                	
                 	<![CDATA[Finds a favorite listing for a user]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/users/{user_id}/favorites/listings/{listing_id}">
+        <resource path="/users/{user_id}/favorites/listings/{listing_id}">
             <param name="user_id" type="user_id_or_name" style="template" required="true" default="__SELF__"/>
             <param name="listing_id" type="int" style="template" required="true" default=""/>
             <method name="POST" apigee:displayName="createUserFavoriteListings" id="createUserFavoriteListings">
@@ -72,13 +73,13 @@
                     <apigee:tag>createUserFavoriteListings</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/users/__SELF__/favorites/listings/{listing_id}"/>
+                <apigee:example url="/users/__SELF__/favorites/listings/{listing_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_favoritelisting#createuserfavoritelistings">
                     <![CDATA[Creates a new favorite listing for a user]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/users/{user_id}/favorites/listings/{listing_id}">
+        <resource path="/users/{user_id}/favorites/listings/{listing_id}">
             <param name="user_id" type="user_id_or_name" style="template" required="true" default="__SELF__"/>
             <param name="listing_id" type="int" style="template" required="true" default=""/>
             <method name="DELETE" apigee:displayName="deleteUserFavoriteListings" id="deleteUserFavoriteListings">
@@ -87,13 +88,13 @@
                     <apigee:tag>deleteUserFavoriteListings</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/users/__SELF__/favorites/listings/{listing_id}"/>                
+                <apigee:example url="/users/__SELF__/favorites/listings/{listing_id}"/>                
                 <doc apigee:url="http://developer.etsy.com/docs/resource_favoritelisting#deleteuserfavoritelistings">                	                	                	                	                	                	                	                	                	
                 	<![CDATA[Delete a favorite listing for a user]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/users/{user_id}/favorites/users">
+        <resource path="/users/{user_id}/favorites/users">
             <param name="user_id" type="user_id_or_name" style="template" required="true" default="__SELF__"/>
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
@@ -102,14 +103,14 @@
                     <apigee:tag primary="true">FavoriteUser</apigee:tag>
                     <apigee:tag>findAllUserFavoriteUsers</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/users/__SELF__/favorites/users?limit=25&amp;offset=0"/>                
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/users/__SELF__/favorites/users?limit=25&amp;offset=0"/>                
                 <doc apigee:url="http://developer.etsy.com/docs/resource_favoriteuser#findalluserfavoriteusers">
                 	<![CDATA[Finds all favorite users for a user]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/users/{user_id}/favorites/users/{target_user_id}">
+        <resource path="/users/{user_id}/favorites/users/{target_user_id}">
             <param name="user_id" type="user_id_or_name" style="template" required="true" default="__SELF__"/>
             <param name="target_user_id" type="user_id_or_name" style="template" required="true" default=""/>
             <method name="GET" apigee:displayName="findUserFavoriteUsers" id="findUserFavoriteUsers">
@@ -117,21 +118,21 @@
                     <apigee:tag primary="true">FavoriteUser</apigee:tag>
                     <apigee:tag>findUserFavoriteUsers</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/users/__SELF__/favorites/users/{target_user_id}"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/users/__SELF__/favorites/users/{target_user_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_favoriteuser#finduserfavoriteusers">
 	                <![CDATA[Finds a favorite user for a user]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/users/{user_id}/favorites/users/{target_user_id}">
+        <resource path="/users/{user_id}/favorites/users/{target_user_id}">
             <method name="POST" apigee:displayName="createUserFavoriteUsers" id="createUserFavoriteUsers">
                 <apigee:tags>
                     <apigee:tag primary="true">FavoriteUser</apigee:tag>
                     <apigee:tag>createUserFavoriteUsers</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/users/__SELF__/favorites/users/{target_user_id}"/>
+                <apigee:example url="/users/__SELF__/favorites/users/{target_user_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_favoriteuser#createuserfavoriteusers">
 	                <![CDATA[Creates a new favorite listing for a user]]>
                 </doc>
@@ -141,7 +142,7 @@
                 </request>
             </method>
         </resource>
-        <resource path="/private/users/{user_id}/favorites/users/{target_user_id}">
+        <resource path="/users/{user_id}/favorites/users/{target_user_id}">
             <param name="user_id" type="user_id_or_name" style="template" required="true" default="__SELF__"/>
             <param name="target_user_id" type="user_id_or_name" style="template" required="true" default=""/>
             <method name="DELETE" apigee:displayName="deleteUserFavoriteUsers" id="deleteUserFavoriteUsers">
@@ -150,13 +151,13 @@
                     <apigee:tag>deleteUserFavoriteUsers</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/users/__SELF__/favorites/users/{target_user_id}"/>
+                <apigee:example url="/users/__SELF__/favorites/users/{target_user_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_favoriteuser#deleteuserfavoriteusers">
 	                <![CDATA[Delete a favorite listing for a user]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/homepages/pickers/">
+        <resource path="/homepages/pickers/">
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
             <method name="GET" apigee:displayName="findAllFeaturedListingPickerActive" id="findAllFeaturedListingPickerActive">
@@ -164,28 +165,28 @@
                     <apigee:tag primary="true">FeaturedListingPicker</apigee:tag>
                     <apigee:tag>findAllFeaturedListingPickerActive</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/homepages/pickers/?limit=25&amp;offset=0"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/homepages/pickers/?limit=25&amp;offset=0"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_featuredlistingpicker#findallfeaturedlistingpickeractive">
 	                <![CDATA[Finds all FeaturedListingPicker in scope active.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/homepages/pickers/{featured_listing_picker_id}">
+        <resource path="/homepages/pickers/{featured_listing_picker_id}">
             <param name="featured_listing_picker_id" type="array" style="template" required="true" default=""/>
             <method name="GET" apigee:displayName="getFeaturedListingPicker" id="getFeaturedListingPicker">
                 <apigee:tags>
                     <apigee:tag primary="true">FeaturedListingPicker</apigee:tag>
                     <apigee:tag>getFeaturedListingPicker</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/homepages/pickers/{featured_listing_picker_id}"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/homepages/pickers/{featured_listing_picker_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_featuredlistingpicker#getfeaturedlistingpicker">
 	                <![CDATA[Retrieves a FeaturedListingPicker by id.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/homepages/pickers/{featured_listing_picker_id}/featured">
+        <resource path="/homepages/pickers/{featured_listing_picker_id}/featured">
             <param name="featured_listing_picker_id" type="int" style="template" required="true" default=""/>
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
@@ -195,14 +196,14 @@
                     <apigee:tag primary="true">FeaturedListing</apigee:tag>
                     <apigee:tag>findAllFeaturedListingPickerFeatured</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/homepages/pickers/{featured_listing_picker_id}/featured?limit=25&amp;offset=0"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/homepages/pickers/{featured_listing_picker_id}/featured?limit=25&amp;offset=0"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_featuredlisting#findallfeaturedlistingpickerfeatured">
 	                <![CDATA[Retrieves a set of FeaturedListing objects associated to a FeaturedListingPicker.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/homepages/pickers/{featured_listing_picker_id}/listings">
+        <resource path="/homepages/pickers/{featured_listing_picker_id}/listings">
             <param name="featured_listing_picker_id" type="int" style="template" required="true" default=""/>
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
@@ -212,14 +213,14 @@
                     <apigee:tag primary="true">Listing</apigee:tag>
                     <apigee:tag>findAllFeaturedListingPickerListings</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/homepages/pickers/{featured_listing_picker_id}/listings?limit=25&amp;offset=0"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/homepages/pickers/{featured_listing_picker_id}/listings?limit=25&amp;offset=0"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_listing#findallfeaturedlistingpickerlistings">
 	                <![CDATA[Retrieves a set of Listing objects associated to a FeaturedListingPicker.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/homepages/pickers/{featured_listing_picker_id}/listings/active">
+        <resource path="/homepages/pickers/{featured_listing_picker_id}/listings/active">
             <param name="featured_listing_picker_id" type="int" style="template" required="true" default=""/>
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
@@ -229,14 +230,14 @@
                     <apigee:tag primary="true">Listing</apigee:tag>
                     <apigee:tag>findAllFeaturedListingPickerListingsActive</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/homepages/pickers/{featured_listing_picker_id}/listings/active?limit=25&amp;offset=0"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/homepages/pickers/{featured_listing_picker_id}/listings/active?limit=25&amp;offset=0"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_listing#findallfeaturedlistingpickerlistingsactive">
 	                <![CDATA[Retrieves a set of Listing objects associated to a FeaturedListingPicker in scope active.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/homepages/listings/">
+        <resource path="/homepages/listings/">
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
             <method name="GET" apigee:displayName="findAllFeaturedListing" id="findAllFeaturedListing">
@@ -244,14 +245,14 @@
                     <apigee:tag primary="true">FeaturedListing</apigee:tag>
                     <apigee:tag>findAllFeaturedListing</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/homepages/listings/?limit=25&amp;offset=0"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/homepages/listings/?limit=25&amp;offset=0"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_featuredlisting#findallfeaturedlisting">
 	                <![CDATA[Finds all FeaturedListings regardless of Listing state]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/homepages/listings/active">
+        <resource path="/homepages/listings/active">
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
             <method name="GET" apigee:displayName="findAllFeaturedListingActive" id="findAllFeaturedListingActive">
@@ -259,56 +260,56 @@
                     <apigee:tag primary="true">FeaturedListing</apigee:tag>
                     <apigee:tag>findAllFeaturedListingActive</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/homepages/listings/active?limit=25&amp;offset=0"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/homepages/listings/active?limit=25&amp;offset=0"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_featuredlisting#findallfeaturedlistingactive">
 	                <![CDATA[Finds all FeaturedListings that point to active Listings]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/homepages/listings/{featured_listing_id}">
+        <resource path="/homepages/listings/{featured_listing_id}">
             <param name="featured_listing_id" type="array" style="template" required="true" default=""/>
             <method name="GET" apigee:displayName="getFeaturedListing" id="getFeaturedListing">
                 <apigee:tags>
                     <apigee:tag primary="true">FeaturedListing</apigee:tag>
                     <apigee:tag>getFeaturedListing</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/homepages/listings/{featured_listing_id}"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/homepages/listings/{featured_listing_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_featuredlisting#getfeaturedlisting">
 	                <![CDATA[Retrieves a FeaturedListing by id.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/homepages/listings/{featured_listing_id}/picker">
+        <resource path="/homepages/listings/{featured_listing_id}/picker">
             <param name="featured_listing_id" type="int" style="template" required="true" default=""/>
             <method name="GET" apigee:displayName="getFeaturedListingAssociatedPicker" id="getFeaturedListingAssociatedPicker">
                 <apigee:tags>
                     <apigee:tag primary="true">FeaturedListingPicker</apigee:tag>
                     <apigee:tag>getFeaturedListingAssociatedPicker</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/homepages/listings/{featured_listing_id}/picker"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/homepages/listings/{featured_listing_id}/picker"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_featuredlistingpicker#getfeaturedlistingassociatedpicker">
 	                <![CDATA[Retrieves a set of FeaturedListingPicker objects associated to a FeaturedListing.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/homepages/listings/{featured_listing_id}/listing">
+        <resource path="/homepages/listings/{featured_listing_id}/listing">
             <param name="featured_listing_id" type="int" style="template" required="true" default=""/>
             <method name="GET" apigee:displayName="getFeaturedListingListing" id="getFeaturedListingListing">
                 <apigee:tags>
                     <apigee:tag primary="true">Listing</apigee:tag>
                     <apigee:tag>getFeaturedListingListing</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/homepages/listings/{featured_listing_id}/listing"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/homepages/listings/{featured_listing_id}/listing"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_listing#getfeaturedlistinglisting">
 	                <![CDATA[Retrieves a set of Listing objects associated to a FeaturedListing.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/listings/{listing_id}/images/{listing_image_id}">
+        <resource path="/listings/{listing_id}/images/{listing_image_id}">
             <param name="listing_image_id" type="array" style="template" required="true" default=""/>
             <param name="listing_id" type="int" style="template" required="false" default=""/>
             <method name="GET" apigee:displayName="getListingImage" id="getListingImage">
@@ -316,14 +317,14 @@
                     <apigee:tag primary="true">ListingImage</apigee:tag>
                     <apigee:tag>getListingImage</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/listings/{listing_id}/images/{listing_image_id}"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/listings/{listing_id}/images/{listing_image_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_listingimage#getlistingimage">
 	                <![CDATA[Retrieves a ListingImage by id.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/listings/{listing_id}/images">
+        <resource path="/listings/{listing_id}/images">
             <param name="listing_id" type="int" style="header" required="true" default=""/>
             <method name="POST" apigee:displayName="uploadListingImage" id="uploadListingImage">
                 <apigee:tags>
@@ -331,7 +332,7 @@
                     <apigee:tag>uploadListingImage</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/listings/{listing_id}/images"/>
+                <apigee:example url="/listings/{listing_id}/images"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_listingimage#uploadlistingimage">
 	                <![CDATA[Upload a new listing image]]>
                 </doc>
@@ -340,7 +341,7 @@
                 </request>
             </method>
         </resource>
-        <resource path="/private/listings/{listing_id}/images/{listing_image_id}">
+        <resource path="/listings/{listing_id}/images/{listing_image_id}">
             <param name="listing_id" type="int" style="template" required="true" default=""/>
             <param name="listing_image_id" type="int" style="template" required="true" default=""/>
             <method name="DELETE" apigee:displayName="deleteListingImage" id="deleteListingImage">
@@ -349,41 +350,41 @@
                     <apigee:tag>deleteListingImage</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/listings/{listing_id}/images/{listing_image_id}"/>
+                <apigee:example url="/listings/{listing_id}/images/{listing_image_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_listingimage#deletelistingimage">
 	                <![CDATA[Deletes a listing image]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/listings/{listing_id}">
+        <resource path="/listings/{listing_id}">
             <param name="listing_id" type="array" style="template" required="true" default=""/>
             <method name="GET" apigee:displayName="getListing" id="getListing">
                 <apigee:tags>
                     <apigee:tag primary="true">Listing</apigee:tag>
                     <apigee:tag>getListing</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/listings/{listing_id}"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/listings/{listing_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_listing#getlisting">
 	                <![CDATA[Retrieves a Listing by id.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/listings/{listing_id}/images">
+        <resource path="/listings/{listing_id}/images">
             <param name="listing_id" type="int" style="template" required="true" default=""/>
             <method name="GET" apigee:displayName="findAllListingImages" id="findAllListingImages">
                 <apigee:tags>
                     <apigee:tag primary="true">ListingImage</apigee:tag>
                     <apigee:tag>findAllListingImages</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/listings/{listing_id}/images"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/listings/{listing_id}/images"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_listingimage#findalllistingimages">
 	                <![CDATA[Retrieves a set of ListingImage objects associated to a Listing.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/listings/{listing_id}/favored-by">
+        <resource path="/listings/{listing_id}/favored-by">
             <param name="listing_id" type="int" style="template" required="true" default=""/>
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
@@ -392,14 +393,14 @@
                     <apigee:tag primary="true">FavoriteListing</apigee:tag>
                     <apigee:tag>findAllListingFavoredBy</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/listings/{listing_id}/favored-by?limit=25&amp;offset=0"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/listings/{listing_id}/favored-by?limit=25&amp;offset=0"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_favoritelisting#findalllistingfavoredby">
 	                <![CDATA[Retrieves a set of FavoriteListing objects associated to a Listing.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/listings/{listing_id}/shipping/info">
+        <resource path="/listings/{listing_id}/shipping/info">
             <param name="listing_id" type="int" style="template" required="true" default=""/>
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
@@ -408,28 +409,28 @@
                     <apigee:tag primary="true">ShippingInfo</apigee:tag>
                     <apigee:tag>findAllListingShippingInfo</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/listings/{listing_id}/shipping/info?limit=25&amp;offset=0"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/listings/{listing_id}/shipping/info?limit=25&amp;offset=0"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_shippinginfo#findalllistingshippinginfo">
 	                <![CDATA[Retrieves a set of ShippingInfo objects associated to a Listing.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/listings/{listing_id}/payments">
+        <resource path="/listings/{listing_id}/payments">
             <param name="listing_id" type="int" style="template" required="true" default=""/>
             <method name="GET" apigee:displayName="getListingPaymentInfo" id="getListingPaymentInfo">
                 <apigee:tags>
                     <apigee:tag primary="true">ListingPayment</apigee:tag>
                     <apigee:tag>getListingPaymentInfo</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/listings/{listing_id}/payments"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/listings/{listing_id}/payments"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_listingpayment#getlistingpaymentinfo">
 	                <![CDATA[Retrieves a set of ListingPayment objects associated to a Listing.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/listings/active">
+        <resource path="/listings/active">
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
             <param name="keywords" type="string" style="query" required="false" default=""/>
@@ -454,14 +455,14 @@
                     <apigee:tag primary="true">Listing</apigee:tag>
                     <apigee:tag>findAllListingActive</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/listings/active?limit=25&amp;offset=0&amp;keywords={keywords}&amp;sort_on=created&amp;sort_order=down&amp;min_price={min_price}&amp;max_price={max_price}&amp;color={color}&amp;color_accuracy=0&amp;tags={tags}&amp;materials={materials}&amp;category={category}"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/listings/active?limit=25&amp;offset=0&amp;keywords={keywords}&amp;sort_on=created&amp;sort_order=down&amp;min_price={min_price}&amp;max_price={max_price}&amp;color={color}&amp;color_accuracy=0&amp;tags={tags}&amp;materials={materials}&amp;category={category}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_listing#findalllistingactive">
 	                <![CDATA[Finds all active Listing]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/shops/{shop_id}/listings/active">
+        <resource path="/shops/{shop_id}/listings/active">
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
             <param name="shop_id" type="shop_id_or_name" style="template" required="true" default=""/>
@@ -487,21 +488,21 @@
                     <apigee:tag primary="true">Listing</apigee:tag>
                     <apigee:tag>findAllShopListingsActive</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/shops/{shop_id}/listings/active?limit=25&amp;offset=0&amp;keywords={keywords}&amp;sort_on=created&amp;sort_order=down&amp;min_price={min_price}&amp;max_price={max_price}&amp;color={color}&amp;color_accuracy=0&amp;tags={tags}&amp;materials={materials}&amp;category={category}"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/shops/{shop_id}/listings/active?limit=25&amp;offset=0&amp;keywords={keywords}&amp;sort_on=created&amp;sort_order=down&amp;min_price={min_price}&amp;max_price={max_price}&amp;color={color}&amp;color_accuracy=0&amp;tags={tags}&amp;materials={materials}&amp;category={category}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_listing#findallshoplistingsactive">
 	                <![CDATA[Finds all active Listings associated with a Shop]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/listings">
+        <resource path="/listings">
             <method name="POST" apigee:displayName="createListing" id="createListing">
                 <apigee:tags>
                     <apigee:tag primary="true">Listing</apigee:tag>
                     <apigee:tag>createListing</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/listings"/>
+                <apigee:example url="/listings"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_listing#createlisting">
 	                <![CDATA[Creates a new Listing]]>
                 </doc>
@@ -517,7 +518,7 @@
                 </request>
             </method>
         </resource>
-        <resource path="/private/listings/{listing_id}">
+        <resource path="/listings/{listing_id}">
             <param name="listing_id" type="int" style="template" required="true" default=""/>
             <method name="PUT" apigee:displayName="updateListing" id="updateListing">
                 <apigee:tags>
@@ -525,7 +526,7 @@
                     <apigee:tag>updateListing</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/listings/{listing_id}"/>
+                <apigee:example url="/listings/{listing_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_listing#updatelisting">
 	                <![CDATA[Updates a Listing]]>
                 </doc>
@@ -546,7 +547,7 @@
                 </request>
             </method>
         </resource>
-        <resource path="/private/listings/{listing_id}">
+        <resource path="/listings/{listing_id}">
             <param name="listing_id" type="int" style="template" required="true" default=""/>
             <method name="DELETE" apigee:displayName="deleteListing" id="deleteListing">
                 <apigee:tags>
@@ -554,13 +555,13 @@
                     <apigee:tag>deleteListing</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/listings/{listing_id}"/>
+                <apigee:example url="/listings/{listing_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_listing#deletelisting">
 	                <![CDATA[Deletes a Listing]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/orders/{order_id}">
+        <resource path="/orders/{order_id}">
             <param name="order_id" type="array" style="template" required="true" default=""/>
             <method name="GET" apigee:displayName="getOrder" id="getOrder">
                 <apigee:tags>
@@ -568,13 +569,13 @@
                     <apigee:tag>getOrder</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/orders/{order_id}"/>
+                <apigee:example url="/orders/{order_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_order#getorder">
 	                <![CDATA[Retrieves a Order by id.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/orders/{order_id}/receipts">
+        <resource path="/orders/{order_id}/receipts">
             <param name="order_id" type="int" style="template" required="true" default=""/>
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
@@ -584,13 +585,13 @@
                     <apigee:tag>findAllOrderReceipts</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/orders/{order_id}/receipts?limit=25&amp;offset=0"/>
+                <apigee:example url="/orders/{order_id}/receipts?limit=25&amp;offset=0"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_receipt#findallorderreceipts">
 	                <![CDATA[Retrieves a set of Receipt objects associated to a Order.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/receipts/{receipt_id}">
+        <resource path="/receipts/{receipt_id}">
             <param name="receipt_id" type="array" style="template" required="true" default=""/>
             <method name="GET" apigee:displayName="getReceipt" id="getReceipt">
                 <apigee:tags>
@@ -598,13 +599,13 @@
                     <apigee:tag>getReceipt</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/receipts/{receipt_id}"/>
+                <apigee:example url="/receipts/{receipt_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_receipt#getreceipt">
 	                <![CDATA[Retrieves a Receipt by id.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/receipts/{receipt_id}/transactions">
+        <resource path="/receipts/{receipt_id}/transactions">
             <param name="receipt_id" type="int" style="template" required="true" default=""/>
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
@@ -614,20 +615,20 @@
                     <apigee:tag>findAllReceiptTransactions</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/receipts/{receipt_id}/transactions?limit=25&amp;offset=0"/>
+                <apigee:example url="/receipts/{receipt_id}/transactions?limit=25&amp;offset=0"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_transaction#findallreceipttransactions">
 	                <![CDATA[Retrieves a set of Transaction objects associated to a Receipt.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/receipts/{receipt_id}">
+        <resource path="/receipts/{receipt_id}">
             <method name="PUT" apigee:displayName="updateReceipt" id="updateReceipt">
                 <apigee:tags>
                     <apigee:tag primary="true">Receipt</apigee:tag>
                     <apigee:tag>updateReceipt</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/receipts/{receipt_id}"/>
+                <apigee:example url="/receipts/{receipt_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_receipt#updatereceipt">
 	                <![CDATA[Updates a Receipt]]>
                 </doc>
@@ -640,7 +641,7 @@
                 </request>
             </method>
         </resource>
-        <resource path="/private/users/{user_id}/recommended_listings">
+        <resource path="/users/{user_id}/recommended_listings">
             <param name="user_id" type="user_id_or_name" style="template" required="true" default="__SELF__"/>
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="excluded_listing_ids" type="array" style="query" required="false" default=""/>
@@ -650,13 +651,13 @@
                     <apigee:tag>getRecommendedListings</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/users/__SELF__/recommended_listings?limit=25&amp;excluded_listing_ids={excluded_listing_ids}"/>
+                <apigee:example url="/users/__SELF__/recommended_listings?limit=25&amp;excluded_listing_ids={excluded_listing_ids}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_listing#getrecommendedlistings">
 	                <![CDATA[Get recommended listings for an authenticated member. The number of listings returned may not match the specified limit if there is no activity from recommended shops.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/users/{user_id}/recommended_listings/rejects/{listing_ids}">
+        <resource path="/users/{user_id}/recommended_listings/rejects/{listing_ids}">
             <param name="user_id" type="user_id_or_name" style="header" required="true" default="__SELF__"/>
             <param name="listing_ids" type="array" style="header" required="true" default=""/>
             <method name="POST" apigee:displayName="registerRecommendedListingRejects" id="registerRecommendedListingRejects">
@@ -665,13 +666,13 @@
                     <apigee:tag>registerRecommendedListingRejects</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/users/__SELF__/recommended_listings/rejects/{listing_ids}"/>
+                <apigee:example url="/users/__SELF__/recommended_listings/rejects/{listing_ids}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_listing#registerrecommendedlistingrejects">
 	                <![CDATA[Registers rejections of recommended listings. Affects future recommended listings.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/users/{user_id}/recommended_listings/views/{listing_ids}">
+        <resource path="/users/{user_id}/recommended_listings/views/{listing_ids}">
             <param name="user_id" type="user_id_or_name" style="header" required="true" default="__SELF__"/>
             <param name="listing_ids" type="array" style="header" required="true" default=""/>
             <method name="POST" apigee:displayName="registerRecommendedListingViews" id="registerRecommendedListingViews">
@@ -680,54 +681,54 @@
                     <apigee:tag>registerRecommendedListingViews</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/users/__SELF__/recommended_listings/views/{listing_ids}"/>
+                <apigee:example url="/users/__SELF__/recommended_listings/views/{listing_ids}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_listing#registerrecommendedlistingviews">
 	                <![CDATA[Register viewings of recommended listings. Affects future recommended listings.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/regions/{region_id}">
+        <resource path="/regions/{region_id}">
             <param name="region_id" type="array" style="template" required="true" default=""/>
             <method name="GET" apigee:displayName="getRegion" id="getRegion">
                 <apigee:tags>
                     <apigee:tag primary="true">Region</apigee:tag>
                     <apigee:tag>getRegion</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/regions/{region_id}"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/regions/{region_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_region#getregion">
 	                <![CDATA[Retrieves a Region by id.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/regions">
+        <resource path="/regions">
             <method name="GET" apigee:displayName="findAllRegion" id="findAllRegion">
                 <apigee:tags>
                     <apigee:tag primary="true">Region</apigee:tag>
                     <apigee:tag>findAllRegion</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/regions"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/regions"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_region#findallregion">
 	                <![CDATA[Finds all Region.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/shipping/info/{shipping_info_id}">
+        <resource path="/shipping/info/{shipping_info_id}">
             <param name="shipping_info_id" type="array" style="template" required="true" default=""/>
             <method name="GET" apigee:displayName="getShippingInfo" id="getShippingInfo">
                 <apigee:tags>
                     <apigee:tag primary="true">ShippingInfo</apigee:tag>
                     <apigee:tag>getShippingInfo</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/shipping/info/{shipping_info_id}"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/shipping/info/{shipping_info_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_shippinginfo#getshippinginfo">
 	                <![CDATA[Retrieves a ShippingInfo by id.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/listings/{listing_id}/shipping/info">
+        <resource path="/listings/{listing_id}/shipping/info">
             <param name="listing_id" type="int" style="template" required="true" default=""/>
             <method name="POST" apigee:displayName="createShippingInfo" id="createShippingInfo">
                 <apigee:tags>
@@ -735,7 +736,7 @@
                     <apigee:tag>createShippingInfo</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/listings/{listing_id}/shipping/info"/>
+                <apigee:example url="/listings/{listing_id}/shipping/info"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_shippinginfo#createshippinginfo">
 	                <![CDATA[Creates a new ShippingInfo.]]>
                 </doc>
@@ -748,7 +749,7 @@
                 </request>
             </method>
         </resource>
-        <resource path="/private/shipping/info/{shipping_info_id}">
+        <resource path="/shipping/info/{shipping_info_id}">
             <param name="shipping_info_id" type="int" style="template" required="true" default=""/>
             <method name="PUT" apigee:displayName="updateShippingInfo" id="updateShippingInfo">
                 <apigee:tags>
@@ -756,7 +757,7 @@
                     <apigee:tag>updateShippingInfo</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/shipping/info/{shipping_info_id}"/>
+                <apigee:example url="/shipping/info/{shipping_info_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_shippinginfo#updateshippinginfo">
 	                <![CDATA[Updates a ShippingInfo with the given id.]]>
                 </doc>
@@ -770,7 +771,7 @@
                 </request>
             </method>
         </resource>
-        <resource path="/private/shipping/info/{shipping_info_id}">
+        <resource path="/shipping/info/{shipping_info_id}">
             <param name="shipping_info_id" type="int" style="template" required="true" default=""/>
             <method name="DELETE" apigee:displayName="deleteShippingInfo" id="deleteShippingInfo">
                 <apigee:tags>
@@ -778,34 +779,34 @@
                     <apigee:tag>deleteShippingInfo</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/shipping/info/{shipping_info_id}"/>
+                <apigee:example url="/shipping/info/{shipping_info_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_shippinginfo#deleteshippinginfo">
 	                <![CDATA[Deletes the ShippingInfo with the given id.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/shipping/templates/entries/{shipping_template_entry_id}">
+        <resource path="/shipping/templates/entries/{shipping_template_entry_id}">
             <param name="shipping_template_entry_id" type="array" style="template" required="true" default=""/>
             <method name="GET" apigee:displayName="getShippingTemplateEntry" id="getShippingTemplateEntry">
                 <apigee:tags>
                     <apigee:tag primary="true">ShippingTemplateEntry</apigee:tag>
                     <apigee:tag>getShippingTemplateEntry</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/shipping/templates/entries/{shipping_template_entry_id}"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/shipping/templates/entries/{shipping_template_entry_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_shippingtemplateentry#getshippingtemplateentry">
 	                <![CDATA[Retrieves a ShippingTemplateEntry by id.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/shipping/templates/entries">
+        <resource path="/shipping/templates/entries">
             <method name="POST" apigee:displayName="createShippingTemplateEntry" id="createShippingTemplateEntry">
                 <apigee:tags>
                     <apigee:tag primary="true">ShippingTemplateEntry</apigee:tag>
                     <apigee:tag>createShippingTemplateEntry</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/shipping/templates/entries"/>
+                <apigee:example url="/shipping/templates/entries"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_shippingtemplateentry#createshippingtemplateentry">
 	                <![CDATA[Creates a new ShippingTemplateEntry]]>
                 </doc>
@@ -818,7 +819,7 @@
                 </request>
             </method>
         </resource>
-        <resource path="/private/shipping/templates/entries/{shipping_template_entry_id}">
+        <resource path="/shipping/templates/entries/{shipping_template_entry_id}">
             <param name="shipping_template_entry_id" type="int" style="template" required="true" default=""/>
             <method name="PUT" apigee:displayName="updateShippingTemplateEntry" id="updateShippingTemplateEntry">
                 <apigee:tags>
@@ -826,7 +827,7 @@
                     <apigee:tag>updateShippingTemplateEntry</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/shipping/templates/entries/{shipping_template_entry_id}"/>
+                <apigee:example url="/shipping/templates/entries/{shipping_template_entry_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_shippingtemplateentry#updateshippingtemplateentry">
 	                <![CDATA[Updates a ShippingTemplateEntry]]>
                 </doc>
@@ -837,7 +838,7 @@
                 </request>
             </method>
         </resource>
-        <resource path="/private/shipping/templates/entries/{shipping_template_entry_id}">
+        <resource path="/shipping/templates/entries/{shipping_template_entry_id}">
             <param name="shipping_template_entry_id" type="int" style="template" required="true" default=""/>
             <method name="DELETE" apigee:displayName="deleteShippingTemplateEntry" id="deleteShippingTemplateEntry">
                 <apigee:tags>
@@ -845,27 +846,27 @@
                     <apigee:tag>deleteShippingTemplateEntry</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/shipping/templates/entries/{shipping_template_entry_id}"/>
+                <apigee:example url="/shipping/templates/entries/{shipping_template_entry_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_shippingtemplateentry#deleteshippingtemplateentry">
 	                <![CDATA[Deletes a ShippingTemplateEntry]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/shipping/templates/{shipping_template_id}">
+        <resource path="/shipping/templates/{shipping_template_id}">
             <param name="shipping_template_id" type="array" style="template" required="true" default=""/>
             <method name="GET" apigee:displayName="getShippingTemplate" id="getShippingTemplate">
                 <apigee:tags>
                     <apigee:tag primary="true">ShippingTemplate</apigee:tag>
                     <apigee:tag>getShippingTemplate</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/shipping/templates/{shipping_template_id}"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/shipping/templates/{shipping_template_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_shippingtemplate#getshippingtemplate">
 	                <![CDATA[Retrieves a ShippingTemplate by id.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/shipping/templates/{shipping_template_id}/entries">
+        <resource path="/shipping/templates/{shipping_template_id}/entries">
             <param name="shipping_template_id" type="int" style="template" required="true" default=""/>
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
@@ -874,14 +875,14 @@
                     <apigee:tag primary="true">ShippingTemplateEntry</apigee:tag>
                     <apigee:tag>findAllShippingTemplateEntries</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/shipping/templates/{shipping_template_id}/entries?limit=25&amp;offset=0"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/shipping/templates/{shipping_template_id}/entries?limit=25&amp;offset=0"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_shippingtemplateentry#findallshippingtemplateentries">
 	                <![CDATA[Retrieves a set of ShippingTemplateEntry objects associated to a ShippingTemplate.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/shipping/templates/{shipping_template_id}">
+        <resource path="/shipping/templates/{shipping_template_id}">
             <param name="shipping_template_id" type="int" style="template" required="true" default=""/>
             <method name="DELETE" apigee:displayName="deleteShippingTemplate" id="deleteShippingTemplate">
                 <apigee:tags>
@@ -889,20 +890,20 @@
                     <apigee:tag>deleteShippingTemplate</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/shipping/templates/{shipping_template_id}"/>
+                <apigee:example url="/shipping/templates/{shipping_template_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_shippingtemplate#deleteshippingtemplate">
 	                <![CDATA[Deletes the ShippingTemplate with the given id.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/shipping/templates">
+        <resource path="/shipping/templates">
             <method name="POST" apigee:displayName="createShippingTemplate" id="createShippingTemplate">
                 <apigee:tags>
                     <apigee:tag primary="true">ShippingTemplate</apigee:tag>
                     <apigee:tag>createShippingTemplate</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/shipping/templates"/>
+                <apigee:example url="/shipping/templates"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_shippingtemplate#createshippingtemplate">
 	                <![CDATA[Creates a new ShippingTemplate]]>
                 </doc>
@@ -916,7 +917,7 @@
                 </request>
             </method>
         </resource>
-        <resource path="/private/shipping/templates/{shipping_template_id}">
+        <resource path="/shipping/templates/{shipping_template_id}">
             <param name="shipping_template_id" type="int" style="template" required="true" default=""/>
             <method name="PUT" apigee:displayName="updateShippingTemplate" id="updateShippingTemplate">
                 <apigee:tags>
@@ -924,7 +925,7 @@
                     <apigee:tag>updateShippingTemplate</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/shipping/templates/{shipping_template_id}"/>
+                <apigee:example url="/shipping/templates/{shipping_template_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_shippingtemplate#updateshippingtemplate">
 	                <![CDATA[Updates a ShippingTemplate]]>
                 </doc>
@@ -934,21 +935,21 @@
                 </request>
             </method>
         </resource>
-        <resource path="/private/shops/{shop_id}">
+        <resource path="/shops/{shop_id}">
             <param name="shop_id" type="array" style="template" required="true" default=""/>
             <method name="GET" apigee:displayName="getShop" id="getShop">
                 <apigee:tags>
                     <apigee:tag primary="true">Shop</apigee:tag>
                     <apigee:tag>getShop</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/shops/{shop_id}"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/shops/{shop_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_shop#getshop">
 	                <![CDATA[Retrieves a Shop by id.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/shops/{shop_id}/receipts">
+        <resource path="/shops/{shop_id}/receipts">
             <param name="shop_id" type="shop_id_or_name" style="template" required="true" default=""/>
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
@@ -958,13 +959,13 @@
                     <apigee:tag>findAllShopReceipts</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/shops/{shop_id}/receipts?limit=25&amp;offset=0"/>
+                <apigee:example url="/shops/{shop_id}/receipts?limit=25&amp;offset=0"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_receipt#findallshopreceipts">
 	                <![CDATA[Retrieves a set of Receipt objects associated to a Shop.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/shops/{shop_id}/transactions">
+        <resource path="/shops/{shop_id}/transactions">
             <param name="shop_id" type="shop_id_or_name" style="template" required="true" default=""/>
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
@@ -974,27 +975,27 @@
                     <apigee:tag>findAllShopTransactions</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/shops/{shop_id}/transactions?limit=25&amp;offset=0"/>
+                <apigee:example url="/shops/{shop_id}/transactions?limit=25&amp;offset=0"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_transaction#findallshoptransactions">
 	                <![CDATA[Retrieves a set of Transaction objects associated to a Shop.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/shops/{shop_id}/sections">
+        <resource path="/shops/{shop_id}/sections">
             <param name="shop_id" type="shop_id_or_name" style="template" required="true" default=""/>
             <method name="GET" apigee:displayName="findAllShopSections" id="findAllShopSections">
                 <apigee:tags>
                     <apigee:tag primary="true">ShopSection</apigee:tag>
                     <apigee:tag>findAllShopSections</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/shops/{shop_id}/sections"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/shops/{shop_id}/sections"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_shopsection#findallshopsections">
 	                <![CDATA[Retrieves a set of ShopSection objects associated to a Shop.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/shops">
+        <resource path="/shops">
             <param name="shop_name" type="string" style="query" required="false" default=""/>
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
@@ -1003,14 +1004,14 @@
                     <apigee:tag primary="true">Shop</apigee:tag>
                     <apigee:tag>findAllShops</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/shops?shop_name={shop_name}&amp;limit=25&amp;offset=0"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/shops?shop_name={shop_name}&amp;limit=25&amp;offset=0"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_shop#findallshops">
 	                <![CDATA[Finds all Shops. If there is a keywords parameter, finds shops with shop_name starting with keywords.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/shops/{shop_id}/listings/featured">
+        <resource path="/shops/{shop_id}/listings/featured">
             <param name="shop_id" type="shop_id_or_name" style="template" required="true" default=""/>
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
@@ -1019,14 +1020,14 @@
                     <apigee:tag primary="true">Listing</apigee:tag>
                     <apigee:tag>findAllShopListingsFeatured</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/shops/{shop_id}/listings/featured?limit=25&amp;offset=0"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/shops/{shop_id}/listings/featured?limit=25&amp;offset=0"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_listing#findallshoplistingsfeatured">
 	                <![CDATA[Retrieves Listings associated to a Shop that are featured]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/shops/{shop_id}/listings/inactive">
+        <resource path="/shops/{shop_id}/listings/inactive">
             <param name="shop_id" type="shop_id_or_name" style="template" required="true" default=""/>
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
@@ -1036,13 +1037,13 @@
                     <apigee:tag>findAllShopListingsInactive</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/shops/{shop_id}/listings/inactive?limit=25&amp;offset=0"/>
+                <apigee:example url="/shops/{shop_id}/listings/inactive?limit=25&amp;offset=0"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_listing#findallshoplistingsinactive">
 	                <![CDATA[Retrieves Listings associated to a Shop that are inactive]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/shops/{shop_id}/listings/expired">
+        <resource path="/shops/{shop_id}/listings/expired">
             <param name="shop_id" type="shop_id_or_name" style="template" required="true" default=""/>
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
@@ -1052,13 +1053,13 @@
                     <apigee:tag>findAllShopListingsExpired</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/shops/{shop_id}/listings/expired?limit=25&amp;offset=0"/>
+                <apigee:example url="/shops/{shop_id}/listings/expired?limit=25&amp;offset=0"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_listing#findallshoplistingsexpired">
 	                <![CDATA[Retrieves Listings associated to a Shop that are expired]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/shops/{shop_id}/listings/inactive/{listing_id}">
+        <resource path="/shops/{shop_id}/listings/inactive/{listing_id}">
             <param name="shop_id" type="shop_id_or_name" style="template" required="true" default=""/>
             <param name="listing_id" type="int" style="template" required="true" default=""/>
             <method name="GET" apigee:displayName="getShopListingInactive" id="getShopListingInactive">
@@ -1067,13 +1068,13 @@
                     <apigee:tag>getShopListingInactive</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/shops/{shop_id}/listings/inactive/{listing_id}"/>
+                <apigee:example url="/shops/{shop_id}/listings/inactive/{listing_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_listing#getshoplistinginactive">
 	                <![CDATA[Retrieves a Listing associated to a Shop that is inactive]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/shops/{shop_id}/listings/expired/{listing_id}">
+        <resource path="/shops/{shop_id}/listings/expired/{listing_id}">
             <param name="shop_id" type="shop_id_or_name" style="template" required="true" default=""/>
             <param name="listing_id" type="int" style="template" required="true" default=""/>
             <method name="GET" apigee:displayName="getShopListingExpired" id="getShopListingExpired">
@@ -1082,13 +1083,13 @@
                     <apigee:tag>getShopListingExpired</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/shops/{shop_id}/listings/expired/{listing_id}"/>
+                <apigee:example url="/shops/{shop_id}/listings/expired/{listing_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_listing#getshoplistingexpired">
 	                <![CDATA[Retrieves a Listing associated to a Shop that is inactive]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/shops/{shop_id}/appearance/banner">
+        <resource path="/shops/{shop_id}/appearance/banner">
             <param name="shop_id" type="shop_id_or_name" style="template" required="true" default=""/>
             <method name="POST" apigee:displayName="uploadShopBanner" id="uploadShopBanner">
                 <apigee:tags>
@@ -1096,7 +1097,7 @@
                     <apigee:tag>uploadShopBanner</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/shops/{shop_id}/appearance/banner"/>
+                <apigee:example url="/shops/{shop_id}/appearance/banner"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_shopbanner#uploadshopbanner">
 	                <![CDATA[Upload a new shop banner image]]>
                 </doc>
@@ -1105,7 +1106,7 @@
                 </request>
             </method>
         </resource>
-        <resource path="/private/shops/{shop_id}/appearance/banner/{shop_banner_id}">
+        <resource path="/shops/{shop_id}/appearance/banner/{shop_banner_id}">
             <param name="shop_id" type="shop_id_or_name" style="template" required="true" default=""/>
             <param name="shop_banner_id" type="int" style="template" required="true" default=""/>
             <method name="DELETE" apigee:displayName="deleteShopBanner" id="deleteShopBanner">
@@ -1114,13 +1115,13 @@
                     <apigee:tag>deleteShopBanner</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/shops/{shop_id}/appearance/banner/{shop_banner_id}"/>
+                <apigee:example url="/shops/{shop_id}/appearance/banner/{shop_banner_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_shopbanner#deleteshopbanner">
 	                <![CDATA[Deletes a shop banner image]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/shops/{shop_id}">
+        <resource path="/shops/{shop_id}">
             <param name="shop_id" type="int" style="template" required="true" default=""/>
             <method name="PUT" apigee:displayName="updateShop" id="updateShop">
                 <apigee:tags>
@@ -1128,7 +1129,7 @@
                     <apigee:tag>updateShop</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/shops/{shop_id}"/>
+                <apigee:example url="/shops/{shop_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_shop#updateshop">
 	                <![CDATA[Updates a Shop]]>
                 </doc>
@@ -1146,28 +1147,28 @@
                 </request>
             </method>
         </resource>
-        <resource path="/private/sections/{shop_section_id}">
+        <resource path="/sections/{shop_section_id}">
             <param name="shop_section_id" type="array" style="template" required="true" default=""/>
             <method name="GET" apigee:displayName="getShopSection" id="getShopSection">
                 <apigee:tags>
                     <apigee:tag primary="true">ShopSection</apigee:tag>
                     <apigee:tag>getShopSection</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/sections/{shop_section_id}"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/sections/{shop_section_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_shopsection#getshopsection">
 	                <![CDATA[Retrieves a ShopSection by id.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/sections">
+        <resource path="/sections">
             <method name="POST" apigee:displayName="createShopSection" id="createShopSection">
                 <apigee:tags>
                     <apigee:tag primary="true">ShopSection</apigee:tag>
                     <apigee:tag>createShopSection</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/sections"/>
+                <apigee:example url="/sections"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_shopsection#createshopsection">
 	                <![CDATA[Creates a new ShopSection.]]>
                 </doc>
@@ -1177,7 +1178,7 @@
                 </request>
             </method>
         </resource>
-        <resource path="/private/sections/{shop_section_id}">
+        <resource path="/sections/{shop_section_id}">
             <param name="shop_section_id" type="int" style="template" required="true" default=""/>
             <method name="PUT" apigee:displayName="updateShopSection" id="updateShopSection">
                 <apigee:tags>
@@ -1185,7 +1186,7 @@
                     <apigee:tag>updateShopSection</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/sections/{shop_section_id}"/>
+                <apigee:example url="/sections/{shop_section_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_shopsection#updateshopsection">
 	                <![CDATA[Updates a ShopSection with the given id.]]>
                 </doc>
@@ -1196,7 +1197,7 @@
                 </request>
             </method>
         </resource>
-        <resource path="/private/sections/{shop_section_id}">
+        <resource path="/sections/{shop_section_id}">
             <param name="shop_section_id" type="int" style="template" required="true" default=""/>
             <method name="DELETE" apigee:displayName="deleteShopSection" id="deleteShopSection">
                 <apigee:tags>
@@ -1204,27 +1205,27 @@
                     <apigee:tag>deleteShopSection</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/sections/{shop_section_id}"/>
+                <apigee:example url="/sections/{shop_section_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_shopsection#deleteshopsection">
 	                <![CDATA[Deletes the ShopSection with the given id.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/categories/{tag}">
+        <resource path="/categories/{tag}">
             <param name="tag" type="string" style="template" required="true" default=""/>
             <method name="GET" apigee:displayName="getCategory" id="getCategory">
                 <apigee:tags>
                     <apigee:tag primary="true">Category</apigee:tag>
                     <apigee:tag>getCategory</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/categories/{tag}"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/categories/{tag}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_category#getcategory">
 	                <![CDATA[Retrieves a top-level Category by tag.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/categories/{tag}/{subtag}">
+        <resource path="/categories/{tag}/{subtag}">
             <param name="tag" type="string" style="template" required="true" default=""/>
             <param name="subtag" type="string" style="template" required="true" default=""/>
             <method name="GET" apigee:displayName="getSubCategory" id="getSubCategory">
@@ -1232,14 +1233,14 @@
                     <apigee:tag primary="true">Category</apigee:tag>
                     <apigee:tag>getSubCategory</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/categories/{tag}/{subtag}"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/categories/{tag}/{subtag}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_category#getsubcategory">
 	                <![CDATA[Retrieves a second-level Category by tag and subtag.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/categories/{tag}/{subtag}/{subsubtag}">
+        <resource path="/categories/{tag}/{subtag}/{subsubtag}">
             <param name="tag" type="string" style="template" required="true" default=""/>
             <param name="subtag" type="string" style="template" required="true" default=""/>
             <param name="subsubtag" type="string" style="template" required="true" default=""/>
@@ -1248,41 +1249,41 @@
                     <apigee:tag primary="true">Category</apigee:tag>
                     <apigee:tag>getSubSubCategory</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/categories/{tag}/{subtag}/{subsubtag}"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/categories/{tag}/{subtag}/{subsubtag}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_category#getsubsubcategory">
 	                <![CDATA[Retrieves a third-level Category by tag, subtag and subsubtag.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/taxonomy/categories">
+        <resource path="/taxonomy/categories">
             <method name="GET" apigee:displayName="findAllTopCategory" id="findAllTopCategory">
                 <apigee:tags>
                     <apigee:tag primary="true">Category</apigee:tag>
                     <apigee:tag>findAllTopCategory</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/taxonomy/categories"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/taxonomy/categories"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_category#findalltopcategory">
 	                <![CDATA[Retrieves all top-level Categories.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/taxonomy/categories/{tag}">
+        <resource path="/taxonomy/categories/{tag}">
             <param name="tag" type="string" style="template" required="true" default=""/>
             <method name="GET" apigee:displayName="findAllTopCategoryChildren" id="findAllTopCategoryChildren">
                 <apigee:tags>
                     <apigee:tag primary="true">Category</apigee:tag>
                     <apigee:tag>findAllTopCategoryChildren</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/taxonomy/categories/{tag}"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/taxonomy/categories/{tag}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_category#findalltopcategorychildren">
 	                <![CDATA[Retrieves children of a top-level Category by tag.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/taxonomy/categories/{tag}/{subtag}">
+        <resource path="/taxonomy/categories/{tag}/{subtag}">
             <param name="tag" type="string" style="template" required="true" default=""/>
             <param name="subtag" type="string" style="template" required="true" default=""/>
             <method name="GET" apigee:displayName="findAllSubCategoryChildren" id="findAllSubCategoryChildren">
@@ -1290,28 +1291,28 @@
                     <apigee:tag primary="true">Category</apigee:tag>
                     <apigee:tag>findAllSubCategoryChildren</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/taxonomy/categories/{tag}/{subtag}"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/taxonomy/categories/{tag}/{subtag}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_category#findallsubcategorychildren">
 	                <![CDATA[Retrieves children of a second-level Category by tag and subtag.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/taxonomy/tags">
+        <resource path="/taxonomy/tags">
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <method name="GET" apigee:displayName="findPopularTags" id="findPopularTags">
                 <apigee:tags>
                     <apigee:tag primary="true">Tag</apigee:tag>
                     <apigee:tag>findPopularTags</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/taxonomy/tags?limit=25"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/taxonomy/tags?limit=25"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_tag#findpopulartags">
 	                <![CDATA[Retrieves all related tags for the given tag set. ]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/taxonomy/tags/{tags}">
+        <resource path="/taxonomy/tags/{tags}">
             <param name="tags" type="array" style="template" required="true" default=""/>
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <method name="GET" apigee:displayName="findAllRelatedTags" id="findAllRelatedTags">
@@ -1319,14 +1320,14 @@
                     <apigee:tag primary="true">Tag</apigee:tag>
                     <apigee:tag>findAllRelatedTags</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/taxonomy/tags/{tag}?limit=25"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/taxonomy/tags/{tag}?limit=25"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_tag#findallrelatedtags">
 	                <![CDATA[Retrieves all related tags for the given tag set.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/transactions/{transaction_id}">
+        <resource path="/transactions/{transaction_id}">
             <param name="transaction_id" type="array" style="template" required="true" default=""/>
             <method name="GET" apigee:displayName="getTransaction" id="getTransaction">
                 <apigee:tags>
@@ -1334,27 +1335,27 @@
                     <apigee:tag>getTransaction</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/transactions/{transaction_id}"/>
+                <apigee:example url="/transactions/{transaction_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_transaction#gettransaction">
 	                <![CDATA[Retrieves a Transaction by id.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/treasuries/{treasury_id}">
+        <resource path="/treasuries/{treasury_id}">
             <param name="treasury_id" type="treasury_id" style="template" required="true" default=""/>
             <method name="GET" apigee:displayName="getTreasury" id="getTreasury">
                 <apigee:tags>
                     <apigee:tag primary="true">Treasury</apigee:tag>
                     <apigee:tag>getTreasury</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/treasuries/{treasury_id}"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/treasuries/{treasury_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_treasury#gettreasury">
 	                <![CDATA[Get a Treasury]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/treasuries">
+        <resource path="/treasuries">
             <param name="keywords" type="treasury_search_string" style="query" required="false" default=""/>
             <param name="sort_on" type="enum" style="query" required="false" default="hotness">
                 <option value="hotness"/>
@@ -1380,14 +1381,14 @@
                     <apigee:tag primary="true">Treasury</apigee:tag>
                     <apigee:tag>findAllTreasuries</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/treasuries?keywords={keywords}&amp;sort_on=hotness&amp;sort_order=down&amp;maturity=safe_only&amp;detail_level=low&amp;limit=25&amp;offset=0"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/treasuries?keywords={keywords}&amp;sort_on=hotness&amp;sort_order=down&amp;maturity=safe_only&amp;detail_level=low&amp;limit=25&amp;offset=0"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_treasury#findalltreasuries">
 	                <![CDATA[Search Treasuries or else List all Treasuries]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/users/{user_id}/treasuries">
+        <resource path="/users/{user_id}/treasuries">
             <param name="user_id" type="user_id_or_name" style="template" required="true" default="__SELF__"/>
             <param name="sort_on" type="enum" style="query" required="false" default="hotness">
                 <option value="hotness"/>
@@ -1413,28 +1414,28 @@
                     <apigee:tag primary="true">Treasury</apigee:tag>
                     <apigee:tag>findAllUserTreasuries</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/users/__SELF__/treasuries?sort_on=hotness&amp;sort_order=down&amp;maturity=safe_only&amp;detail_level=low&amp;limit=25&amp;offset=0"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/users/__SELF__/treasuries?sort_on=hotness&amp;sort_order=down&amp;maturity=safe_only&amp;detail_level=low&amp;limit=25&amp;offset=0"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_treasury#findallusertreasuries">
 	                <![CDATA[Get a user's Treasuries]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/users/{user_id}">
+        <resource path="/users/{user_id}">
             <param name="user_id" type="array" style="template" required="true" default="__SELF__"/>
             <method name="GET" apigee:displayName="getUser" id="getUser">
                 <apigee:tags>
                     <apigee:tag primary="true">User</apigee:tag>
                     <apigee:tag>getUser</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/users/__SELF__"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/users/__SELF__"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_user#getuser">
 	                <![CDATA[Retrieves a User by id.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/users/{user_id}/shops">
+        <resource path="/users/{user_id}/shops">
             <param name="user_id" type="user_id_or_name" style="template" required="true" default="__SELF__"/>
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
@@ -1443,14 +1444,14 @@
                     <apigee:tag primary="true">Shop</apigee:tag>
                     <apigee:tag>findAllUserShops</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/users/__SELF__/shops?limit=25&amp;offset=0"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/users/__SELF__/shops?limit=25&amp;offset=0"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_shop#findallusershops">
 	                <![CDATA[Retrieves a set of Shop objects associated to a User.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/users/{user_id}/favored-by">
+        <resource path="/users/{user_id}/favored-by">
             <param name="user_id" type="user_id_or_name" style="template" required="true" default="__SELF__"/>
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
@@ -1459,14 +1460,14 @@
                     <apigee:tag primary="true">FavoriteUser</apigee:tag>
                     <apigee:tag>findAllUserFavoredBy</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/users/__SELF__/favored-by?limit=25&amp;offset=0"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/users/__SELF__/favored-by?limit=25&amp;offset=0"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_favoriteuser#findalluserfavoredby">
 	                <![CDATA[Retrieves a set of FavoriteUser objects associated to a User.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/users/{user_id}/feedback/as-subject">
+        <resource path="/users/{user_id}/feedback/as-subject">
             <param name="user_id" type="user_id_or_name" style="template" required="true" default="__SELF__"/>
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
@@ -1475,14 +1476,14 @@
                     <apigee:tag primary="true">Feedback</apigee:tag>
                     <apigee:tag>findAllUserFeedbackAsSubject</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/users/__SELF__/feedback/as-subject?limit=25&amp;offset=0"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/users/__SELF__/feedback/as-subject?limit=25&amp;offset=0"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_feedback#findalluserfeedbackassubject">
 	                <![CDATA[Retrieves a set of Feedback objects associated to a User.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/users/{user_id}/feedback/as-author">
+        <resource path="/users/{user_id}/feedback/as-author">
             <param name="user_id" type="user_id_or_name" style="template" required="true" default="__SELF__"/>
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
@@ -1491,14 +1492,14 @@
                     <apigee:tag primary="true">Feedback</apigee:tag>
                     <apigee:tag>findAllUserFeedbackAsAuthor</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/users/__SELF__/feedback/as-author?limit=25&amp;offset=0"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/users/__SELF__/feedback/as-author?limit=25&amp;offset=0"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_feedback#findalluserfeedbackasauthor">
 	                <![CDATA[Retrieves a set of Feedback objects associated to a User.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/users/{user_id}/feedback/as-buyer">
+        <resource path="/users/{user_id}/feedback/as-buyer">
             <param name="user_id" type="user_id_or_name" style="template" required="true" default="__SELF__"/>
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
@@ -1507,14 +1508,14 @@
                     <apigee:tag primary="true">Feedback</apigee:tag>
                     <apigee:tag>findAllUserFeedbackAsBuyer</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/users/__SELF__/feedback/as-buyer?limit=25&amp;offset=0"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/users/__SELF__/feedback/as-buyer?limit=25&amp;offset=0"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_feedback#findalluserfeedbackasbuyer">
 	                <![CDATA[Retrieves a set of Feedback objects associated to a User.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/users/{user_id}/feedback/as-seller">
+        <resource path="/users/{user_id}/feedback/as-seller">
             <param name="user_id" type="user_id_or_name" style="template" required="true" default="__SELF__"/>
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
@@ -1523,14 +1524,14 @@
                     <apigee:tag primary="true">Feedback</apigee:tag>
                     <apigee:tag>findAllUserFeedbackAsSeller</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/users/__SELF__/feedback/as-seller?limit=25&amp;offset=0"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/users/__SELF__/feedback/as-seller?limit=25&amp;offset=0"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_feedback#findalluserfeedbackasseller">
 	                <![CDATA[Retrieves a set of Feedback objects associated to a User.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/users/{user_id}/orders">
+        <resource path="/users/{user_id}/orders">
             <param name="user_id" type="user_id_or_name" style="template" required="true" default="__SELF__"/>
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
@@ -1540,13 +1541,13 @@
                     <apigee:tag>findAllUserOrders</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/users/__SELF__/orders?limit=25&amp;offset=0"/>
+                <apigee:example url="/users/__SELF__/orders?limit=25&amp;offset=0"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_order#findalluserorders">
 	                <![CDATA[Retrieves a set of Order objects associated to a User.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/users/{user_id}/receipts">
+        <resource path="/users/{user_id}/receipts">
             <param name="user_id" type="user_id_or_name" style="template" required="true" default="__SELF__"/>
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
@@ -1556,13 +1557,13 @@
                     <apigee:tag>findAllUserBuyerReceipts</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/users/__SELF__/receipts?limit=25&amp;offset=0"/>
+                <apigee:example url="/users/__SELF__/receipts?limit=25&amp;offset=0"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_receipt#findalluserbuyerreceipts">
 	                <![CDATA[Retrieves a set of Receipt objects associated to a User.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/users/{user_id}/transactions">
+        <resource path="/users/{user_id}/transactions">
             <param name="user_id" type="user_id_or_name" style="template" required="true" default="__SELF__"/>
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
@@ -1572,13 +1573,13 @@
                     <apigee:tag>findAllUserBuyerTransactions</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/users/__SELF__/transactions?limit=25&amp;offset=0"/>
+                <apigee:example url="/users/__SELF__/transactions?limit=25&amp;offset=0"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_transaction#findalluserbuyertransactions">
 	                <![CDATA[Retrieves a set of Transaction objects associated to a User.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/users/{user_id}/charges">
+        <resource path="/users/{user_id}/charges">
             <param name="user_id" type="user_id_or_name" style="template" required="true" default="__SELF__"/>
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
@@ -1588,13 +1589,13 @@
                     <apigee:tag>findAllUserCharges</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/users/__SELF__/charges?limit=25&amp;offset=0"/>
+                <apigee:example url="/users/__SELF__/charges?limit=25&amp;offset=0"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_billcharge#findallusercharges">
 	                <![CDATA[Retrieves a set of BillCharge objects associated to a User.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/users/{user_id}/payments">
+        <resource path="/users/{user_id}/payments">
             <param name="user_id" type="user_id_or_name" style="template" required="true" default="__SELF__"/>
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
@@ -1604,13 +1605,13 @@
                     <apigee:tag>findAllUserPayments</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/users/__SELF__/payments?limit=25&amp;offset=0"/>
+                <apigee:example url="/users/__SELF__/payments?limit=25&amp;offset=0"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_billpayment#findalluserpayments">
 	                <![CDATA[Retrieves a set of BillPayment objects associated to a User.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/users/{user_id}/shipping/templates">
+        <resource path="/users/{user_id}/shipping/templates">
             <param name="user_id" type="user_id_or_name" style="template" required="true" default="__SELF__"/>
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
@@ -1620,13 +1621,13 @@
                     <apigee:tag>findAllUserShippingTemplates</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/users/__SELF__/shipping/templates?limit=25&amp;offset=0"/>
+                <apigee:example url="/users/__SELF__/shipping/templates?limit=25&amp;offset=0"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_shippingtemplate#findallusershippingtemplates">
 	                <![CDATA[Retrieves a set of ShippingTemplate objects associated to a User.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/users/{user_id}/payments/templates">
+        <resource path="/users/{user_id}/payments/templates">
             <param name="user_id" type="user_id_or_name" style="template" required="true" default="__SELF__"/>
             <method name="GET" apigee:displayName="findAllUserPaymentTemplates" id="findAllUserPaymentTemplates">
                 <apigee:tags>
@@ -1634,13 +1635,13 @@
                     <apigee:tag>findAllUserPaymentTemplates</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/users/__SELF__/payments/templates"/>
+                <apigee:example url="/users/__SELF__/payments/templates"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_paymenttemplate#findalluserpaymenttemplates">
 	                <![CDATA[Retrieves a set of PaymentTemplate objects associated to a User.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/users/{user_id}/addresses">
+        <resource path="/users/{user_id}/addresses">
             <param name="user_id" type="user_id_or_name" style="template" required="true" default="__SELF__"/>
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
@@ -1650,13 +1651,13 @@
                     <apigee:tag>findAllUserAddresses</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/users/__SELF__/addresses?limit=25&amp;offset=0"/>
+                <apigee:example url="/users/__SELF__/addresses?limit=25&amp;offset=0"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_useraddress#findalluseraddresses">
 	                <![CDATA[Retrieves a set of UserAddress objects associated to a User.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/payments/templates/{payment_template_id}">
+        <resource path="/payments/templates/{payment_template_id}">
             <param name="payment_template_id" type="array" style="template" required="true" default=""/>
             <method name="GET" apigee:displayName="getPaymentTemplate" id="getPaymentTemplate">
                 <apigee:tags>
@@ -1664,20 +1665,20 @@
                     <apigee:tag>getPaymentTemplate</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/payments/templates/{payment_template_id}"/>
+                <apigee:example url="/payments/templates/{payment_template_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_paymenttemplate#getpaymenttemplate">
 	                <![CDATA[Retrieves a PaymentTemplate by id.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/payments/templates">
+        <resource path="/payments/templates">
             <method name="POST" apigee:displayName="createPaymentTemplate" id="createPaymentTemplate">
                 <apigee:tags>
                     <apigee:tag primary="true">PaymentTemplate</apigee:tag>
                     <apigee:tag>createPaymentTemplate</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/payments/templates"/>
+                <apigee:example url="/payments/templates"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_paymenttemplate#createpaymenttemplate">
 	                <![CDATA[Creates a new PaymentTemplate]]>
                 </doc>
@@ -1697,7 +1698,7 @@
                 </request>
             </method>
         </resource>
-        <resource path="/private/payments/templates/{payment_template_id}">
+        <resource path="/payments/templates/{payment_template_id}">
             <param name="payment_template_id" type="int" style="template" required="true" default=""/>
             <method name="PUT" apigee:displayName="updatePaymentTemplate" id="updatePaymentTemplate">
                 <apigee:tags>
@@ -1705,7 +1706,7 @@
                     <apigee:tag>updatePaymentTemplate</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/payments/templates/{payment_template_id}"/>
+                <apigee:example url="/payments/templates/{payment_template_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_paymenttemplate#updatepaymenttemplate">
 	                <![CDATA[Updates a PaymentTemplate]]>
                 </doc>
@@ -1725,21 +1726,21 @@
                 </request>
             </method>
         </resource>
-        <resource path="/private/payments/{listing_payment_id}">
+        <resource path="/payments/{listing_payment_id}">
             <param name="listing_payment_id" type="array" style="template" required="true" default=""/>
             <method name="GET" apigee:displayName="getListingPayment" id="getListingPayment">
                 <apigee:tags>
                     <apigee:tag primary="true">ListingPayment</apigee:tag>
                     <apigee:tag>getListingPayment</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/payments/{listing_payment_id}"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/payments/{listing_payment_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_listingpayment#getlistingpayment">
 	                <![CDATA[Retrieves a ListingPayment by id.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/users/{user_id}/avatar">
+        <resource path="/users/{user_id}/avatar">
             <param name="user_id" type="user_id_or_name" style="template" required="false" default="__SELF__"/>
             <method name="POST" apigee:displayName="uploadAvatar" id="uploadAvatar">
                 <apigee:tags>
@@ -1747,7 +1748,7 @@
                     <apigee:tag>uploadAvatar</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/users/__SELF__/avatar"/>
+                <apigee:example url="/users/__SELF__/avatar"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_avatar#uploadavatar">
 	                <![CDATA[Upload a new user avatar image]]>
                 </doc>
@@ -1757,7 +1758,7 @@
                 </request>
             </method>
         </resource>
-        <resource path="/private/users/{user_id}/avatar/src">
+        <resource path="/users/{user_id}/avatar/src">
             <param name="user_id" type="user_id_or_name" style="template" required="false" default="__SELF__"/>
             <method name="GET" apigee:displayName="getAvatarImgSrc" id="getAvatarImgSrc">
                 <apigee:tags>
@@ -1765,13 +1766,13 @@
                     <apigee:tag>getAvatarImgSrc</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/users/__SELF__/avatar/src"/>
+                <apigee:example url="/users/__SELF__/avatar/src"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_array#getavatarimgsrc">
 	                <![CDATA[Get avatar image source]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/users/{user_id}/addresses/{user_address_id}">
+        <resource path="/users/{user_id}/addresses/{user_address_id}">
             <param name="user_address_id" type="array" style="template" required="true" default=""/>
             <method name="GET" apigee:displayName="getUserAddress" id="getUserAddress">
                 <apigee:tags>
@@ -1779,13 +1780,13 @@
                     <apigee:tag>getUserAddress</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/users/{user_id}/addresses/{user_address_id}"/>
+                <apigee:example url="/users/{user_id}/addresses/{user_address_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_useraddress#getuseraddress">
 	                <![CDATA[Retrieves a UserAddress by id.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/users/{user_id}/addresses">
+        <resource path="/users/{user_id}/addresses">
             <param name="user_id" type="user_id_or_name" style="template" required="true" default="__SELF__"/>
             <method name="POST" apigee:displayName="createUserAddress" id="createUserAddress">
                 <apigee:tags>
@@ -1793,7 +1794,7 @@
                     <apigee:tag>createUserAddress</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/users/__SELF__/addresses"/>
+                <apigee:example url="/users/__SELF__/addresses"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_useraddress#createuseraddress">
 	                <![CDATA[Creates a new UserAddress.]]>
                 </doc>
@@ -1808,7 +1809,7 @@
                 </request>
             </method>
         </resource>
-        <resource path="/private/users/{user_id}/addresses/{user_address_id}">
+        <resource path="/users/{user_id}/addresses/{user_address_id}">
             <param name="user_address_id" type="int" style="template" required="true" default=""/>
             <method name="PUT" apigee:displayName="updateUserAddress" id="updateUserAddress">
                 <apigee:tags>
@@ -1816,7 +1817,7 @@
                     <apigee:tag>updateUserAddress</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/users/{user_id}/addresses/{user_address_id}"/>
+                <apigee:example url="/users/{user_id}/addresses/{user_address_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_useraddress#updateuseraddress">
 	                <![CDATA[Updates a UserAddress with the given id.]]>
                 </doc>
@@ -1831,7 +1832,7 @@
                 </request>
             </method>
         </resource>
-        <resource path="/private/users/{user_id}/addresses/{user_address_id}">
+        <resource path="/users/{user_id}/addresses/{user_address_id}">
             <param name="user_address_id" type="int" style="template" required="true" default=""/>
             <method name="DELETE" apigee:displayName="deleteUserAddress" id="deleteUserAddress">
                 <apigee:tags>
@@ -1839,13 +1840,13 @@
                     <apigee:tag>deleteUserAddress</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication  required="true"/>
-                <apigee:example url="/private/users/{user_id}/addresses/{user_address_id}"/>
+                <apigee:example url="/users/{user_id}/addresses/{user_address_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_useraddress#deleteuseraddress">
 	                <![CDATA[Deletes the UserAddress with the given id.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/featured/users">
+        <resource path="/featured/users">
             <param name="limit" type="int" style="query" required="false" default="25"/>
             <param name="offset" type="int" style="query" required="false" default="0"/>
             <method name="GET" apigee:displayName="findAllFeaturedUsers" id="findAllFeaturedUsers">
@@ -1853,61 +1854,61 @@
                     <apigee:tag primary="true">FeaturedUser</apigee:tag>
                     <apigee:tag>findAllFeaturedUsers</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/featured/users?limit=25&amp;offset=0"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/featured/users?limit=25&amp;offset=0"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_featureduser#findallfeaturedusers">
 	                <![CDATA[Finds all FeaturedUser.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/featured/users/{featured_user_id}">
+        <resource path="/featured/users/{featured_user_id}">
             <param name="featured_user_id" type="array" style="template" required="true" default=""/>
             <method name="GET" apigee:displayName="getFeaturedUser" id="getFeaturedUser">
                 <apigee:tags>
                     <apigee:tag primary="true">FeaturedUser</apigee:tag>
                     <apigee:tag>getFeaturedUser</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/featured/users/{featured_user_id}"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/featured/users/{featured_user_id}"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_featureduser#getfeatureduser">
 	                <![CDATA[Retrieves a FeaturedUser by id.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/">
+        <resource path="/">
             <method name="GET" apigee:displayName="getMethodTable" id="getMethodTable">
                 <apigee:tags>
                     <apigee:tag primary="true">ApiMethod</apigee:tag>
                     <apigee:tag>getMethodTable</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_apimethod#getmethodtable">
 	                <![CDATA[Get a list of all methods available.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/server/epoch">
+        <resource path="/server/epoch">
             <method name="GET" apigee:displayName="getServerEpoch" id="getServerEpoch">
                 <apigee:tags>
                     <apigee:tag primary="true">Int</apigee:tag>
                     <apigee:tag>getServerEpoch</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/server/epoch"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/server/epoch"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_int#getserverepoch">
 	                <![CDATA[Get server time, in epoch seconds notation.]]>
                 </doc>
             </method>
         </resource>
-        <resource path="/private/server/ping">
+        <resource path="/server/ping">
             <method name="GET" apigee:displayName="ping" id="ping">
                 <apigee:tags>
                     <apigee:tag primary="true">String</apigee:tag>
                     <apigee:tag>ping</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication  required="false"/>
-                <apigee:example url="/private/server/ping"/>
+                <apigee:authentication  required="true"/>
+                <apigee:example url="/server/ping"/>
                 <doc apigee:url="http://developer.etsy.com/docs/resource_string#ping">
 	                <![CDATA[Check that the server is alive.]]>
                 </doc>
