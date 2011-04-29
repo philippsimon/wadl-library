@@ -47,7 +47,7 @@
 				<doc>A single string to search for in users' names</doc>
 			</param>
 
-			<method id="searchUserViaGet" name="GET">
+			<method id="searchUserViaGet" name="GET" apigee:displayName="users/search (GET)">
 				<apigee:tags>
 					<apigee:tag primary="true">User</apigee:tag>
 				</apigee:tags>
@@ -81,7 +81,7 @@
 				<doc>A single string to search for in users' names</doc>
 			</param>
 
-			<method id="searchUserViaPost" name="POST">
+			<method id="searchUserViaPost" name="POST" apigee:displayName="users/search (POST)">
 				<apigee:tags>
 					<apigee:tag primary="true">User</apigee:tag>
 				</apigee:tags>

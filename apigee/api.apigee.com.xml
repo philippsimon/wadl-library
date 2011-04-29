@@ -1,0 +1,78 @@
+
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:apigee="http://api.apigee.com/wadl/2010/07/" 
+  xmlns="http://wadl.dev.java.net/2009/02"
+  xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd"> 
+
+	<resources base="https://api.apigee.com">
+
+        <resource path="/authtoken">
+			<method id="authtoken" name="GET">
+				<apigee:tags>
+					<apigee:tag primary="true">Account</apigee:tag>
+				</apigee:tags>
+				<apigee:authentication required="true" />
+                <apigee:example url="/account.json" />
+				<doc title="" apigee:url="https://docs.google.com/a/apigee.com/View?docID=0AZxs8hRnz14YZGQ4Z25jY3NfNzNoZ3pnZmRncg">
+					Exchange a username and password for a token using basic authentication over SSL.
+				</doc>
+			</method>
+		</resource>
+
+        <resource path="/account.{format}">
+			<param name="format" type="xsd:string" style="template" required="true" default="json">
+				<option value="json" mediaType="application/json" />
+			</param>
+			<method id="account" name="GET">
+				<apigee:tags>
+					<apigee:tag primary="true">Account</apigee:tag>
+				</apigee:tags>
+				<apigee:authentication required="true" />
+                <apigee:example url="/account.json" />
+				<doc title="" apigee:url="https://docs.google.com/a/apigee.com/View?docID=0AZxs8hRnz14YZGQ4Z25jY3NfNzNoZ3pnZmRncg">
+					Get user information, including a list of proxies for an account.
+				</doc>
+			</method>
+		</resource>
+		
+        <resource path="/data/account/{account}/proxy/{proxy}.{format}">
+			<param name="format" type="xsd:string" style="template" required="true" default="json">
+				<option value="json" mediaType="application/json" />
+			</param>
+			<param name="account" required="true" type="xsd:string" style="template" default="87" />
+			<param name="proxy" required="true" type="xsd:string" style="template" default="111" />
+			<param name="metric" type="xsd:string" style="template" required="true" default="requestors">
+				<option value="requests" />
+				<option value="requestors" />
+				<option value="avg_response_times" />
+				<option value="error_rates" />
+			</param>
+			<param name="dimension" type="xsd:string" style="template" required="true" default="url">
+				<option value="time" />
+				<option value="requestor" />
+				<option value="url" />
+				<option value="avg_response_time" />
+			</param>
+			<param name="interval_id" type="xsd:string" style="template" required="true" default="1h">
+				<option value="1h" />
+				<option value="1d" />
+				<option value="1w" />
+				<option value="1m" />
+				<option value="3m" />
+			</param>
+			<method id="data" name="GET" apigee:display_name="per proxy analytics">
+				<apigee:tags>
+					<apigee:tag primary="true">Analytics</apigee:tag>
+				</apigee:tags>
+				<apigee:authentication required="true" />
+                <apigee:example url="/data/account/87/proxy/111.json?metric=requestors&amp;dimension=url&amp;interval_id=1h" />
+				<doc title="" apigee:url="https://docs.google.com/a/apigee.com/View?docID=0AZxs8hRnz14YZGQ4Z25jY3NfNzNoZ3pnZmRncg">
+					Access the data for a proxy.
+				</doc>
+			</method>
+		</resource>		
+
+	</resources>
+
+</application>

@@ -136,8 +136,8 @@
 					<![CDATA[Creates a new favorite listing for a user]]>
 				</doc>
 				<request>
-					<param name="user_id" type="user_id_or_name" style="header" required="true" default="__SELF__" />
-					<param name="target_user_id" type="user_id_or_name" style="header" required="true" default="" />
+					<param name="user_id" type="user_id_or_name" style="query" required="true" default="__SELF__" />
+					<param name="target_user_id" type="user_id_or_name" style="query" required="true" default="" />
 				</request>
 			</method>
 		</resource>
@@ -334,7 +334,7 @@
 					<![CDATA[Upload a new listing image]]>
 				</doc>
 				<request>
-					<param name="image" type="image" style="header" required="true" default="" />
+					<param name="image" type="image" style="query" required="true" default="" />
 				</request>
 			</method>
 		</resource>
@@ -506,14 +506,14 @@
 					<![CDATA[Creates a new Listing]]>
 				</doc>
 				<request>
-					<param name="quantity" type="int" style="header" required="true" default="" />
-					<param name="title" type="string" style="header" required="true" default="" />
-					<param name="description" type="text" style="header" required="true" default="" />
-					<param name="price" type="float" style="header" required="true" default="" />
-					<param name="materials" type="array" style="header" required="false" default="" />
-					<param name="tags" type="array" style="header" required="true" default="" />
+					<param name="quantity" type="int" style="query" required="true" default="" />
+					<param name="title" type="string" style="query" required="true" default="" />
+					<param name="description" type="text" style="query" required="true" default="" />
+					<param name="price" type="float" style="query" required="true" default="" />
+					<param name="materials" type="array" style="query" required="false" default="" />
+					<param name="tags" type="array" style="query" required="true" default="" />
 					<param name="shipping_template_id" type="int" style="query" required="true" default="" />
-					<param name="shop_section_id" type="int" style="header" required="false" default="" />
+					<param name="shop_section_id" type="int" style="query" required="false" default="" />
 				</request>
 			</method>
 		</resource>
@@ -530,16 +530,16 @@
 					<![CDATA[Updates a Listing]]>
 				</doc>
 				<request>
-					<param name="quantity" type="int" style="header" required="false" default="" />
-					<param name="title" type="string" style="header" required="false" default="" />
-					<param name="description" type="text" style="header" required="false" default="" />
-					<param name="price" type="float" style="header" required="false" default="" />
-					<param name="materials" type="array" style="header" required="false" default="" />
-					<param name="renew" type="boolean" style="header" required="false" default="" />
-					<param name="tags" type="array" style="header" required="false" default="" />
-					<param name="shipping_template_id" type="int" style="header" required="false" default="" />
-					<param name="shop_section_id" type="int" style="header" required="false" default="" />
-					<param name="state" type="enum" style="header" required="false" default="active">
+					<param name="quantity" type="int" style="query" required="false" default="" />
+					<param name="title" type="string" style="query" required="false" default="" />
+					<param name="description" type="text" style="query" required="false" default="" />
+					<param name="price" type="float" style="query" required="false" default="" />
+					<param name="materials" type="array" style="query" required="false" default="" />
+					<param name="renew" type="boolean" style="query" required="false" default="" />
+					<param name="tags" type="array" style="query" required="false" default="" />
+					<param name="shipping_template_id" type="int" style="query" required="false" default="" />
+					<param name="shop_section_id" type="int" style="query" required="false" default="" />
+					<param name="state" type="enum" style="query" required="false" default="active">
 						<option value="active" />
 						<option value="inactive" />
 					</param>
@@ -632,7 +632,7 @@
 					<![CDATA[Updates a Receipt]]>
 				</doc>
 				<request>
-					<param name="receipt_id" type="int" style="template" required="true" default="" />
+					<param name="receipt_id" type="int" style="query" required="true" default="" />
 					<param name="was_paid" type="boolean" style="query" required="false" default="" />
 					<param name="was_shipped" type="boolean" style="query" required="false" default="" />
 					<param name="message_from_seller" type="string" style="query" required="false" default="" />
@@ -740,11 +740,11 @@
 					<![CDATA[Creates a new ShippingInfo.]]>
 				</doc>
 				<request>
-					<param name="origin_country_id" type="int" style="header" required="true" default="" />
-					<param name="destination_country_id" type="int" style="header" required="false" default="" />
-					<param name="primary_cost" type="float" style="header" required="true" default="" />
-					<param name="secondary_cost" type="float" style="header" required="true" default="" />
-					<param name="region_id" type="int" style="header" required="false" default="" />
+					<param name="origin_country_id" type="int" style="query" required="true" default="" />
+					<param name="destination_country_id" type="int" style="query" required="false" default="" />
+					<param name="primary_cost" type="float" style="query" required="true" default="" />
+					<param name="secondary_cost" type="float" style="query" required="true" default="" />
+					<param name="region_id" type="int" style="query" required="false" default="" />
 				</request>
 			</method>
 		</resource>
@@ -810,11 +810,11 @@
 					<![CDATA[Creates a new ShippingTemplateEntry]]>
 				</doc>
 				<request>
-					<param name="shipping_template_id" type="int" style="header" required="true" default="" />
-					<param name="destination_country_id" type="int" style="header" required="false" default="" />
-					<param name="primary_cost" type="float" style="header" required="true" default="" />
-					<param name="secondary_cost" type="float" style="header" required="true" default="" />
-					<param name="destination_region_id" type="int" style="header" required="false" default="" />
+					<param name="shipping_template_id" type="int" style="query" required="true" default="" />
+					<param name="destination_country_id" type="int" style="query" required="false" default="" />
+					<param name="primary_cost" type="float" style="query" required="true" default="" />
+					<param name="secondary_cost" type="float" style="query" required="true" default="" />
+					<param name="destination_region_id" type="int" style="query" required="false" default="" />
 				</request>
 			</method>
 		</resource>
@@ -907,12 +907,12 @@
 					<![CDATA[Creates a new ShippingTemplate]]>
 				</doc>
 				<request>
-					<param name="title" type="string" style="header" required="true" default="" />
-					<param name="origin_country_id" type="int" style="header" required="true" default="" />
-					<param name="destination_country_id" type="int" style="header" required="false" default="" />
-					<param name="primary_cost" type="float" style="header" required="true" default="" />
-					<param name="secondary_cost" type="float" style="header" required="true" default="" />
-					<param name="destination_region_id" type="int" style="header" required="false" default="" />
+					<param name="title" type="string" style="query" required="true" default="" />
+					<param name="origin_country_id" type="int" style="query" required="true" default="" />
+					<param name="destination_country_id" type="int" style="query" required="false" default="" />
+					<param name="primary_cost" type="float" style="query" required="true" default="" />
+					<param name="secondary_cost" type="float" style="query" required="true" default="" />
+					<param name="destination_region_id" type="int" style="query" required="false" default="" />
 				</request>
 			</method>
 		</resource>
@@ -1101,7 +1101,7 @@
 					<![CDATA[Upload a new shop banner image]]>
 				</doc>
 				<request>
-					<param name="image" type="image" style="header" required="true" default="" />
+					<param name="image" type="image" style="query" required="true" default="" />
 				</request>
 			</method>
 		</resource>
@@ -1172,8 +1172,8 @@
 					<![CDATA[Creates a new ShopSection.]]>
 				</doc>
 				<request>
-					<param name="title" type="text" style="header" required="false" default="" />
-					<param name="user_id" type="int" style="header" required="false" default="" />
+					<param name="title" type="text" style="query" required="false" default="" />
+					<param name="user_id" type="int" style="query" required="false" default="" />
 				</request>
 			</method>
 		</resource>
@@ -1682,18 +1682,18 @@
 					<![CDATA[Creates a new PaymentTemplate]]>
 				</doc>
 				<request>
-					<param name="allow_check" type="boolean" style="header" required="false" default="" />
-					<param name="allow_mo" type="boolean" style="header" required="false" default="" />
-					<param name="allow_other" type="boolean" style="header" required="false" default="" />
-					<param name="allow_paypal" type="boolean" style="header" required="false" default="" />
-					<param name="paypal_email" type="string" style="header" required="false" default="" />
-					<param name="name" type="string" style="header" required="false" default="" />
-					<param name="first_line" type="string" style="header" required="false" default="" />
-					<param name="second_line" type="string" style="header" required="false" default="" />
-					<param name="city" type="string" style="header" required="false" default="" />
-					<param name="state" type="string" style="header" required="false" default="" />
-					<param name="zip" type="string" style="header" required="false" default="" />
-					<param name="country_id" type="int" style="header" required="false" default="" />
+					<param name="allow_check" type="boolean" style="query" required="false" default="" />
+					<param name="allow_mo" type="boolean" style="query" required="false" default="" />
+					<param name="allow_other" type="boolean" style="query" required="false" default="" />
+					<param name="allow_paypal" type="boolean" style="query" required="false" default="" />
+					<param name="paypal_email" type="string" style="query" required="false" default="" />
+					<param name="name" type="string" style="query" required="false" default="" />
+					<param name="first_line" type="string" style="query" required="false" default="" />
+					<param name="second_line" type="string" style="query" required="false" default="" />
+					<param name="city" type="string" style="query" required="false" default="" />
+					<param name="state" type="string" style="query" required="false" default="" />
+					<param name="zip" type="string" style="query" required="false" default="" />
+					<param name="country_id" type="int" style="query" required="false" default="" />
 				</request>
 			</method>
 		</resource>
@@ -1752,8 +1752,8 @@
 					<![CDATA[Upload a new user avatar image]]>
 				</doc>
 				<request>
-					<param name="src" type="string" style="header" required="false" default="" />
-					<param name="image" type="image" style="header" required="false" default="" />
+					<param name="src" type="string" style="query" required="false" default="" />
+					<param name="image" type="image" style="query" required="false" default="" />
 				</request>
 			</method>
 		</resource>
@@ -1798,13 +1798,13 @@
 					<![CDATA[Creates a new UserAddress.]]>
 				</doc>
 				<request>
-					<param name="name" type="text" style="header" required="true" default="" />
-					<param name="first_line" type="text" style="header" required="true" default="" />
-					<param name="second_line" type="text" style="header" required="false" default="" />
-					<param name="city" type="text" style="header" required="true" default="" />
-					<param name="state" type="text" style="header" required="false" default="" />
-					<param name="zip" type="text" style="header" required="true" default="" />
-					<param name="country_id" type="int" style="header" required="true" default="" />
+					<param name="name" type="text" style="query" required="true" default="" />
+					<param name="first_line" type="text" style="query" required="true" default="" />
+					<param name="second_line" type="text" style="query" required="false" default="" />
+					<param name="city" type="text" style="query" required="true" default="" />
+					<param name="state" type="text" style="query" required="false" default="" />
+					<param name="zip" type="text" style="query" required="true" default="" />
+					<param name="country_id" type="int" style="query" required="true" default="" />
 				</request>
 			</method>
 		</resource>

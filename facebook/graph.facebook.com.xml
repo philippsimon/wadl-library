@@ -1088,7 +1088,7 @@
             </param>
             <method id="getstatus" name="GET">
                 <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
-                    <apigee:tag primary="true">Status message</apigee:tag>
+                    <apigee:tag primary="true">Status Message</apigee:tag>
                     <apigee:tag>Object</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
@@ -1116,7 +1116,7 @@
             </param>
             <method id="getstatuscomments" name="GET">
                 <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
-                    <apigee:tag primary="true">Status message</apigee:tag>
+                    <apigee:tag primary="true">Status Message</apigee:tag>
                     <apigee:tag>Connection</apigee:tag>
                     <apigee:tag>Comments</apigee:tag>
                 </apigee:tags>

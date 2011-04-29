@@ -611,7 +611,7 @@
             <param name="user" required="true" type="xsd:string" style="query"
                    default="apigee"/>
             <param name="mode" required="false" type="xsd:string" style="query" default="public"/>
-            <method id="userlistscreate" name="POST">
+            <method id="userlistscreate" name="POST" apigee:displayName="user/lists (POST)">
                 <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
                     <apigee:tag primary="true">List</apigee:tag>
                 </apigee:tags>
@@ -622,29 +622,6 @@
                     <![CDATA[Creates a new list for the authenticated user. Accounts are limited to 20 lists.]]></doc>
             </method>
         </resource>
-        <resource path="{user}/lists/{id}.{format}">
-            <param name="format" type="xsd:string" style="template" required="true" default="json">
-                <option value="xml" mediaType="application/xml"/>
-                <option value="json" mediaType="application/json"/>
-            </param>
-            <param name="description" required="false" type="xsd:string" style="query"
-                   default="They make APIs better."/>
-            <param name="name" required="true" type="xsd:string" style="query" default="APIs"/>
-            <param name="user" required="true" type="xsd:string" style="query"
-                   default="apigee"/>
-            <param name="id" required="true" type="xsd:string" style="query"  default="apigee"/>
-            <param name="mode" required="false" type="xsd:string" style="query" default="public"/>
-            <method id="userlistsidupdate" name="POST">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
-                    <apigee:tag>Lists</apigee:tag>
-                </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/{user}/lists/{id}.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
-                     apigee:url="http://dev.twitter.com/doc/post/:user/lists/:id">
-                    <![CDATA[Updates the specified list.]]></doc>
-            </method>
-        </resource>
         <resource path="{user}/lists.{format}">
             <param name="format" type="xsd:string" style="template" required="true" default="json">
                 <option value="xml" mediaType="application/xml"/>
@@ -653,9 +630,9 @@
             <param name="cursor" required="false" type="xsd:string" style="query" default="-1"/>
             <param name="user" required="true" type="xsd:string" style="query"
                    default="apigee"/>
-            <method id="userlistsindex" name="GET">
+            <method id="userlistsindex" name="GET" apigee:displayName="user/lists (GET)">
                 <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
-                    <apigee:tag>List</apigee:tag>
+                    <apigee:tag primary="true">List</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
                 <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/{user}/lists.{format}"/>
@@ -670,11 +647,34 @@
                 <option value="xml" mediaType="application/xml"/>
                 <option value="json" mediaType="application/json"/>
             </param>
+            <param name="description" required="false" type="xsd:string" style="query"
+                   default="They make APIs better."/>
+            <param name="name" required="true" type="xsd:string" style="query" default="APIs"/>
+            <param name="user" required="true" type="xsd:string" style="query"
+                   default="apigee"/>
+            <param name="id" required="true" type="xsd:string" style="query"  default="apigee"/>
+            <param name="mode" required="false" type="xsd:string" style="query" default="public"/>
+            <method id="userlistsidupdate" name="POST" apigee:displayName="user/lists/id (POST)">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag>Lists</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/{user}/lists/{id}.{format}"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="http://dev.twitter.com/doc/post/:user/lists/:id">
+                    <![CDATA[Updates the specified list.]]></doc>
+            </method>
+        </resource>
+        <resource path="{user}/lists/{id}.{format}">
+            <param name="format" type="xsd:string" style="template" required="true" default="json">
+                <option value="xml" mediaType="application/xml"/>
+                <option value="json" mediaType="application/json"/>
+            </param>
             <param name="id" required="true" type="xsd:string" style="query"
                    default="team"/>
             <param name="user" required="true" type="xsd:string" style="query"
                    default="apigee"/>
-            <method id="userlistsidshow" name="GET">
+            <method id="userlistsidshow" name="GET" apigee:displayName="user/lists/id (GET)">
                 <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
                     <apigee:tag primary="true">List</apigee:tag>
                 </apigee:tags>
@@ -695,7 +695,7 @@
                    default="team"/>
             <param name="user" required="true" type="xsd:string" style="query"
                    default="apigee"/>
-            <method id="userlistsiddestroy" name="DELETE">
+            <method id="userlistsiddestroy" name="DELETE" apigee:displayName="user/lists/id (DELETE)">
                 <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
                     <apigee:tag primary="true">List</apigee:tag>
                 </apigee:tags>
@@ -783,7 +783,7 @@
                    default="team"/>
             <param name="user" required="true" type="xsd:string" style="query"
                    default="apigee"/>
-            <method id="getuserlist_idmembers" name="GET">
+            <method id="getuserlist_idmembers" name="GET" apigee:displayName="user/list_id/members (GET)">
                 <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
                     <apigee:tag primary="true">List</apigee:tag>
                 </apigee:tags>
@@ -805,7 +805,7 @@
                    default="team"/>
             <param name="user" required="true" type="xsd:string" style="query"
                    default="apigee"/>
-            <method id="postuserlist_idmembers" name="POST">
+            <method id="postuserlist_idmembers" name="POST" apigee:displayName="user/list_id/members (POST)">
                 <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
                     <apigee:tag primary="true">List</apigee:tag>
                 </apigee:tags>
@@ -828,7 +828,7 @@
                    default="team"/>
             <param name="user" required="true" type="xsd:string" style="query"
                    default="apigee"/>
-            <method id="deleteuserlist_idmembers" name="DELETE">
+            <method id="deleteuserlist_idmembers" name="DELETE" apigee:displayName="user/list_id/members (DELETE)">
                 <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
                     <apigee:tag primary="true">List</apigee:tag>
                 </apigee:tags>
@@ -873,7 +873,7 @@
                    default="team"/>
             <param name="user" required="true" type="xsd:string" style="query"
                    default="apigee"/>
-            <method id="getuserlist_idsubscribers" name="GET">
+            <method id="getuserlist_idsubscribers" name="GET" apigee:displayName="user/list_id/subscribers (GET)">
                 <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
                     <apigee:tag primary="true">List</apigee:tag>
                 </apigee:tags>
@@ -894,7 +894,7 @@
                    default="team"/>
             <param name="user" required="true" type="xsd:string" style="query"
                    default="apigee"/>
-            <method id="postuserlist_idsubscribers" name="POST">
+            <method id="postuserlist_idsubscribers" name="POST" apigee:displayName="user/list_id/subscribers (POST)">
                 <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
                     <apigee:tag primary="true">List</apigee:tag>
                 </apigee:tags>
@@ -916,7 +916,7 @@
                    default="team"/>
             <param name="user" required="true" type="xsd:string" style="query"
                    default="apigee"/>
-            <method id="deleteuserlist_idsubscribers" name="DELETE">
+            <method id="deleteuserlist_idsubscribers" name="DELETE" apigee:displayName="user/list_id/subscribers (DELETE)">
                 <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
                     <apigee:tag primary="true">List</apigee:tag>
                 </apigee:tags>
