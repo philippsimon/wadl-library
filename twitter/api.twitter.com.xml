@@ -13,14 +13,14 @@
                 <option value="atom" mediaType="application/atom+xml"/>
             </param>
             <method id="statusespublic_timeline" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Timeline</apigee:tag>
                     <apigee:tag>Status</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="false"/>
+                <apigee:example  
                                 url="/statuses/public_timeline.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/statuses/public_timeline"><![CDATA[Returns the 20 most recent statuses, 
 					 including retweets if they exist, from non-protected users.
                 ]]></doc>
@@ -39,14 +39,14 @@
             <param name="skip_user" required="false" type="xsd:string" style="query" default="true"/>
             <param name="include_entities" required="false" type="xsd:string" style="query" default="true"/>
             <method id="statuseshome_timeline" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Timeline</apigee:tag>
                     <apigee:tag>Status</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/statuses/home_timeline.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/statuses/home_timeline"><![CDATA[
                     Returns the 20 most recent statuses, including retweets if they exist, 
 					posted by the authenticating user and the user's they follow.
@@ -73,14 +73,14 @@
             <param name="include_rts" required="false" type="xsd:string" style="query" default="true"/>
             <!--			<param name="id" required="false" type="xsd:string" style="query"  default=""/> -->
             <method id="statusesuser_timeline" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Timeline</apigee:tag>
                     <apigee:tag>Status</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="false"/>
+                <apigee:example  
                                 url="/statuses/user_timeline.{format}?screen_name={screen_name}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/statuses/user_timeline"><![CDATA[
                     Returns the 20 most recent statuses posted by the authenticating user. 
 					It is also possible to request another user's timeline by using the screen_name or user_id parameter.
@@ -102,15 +102,15 @@
             <param name="include_rts" required="false" type="xsd:string" style="query" default="true"/>
             <param name="skip_user" required="false" type="xsd:string" style="query" default="true"/>
             <method id="statusesmentions" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Timeline</apigee:tag>
                     <apigee:tag>Mention</apigee:tag>
                     <apigee:tag>Status</apigee:tag>
                     <apigee:tag>User</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/statuses/mentions.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <apigee:authentication   required="true"/>
+                <apigee:example   url="/statuses/mentions.{format}"/>
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/statuses/mentions"><![CDATA[Returns the 20 most recent mentions (status containing @username) for the authenticating user.
                 ]]></doc>
             </method>
@@ -126,15 +126,15 @@
             <param name="max_id" required="false" type="xsd:string" style="query" default="54321"/>
             <param name="since_id" required="false" type="xsd:string" style="query" default="12345"/>
             <method id="statusesretweeted_by_me" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Timeline</apigee:tag>
                     <apigee:tag>Timeline</apigee:tag>
                     <apigee:tag>Status</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/statuses/retweeted_by_me.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/statuses/retweeted_by_me">
                     <![CDATA[Returns the 20 most recent retweets posted by the authenticating user.]]></doc>
             </method>
@@ -150,15 +150,15 @@
             <param name="max_id" required="false" type="xsd:string" style="query" default="54321"/>
             <param name="since_id" required="false" type="xsd:string" style="query" default="12345"/>
             <method id="statusesretweeted_to_me" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Timeline</apigee:tag>
                     <apigee:tag>Timeline</apigee:tag>
                     <apigee:tag>Status</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/statuses/retweeted_to_me.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/statuses/retweeted_to_me">
                     <![CDATA[Returns the 20 most recent retweets posted by the authenticating user's friends.]]></doc>
             </method>
@@ -174,15 +174,15 @@
             <param name="max_id" required="false" type="xsd:string" style="query" default="54321"/>
             <param name="since_id" required="false" type="xsd:string" style="query" default="12345"/>
             <method id="statusesretweets_of_me" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Timeline</apigee:tag>
                     <apigee:tag>Timeline</apigee:tag>
                     <apigee:tag>Status</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/statuses/retweets_of_me.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/statuses/retweets_of_me"><![CDATA[Returns the 20 most recent tweets of the authenticated user that have been retweeted by others.
                 ]]></doc>
             </method>
@@ -198,15 +198,15 @@
             <param name="count" required="false" type="xsd:string" style="query" default="200"/>
             <param name="page" required="false" type="xsd:string" style="query" default="2"/>
             <method id="statusesretweeted_by2" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Tweets</apigee:tag>
                     <apigee:tag>Timeline</apigee:tag>
                     <apigee:tag>Status</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="false"/>
+                <apigee:example  
                                 url="/statuses/{id}/retweeted_by.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/statuses/:id/retweeted_by">
                     <![CDATA[Show user objects of up to 100 members who retweeted the status.]]></doc>
             </method>
@@ -222,15 +222,15 @@
             <param name="trim_user" required="false" type="xsd:string" style="query" default="true"/>
             <param name="include_entities" required="false" type="xsd:string" style="query" default="true"/>
             <method id="statusesretweeted_by1" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Tweets</apigee:tag>
                     <apigee:tag>Timeline</apigee:tag>
                     <apigee:tag>Status</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/statuses/{id}/retweeted_by/ids.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/statuses/:id/retweeted_by/ids">
                     <![CDATA[Show user ids of up to 100 users who retweeted the status.]]></doc>
             </method>
@@ -245,13 +245,13 @@
             <param name="trim_user" required="false" type="xsd:string" style="query" default="true"/>
             <param name="include_entities" required="false" type="xsd:string" style="query" default="true"/>
             <method id="statusesshow" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Tweets</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="false"/>
+                <apigee:example  
                                 url="/statuses/show/{id}.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/statuses/show/:id"><![CDATA[Returns a single status, specified by the id parameter below. The status's author will be
                     returned inline.
                 ]]></doc>
@@ -276,13 +276,13 @@
             <param name="annotations" required="false" type="xsd:string" style="query"
                    default="[{'TYPE':{'ATTRIBUTE':'VALUE'}}]"/>
             <method id="statusesupdate" name="POST">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Tweets</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/statuses/update.{format}?status={status}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/post/statuses/update"><![CDATA[Updates the authenticating user's status. Requires the status parameter specified below. Request
                     must be a POST. A status update with text identical to the authenticating user's current status will
                     be ignored to prevent duplicates.
@@ -299,13 +299,13 @@
             <param name="trim_user" required="false" type="xsd:string" style="query" default="true"/>
             <param name="include_entities" required="false" type="xsd:string" style="query" default="true"/>
             <method id="statusesdestroy" name="POST">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Tweets</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/statuses/destroy/{id}.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/post/statuses/destroy/:id"><![CDATA[Destroys the status specified by the required ID parameter. The authenticating user must be the
                     author of the specified status.
                 ]]></doc>
@@ -320,13 +320,13 @@
             <param name="trim_user" required="false" type="xsd:string" style="query" default="true"/>
             <param name="include_entities" required="false" type="xsd:string" style="query" default="true"/>
             <method id="statusesretweetid" name="POST">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Tweets</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/statuses/retweet/{id}.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/post/statuses/retweet/:id"><![CDATA[Retweets a tweet. Requires the id parameter of the tweet you are retweeting. Returns the original tweet with retweet details embedded.
                 ]]></doc>
             </method>
@@ -342,13 +342,13 @@
             <param name="trim_user" required="false" type="xsd:string" style="query" default="true"/>
             <param name="include_entities" required="false" type="xsd:string" style="query" default="true"/>
             <method id="statusesretweets" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Tweets</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/statuses/retweets/{id}.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/statuses/retweets/:id">
                     <![CDATA[Returns up to 100 of the first retweets of a given tweet.]]></doc>
             </method>
@@ -369,13 +369,13 @@
                         default="apigee"/>
             </apigee:choice>
             <method id="usersshow" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">User</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="false"/>
+                <apigee:example  
                                 url="/users/show.{format}?screen_name={screen_name}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/users/show"><![CDATA[Returns extended information of a given user, specified by ID or screen name as per the required
                     id parameter. The author's most recent status will be returned inline.
                 ]]></doc>
@@ -397,13 +397,13 @@
                         default="apigee"/>
             </apigee:choice>
             <method id="userslookup" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">User</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/users/lookup.{format}?screen_name={screen_name},sonoa&amp;user_id={user_id}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/users/lookup"><![CDATA[Return up to 100 users worth of extended information, specified by either ID, screen name, or
                     combination of the two. The author's most recent status (if the authenticating user has permission)
                     will be returned inline.
@@ -421,13 +421,13 @@
             <param name="page" required="false" type="xsd:string" style="query" default="2"/>
             <param name="include_entities" required="false" type="xsd:string" style="query" default="true"/>
             <method id="userssearch" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">User</apigee:tag>
                     <apigee:tag>Search</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/users/search.{format}?q={q}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <apigee:authentication   required="true"/>
+                <apigee:example   url="/users/search.{format}?q={q}"/>
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/users/search"><![CDATA[Runs a search for users similar to Find People button on Twitter.com.
                      The results returned by people search on Twitter.com are the same as those returned by this API request. Only the first 1000 matches are available.
                 ]]></doc>
@@ -439,12 +439,12 @@
                 <option value="json" mediaType="application/json"/>
             </param>
             <method id="userssuggestions" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">User</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/users/suggestions.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <apigee:authentication   required="false"/>
+                <apigee:example   url="/users/suggestions.{format}"/>
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/users/suggestions"><![CDATA[Access to Twitter's suggested user list. This returns the list of suggested user categories.
                       The category can be used in the users/suggestions/category endpoint to get the users in that category.
                 ]]></doc>
@@ -478,13 +478,13 @@
                 <option value="twitter"/>
             </param>
             <method id="userssuggestionscategory" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">User</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="false"/>
+                <apigee:example  
                                 url="/users/suggestions/{slug}.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/users/suggestions/:slug"><![CDATA[Access the users in a given category of the Twitter suggested user list. It is recommended that
                     end clients cache this data for no more than one hour.
                 ]]></doc>
@@ -498,12 +498,12 @@
             <param name="screen_name" required="true" type="xsd:string" style="query" default="apigee"/>
             <param name="size" required="false" type="xsd:string" style="query" default="bigger"/>
             <method id="usersprofile_image" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">User</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/users/profile_image/{screen_name}.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <apigee:authentication   required="false"/>
+                <apigee:example   url="/users/profile_image/{screen_name}.{format}"/>
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/users/profile_image/:screen_name"><![CDATA[Access the profile image in various sizes for the user with the indicated screen_name.
                      If no size is provided the normal image is returned. 
                 ]]></doc>
@@ -521,12 +521,12 @@
             <param name="page" required="false" type="xsd:string" style="query" default="2"/>
             <param name="since_id" required="false" type="xsd:string" style="query" default="12345"/>
             <method id="direct_messages" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Direct Message</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/direct_messages.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <apigee:authentication   required="true"/>
+                <apigee:example   url="/direct_messages.{format}"/>
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/direct_messages"><![CDATA[Returns a list of the 20 most recent direct messages sent to the authenticating user. The XML and
                     JSON versions include detailed information about the sending and recipient users.
                 ]]></doc>
@@ -544,13 +544,13 @@
             <param name="page" required="false" type="xsd:string" style="query" default="2"/>
             <param name="since_id" required="false" type="xsd:string" style="query" default="12345"/>
             <method id="direct_messagessent" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Direct Message</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/direct_messages/sent.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/direct_messages/sent"><![CDATA[Returns a list of the 20 most recent direct messages sent by the authenticating user. The XML and
                     JSON versions include detailed information about the sending and recipient users.
                 ]]></doc>
@@ -573,13 +573,13 @@
                         default="10330576396"/>
             </apigee:choice>
             <method id="direct_messagesnew" name="POST">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Direct Message</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/direct_messages/new.{format}?screen_name={screen_name}&amp;text={text}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/post/direct_messages/new"><![CDATA[Sends a new direct message to the specified user from the authenticating user. Requires both the
                     user and text parameters. Request must be a POST. Returns the sent message in the requested format
                     when successful.
@@ -594,13 +594,13 @@
             <param name="id" required="true" type="xsd:string" style="query"
                    default="12345"/>
             <method id="direct_messagesdestroy" name="DELETE">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Direct Message</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/direct_messages/destroy/{id}.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/post/direct_messages/destroy"><![CDATA[Destroys the direct message specified in the required ID parameter. The authenticating user must
                     be the recipient of the specified direct message.
                 ]]></doc>
@@ -622,13 +622,13 @@
             </apigee:choice>
             <param name="follow" type="xsd:string" style="query" required="false" default="true"/>
             <method id="friendshipscreate" name="POST">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Friendship</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/friendships/create.{format}?screen_name={screen_name}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/post/friendships/create"><![CDATA[Allows the authenticating users to follow the user specified in the ID parameter. Returns the
                     befriended user in the requested format when successful. Returns a string describing the failure
                     condition when unsuccessful. If you are already friends with the user an HTTP 403 will be returned.
@@ -650,13 +650,13 @@
                         default="sonoa"/>
             </apigee:choice>
             <method id="friendshipsdestroy" name="DELETE">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Friendship</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/friendships/destroy.{format}?screen_name={screen_name}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/post/friendships/destroy"><![CDATA[Allows the authenticating users to unfollow the user specified in the ID parameter. Returns the
                     unfollowed user in the requested format when successful. Returns a string describing the failure
                     condition when unsuccessful.
@@ -673,13 +673,13 @@
             <param name="user_a" required="true" type="xsd:string" style="query"
                    default="sonoa"/>
             <method id="friendshipsexists" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Friendship</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/friendships/exists.{format}?user_a={user_a}&amp;user_b={user_b}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/friendships/exists"><![CDATA[Tests for the existence of friendship between two users. Will return true if user_a follows
                     user_b, otherwise will return false. Also try the friendship/show method, which gives even more
                     information with a single call!
@@ -708,13 +708,13 @@
                        style="query"  default="10330576396"/>
             </apigee:choice>
             <method id="friendshipsshow" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Friendship</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="false"/>
+                <apigee:example  
                                 url="/friendships/show.{format}?target_screen_name={target_screen_name}&amp;source_screen_name={source_screen_name}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/friendships/incoming"><![CDATA[
 					Returns detailed information about the relationship between two users.
                 ]]></doc>
@@ -727,13 +727,13 @@
             </param>
             <param name="cursor" required="true" type="xsd:string" style="query" default="-1"/>
             <method id="friendshipsexists.format" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Friendship</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/friendships/incoming.{format}?cursor={cursor}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://apiwiki.twitter.com/Twitter-REST-API-Method:-friendships-incoming"><![CDATA[Returns an array of numeric IDs for every user who has a pending request to follow the
                     authenticating user.
                 ]]></doc>
@@ -746,13 +746,13 @@
             </param>
             <param name="cursor" required="true" type="xsd:string" style="query" default="-1"/>
             <method id="friendshipsoutgoing.format" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Friendship</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/friendships/outgoing.{format}?cursor={cursor}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/friendships/outgoing"><![CDATA[Returns an array of numeric IDs for every user who has a pending request to follow the
                     authenticating user.
                 ]]></doc>
@@ -774,14 +774,14 @@
             </apigee:choice>
             <param name="cursor" required="true" type="xsd:string" style="query" default="-1"/>
             <method id="friendsids" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Friends and Followers</apigee:tag>
                     <apigee:tag>Friendship</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="false"/>
+                <apigee:example  
                                 url="/friends/ids.{format}?screen_name={screen_name}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/friends/ids">
                     <![CDATA[Returns an array of numeric IDs for every user the specified user is following.]]></doc>
             </method>
@@ -802,14 +802,14 @@
             </apigee:choice>
             <param name="cursor" required="true" type="xsd:string" style="query" default="-1"/>
             <method id="followersids" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Friends and Followers</apigee:tag>
                     <apigee:tag>Follow</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="false"/>
+                <apigee:example  
                                 url="/followers/ids.{format}?screen_name={screen_name}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/followers/ids">
                     <![CDATA[Returns an array of numeric IDs for every user following the specified user.]]></doc>
             </method>
@@ -820,13 +820,13 @@
                 <option value="json" mediaType="application/json"/>
             </param>
             <method id="accountverify_credentials" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Account</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/account/verify_credentials.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/account/verify_credentials"><![CDATA[Returns an HTTP 200 OK response code and a representation of the requesting user if
                     authentication was successful; returns a 401 status code and an error message if not. Use this
                     method to test if supplied user credentials are valid.
@@ -839,14 +839,14 @@
                 <option value="json" mediaType="application/json"/>
             </param>
             <method id="accountrate_limit_status" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Account</apigee:tag>
                     <apigee:tag>Help</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="false"/>
+                <apigee:example  
                                 url="/account/rate_limit_status.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/account/rate_limit_status"><![CDATA[Returns the remaining number of API requests available to the requesting user before the API
                     limit is reached for the current hour. Calls to rate_limit_status do not count against the rate
                     limit. If authentication credentials are provided, the rate limit status for the authenticating user
@@ -870,12 +870,12 @@
             </apigee:choice>
             <param name="cursor" required="false" type="xsd:string" style="query" default="12893764510938"/>
             <method id="userlistscreate1" name="GET" apigee:displayName="lists">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">List</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/{user}/lists.{format}?screen_name={screen_name}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <apigee:authentication   required="true"/>
+                <apigee:example   url="/{user}/lists.{format}?screen_name={screen_name}"/>
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/lists">
                     <![CDATA[Returns the lists of the specified (or authenticated) user.
                     Private lists will be included if the authenticated user is the same as the user whose lists are being returned.
@@ -898,13 +898,13 @@
             <param name="cursor" required="false" type="xsd:string" style="query" default="12893764510938"/>
             <param name="filter_to_owned_lists" required="false" type="xsd:string" style="query" default="true"/>
             <method id="userlistsmemberships1" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">List</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="false"/>
+                <apigee:example  
                                 url="/lists/memberships.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/lists/memberships">
                     <![CDATA[Returns the lists the specified (or authenticated) user has been added to.]]></doc>
             </method>
@@ -924,13 +924,13 @@
             </apigee:choice>
             <param name="cursor" required="false" type="xsd:string" style="query" default="12893764510938"/>
             <method id="userlistssubscriptions1" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">List</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="false"/>
+                <apigee:example  
                                 url="/lists/subscriptions.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/lists/subscriptions">
                     <![CDATA[Returns the lists the specified (or authenticated) user follows.]]></doc>
             </method>
@@ -951,13 +951,13 @@
             <param name="slug" required="true" type="xsd:string" style="query" default="team"/> 
             <param name="cursor" required="false" type="xsd:string" style="query" default="12893764510938"/>
             <method id="userlistsshow" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">List</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="false"/>
+                <apigee:example  
                                 url="/lists/show.{format}?slug={slug}&amp;owner_screen_name={owner_screen_name}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/lists/show">
                     <![CDATA[Returns the specified list. Private lists will only be shown if the authenticated user owns the specified list.]]></doc>
             </method>
@@ -981,12 +981,12 @@
             <param name="include_entities" required="false" type="xsd:string" style="query" default="true"/>
             <param name="include_rts" required="false" type="xsd:string" style="query" default="true"/>
             <method id="userliststatuses" name="GET" apigee:displayName="lists/statuses">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">List</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="lists/statuses?list_id={list_id}.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <apigee:authentication   required="false"/>
+                <apigee:example   url="lists/statuses?list_id={list_id}.{format}"/>
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/:user/lists"><![CDATA[Returns tweet timeline for members of the specified list.
                 ]]></doc>
             </method>
@@ -1000,13 +1000,13 @@
             <param name="mode" required="false" type="xsd:string" style="query" default="public"/>
             <param name="description" required="false" type="xsd:string" style="query" default=""/>
             <method id="userlistscreate2" name="POST">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">List</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/lists/create.{format}?name={list_name}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/post/lists/create">
                     <![CDATA[Creates a new list for the authenticated user. Note that you can't create more than 20 lists per account.]]></doc>
             </method>
@@ -1026,13 +1026,13 @@
             </apigee:choice>
             <param name="slug" required="true" type="xsd:string" style="query" default="team"/>
             <method id="userlistupdate" name="POST">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">List</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/lists/update.{format}?slug={slug}&amp;owner_screen_name={owner_screen_name}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/post/lists/update">
                     <![CDATA[Updates the specified list. The authenticated user must own the list to be able to update it.]]></doc>
             </method>
@@ -1052,13 +1052,13 @@
             </apigee:choice>
             <param name="slug" required="true" type="xsd:string" style="query" default="team"/>
             <method id="userlistdestroy" name="POST">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">List</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/lists/destroy.{format}?slug={slug}&amp;owner_screen_name={owner_screen_name}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/post/lists/destroy">
                     <![CDATA[Deletes the specified list. The authenticated user must own the list to be able to destroy it.]]></doc>
             </method>
@@ -1080,13 +1080,13 @@
             <param name="slug" required="true" type="xsd:string" style="query" default="team"/>
             <param name="cursor" required="false" type="xsd:string" style="query" default="-1"/>
             <method id="listmembers" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">List Members</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="false"/>
+                <apigee:example  
                                 url="/lists/members.{format}?slug={slug}&amp;owner_screen_name={owner_screen_name}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/lists/members">
                     <![CDATA[Returns the members of the specified list.
                      Private list members will only be shown if the authenticated user owns the specified list.]]></doc>
@@ -1109,13 +1109,13 @@
             <param name="slug" required="true" type="xsd:string" style="query" default="team"/>
             <param name="cursor" required="false" type="xsd:string" style="query" default="-1"/>
             <method id="listmembersshow" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">List Members</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="false"/>
+                <apigee:example  
                                 url="/lists/members/show.{format}?screen_name={screen_name}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/lists/members">
                     <![CDATA[Check if the specified user is a member of the specified list.]]></doc>
             </method>
@@ -1136,13 +1136,13 @@
             <param name="slug" required="true" type="xsd:string" style="query" default="team"/>
             <param name="cursor" required="false" type="xsd:string" style="query" default="-1"/>
             <method id="listmemberscreate" name="POST">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">List Members</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/lists/members/create.{format}?screen_name={screen_name}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/post/lists/members/create">
                     <![CDATA[Add a member to a list. The authenticated user must own the list to be able to add members to it.]]></doc>
             </method>
@@ -1162,13 +1162,13 @@
             </apigee:choice>
             <param name="slug" required="true" type="xsd:string" style="query" default="team"/>
             <method id="listmemberscreateall" name="POST">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">List Members</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/lists/members/create_all.{format}?slug={slug}&amp;owner_screen_name={owner_screen_name}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/post/lists/members/create">
                     <![CDATA[Adds multiple members to a list, by specifying a comma-separated list of member ids or screen names.
                     The authenticated user must own the list to be able to add members to it.]]></doc>
@@ -1189,13 +1189,13 @@
             </apigee:choice>
             <param name="slug" required="true" type="xsd:string" style="query" default="team"/>
             <method id="listmembersdestroy" name="POST">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">List Members</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/lists/members/destroy.{format}?screen_name={screen_name}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/post/lists/members/destroy">
                     <![CDATA[Removes the specified member from the list.
                     The authenticated user must be the list's owner to remove members from the list.]]></doc>
@@ -1217,13 +1217,13 @@
             <param name="slug" required="true" type="xsd:string" style="query" default="team"/>
             <param name="cursor" required="false" type="xsd:string" style="query" default="-1"/>
             <method id="listsubscribers" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">List Subscribers</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/lists/subscribers.{format}?slug={slug}&amp;owner_screen_name={owner_screen_name}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/lists/subscribers">
                     <![CDATA[Returns the subscribers of the specified list.
                      Private list subscribers will only be shown if the authenticated user owns the specified list.]]></doc>
@@ -1246,13 +1246,13 @@
             <param name="slug" required="true" type="xsd:string" style="query" default="team"/>
             <param name="cursor" required="false" type="xsd:string" style="query" default="-1"/>
             <method id="listsubscribersshow" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">List Subscribers</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/lists/subscribers/show.{format}?slug={slug}&amp;owner_screen_name={owner_screen_name}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/lists/subscribers/show">
                     <![CDATA[Check if the specified user is a subscriber of the specified list.]]></doc>
             </method>
@@ -1273,13 +1273,13 @@
             <param name="slug" required="true" type="xsd:string" style="query" default="team"/>
             <param name="cursor" required="false" type="xsd:string" style="query" default="-1"/>
             <method id="listsubscriberscreate" name="POST">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">List Subscribers</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/lists/subscribers/create.{format}?slug={slug}&amp;owner_screen_name={owner_screen_name}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/post/lists/subscribers/create">
                     <![CDATA[Subscribes the authenticated user to the specified list.]]></doc>
             </method>
@@ -1300,13 +1300,13 @@
             <param name="slug" required="true" type="xsd:string" style="query" default="team"/>
             <param name="cursor" required="false" type="xsd:string" style="query" default="-1"/>
             <method id="listsubscribersdestroy" name="POST">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">List Subscribers</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/lists/subscribers/destroy.{format}?slug={slug}&amp;owner_screen_name={owner_screen_name}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/post/lists/subscribers/destroy">
                     <![CDATA[Unsubscribes the authenticated user from the specified list.]]></doc>
             </method>
@@ -1334,13 +1334,13 @@
                        style="query"  default="C0DEED"/>
             </apigee:choice>
             <method id="accountupdate_profile_colors" name="POST">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Account</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/account/update_profile_colors.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/post/account/update_profile_colors"><![CDATA[Sets one or more hex values that control the color scheme of the authenticating user's profile
                     page on twitter.com.
                 ]]></doc>
@@ -1354,13 +1354,13 @@
             <param name="image" required="true" type="xsd:string" style="header" default=""/>
             <!-- IMPORTANT, NEED TO BE ABLE TO CHOOSE A FILE! or maybe even supply a url, though that could be confusing. &-->
             <method id="accountupdate_profile_image" name="POST">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Account</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/account/update_profile_image.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/post/account/update_profile_image"><![CDATA[Updates the authenticating user's profile image. Note that this method expects raw multipart
                     data, not a URL to an image. Must be a valid GIF, JPG, or PNG image of less than 700 kilobytes in
                     size. Images with width larger than 500 pixels will be scaled down.
@@ -1376,13 +1376,13 @@
             <param name="image" required="true" type="xsd:string" style="header"/>
             <!-- IMPORTANT, NEED TO BE ABLE TO CHOOSE A FILE! or maybe even supply a url, though that could be confusing. &-->
             <method id="accountupdate_profile_background_image" name="POST">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Account</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/account/update_profile_background_image.{format}?tile={tile}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/post/account/update_profile_background_image"><![CDATA[Updates the authenticating user's profile background image. Note that this method expects raw
                     multipart data, not a URL to an image. Must be a valid GIF, JPG, or PNG image of less than 800
                     kilobytes in size. Images with width larger than 2048 pixels will be forceably scaled down.
@@ -1413,13 +1413,13 @@
                        style="query"  default="San Francisco, CA"/>
             </apigee:choice>
             <method id="accountupdate_profile" name="POST">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Account</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/account/update_profile.{format}?name={name}&amp;url={url}&amp;location={location}&amp;description={description}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/post/account/update_profile"><![CDATA[Sets values that users are able to set under the "Account" tab of their settings page. Only the
                     parameters specified will be updated.
                 ]]></doc>
@@ -1436,12 +1436,12 @@
                    default="apigee"/>
             <param name="page" required="false" type="xsd:string" style="query" default="2"/>
             <method id="favorites" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Favorite</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/favorites/{id}.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <apigee:authentication   required="false"/>
+                <apigee:example   url="/favorites/{id}.{format}"/>
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/favorites"><![CDATA[Returns the 20 most recent favorite statuses for the authenticating user or user specified by the
                     ID parameter in the requested format.
                 ]]></doc>
@@ -1454,13 +1454,13 @@
             </param>
             <param name="id" required="true" type="xsd:string" style="query" default="11432445742"/>
             <method id="favoritescreate" name="POST">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Favorite</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/favorites/create/{id}.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/post/favorites/create"><![CDATA[Favorites the status specified in the ID parameter as the authenticating user. Returns the
                     favorite status when successful.
                 ]]></doc>
@@ -1474,13 +1474,13 @@
             <param name="id" required="true" type="xsd:string" style="query"
                    default="11432445742"/>
             <method id="favoritesdestroy" name="DELETE">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Favorite</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/favorites/destroy/{id}.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/post/favorites/destroy"><![CDATA[Un-favorites the status specified in the ID parameter as the authenticating user. Returns the
                     un-favorited status in the requested format when successful.
                 ]]></doc>
@@ -1501,14 +1501,14 @@
                        type="xsd:string" style="query" default="apigee"/>
             </apigee:choice>
             <method id="notificationsfollow" name="POST">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Notification</apigee:tag>
                     <apigee:tag>Follow</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/notifications/follow.{format}?screen_name={screen_name}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/post/notifications/follow"><![CDATA[Enables device notifications for updates from the specified user. Returns the specified user when
                     successful.
                 ]]></doc>
@@ -1529,13 +1529,13 @@
                        type="xsd:string" style="query"  default="apigee"/>
             </apigee:choice>
             <method id="notificationsleave" name="POST">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Notification</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/notifications/leave.{format}?screen_name={screen_name}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/post/notifications/leave"><![CDATA[Disables notifications for updates from the specified user to the authenticating user.
                        Returns the specified user when successful.
                 ]]></doc>
@@ -1556,13 +1556,13 @@
                        type="xsd:string" style="query"  default="testapigee"/>
             </apigee:choice>
             <method id="blockscreate" name="POST">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Block</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/blocks/create.{format}?screen_name={screen_name}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/post/blocks/create"><![CDATA[Blocks the user specified in the ID parameter as the authenticating user. Destroys a friendship
                     to the blocked user if it exists. Returns the blocked user in the requested format when successful.
                     You can find out more about blocking in the<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" href="http://help.twitter.com/forums/10711/entries/15355">Twitter Support Knowledge Base</a>
@@ -1585,13 +1585,13 @@
                        type="xsd:string" style="query"  default="testapigee"/>
             </apigee:choice>
             <method id="blocksdestroy" name="DELETE">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Block</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/blocks/destroy.{format}?screen_name={screen_name}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/post/blocks/destroy"><![CDATA[Un-blocks the user specified in the ID parameter for the authenticating user. Returns the
                     un-blocked user in the requested format when successful.
                 ]]></doc>
@@ -1612,13 +1612,13 @@
                        type="xsd:string" style="query"  default="testapigee"/>
             </apigee:choice>
             <method id="blocksexists" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Block</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/blocks/exists.{format}?screen_name={screen_name}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/blocks/exists"><![CDATA[Returns if the authenticating user is blocking a target user. Will return the blocked user's
                     object if a block exists, and error with a HTTP 404 response code otherwise.
                 ]]></doc>
@@ -1631,12 +1631,12 @@
             </param>
             <param name="page" required="false" type="xsd:string" style="query" default="2"/>
             <method id="blocksblocking" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Block</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/blocks/blocking.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <apigee:authentication   required="true"/>
+                <apigee:example   url="/blocks/blocking.{format}"/>
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/blocks/blocking">
                     <![CDATA[Returns an array of user objects that the authenticating user is blocking.]]></doc>
             </method>
@@ -1647,12 +1647,12 @@
                 <option value="json" mediaType="application/json"/>
             </param>
             <method id="blocksblockingids" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Block</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/blocks/blocking/ids.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <apigee:authentication   required="true"/>
+                <apigee:example   url="/blocks/blocking/ids.{format}"/>
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/blocks/blocking/ids">
                     <![CDATA[Returns an array of numeric user ids the authenticating user is blocking.]]></doc>
             </method>
@@ -1672,13 +1672,13 @@
                         default="examplespammer"/>
             </apigee:choice>
             <method id="report_spam" name="POST">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Spam Reporting</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/report_spam.{format}?screen_name={screen_name}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/post/report_spam"><![CDATA[The user specified in the id is blocked by the authenticated user and reported as a spammer.
                 ]]></doc>
             </method>
@@ -1689,12 +1689,12 @@
                 <option value="json" mediaType="application/json"/>
             </param>
             <method id="saved_searches" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Saved Search</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/saved_searches.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <apigee:authentication   required="true"/>
+                <apigee:example   url="/saved_searches.{format}"/>
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/saved_searches">
                     <![CDATA[Returns the authenticated user's saved search queries.]]></doc>
             </method>
@@ -1707,13 +1707,13 @@
             <param name="id" required="true" type="xsd:string" style="query"
                    default="313006"/>
             <method id="saved_searchesshow" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Saved Search</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/saved_searches/show/{id}.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/saved_searches/show"><![CDATA[Retrieve the data for a saved search owned by the authenticating user specified by the given id.
                 ]]></doc>
             </method>
@@ -1725,13 +1725,13 @@
             </param>
             <param name="query" required="true" type="xsd:string" style="query" default="from:apigee OR from:sonoa"/>
             <method id="saved_searchescreate" name="POST">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Saved Search</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/saved_searches/create.{format}?query={query}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/post/saved_searches/create">
                     <![CDATA[Creates a saved search for the authenticated user.]]></doc>
             </method>
@@ -1744,13 +1744,13 @@
             <param name="id" required="true" type="xsd:string" style="query"
                    default="12345"/>
             <method id="saved_searchesdestroy" name="DELETE">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Saved Search</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/saved_searches/destroy/{id}.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/post/saved_searches/destroy"><![CDATA[Destroys a saved search for the authenticated user. The search specified by id must be owned by
                     the authenticating user.
                 ]]></doc>
@@ -1771,12 +1771,12 @@
                 <!-- at some point we should look up the lat/lon of the authenticated user &-->
             </apigee:choice>
             <method id="trendsavailable" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Local Trends</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/trends/available.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <apigee:authentication   required="false"/>
+                <apigee:example   url="/trends/available.{format}"/>
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/trends/available"><![CDATA[
                    Returns the locations that Twitter has trending topic information for. The response is an array of "locations" that encode the location's WOEID and some other human-readable
                    information such as a canonical name and country the location belongs in.
@@ -1791,12 +1791,12 @@
             <param name="woeid" required="true" type="xsd:string" style="query" default="2487956"/>
             <!-- add contextual lookup at some point &-->
             <method id="trendswoeid" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Local Trends</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/trends/{woeid}.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <apigee:authentication   required="false"/>
+                <apigee:example   url="/trends/{woeid}.{format}"/>
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/trends/location"><![CDATA[Returns the top 10 trending topics for a specific location Twitter has trending topic information
                     for. The response is an array of "trend" objects that encode the name of the trending topic, the
                     query parameter that can be used to search for the topic on Search, and the direct URL that can be
@@ -1816,13 +1816,13 @@
             <param name="lat" required="false" type="xsd:string" style="query"  default=""/>
             <param name="accuracy" required="false" type="xsd:string" style="query"  default="city"/>
             <method id="geonearby_places" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Geo</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="false"/>
+                <apigee:example  
                                 url="/geo/search.{format}?lat={lat}&amp;long={long}&amp;query={query}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/geo/search"><![CDATA[
                     Search for places that can be attached to a statuses/update.
                     Given a latitude and a longitude pair, an IP address, or a name, this request will return a list of all the valid places that can be used as the place_id when updating a status.
@@ -1839,13 +1839,13 @@
             <param name="attribute:street_address" required="false" type="xsd:string" style="query" default=""/>
             <param name="callback" required="false" type="xsd:string" style="query" default=""/>
             <method id="geosimilar_places" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Geo</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="false"/>
+                <apigee:example  
                                 url="geo/similar_places.{format}?name={name}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/geo/similar_places"><![CDATA[
                          Locates places near the given coordinates which are similar in name.
                 ]]></doc>
@@ -1862,13 +1862,13 @@
             <!-- at some point make this contextual to the user &-->
             <param name="accuracy" required="false" type="xsd:string" style="query" default="500"/>
             <method id="georeverse_geocode" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Geo</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="false"/>
+                <apigee:example  
                                 url="/geo/reverse_geocode.{format}?lat={lat}&amp;long={long}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/geo/reverse_geocode"><![CDATA[
                   Given a latitude and a longitude, searches for up to 20 places that can be used as a place_id when updating a status.
                 ]]></doc>
@@ -1881,12 +1881,12 @@
             <param name="id" required="true" type="xsd:string" style="query"  default="7695dd2ec2f86f2b"/>
             <!-- at some point make this contextual to the user &-->
             <method id="geoid" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Geo</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/geo/id/{id}.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <apigee:authentication   required="false"/>
+                <apigee:example   url="/geo/id/{id}.{format}"/>
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/geo/id">
                     <![CDATA[Find out more details of a place that was returned from the geo/reverse_geocode method.]]></doc>
             </method>
@@ -1904,12 +1904,12 @@
             <param name="callback" required="false" type="xsd:string" style="query" default=""/>
             <!-- at some point make this contextual to the user &-->
             <method id="geoplace" name="POST" apigee:displayName="geo/place">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Geo</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/geo/place.{format}?name={name}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <apigee:authentication   required="true"/>
+                <apigee:example   url="/geo/place.{format}?name={name}"/>
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/geo/id">
                     <![CDATA[Creates a new place at the given latitude and longitude.]]></doc>
             </method>
@@ -1920,12 +1920,12 @@
                 <option value="json" mediaType="application/json"/>
             </param>
             <method id="helptest" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Help</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/help/test.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <apigee:authentication   required="false"/>
+                <apigee:example   url="/help/test.{format}"/>
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/help/test">
                     <![CDATA[Returns the string "ok" in the requested format with a 200 OK HTTP status code.]]></doc>
             </method>
@@ -1936,12 +1936,12 @@
                 <option value="json" mediaType="application/json"/>
             </param>
             <method id="legaltos" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Legal</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/legal/tos.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <apigee:authentication   required="false"/>
+                <apigee:example   url="/legal/tos.{format}"/>
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/legal/tos">
                     <![CDATA[Returns Twitter's' Terms of Service in the requested format.
                     These are not the same as the Developer Terms of Service.]]></doc>
@@ -1953,12 +1953,12 @@
                 <option value="json" mediaType="application/json"/>
             </param>
             <method id="legalprivacy" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Legal</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/legal/privacy.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <apigee:authentication   required="false"/>
+                <apigee:example   url="/legal/privacy.{format}"/>
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/legal/tos">
                     <![CDATA[Returns Twitter's Privacy Policy in the requested format.]]></doc>
             </method>
@@ -1968,12 +1968,12 @@
                 <option value="json" mediaType="application/json"/>
             </param>
             <method id="trends" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Trends</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/trends.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <apigee:authentication   required="false"/>
+                <apigee:example   url="/trends.{format}"/>
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/trends"><![CDATA[Returns the top ten topics that are currently trending on Twitter. The response includes the time
                     of the request, the name of each trend, and the url to the Twitter Search results page for that
                     topic.
@@ -1986,13 +1986,13 @@
             </param>
             <param name="exclude" required="false" type="xsd:string" style="query" default="hashtags"/>
             <method id="trendscurrent2" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Trends</apigee:tag>
                     <apigee:tag>Trends</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/trends/current.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <apigee:authentication   required="false"/>
+                <apigee:example   url="/trends/current.{format}"/>
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/trends/current"><![CDATA[Returns the current top 10 trending topics on Twitter. The response includes the time of the
                     request, the name of each trending topic, and query used on Twitter Search results page for that
                     topic.
@@ -2006,13 +2006,13 @@
             <param name="exclude" required="false" type="xsd:string" style="query" default="hashtags"/>
             <param name="date" required="false" type="xsd:string" style="query" default="2009-03-19"/>
             <method id="trendscurrent1" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Trends</apigee:tag>
                     <apigee:tag>Trends</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/trends/daily.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <apigee:authentication   required="false"/>
+                <apigee:example   url="/trends/daily.{format}"/>
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/trends/daily">
                     <![CDATA[Returns the top 20 trending topics for each hour in a given day.]]></doc>
             </method>
@@ -2024,13 +2024,13 @@
             <param name="exclude" required="false" type="xsd:string" style="query" default="hashtags"/>
             <param name="date" required="false" type="xsd:string" style="query" default="2009-03-19"/>
             <method id="trendsweekly" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Trends</apigee:tag>
                     <apigee:tag>Trends</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/trends/weekly.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <apigee:authentication   required="false"/>
+                <apigee:example   url="/trends/weekly.{format}"/>
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/trends/weekly">
                     <![CDATA[Returns the top 30 trending topics for each day in a given week.]]></doc>
             </method>
@@ -2050,15 +2050,15 @@
             <param name="include_entities" required="false" type="xsd:string" style="query" default="true"/>
             <param name="include_rts" required="false" type="xsd:string" style="query" default="true"/>
             <method id="statusesfriends_timeline" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Deprecated</apigee:tag>
                     <apigee:tag>Status</apigee:tag>
                     <apigee:tag>Friend</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/statuses/friends_timeline.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/statuses/friends_timeline"><![CDATA[
                     <p xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">Returns the 20 most recent statuses posted by the authenticating user and that user's friends.
                         This is the equivalent of /timeline/home on the Web.
@@ -2083,12 +2083,12 @@
                    default="apigee"/>
             <param name="mode" required="false" type="xsd:string" style="query" default="public"/>
             <method id="userlistscreate" name="POST" apigee:displayName="user/lists (POST)">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Deprecated</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/{user}/lists.{format}?name={name}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <apigee:authentication   required="true"/>
+                <apigee:example   url="/{user}/lists.{format}?name={name}"/>
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/post/:user/lists">
                     <![CDATA[Creates a new list for the authenticated user. Accounts are limited to 20 lists.]]></doc>
             </method>
@@ -2102,12 +2102,12 @@
             <param name="user" required="true" type="xsd:string" style="query"
                    default="apigee"/>
             <method id="userlistsindex" name="GET" apigee:displayName="user/lists (GET)">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Deprecated</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/{user}/lists.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <apigee:authentication   required="true"/>
+                <apigee:example   url="/{user}/lists.{format}"/>
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/:user/lists"><![CDATA[List the lists of the specified user. Private lists will be included if the authenticated users
                     is the same as the user whose lists are being returned.
                 ]]></doc>
@@ -2126,13 +2126,13 @@
             <param name="id" required="true" type="xsd:string" style="query"  default="apigee"/>
             <param name="mode" required="false" type="xsd:string" style="query" default="public"/>
             <method id="userlistsidupdate" name="POST" apigee:displayName="user/lists/id (POST)">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Deprecated</apigee:tag>
                     <apigee:tag>Lists</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/{user}/lists/{id}.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <apigee:authentication   required="true"/>
+                <apigee:example   url="/{user}/lists/{id}.{format}"/>
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/post/:user/lists/:id">
                     <![CDATA[Updates the specified list.]]></doc>
             </method>
@@ -2147,12 +2147,12 @@
             <param name="user" required="true" type="xsd:string" style="query"
                    default="apigee"/>
             <method id="userlistsidshow" name="GET" apigee:displayName="user/lists/id (GET)">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Deprecated</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/{user}/lists/{id}.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <apigee:authentication   required="true"/>
+                <apigee:example   url="/{user}/lists/{id}.{format}"/>
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/:user/lists/:id"><![CDATA[Show the specified list. Private lists will only be shown if the authenticated user owns the
                     specified list.
                 ]]></doc>
@@ -2168,12 +2168,12 @@
             <param name="user" required="true" type="xsd:string" style="query"
                    default="apigee"/>
             <method id="userlistsiddestroy" name="DELETE" apigee:displayName="user/lists/id (DELETE)">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Deprecated</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/{user}/lists/{id}.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <apigee:authentication   required="true"/>
+                <apigee:example   url="/{user}/lists/{id}.{format}"/>
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/delete/:user/lists/:id">
                     <![CDATA[Deletes the specified list. Must be owned by the authenticated user.]]></doc>
             </method>
@@ -2193,14 +2193,14 @@
             <param name="user" required="true" type="xsd:string" style="query"
                    default="apigee"/>
             <method id="userlistsstatuses" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Deprecated</apigee:tag>
                     <apigee:tag>Status</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="false"/>
+                <apigee:example  
                                 url="/{user}/lists/{list_id}/statuses.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/:user/lists/:id/statuses">
                     <![CDATA[Show tweet timeline for members of the specified list.]]></doc>
             </method>
@@ -2214,13 +2214,13 @@
             <param name="user" required="true" type="xsd:string" style="query"
                    default="apigee"/>
             <method id="userlistsmemberships" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Deprecated</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/{user}/lists/memberships.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/:user/lists/memberships">
                     <![CDATA[List the lists the specified user has been added to.]]></doc>
             </method>
@@ -2234,13 +2234,13 @@
             <param name="user" required="true" type="xsd:string" style="query"
                    default="apigee"/>
             <method id="userlistssubscriptions" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Deprecated</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/{user}/lists/subscriptions.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/:user/lists/subscriptions">
                     <![CDATA[List the lists the specified user follows.]]></doc>
             </method>
@@ -2256,13 +2256,13 @@
             <param name="user" required="true" type="xsd:string" style="query"
                    default="apigee"/>
             <method id="getuserlist_idmembers" name="GET" apigee:displayName="user/list_id/members (GET)">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Deprecated</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/{user}/{list_id}/members.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/:user/:list_id/members">
                     <![CDATA[Returns the members of the specified list.]]></doc>
             </method>
@@ -2278,13 +2278,13 @@
             <param name="user" required="true" type="xsd:string" style="query"
                    default="apigee"/>
             <method id="postuserlist_idmembers" name="POST" apigee:displayName="user/list_id/members (POST)">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Deprecated</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/{user}/{list_id}/members.{format}?id={id}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/post/:user/:list_id/members"><![CDATA[Add a member to a list. The authenticated user must own the list to be able to add members to it.
                     Lists are limited to having 500 members.
                 ]]></doc>
@@ -2301,13 +2301,13 @@
             <param name="user" required="true" type="xsd:string" style="query"
                    default="apigee"/>
             <method id="deleteuserlist_idmembers" name="DELETE" apigee:displayName="user/list_id/members (DELETE)">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Deprecated</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/{user}/{list_id}/members.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/delete/:user/:id/members"><![CDATA[Removes the specified member from the list. The authenticated user must be the list's owner to
                     remove members from the list.
                 ]]></doc>
@@ -2324,13 +2324,13 @@
             <param name="user" required="true" type="xsd:string" style="query"
                    default="apigee"/>
             <method id="adduserlist_idmembers" name="POST" apigee:displayName="user/list_id/members/create_all">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Deprecated</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/{user}/{list_id}/members/create_all.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/delete/:user/:id/members"><![CDATA[Adds multiple members to a list, by specifying a comma-separated list of member ids or screen names. The authenticated user must own the list
                      to be able to add members to it.
                 ]]></doc>
@@ -2347,13 +2347,13 @@
             <param name="user" required="true" type="xsd:string" style="query"
                    default="apigee"/>
             <method id="getuserlist_idmembersid" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Deprecated</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/{user}/{list_id}/members/{id}.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/:user/:list_id/members/:id">
                     <![CDATA[Check if a user is a member of the specified list.]]></doc>
             </method>
@@ -2369,13 +2369,13 @@
             <param name="user" required="true" type="xsd:string" style="query"
                    default="apigee"/>
             <method id="getuserlist_idsubscribers" name="GET" apigee:displayName="user/list_id/subscribers (GET)">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Deprecated</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/{user}/{list_id}/subscribers.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/:user/:list_id/subscribers">
                     <![CDATA[Returns the subscribers of the specified list.]]></doc>
             </method>
@@ -2390,13 +2390,13 @@
             <param name="user" required="true" type="xsd:string" style="query"
                    default="apigee"/>
             <method id="postuserlist_idsubscribers" name="POST" apigee:displayName="user/list_id/subscribers (POST)">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Deprecated</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/{user}/{list_id}/subscribers.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/post/:user/:list_id/subscribers">
                     <![CDATA[Make the authenticated user follow the specified list.]]></doc>
             </method>
@@ -2412,13 +2412,13 @@
             <param name="user" required="true" type="xsd:string" style="query"
                    default="apigee"/>
             <method id="deleteuserlist_idsubscribers" name="DELETE" apigee:displayName="user/list_id/subscribers (DELETE)">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Deprecated</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/{user}/{list_id}/subscribers.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/delete/:user/:id/subscribers">
                     <![CDATA[Unsubscribes the authenticated user form the specified list.]]></doc>
             </method>
@@ -2435,13 +2435,13 @@
             <param name="user" required="true" type="xsd:string" style="query"
                    default="apigee"/>
             <method id="getuserlist_idsubscribersid" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Deprecated</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/{user}/{list_id}/subscribers/{id}.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/:user/:list_id/subscribers/:id">
                     <![CDATA[Check if the specified user is a subscriber of the specified list.]]></doc>
             </method>
@@ -2457,13 +2457,13 @@
             <param name="lat" required="false" type="xsd:string" style="query"  default=""/>
             <param name="accuracy" required="false" type="xsd:string" style="query"  default="city"/>
             <method id="geonearby_places1" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Deprecated</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="false"/>
+                <apigee:example  
                                 url="/geo/nearby_places.{format}?ip={ip_address}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/geo/nearby_places"><![CDATA[
                     Search for places (cities and neighborhoods) that can be attached to a statuses/update. Given a
                     latitude and a longitude pair, or an IP address, return a list of all the valid cities and
@@ -2484,12 +2484,12 @@
                 <option value="json" mediaType="application/json"/>
             </param>
             <method id="accountend_session" name="POST">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Deprecated</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/account/end_session.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <apigee:authentication   required="true"/>
+                <apigee:example   url="/account/end_session.{format}"/>
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/post/account/end_session"><![CDATA[Ends the session of the authenticating user, returning a null cookie. Use this method to sign
                     users out of client-facing applications like widgets.
                 ]]></doc>
@@ -2502,13 +2502,13 @@
             </param>
             <param name="device" required="true" type="xsd:string" style="query" default="sms"/>
             <method id="accountupdate_delivery_device" name="POST">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Deprecated</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="true"/>
+                <apigee:example  
                                 url="/account/update_delivery_device.{format}?device={device}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/post/account/update_delivery_device"><![CDATA[Sets which device Twitter delivers updates to for the authenticating user. Sending none as the
                     device parameter will disable IM or SMS updates.
                 ]]></doc>
@@ -2531,14 +2531,14 @@
                         default="apigee"/>
             </apigee:choice>  
             <method id="statuseshome_friends" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Deprecated</apigee:tag>
                     <apigee:tag>Status</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="false"/>
+                <apigee:example  
                                 url="/statuses/friends.{format}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/statuses/friends"><![CDATA[
                     Returns a user's friends, each with current status inline. They are ordered by the order in which
                     the user followed them, most recently followed first, 100 at a time. (Please note that the result
@@ -2565,14 +2565,14 @@
                         default="apigee"/>
             </apigee:choice>
             <method id="statusesfollowers" name="GET">
-                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                <apigee:tags  >
                     <apigee:tag primary="true">Deprecated</apigee:tag>
                     <apigee:tag>Status</apigee:tag>
                 </apigee:tags>
-                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
-                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                <apigee:authentication   required="false"/>
+                <apigee:example  
                                 url="/statuses/followers.{format}?screen_name={screen_name}"/>
-                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                <doc   title=""
                      apigee:url="http://dev.twitter.com/doc/get/statuses/followers"><![CDATA[Returns the authenticating user's followers, each with current status inline. They are ordered by
                     the order in which they followed the user, 100 at a time. (Please note that the result set isn't
                     guaranteed to be 100 every time as suspended users will be filtered out.) Use the cursor option to
