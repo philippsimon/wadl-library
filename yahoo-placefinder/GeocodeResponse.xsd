@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:yahoo:maps" xmlns="urn:yahoo:maps" elementFormDefault="qualified">
+    <xsd:element name="ResultSet">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="Error" type="xsd:integer"/>
+                <xsd:element name="ErrorMessage" type="xsd:string"/>
+                <xsd:element name="Locale" type="xsd:string"/>
+                <xsd:element name="Quality" type="xsd:integer"/>
+                <xsd:element name="Found" type="xsd:integer"/>
+                <xsd:element name="Result" type="Result" minOccurs="0" maxOccurs="50"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="Result">
+        <xsd:sequence>
+            <xsd:element name="quality" type="xsd:integer"/>
+            <xsd:element name="latitude" type="xsd:decimal"/>
+            <xsd:element name="longitude" type="xsd:decimal"/>
+            <xsd:element name="offsetlat" type="positiveDecimal"/>
+            <xsd:element name="offsetlon" type="positiveDecimal"/>
+            <xsd:element name="radius" type="xsd:integer"/>
+            <xsd:element name="boundingbox" type="BoundingBox" minOccurs="0"/>
+            <xsd:element name="name" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="line1" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="line2" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="line3" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="line4" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="house" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="street" type="Street" minOccurs="0"/>
+            <xsd:element name="xstreet" type="Street" minOccurs="0"/>
+            <xsd:element name="unittype" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="unit" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="postal" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="neighborhood" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="city" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="county" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="state" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="country" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="level4" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="level3" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="level2" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="level1" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="level0" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="countycode" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="statecode" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="countrycode" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="level2code" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="level1code" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="level0code" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="timezone" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="areacode" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="uzip" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="hash" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="woeid" type="xsd:integer" minOccurs="0"/>
+            <xsd:element name="woetype" type="xsd:integer" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="Street">
+        <xsd:choice>
+            <xsd:element name="street" type="xsd:string"/>
+            <xsd:group ref="StreetGroup"/>
+        </xsd:choice>
+    </xsd:complexType>
+
+    <xsd:group name="StreetGroup">
+         <xsd:all>
+            <xsd:element name="stfull" type="xsd:string"/>
+            <xsd:element name="stpredir" type="xsd:string"/>
+            <xsd:element name="stprefix" type="xsd:string"/>
+            <xsd:element name="stbody" type="xsd:string"/>
+            <xsd:element name="stsuffix" type="xsd:string"/>
+            <xsd:element name="stsufdir" type="xsd:string"/>
+        </xsd:all>
+    </xsd:group>
+
+    <xsd:complexType name="BoundingBox">
+        <xsd:all>
+            <xsd:element name="north" type="northSouthLatitude"/>
+            <xsd:element name="south" type="northSouthLatitude"/>
+            <xsd:element name="east" type="eastWestLongitude"/>
+            <xsd:element name="west" type="eastWestLongitude"/>
+        </xsd:all>
+    </xsd:complexType>
+
+    <xsd:simpleType name="northSouthLatitude">
+        <xsd:restriction base="xsd:decimal">
+            <xsd:minExclusive value="-90.0"/>
+            <xsd:maxExclusive value="90.0"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="eastWestLongitude">
+        <xsd:restriction base="xsd:decimal">
+            <xsd:minExclusive value="-180.0"/>
+            <xsd:maxExclusive value="180.0"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="positiveDecimal">
+        <xsd:restriction base="xsd:decimal">
+            <xsd:maxInclusive value="0"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

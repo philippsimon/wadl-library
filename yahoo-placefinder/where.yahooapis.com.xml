@@ -1,0 +1,179 @@
+<application xmlns="http://wadl.dev.java.net/2009/02"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+             xmlns:ym="urn:yahoo:maps"
+             xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
+
+    <grammars>
+        <include href="GeocodeResponse.xsd"/>
+    </grammars>
+
+    <resources base="http://where.yahooapis.com/">
+        <resource path="geocode">
+            <method id="geocode" name="GET" apigee:displayName="geocode">
+                <apigee:tags>
+                    <apigee:tag primary="true">Geocode</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="geocode"/>
+
+                <doc title="Yahoo! PlaceFinder" apigee:url="http://developer.yahoo.com/geo/placefinder">
+                    <![CDATA[The PlaceFinder web service allows you to convert street addresses (like “1600 Pennsylvania Avenue, Washington, DC”) or place names (like “Washington, DC”) into geographic coordinates (like latitude 38.898717, longitude -77.035974) that you can use as the center of a map or the position for a map marker. This conversion is called “geocoding” and can be used to make your applications location-aware.]]>
+                </doc>
+
+                <request>
+                    <!-- Location parameters (at least one is required) -->
+
+                    <param name="location" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://developer.yahoo.com/geo/placefinder/guide/requests.html#location-parameters">
+                            <![CDATA[A geographical location.]]>
+                        </doc>
+                    </param>
+
+                    <param name="name" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://developer.yahoo.com/geo/placefinder/guide/requests.html#location-parameters">
+                            <![CDATA[A Place of Interest (POI) name, Area of Interest (AOI) name, or airport code. Ignored if location parameter is provided.]]>
+                        </doc>
+                    </param>
+
+                    <param name="line1" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://developer.yahoo.com/geo/placefinder/guide/requests.html#location-parameters">
+                            <![CDATA[First line of address (street address or intersection). Ignored if location, name, or woeid parameter is provided.]]>
+                        </doc>
+                    </param>
+
+                    <param name="line2" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://developer.yahoo.com/geo/placefinder/guide/requests.html#location-parameters">
+                            <![CDATA[Second line of address (city-state-zip in US). Ignored if location, name, or woeid parameter is provided.]]>
+                        </doc>
+                    </param>
+
+                    <param name="line3" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://developer.yahoo.com/geo/placefinder/guide/requests.html#location-parameters">
+                            <![CDATA[Third line of address (postal code in UK). Ignored if location, name, or woeid parameter is provided.]]>
+                        </doc>
+                    </param>
+
+                    <param name="house" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://developer.yahoo.com/geo/placefinder/guide/requests.html#location-parameters">
+                            <![CDATA[House number. Ignored if location, name, woeid, or multi-line (line1/line2/line3) parameter is provided.]]>
+                        </doc>
+                    </param>
+
+                    <param name="street" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://developer.yahoo.com/geo/placefinder/guide/requests.html#location-parameters">
+                            <![CDATA[Street name. Ignored if location, name, woeid, or multi-line (line1/line2/line3) parameter is provided.]]>
+                        </doc>
+                    </param>
+
+                    <param name="unittype" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://developer.yahoo.com/geo/placefinder/guide/requests.html#location-parameters">
+                            <![CDATA[Unit type, such as apartment (Apt) or suite (Ste). Ignored if location, name, woeid, or multi-line(line1/line2/line3) parameter is provided.]]>
+                        </doc>
+                    </param>
+
+                    <param name="unit" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://developer.yahoo.com/geo/placefinder/guide/requests.html#location-parameters">
+                            <![CDATA[Unit/Suite/Apartment/Box. Ignored if location, name, woied, or multi-line (line1/line2/line3) parameter is provided.]]>
+                        </doc>
+                    </param>
+
+                    <param name="xstreet" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://developer.yahoo.com/geo/placefinder/guide/requests.html#location-parameters">
+                            <![CDATA[Cross Street name. Ignored if location, name, woeid, or multi-line (line1/line2/line3) parameter is provided.]]>
+                        </doc>
+                    </param>
+
+                    <param name="postal" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://developer.yahoo.com/geo/placefinder/guide/requests.html#location-parameters">
+                            <![CDATA[Postal code. Ignored if location, name, woeid, or multi-line (line1/line2/line3) parameter is provided.]]>
+                        </doc>
+                    </param>
+
+                    <param name="level4" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://developer.yahoo.com/geo/placefinder/guide/requests.html#location-parameters">
+                            <![CDATA[Level 4 Administrative name (Neighborhood). Ignored if location, name, woeid, or multi-line (line1/line2/line3) parameter is provided.]]>
+                        </doc>
+                    </param>
+
+                    <param name="level3" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://developer.yahoo.com/geo/placefinder/guide/requests.html#location-parameters">
+                            <![CDATA[Level 3 Administrative name (City/Town/Locality). Ignored if location, name, woeid, or multi-line (line1/line2/line3) parameter is provided. Do not specify level3 unless level1 or level0 is also specified; otherwise, erroneous results might be returned. For best results, specify at least level0 through level3.]]>
+                        </doc>
+                    </param>
+
+                    <param name="level2" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://developer.yahoo.com/geo/placefinder/guide/requests.html#location-parameters">
+                            <![CDATA[Level 2 Administrative name (County). Ignored if location, name, woeid, or multi-line (line1/line2/line3) parameter is provided.]]>
+                        </doc>
+                    </param>
+
+                    <param name="level1" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://developer.yahoo.com/geo/placefinder/guide/requests.html#location-parameters">
+                            <![CDATA[Level 1 Administrative name (State/Province) or abbreviation (US only). Ignored if location, name, woeid, or multi-line (line1/line2/line3) parameter is provided.]]>
+                        </doc>
+                    </param>
+
+                    <param name="level0" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://developer.yahoo.com/geo/placefinder/guide/requests.html#location-parameters">
+                            <![CDATA[Level 0 Administrative name (Country) or country code. Ignored if location, name, woeid, or multi-line (line1/line2/line3) parameter is provided.]]>
+                        </doc>
+                    </param>
+
+                    <param name="woeid" type="xsd:integer" style="query" required="false">
+                        <doc apigee:url="http://developer.yahoo.com/geo/placefinder/guide/requests.html#location-parameters">
+                            <![CDATA[Where On Earth ID. Ignored if location or name parameter is provided.]]>
+                        </doc>
+                    </param>
+
+                    <!-- Control parameters -->
+
+                    <param name="locale" type="xsd:string" style="query" required="false" default="en_US">
+                        <doc apigee:url="http://developer.yahoo.com/geo/placefinder/guide/requests.html#control-parameters">
+                            <![CDATA[The language and country. A two-letter ISO-639 major language code and a two-letter ISO-3166-1 alpha-2 country code, separated by either a hyphen or underscore. Default is en_US (English/US).]]>
+                        </doc>
+                    </param>
+
+                    <param name="start" type="xsd:integer" style="query" required="false" default="0">
+                        <doc apigee:url="http://developer.yahoo.com/geo/placefinder/guide/requests.html#control-parameters">
+                            <![CDATA[Index of first result to return. Range is 0 to 99. Default is 0.]]>
+                        </doc>
+                    </param>
+
+                    <param name="count" type="xsd:integer" style="query" required="false" default="10">
+                        <doc apigee:url="http://developer.yahoo.com/geo/placefinder/guide/requests.html#control-parameters">
+                            <![CDATA[Number of results to return. Range is 1 to 100. Default is 10.]]>
+                        </doc>
+                    </param>
+
+                    <param name="offset" type="xsd:integer" style="query" required="false" default="15">
+                        <doc apigee:url="http://developer.yahoo.com/geo/placefinder/guide/requests.html#control-parameters">
+                            <![CDATA[Location setback in meters, intended to approximate a building location offset from the road center-line. Range is 0 to 100. Default is 15.]]>
+                        </doc>
+                    </param>
+
+                    <param name="flags" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://developer.yahoo.com/geo/placefinder/guide/requests.html#control-parameters">
+                            <![CDATA[String of concatenated characters that specify the data returned. The default value of this parameter is an empty string. The default return format is XML.]]>
+                        </doc>
+                    </param>
+
+                    <param name="gflags" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://developer.yahoo.com/geo/placefinder/guide/requests.html#location-parameters">
+                            <![CDATA[String of concatenated characters that specify the geocoding performed. The default value of this parameter is an empty string.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml" element="ym:ResultSet"/>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/vnd.php.serialized"/>
+                </response>
+            </method>
+        </resource>
+    </resources>
+</application>

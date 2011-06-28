@@ -1,0 +1,2076 @@
+<application xmlns="http://wadl.dev.java.net/2009/02"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+             xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
+
+    <resources base="http://api.hunch.com/api/v1/">
+
+        <!-- Result -->
+
+        <resource path="get-recommendations">
+            <method id="get_recommendations" name="POST" apigee:displayName="get-recommendations">
+                <apigee:tags>
+                    <apigee:tag primary="true">Result</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="get-recommendations"/>
+
+                <doc title="get_recommendations" apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
+                    <![CDATA[Returns the most strongly recommended results for the authenticated user or one of their friends, within a set of possible results restricted by topic, site, result id, or location.]]>
+                </doc>
+
+                <request>
+                    <param name="auth_token" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
+                            <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
+                        </doc>
+                    </param>
+
+                    <param name="topic_ids" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
+                            <![CDATA[List of topic ids. Only results in these topics will be returned as recommendations.]]>
+                        </doc>
+                    </param>
+
+                    <param name="sites" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
+                            <![CDATA[List of site names. Only results from these sites will be returned as recommendations.]]>
+                        </doc>
+                    </param>
+
+                    <param name="result_ids" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
+                            <![CDATA[List of result ids. Only results in this list will be returned as recommendations.]]>
+                        </doc>
+                    </param>
+
+                    <param name="lat" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
+                            <![CDATA[Bounding circle, specified in degrees and miles. Only results in this bounding circle will be returned as recommendations. If specified, all three parameters (lat, lng, radius) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="lng" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
+                            <![CDATA[Bounding circle, specified in degrees and miles. Only results in this bounding circle will be returned as recommendations. If specified, all three parameters (lat, lng, radius) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="radius" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
+                            <![CDATA[Bounding circle, specified in degrees and miles. Only results in this bounding circle will be returned as recommendations. If specified, all three parameters (lat, lng, radius) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="minlat" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
+                            <![CDATA[Bounding rectangle, specified in degrees. Only results in this bounding rectangle will be returned as recommendations. If specified, all four parameters (minlat, maxlat, minlng, maxlng) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="maxlat" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
+                            <![CDATA[Bounding rectangle, specified in degrees. Only results in this bounding rectangle will be returned as recommendations. If specified, all four parameters (minlat, maxlat, minlng, maxlng) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="minlng" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
+                            <![CDATA[Bounding rectangle, specified in degrees. Only results in this bounding rectangle will be returned as recommendations. If specified, all four parameters (minlat, maxlat, minlng, maxlng) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="maxlng" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
+                            <![CDATA[Bounding rectangle, specified in degrees. Only results in this bounding rectangle will be returned as recommendations. If specified, all four parameters (minlat, maxlat, minlng, maxlng) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="query" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
+                            <![CDATA[A string. Only results whose names or tags contain this string will be returned as recommendations.]]>
+                        </doc>
+                    </param>
+
+                    <param name="name" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
+                            <![CDATA[A string. Only results whose names contain this string will be returned as recommendations.]]>
+                        </doc>
+                    </param>
+
+                    <param name="tags" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
+                            <![CDATA[A string. Only results whose tags contain this string will be returned as recommendations.]]>
+                        </doc>
+                    </param>
+
+                    <param name="blocked_topic_ids" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
+                            <![CDATA[List of topic ids. Results in these topics will not be returned as recommendations.]]>
+                        </doc>
+                    </param>
+
+                    <param name="blocked_sites" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
+                            <![CDATA[List of site names. Results in these sites will not be returned as recommendations.]]>
+                        </doc>
+                    </param>
+
+                    <param name="blocked_result_ids" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
+                            <![CDATA[List of result ids. These results will not be returned as recommendations.]]>
+                        </doc>
+                    </param>
+
+                    <param name="exclude_likes" type="xsd:boolean" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
+                            <![CDATA[A boolean, defaulting to false. If true, results that have been liked by the user will not be returned as recommendations.]]>
+                        </doc>
+                    </param>
+
+                    <param name="exclude_dislikes" type="xsd:boolean" style="query" required="false" default="1">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
+                            <![CDATA[A boolean, defaulting to true. If true, results that have been disliked by the user will not be returned as recommendations.]]>
+                        </doc>
+                    </param>
+
+                    <param name="minimal" type="xsd:boolean" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
+                            <![CDATA[A boolean, defaulting to false. If true, only result ids will be returned, without result data such as names and descriptions.]]>
+                        </doc>
+                    </param>
+
+                    <param name="exclude_chains" type="xsd:boolean" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
+                            <![CDATA[A boolean, defaulting to false. If true, results that are known chain businesses will not be returned as recommendations.]]>
+                        </doc>
+                    </param>
+
+                    <param name="likes" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
+                            <![CDATA[A list of result ids. The user's tastes will temporarily incorporate their positive preference for these results.]]>
+                        </doc>
+                    </param>
+
+                    <param name="dislikes" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
+                            <![CDATA[A list of result ids. The user's tastes will temporarily incorporate their negative preference for these results.]]>
+                        </doc>
+                    </param>
+
+                    <param name="responses" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
+                            <![CDATA[A list of Teach Hunch About You response ids. The user's tastes will temporarily incorporate these responses.]]>
+                        </doc>
+                    </param>
+
+                    <param name="user_id" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
+                            <![CDATA[A user id. This user's tastes will be used instead of the authenticated user's.]]>
+                        </doc>
+                    </param>
+
+                    <param name="limit" type="xsd:integer" style="query" required="false" default="10">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
+                            <![CDATA[An integer, defaulting to 10. At most this many recommendations will be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="offset" type="xsd:integer" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
+                            <![CDATA[An integer, defaulting to 0. This many of the top recommendations will be skipped, and only recommendations lower than these will be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="wildcards" type="xsd:boolean" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
+                            <![CDATA[A boolean, defaulting to false. If true, some recommendations will randomly appear higher than they normally would.]]>
+                        </doc>
+                    </param>
+
+                    <param name="app_id" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
+                            <![CDATA[Application credentials, proving that the call originated from your app. user_id must be for your app, in which case it can be passed instead of an auth_token. If specified, all three parameters (app_id, auth_sig, user_id) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="auth_sig" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
+                            <![CDATA[Application credentials, proving that the call originated from your app. user_id must be for your app, in which case it can be passed instead of an auth_token. If specified, all three parameters (app_id, auth_sig, user_id) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="user_id" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
+                            <![CDATA[Application credentials, proving that the call originated from your app. user_id must be for your app, in which case it can be passed instead of an auth_token. If specified, all three parameters (app_id, auth_sig, user_id) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="callback" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
+                            <![CDATA[A JSONP callback. This will be prepended to the parenthesized response, which will be returned as text/javascript.]]>
+                        </doc>
+                    </param>
+
+                    <param name="suppress_http_errors" type="xsd:boolean" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
+                            <![CDATA[A boolean, defaulting to false. If true, even error responses will have an HTTP response code of 200.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="text/javascript"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="get-results">
+            <method id="get_results" name="POST" apigee:displayName="get-results">
+                <apigee:tags>
+                    <apigee:tag primary="true">Result</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="get-results"/>
+
+                <doc title="get_results" apigee:url="http://hunch.com/developers/v1/docs/reference/#get-results">
+                    <![CDATA[Returns a set of results restricted by topic, site, result id, or location.]]>
+                </doc>
+
+                <request>
+                    <param name="auth_token" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-results">
+                            <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
+                        </doc>
+                    </param>
+
+                    <param name="topic_ids" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-results">
+                            <![CDATA[List of topic ids. Only results in these topics will be returned as results.]]>
+                        </doc>
+                    </param>
+
+                    <param name="sites" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-results">
+                            <![CDATA[List of site names. Only results from these sites will be returned as results.]]>
+                        </doc>
+                    </param>
+
+                    <param name="result_ids" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-results">
+                            <![CDATA[List of result ids. Only results in this list will be returned as results.]]>
+                        </doc>
+                    </param>
+
+                    <param name="lat" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-results">
+                            <![CDATA[Bounding circle, specified in degrees and miles. Only results in this bounding circle will be returned as results. If specified, all three parameters (lat, lng, radius) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="lng" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-results">
+                            <![CDATA[Bounding circle, specified in degrees and miles. Only results in this bounding circle will be returned as results. If specified, all three parameters (lat, lng, radius) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="radius" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-results">
+                            <![CDATA[Bounding circle, specified in degrees and miles. Only results in this bounding circle will be returned as results. If specified, all three parameters (lat, lng, radius) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="minlat" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-results">
+                            <![CDATA[Bounding rectangle, specified in degrees. Only results in this bounding rectangle will be returned as results. If specified, all four parameters (minlat, maxlat, minlng, maxlng) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="maxlat" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-results">
+                            <![CDATA[Bounding rectangle, specified in degrees. Only results in this bounding rectangle will be returned as results. If specified, all four parameters (minlat, maxlat, minlng, maxlng) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="minlng" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-results">
+                            <![CDATA[Bounding rectangle, specified in degrees. Only results in this bounding rectangle will be returned as results. If specified, all four parameters (minlat, maxlat, minlng, maxlng) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="maxlng" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-results">
+                            <![CDATA[Bounding rectangle, specified in degrees. Only results in this bounding rectangle will be returned as results. If specified, all four parameters (minlat, maxlat, minlng, maxlng) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="query" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-results">
+                            <![CDATA[A string. Only results whose names or tags contain this string will be returned as results.]]>
+                        </doc>
+                    </param>
+
+                    <param name="name" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-results">
+                            <![CDATA[A string. Only results whose names contain this string will be returned as results.]]>
+                        </doc>
+                    </param>
+
+                    <param name="tags" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-results">
+                            <![CDATA[A string. Only results whose tags contain this string will be returned as results.]]>
+                        </doc>
+                    </param>
+
+                    <param name="blocked_topic_ids" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-results">
+                            <![CDATA[List of topic ids. Results in these topics will not be returned as results.]]>
+                        </doc>
+                    </param>
+
+                    <param name="blocked_sites" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-results">
+                            <![CDATA[List of site names. Results in these sites will not be returned as results.]]>
+                        </doc>
+                    </param>
+
+                    <param name="blocked_result_ids" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-results">
+                            <![CDATA[List of result ids. These results will not be returned as results.]]>
+                        </doc>
+                    </param>
+
+                    <param name="minimal" type="xsd:boolean" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-results">
+                            <![CDATA[A boolean, defaulting to false. If true, only result ids will be returned, without result data such as names and descriptions.]]>
+                        </doc>
+                    </param>
+
+                    <param name="limit" type="xsd:integer" style="query" required="false" default="10">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-results">
+                            <![CDATA[An integer, defaulting to 10. At most this many results will be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="offset" type="xsd:integer" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-results">
+                            <![CDATA[An integer, defaulting to 0. This many of the top results will be skipped, and only results lower than these will be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="callback" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-results">
+                            <![CDATA[A JSONP callback. This will be prepended to the parenthesized response, which will be returned as text/javascript.]]>
+                        </doc>
+                    </param>
+
+                    <param name="suppress_http_errors" type="xsd:boolean" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-results">
+                            <![CDATA[A boolean, defaulting to false. If true, even error responses will have an HTTP response code of 200.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="text/javascript"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="get-similar-results">
+            <method id="get_similar_results" name="POST" apigee:displayName="get-similar-results">
+                <apigee:tags>
+                    <apigee:tag primary="true">Result</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="get-similar-results"/>
+
+                <doc title="get_similar_results" apigee:url="http://hunch.com/developers/v1/docs/reference/#get-similar-results">
+                    <![CDATA[Returns the most similar results to a given result, within a set of results restricted by topic, site, result id, or location.]]>
+                </doc>
+
+                <request>
+                    <param name="auth_token" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-similar-results">
+                            <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
+                        </doc>
+                    </param>
+
+                    <param name="result_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-similar-results">
+                            <![CDATA[A result id. Results will be ranked by their similarity to this result.]]>
+                        </doc>
+                    </param>
+
+                    <param name="topic_ids" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-similar-results">
+                            <![CDATA[List of topic ids. Only similar-results in these topics will be returned as similar-results.]]>
+                        </doc>
+                    </param>
+
+                    <param name="sites" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-similar-results">
+                            <![CDATA[List of site names. Only similar-results from these sites will be returned as similar-results.]]>
+                        </doc>
+                    </param>
+
+                    <param name="result_ids" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-similar-results">
+                            <![CDATA[List of result ids. Only similar-results in this list will be returned as similar-results.]]>
+                        </doc>
+                    </param>
+
+                    <param name="lat" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-similar-results">
+                            <![CDATA[Bounding circle, specified in degrees and miles. Only similar-results in this bounding circle will be returned as similar-results. If specified, all three parameters (lat, lng, radius) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="lng" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-similar-results">
+                            <![CDATA[Bounding circle, specified in degrees and miles. Only similar-results in this bounding circle will be returned as similar-results. If specified, all three parameters (lat, lng, radius) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="radius" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-similar-results">
+                            <![CDATA[Bounding circle, specified in degrees and miles. Only similar-results in this bounding circle will be returned as similar-results. If specified, all three parameters (lat, lng, radius) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="minlat" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-similar-results">
+                            <![CDATA[Bounding rectangle, specified in degrees. Only similar-results in this bounding rectangle will be returned as similar-results. If specified, all four parameters (minlat, maxlat, minlng, maxlng) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="maxlat" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-similar-results">
+                            <![CDATA[Bounding rectangle, specified in degrees. Only similar-results in this bounding rectangle will be returned as similar-results. If specified, all four parameters (minlat, maxlat, minlng, maxlng) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="minlng" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-similar-results">
+                            <![CDATA[Bounding rectangle, specified in degrees. Only similar-results in this bounding rectangle will be returned as similar-results. If specified, all four parameters (minlat, maxlat, minlng, maxlng) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="maxlng" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-similar-results">
+                            <![CDATA[Bounding rectangle, specified in degrees. Only similar-results in this bounding rectangle will be returned as similar-results. If specified, all four parameters (minlat, maxlat, minlng, maxlng) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="query" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-similar-results">
+                            <![CDATA[A string. Only similar-results whose names or tags contain this string will be returned as similar-results.]]>
+                        </doc>
+                    </param>
+
+                    <param name="name" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-similar-results">
+                            <![CDATA[A string. Only similar-results whose names contain this string will be returned as similar-results.]]>
+                        </doc>
+                    </param>
+
+                    <param name="tags" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-similar-results">
+                            <![CDATA[A string. Only similar-results whose tags contain this string will be returned as similar-results.]]>
+                        </doc>
+                    </param>
+
+                    <param name="blocked_topic_ids" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-similar-results">
+                            <![CDATA[List of topic ids. Results in these topics will not be returned as similar-results.]]>
+                        </doc>
+                    </param>
+
+                    <param name="blocked_sites" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-similar-results">
+                            <![CDATA[List of site names. Results in these sites will not be returned as similar-results.]]>
+                        </doc>
+                    </param>
+
+                    <param name="blocked_result_ids" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-similar-results">
+                            <![CDATA[List of result ids. These similar-results will not be returned as similar-results.]]>
+                        </doc>
+                    </param>
+
+                    <param name="limit" type="xsd:integer" style="query" required="false" default="10">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-similar-results">
+                            <![CDATA[An integer, defaulting to 10. At most this many similar-results will be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="offset" type="xsd:integer" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-similar-results">
+                            <![CDATA[An integer, defaulting to 0. This many of the top similar-results will be skipped, and only similar-results lower than these will be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="wildcards" type="xsd:boolean" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-similar-results">
+                            <![CDATA[A boolean, defaulting to false. If true, some results will randomly appear higher than they normally would.]]>
+                        </doc>
+                    </param>
+
+                    <param name="callback" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-similar-results">
+                            <![CDATA[A JSONP callback. This will be prepended to the parenthesized response, which will be returned as text/javascript.]]>
+                        </doc>
+                    </param>
+
+                    <param name="suppress_http_errors" type="xsd:boolean" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-similar-results">
+                            <![CDATA[A boolean, defaulting to false. If true, even error responses will have an HTTP response code of 200.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="text/javascript"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="flag-result">
+            <method id="flag_result" name="POST" apigee:displayName="flag-result">
+                <apigee:tags>
+                    <apigee:tag primary="true">Result</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="flag-result"/>
+
+                <doc title="flag_result" apigee:url="http://hunch.com/developers/v1/docs/reference/#flag-result">
+                    <![CDATA[Flags a result for review, in the context of a given topic.]]>
+                </doc>
+
+                <request>
+                    <param name="auth_token" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#flag-result">
+                            <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
+                        </doc>
+                    </param>
+
+                    <param name="result_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#flag-result">
+                            <![CDATA[Result id, identifying the result to flag.]]>
+                        </doc>
+                    </param>
+
+                    <param name="topic_ids" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#flag-result">
+                            <![CDATA[Topic id, identifying the topic in which the result should be flagged.]]>
+                        </doc>
+                    </param>
+
+                    <param name="message" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#flag-result">
+                            <![CDATA[String describing the reason for the flag.]]>
+                        </doc>
+                    </param>
+
+                    <param name="callback" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#flag-result">
+                            <![CDATA[A JSONP callback. This will be prepended to the parenthesized response, which will be returned as text/javascript.]]>
+                        </doc>
+                    </param>
+
+                    <param name="suppress_http_errors" type="xsd:boolean" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#flag-result">
+                            <![CDATA[A boolean, defaulting to false. If true, even error responses will have an HTTP response code of 200.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="text/javascript"/>
+                </response>
+            </method>
+        </resource>
+
+        <!-- User -->
+
+        <resource path="get-auth-token">
+            <method id="get_auth_token" name="POST" apigee:displayName="get-auth-token">
+                <apigee:tags>
+                    <apigee:tag primary="true">User</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="get-auth-token"/>
+
+                <doc title="get_auth-token" apigee:url="http://hunch.com/developers/v1/docs/reference/#get-auth-token">
+                    <![CDATA[Returns an authentication token for the authentication token key received after the user is redirected from http://hunch.com/authorize/.]]>
+                </doc>
+
+                <request>
+                    <param name="app_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-auth-token">
+                            <![CDATA[Application credentials, proving that the call originated from your app.]]>
+                        </doc>
+                    </param>
+
+                    <param name="auth_sig" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-auth-token">
+                            <![CDATA[Application credentials, proving that the call originated from your app.]]>
+                        </doc>
+                    </param>
+
+                    <param name="auth_token_key" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-auth-token">
+                            <![CDATA[An authorization token key, received in the redirect url from http://hunch.com/authorize/.]]>
+                        </doc>
+                    </param>
+
+                    <param name="callback" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-auth-token">
+                            <![CDATA[A JSONP callback. This will be prepended to the parenthesized response, which will be returned as text/javascript.]]>
+                        </doc>
+                    </param>
+
+                    <param name="suppress_http_errors" type="xsd:boolean" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-auth-token">
+                            <![CDATA[A boolean, defaulting to false. If true, even error responses will have an HTTP response code of 200.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="text/javascript"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="get-token-status">
+            <method id="get_token_status" name="POST" apigee:displayName="get-token-status">
+                <apigee:tags>
+                    <apigee:tag primary="true">User</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="get-token-status"/>
+
+                <doc title="get_token_status" apigee:url="http://hunch.com/developers/v1/docs/reference/#get-token-status">
+                    <![CDATA[Returns the status of the given authentication token, indicating whether the token has been accepted or rejected by the user.]]>
+                </doc>
+
+                <request>
+                    <param name="app_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-token-status">
+                            <![CDATA[Application credentials, proving that the call originated from your app.]]>
+                        </doc>
+                    </param>
+
+                    <param name="auth_sig" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-token-status">
+                            <![CDATA[Application credentials, proving that the call originated from your app.]]>
+                        </doc>
+                    </param>
+
+                    <param name="token" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-token-status">
+                            <![CDATA[An authorization token, received from get-auth-token.]]>
+                        </doc>
+                    </param>
+
+                    <param name="callback" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-token-status">
+                            <![CDATA[A JSONP callback. This will be prepended to the parenthesized response, which will be returned as text/javascript.]]>
+                        </doc>
+                    </param>
+
+                    <param name="suppress_http_errors" type="xsd:boolean" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-token-status">
+                            <![CDATA[A boolean, defaulting to false. If true, even error responses will have an HTTP response code of 200.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="text/javascript"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="get-user-info">
+            <method id="get_user_info" name="POST" apigee:displayName="get-user-info">
+                <apigee:tags>
+                    <apigee:tag primary="true">User</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="get-user-info"/>
+
+                <doc title="get_user_info" apigee:url="http://hunch.com/developers/v1/docs/reference/#get-user-info">
+                    <![CDATA[Returns information about the authenticated user.]]>
+                </doc>
+
+                <request>
+                    <param name="auth_token" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-user-info">
+                            <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
+                        </doc>
+                    </param>
+
+                    <param name="callback" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-user-info">
+                            <![CDATA[A JSONP callback. This will be prepended to the parenthesized response, which will be returned as text/javascript.]]>
+                        </doc>
+                    </param>
+
+                    <param name="suppress_http_errors" type="xsd:boolean" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-user-info">
+                            <![CDATA[A boolean, defaulting to false. If true, even error responses will have an HTTP response code of 200.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="text/javascript"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="get-friends">
+            <method id="get_friends" name="POST" apigee:displayName="get-friends">
+                <apigee:tags>
+                    <apigee:tag primary="true">User</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="get-friends"/>
+
+                <doc title="get_friends" apigee:url="http://hunch.com/developers/v1/docs/reference/#get-friends">
+                    <![CDATA[Returns the friends of the authenticated user. This includes their mutual Hunch followers, mutual Twitter followers if they are Twitter-connected, and Facebook friends if they are Facebook-connected.]]>
+                </doc>
+
+                <request>
+                    <param name="auth_token" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-friends">
+                            <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
+                        </doc>
+                    </param>
+
+                    <param name="sites" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-friends">
+                            <![CDATA[List of site names. Only friends from these sites will be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="friend_ids" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-friends">
+                            <![CDATA[List of user ids. Only friends in this list will be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="sort" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-friends">
+                            <![CDATA[A string, identifying a key to sort friends by. Friends will be returned in order of this key, or randomly if 'random' is passed.]]>
+                        </doc>
+                    </param>
+
+                    <param name="reverse" type="xsd:boolean" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-friends">
+                            <![CDATA[A boolean, defaulting to false. Reverses the order in which friends are returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="limit" type="xsd:integer" style="query" required="false" default="10">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-friends">
+                            <![CDATA[An integer, defaulting to 10. At most this many friends will be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="offset" type="xsd:integer" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-friends">
+                            <![CDATA[An integer, defaulting to 0. This many friends will be skipped, and only friends after that will be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="callback" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-friends">
+                            <![CDATA[A JSONP callback. This will be prepended to the parenthesized response, which will be returned as text/javascript.]]>
+                        </doc>
+                    </param>
+
+                    <param name="suppress_http_errors" type="xsd:boolean" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-friends">
+                            <![CDATA[A boolean, defaulting to false. If true, even error responses will have an HTTP response code of 200.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="text/javascript"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="get-tastemates">
+            <method id="get_tastemates" name="POST" apigee:displayName="get-tastemates">
+                <apigee:tags>
+                    <apigee:tag primary="true">User</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="get-tastemates"/>
+
+                <doc title="get_tastemates" apigee:url="http://hunch.com/developers/v1/docs/reference/#get-tastemates">
+                    <![CDATA[Returns the most similar friends of the authenticated user, in terms of their affinity to a set of results restricted by topic, site, result id, or location.]]>
+                </doc>
+
+                <request>
+                    <param name="auth_token" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-tastemates">
+                            <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
+                        </doc>
+                    </param>
+
+                    <param name="topic_ids" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-tastemates">
+                            <![CDATA[List of topic ids. Only results in these topics will be returned as results.]]>
+                        </doc>
+                    </param>
+
+                    <param name="sites" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-tastemates">
+                            <![CDATA[List of site names. Only results from these sites will be returned as results.]]>
+                        </doc>
+                    </param>
+
+                    <param name="result_ids" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-tastemates">
+                            <![CDATA[List of result ids. Only results in this list will be returned as results.]]>
+                        </doc>
+                    </param>
+
+                    <param name="lat" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-tastemates">
+                            <![CDATA[Bounding circle, specified in degrees and miles. Only results in this bounding circle will be returned as results. If specified, all three parameters (lat, lng, radius) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="lng" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-tastemates">
+                            <![CDATA[Bounding circle, specified in degrees and miles. Only results in this bounding circle will be returned as results. If specified, all three parameters (lat, lng, radius) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="radius" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-tastemates">
+                            <![CDATA[Bounding circle, specified in degrees and miles. Only results in this bounding circle will be returned as results. If specified, all three parameters (lat, lng, radius) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="minlat" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-tastemates">
+                            <![CDATA[Bounding rectangle, specified in degrees. Only results in this bounding rectangle will be returned as results. If specified, all four parameters (minlat, maxlat, minlng, maxlng) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="maxlat" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-tastemates">
+                            <![CDATA[Bounding rectangle, specified in degrees. Only results in this bounding rectangle will be returned as results. If specified, all four parameters (minlat, maxlat, minlng, maxlng) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="minlng" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-tastemates">
+                            <![CDATA[Bounding rectangle, specified in degrees. Only results in this bounding rectangle will be returned as results. If specified, all four parameters (minlat, maxlat, minlng, maxlng) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="maxlng" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-tastemates">
+                            <![CDATA[Bounding rectangle, specified in degrees. Only results in this bounding rectangle will be returned as results. If specified, all four parameters (minlat, maxlat, minlng, maxlng) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="query" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-tastemates">
+                            <![CDATA[A string. Only results whose names or tags contain this string will be returned as results.]]>
+                        </doc>
+                    </param>
+
+                    <param name="name" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-tastemates">
+                            <![CDATA[A string. Only results whose names contain this string will be returned as results.]]>
+                        </doc>
+                    </param>
+
+                    <param name="tags" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-tastemates">
+                            <![CDATA[A string. Only results whose tags contain this string will be returned as results.]]>
+                        </doc>
+                    </param>
+
+                    <param name="blocked_topic_ids" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-tastemates">
+                            <![CDATA[List of topic ids. Results in these topics will not be returned as results.]]>
+                        </doc>
+                    </param>
+
+                    <param name="blocked_sites" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-tastemates">
+                            <![CDATA[List of site names. Results in these sites will not be returned as results.]]>
+                        </doc>
+                    </param>
+
+                    <param name="blocked_result_ids" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-tastemates">
+                            <![CDATA[List of result ids. These results will not be returned as results.]]>
+                        </doc>
+                    </param>
+
+                    <param name="limit" type="xsd:integer" style="query" required="false" default="10">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-tastemates">
+                            <![CDATA[An integer, defaulting to 10. At most this many results will be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="offset" type="xsd:integer" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-tastemates">
+                            <![CDATA[An integer, defaulting to 0. This many of the top results will be skipped, and only results lower than these will be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="callback" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-tastemates">
+                            <![CDATA[A JSONP callback. This will be prepended to the parenthesized response, which will be returned as text/javascript.]]>
+                        </doc>
+                    </param>
+
+                    <param name="suppress_http_errors" type="xsd:boolean" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-tastemates">
+                            <![CDATA[A boolean, defaulting to false. If true, even error responses will have an HTTP response code of 200.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="text/javascript"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="get-recommendees">
+            <method id="get_recommendees" name="POST" apigee:displayName="get-recommendees">
+                <apigee:tags>
+                    <apigee:tag primary="true">User</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="get-recommendees"/>
+
+                <doc title="get_recommendees" apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendees">
+                    <![CDATA[Returns the authenticated user's friends for whom the given item is most strongly recommended.]]>
+                </doc>
+
+                <request>
+                    <param name="auth_token" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendees">
+                            <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
+                        </doc>
+                    </param>
+
+                    <param name="result_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendees">
+                            <![CDATA[A result id. Users will be ranked by their affinity for this result.]]>
+                        </doc>
+                    </param>
+
+                    <param name="limit" type="xsd:integer" style="query" required="false" default="10">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendees">
+                            <![CDATA[An integer, defaulting to 10. At most this many results will be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="offset" type="xsd:integer" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendees">
+                            <![CDATA[An integer, defaulting to 0. This many of the top results will be skipped, and only results lower than these will be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="wildcards" type="xsd:boolean" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendees">
+                            <![CDATA[A boolean, defaulting to false. If true, some users will randomly appear higher than they normally would.]]>
+                        </doc>
+                    </param>
+
+                    <param name="callback" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendees">
+                            <![CDATA[A JSONP callback. This will be prepended to the parenthesized response, which will be returned as text/javascript.]]>
+                        </doc>
+                    </param>
+
+                    <param name="suppress_http_errors" type="xsd:boolean" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendees">
+                            <![CDATA[A boolean, defaulting to false. If true, even error responses will have an HTTP response code of 200.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="text/javascript"/>
+                </response>
+            </method>
+        </resource>
+
+        <!-- Topic -->
+
+        <resource path="get-result-topics">
+            <method id="get_result_topics" name="POST" apigee:displayName="get-result-topics">
+                <apigee:tags>
+                    <apigee:tag primary="true">Topic</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="get-result-topics"/>
+
+                <doc title="get_result_topics" apigee:url="http://hunch.com/developers/v1/docs/reference/#get-result-topics">
+                    <![CDATA[Searches within the same set of possible results as get-results, returning all topics containing those results.]]>
+                </doc>
+
+                <request>
+                    <param name="topic_ids" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-result-topics">
+                            <![CDATA[List of topic ids. Only result-topics in these topics will be returned as result-topics.]]>
+                        </doc>
+                    </param>
+
+                    <param name="sites" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-result-topics">
+                            <![CDATA[List of site names. Only result-topics from these sites will be returned as result-topics.]]>
+                        </doc>
+                    </param>
+
+                    <param name="result_ids" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-result-topics">
+                            <![CDATA[List of result ids. Only result-topics in this list will be returned as result-topics.]]>
+                        </doc>
+                    </param>
+
+                    <param name="lat" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-result-topics">
+                            <![CDATA[Bounding circle, specified in degrees and miles. Only result-topics in this bounding circle will be returned as result-topics. If specified, all three parameters (lat, lng, radius) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="lng" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-result-topics">
+                            <![CDATA[Bounding circle, specified in degrees and miles. Only result-topics in this bounding circle will be returned as result-topics. If specified, all three parameters (lat, lng, radius) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="radius" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-result-topics">
+                            <![CDATA[Bounding circle, specified in degrees and miles. Only result-topics in this bounding circle will be returned as result-topics. If specified, all three parameters (lat, lng, radius) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="minlat" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-result-topics">
+                            <![CDATA[Bounding rectangle, specified in degrees. Only result-topics in this bounding rectangle will be returned as result-topics. If specified, all four parameters (minlat, maxlat, minlng, maxlng) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="maxlat" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-result-topics">
+                            <![CDATA[Bounding rectangle, specified in degrees. Only result-topics in this bounding rectangle will be returned as result-topics. If specified, all four parameters (minlat, maxlat, minlng, maxlng) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="minlng" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-result-topics">
+                            <![CDATA[Bounding rectangle, specified in degrees. Only result-topics in this bounding rectangle will be returned as result-topics. If specified, all four parameters (minlat, maxlat, minlng, maxlng) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="maxlng" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-result-topics">
+                            <![CDATA[Bounding rectangle, specified in degrees. Only result-topics in this bounding rectangle will be returned as result-topics. If specified, all four parameters (minlat, maxlat, minlng, maxlng) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="query" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-result-topics">
+                            <![CDATA[A string. Only result-topics whose names or tags contain this string will be returned as result-topics.]]>
+                        </doc>
+                    </param>
+
+                    <param name="name" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-result-topics">
+                            <![CDATA[A string. Only result-topics whose names contain this string will be returned as result-topics.]]>
+                        </doc>
+                    </param>
+
+                    <param name="tags" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-result-topics">
+                            <![CDATA[A string. Only result-topics whose tags contain this string will be returned as result-topics.]]>
+                        </doc>
+                    </param>
+
+                    <param name="blocked_topic_ids" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-result-topics">
+                            <![CDATA[List of topic ids. Results in these topics will not be returned as result-topics.]]>
+                        </doc>
+                    </param>
+
+                    <param name="blocked_sites" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-result-topics">
+                            <![CDATA[List of site names. Results in these sites will not be returned as result-topics.]]>
+                        </doc>
+                    </param>
+
+                    <param name="blocked_result_ids" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-result-topics">
+                            <![CDATA[List of result ids. These result-topics will not be returned as result-topics.]]>
+                        </doc>
+                    </param>
+
+                    <param name="callback" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-result-topics">
+                            <![CDATA[A JSONP callback. This will be prepended to the parenthesized response, which will be returned as text/javascript.]]>
+                        </doc>
+                    </param>
+
+                    <param name="suppress_http_errors" type="xsd:boolean" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-result-topics">
+                            <![CDATA[A boolean, defaulting to false. If true, even error responses will have an HTTP response code of 200.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="text/javascript"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="get-topics">
+            <method id="get_topics" name="POST" apigee:displayName="get-topics">
+                <apigee:tags>
+                    <apigee:tag primary="true">Topic</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="get-topics"/>
+
+                <doc title="get_topics" apigee:url="http://hunch.com/developers/v1/docs/reference/#get-topics">
+                    <![CDATA[Returns information about topics and their subtopics.]]>
+                </doc>
+
+                <request>
+                    <param name="topic_ids" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-topics">
+                            <![CDATA[List of topic ids. Data will be returned for these topics and their subtopics.]]>
+                        </doc>
+                    </param>
+
+                    <param name="sites" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-topics">
+                            <![CDATA[List of site names. Only topics from these sites will be returned as topics.]]>
+                        </doc>
+                    </param>
+
+                    <param name="callback" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-topics">
+                            <![CDATA[A JSONP callback. This will be prepended to the parenthesized response, which will be returned as text/javascript.]]>
+                        </doc>
+                    </param>
+
+                    <param name="suppress_http_errors" type="xsd:boolean" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-topics">
+                            <![CDATA[A boolean, defaulting to false. If true, even error responses will have an HTTP response code of 200.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="text/javascript"/>
+                </response>
+            </method>
+        </resource>
+
+        <!-- Preference -->
+
+        <resource path="get-activity">
+            <method id="get_activity" name="POST" apigee:displayName="get-activity">
+                <apigee:tags>
+                    <apigee:tag primary="true">Preferences</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="get-activity"/>
+
+                <doc title="get_activity" apigee:url="http://hunch.com/developers/v1/docs/reference/#get-activity">
+                    <![CDATA[Returns recent Hunch API activity, optionally restricted to a particular set of results. This activity includes preferences of the authenticated user, likes of their friends, and favorites of all API users.]]>
+                </doc>
+
+                <request>
+                    <param name="auth_token" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-activity">
+                            <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
+                        </doc>
+                    </param>
+
+                    <param name="user_ids" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-activity">
+                            <![CDATA[List of user ids. Only activity of users in this list will be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="topic_ids" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-activity">
+                            <![CDATA[List of topic ids. Only activity in these topics will be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="sites" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-activity">
+                            <![CDATA[List of site names. Only activity for results from these sites will be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="result_ids" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-activity">
+                            <![CDATA[List of result ids. Only activity in this list will be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="lat" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-activity">
+                            <![CDATA[Bounding circle, specified in degrees and miles. Only activity in this bounding circle will be returned. If specified, all three parameters (lat, lng, radius) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="lng" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-activity">
+                            <![CDATA[Bounding circle, specified in degrees and miles. Only activity in this bounding circle will be returned. If specified, all three parameters (lat, lng, radius) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="radius" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-activity">
+                            <![CDATA[Bounding circle, specified in degrees and miles. Only activity in this bounding circle will be returned. If specified, all three parameters (lat, lng, radius) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="minlat" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-activity">
+                            <![CDATA[Bounding rectangle, specified in degrees. Only activity in this bounding rectangle will be returned. If specified, all four parameters (minlat, maxlat, minlng, maxlng) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="maxlat" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-activity">
+                            <![CDATA[Bounding rectangle, specified in degrees. Only activity in this bounding rectangle will be returned. If specified, all four parameters (minlat, maxlat, minlng, maxlng) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="minlng" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-activity">
+                            <![CDATA[Bounding rectangle, specified in degrees. Only activity in this bounding rectangle will be returned. If specified, all four parameters (minlat, maxlat, minlng, maxlng) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="maxlng" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-activity">
+                            <![CDATA[Bounding rectangle, specified in degrees. Only activity in this bounding rectangle will be returned. If specified, all four parameters (minlat, maxlat, minlng, maxlng) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="query" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-activity">
+                            <![CDATA[A string. Only activity whose names or tags contain this string will be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="name" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-activity">
+                            <![CDATA[A string. Only activity whose names contain this string will be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="tags" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-activity">
+                            <![CDATA[A string. Only activity whose tags contain this string will be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="blocked_topic_ids" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-activity">
+                            <![CDATA[List of topic ids. Results in these topics will not be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="blocked_sites" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-activity">
+                            <![CDATA[List of site names. Results in these sites will not be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="blocked_result_ids" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-activity">
+                            <![CDATA[List of result ids. These activity will not be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="limit" type="xsd:integer" style="query" required="false" default="10">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-activity">
+                            <![CDATA[An integer, defaulting to 10. At most this many preferences will be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="offset" type="xsd:integer" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-activity">
+                            <![CDATA[An integer, defaulting to 0. This many preferences will be skipped.]]>
+                        </doc>
+                    </param>
+
+                    <param name="callback" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-activity">
+                            <![CDATA[A JSONP callback. This will be prepended to the parenthesized response, which will be returned as text/javascript.]]>
+                        </doc>
+                    </param>
+
+                    <param name="suppress_http_errors" type="xsd:boolean" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-activity">
+                            <![CDATA[A boolean, defaulting to false. If true, even error responses will have an HTTP response code of 200.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="text/javascript"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="get-preferences">
+            <method id="get_preferences" name="POST" apigee:displayName="get-preferences">
+                <apigee:tags>
+                    <apigee:tag primary="true">Preferences</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="get-preferences"/>
+
+                <doc title="get_preferences" apigee:url="http://hunch.com/developers/v1/docs/reference/#get-preferences">
+                    <![CDATA[Returns the preferences of the authenticated user.]]>
+                </doc>
+
+                <request>
+                    <param name="auth_token" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-preferences">
+                            <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
+                        </doc>
+                    </param>
+
+                    <param name="result_ids" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-preferences">
+                            <![CDATA[List of result ids. Only preferences for these results will be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="sites" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-preferences">
+                            <![CDATA[List of site names. Only preferences for results from these sites will be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="types" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-preferences">
+                            <![CDATA[A list of preference types from 'like', 'dislike', 'favorite', 'checkin', 'purchase', 'return', 'click', 'share', 'rate', 'guess-like', 'guess-dislike', '*hate', '*dislike', '*okay', '*like', '*love', or 'not-interested'. Only preferences set with these types will be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="limit" type="xsd:integer" style="query" required="false" default="10">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-preferences">
+                            <![CDATA[An integer, defaulting to 10. At most this many preferences will be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="offset" type="xsd:integer" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-preferences">
+                            <![CDATA[An integer, defaulting to 0. This many preferences will be skipped.]]>
+                        </doc>
+                    </param>
+
+                    <param name="callback" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-preferences">
+                            <![CDATA[A JSONP callback. This will be prepended to the parenthesized response, which will be returned as text/javascript.]]>
+                        </doc>
+                    </param>
+
+                    <param name="suppress_http_errors" type="xsd:boolean" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-preferences">
+                            <![CDATA[A boolean, defaulting to false. If true, even error responses will have an HTTP response code of 200.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="text/javascript"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="set-preference">
+            <method id="set_preference" name="POST" apigee:displayName="set-preference">
+                <apigee:tags>
+                    <apigee:tag primary="true">Preferences</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="set-preference"/>
+
+                <doc title="set_preference" apigee:url="http://hunch.com/developers/v1/docs/reference/#set-preference">
+                    <![CDATA[Records a preference for the authenticated user, or a guess preference for a friend of the authenticated user.]]>
+                </doc>
+
+                <request>
+                    <param name="auth_token" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#set-preference">
+                            <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
+                        </doc>
+                    </param>
+
+                    <param name="result_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#set-preference">
+                            <![CDATA[Result id, identifying the result the preference applies to.]]>
+                        </doc>
+                    </param>
+
+                    <param name="types" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#set-preference">
+                            <![CDATA[A list of preference types. Each type must be one of 'favorite', 'like', 'dislike', 'checkin', 'purchase', 'return', 'click', 'share', 'rate', '*hate', '*dislike', '*okay', '*like', '*love', or 'not-interested'. Types beginning with '*' correspond to star ratings on hunch.com. If friend_id is passed, each type must be one of 'guess-like' or 'guess-dislike'.]]>
+                        </doc>
+                    </param>
+
+                    <param name="rating" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#set-preference">
+                            <![CDATA[A number between 0 and 1, representing the user's rating of the item, where 0 denotes dislike and 1 denotes like. Use if and only if the 'rate' type is given.]]>
+                        </doc>
+                    </param>
+
+                    <param name="friend_id" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#set-preference">
+                            <![CDATA[A user id, which must refer to a friend of the authenticated user. A guess preference type must be passed, and will be recorded for this user.]]>
+                        </doc>
+                    </param>
+
+                    <param name="app_id" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#set-preference">
+                            <![CDATA[Application credentials, proving that the call originated from your app. user_id must be for your app, in which case it can be passed instead of an auth_token. If specified, all three parameters (app_id, auth_sig, user_id) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="auth_sig" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#set-preference">
+                            <![CDATA[Application credentials, proving that the call originated from your app. user_id must be for your app, in which case it can be passed instead of an auth_token. If specified, all three parameters (app_id, auth_sig, user_id) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="user_id" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#set-preference">
+                            <![CDATA[Application credentials, proving that the call originated from your app. user_id must be for your app, in which case it can be passed instead of an auth_token. If specified, all three parameters (app_id, auth_sig, user_id) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="callback" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#set-preference">
+                            <![CDATA[A JSONP callback. This will be prepended to the parenthesized response, which will be returned as text/javascript.]]>
+                        </doc>
+                    </param>
+
+                    <param name="suppress_http_errors" type="xsd:boolean" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#set-preference">
+                            <![CDATA[A boolean, defaulting to false. If true, even error responses will have an HTTP response code of 200.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="text/javascript"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="delete-preference">
+            <method id="delete_preference" name="POST" apigee:displayName="delete-preference">
+                <apigee:tags>
+                    <apigee:tag primary="true">Preferences</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="delete-preference"/>
+
+                <doc title="delete_preference" apigee:url="http://hunch.com/developers/v1/docs/reference/#delete-preference">
+                    <![CDATA[Removes a preference for the authenticated user, or a guess preference for a friend of the authenticated user.]]>
+                </doc>
+
+                <request>
+                    <param name="auth_token" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#delete-preference">
+                            <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
+                        </doc>
+                    </param>
+
+                    <param name="result_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#delete-preference">
+                            <![CDATA[Result id, identifying the result whose preferences should be deleted.]]>
+                        </doc>
+                    </param>
+
+                    <param name="topic_ids" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#delete-preference">
+                            <![CDATA[List of topic ids. If specified, only preferences in these topics will be deleted.]]>
+                        </doc>
+                    </param>
+
+                    <param name="types" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#delete-preference">
+                            <![CDATA[A list of preference types. Each type must be one of 'favorite', 'like', 'dislike', 'checkin', 'purchase', 'return', 'click', 'share', 'rate', '*hate', '*dislike', '*okay', '*like', '*love', or 'not-interested'. Types beginning with '*' correspond to star ratings on hunch.com. If friend_id is passed, each type must be one of 'guess-like' or 'guess-dislike'.]]>
+                        </doc>
+                    </param>
+
+                    <param name="friend_id" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#delete-preference">
+                            <![CDATA[A user id, which must refer to a friend of the authenticated user. Guess preference types must be passed.]]>
+                        </doc>
+                    </param>
+
+                    <param name="app_id" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#delete-preference">
+                            <![CDATA[Application credentials, proving that the call originated from your app. user_id must be for your app, in which case it can be passed instead of an auth_token. If specified, all three parameters (app_id, auth_sig, user_id) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="auth_sig" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#delete-preference">
+                            <![CDATA[Application credentials, proving that the call originated from your app. user_id must be for your app, in which case it can be passed instead of an auth_token. If specified, all three parameters (app_id, auth_sig, user_id) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="user_id" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#delete-preference">
+                            <![CDATA[Application credentials, proving that the call originated from your app. user_id must be for your app, in which case it can be passed instead of an auth_token. If specified, all three parameters (app_id, auth_sig, user_id) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="callback" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#delete-preference">
+                            <![CDATA[A JSONP callback. This will be prepended to the parenthesized response, which will be returned as text/javascript.]]>
+                        </doc>
+                    </param>
+
+                    <param name="suppress_http_errors" type="xsd:boolean" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#delete-preference">
+                            <![CDATA[A boolean, defaulting to false. If true, even error responses will have an HTTP response code of 200.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="text/javascript"/>
+                </response>
+            </method>
+        </resource>
+
+        <!-- THAY -->
+
+        <resource path="get-predictions">
+            <method id="get_predictions" name="POST" apigee:displayName="get-predictions">
+                <apigee:tags>
+                    <apigee:tag primary="true">THAY</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="get-predictions"/>
+
+                <doc title="get_predictions" apigee:url="http://hunch.com/developers/v1/docs/reference/#get-predictions">
+                    <![CDATA[Returns the most strongly predicted Teach Hunch About You responses for the authenticated user, potentially restricted to a set of possible responses.]]>
+                </doc>
+
+                <request>
+                    <param name="auth_token" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-predictions">
+                            <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
+                        </doc>
+                    </param>
+
+                    <param name="allowed_qids" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-predictions">
+                            <![CDATA[List of question ids. Only responses to these questions will be returned as predictions.]]>
+                        </doc>
+                    </param>
+
+                    <param name="blocked_qids" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-predictions">
+                            <![CDATA[List of question ids. Responses to these questions will not be returned as predictions.]]>
+                        </doc>
+                    </param>
+
+                    <param name="blocked_rids" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-predictions">
+                            <![CDATA[List of response ids. These responses will not be returned as predictions.]]>
+                        </doc>
+                    </param>
+
+                    <param name="avoid_rids" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-predictions">
+                            <![CDATA[List of response ids. Responses which are highly-correlated to any of these responses will not be returned as predictions.]]>
+                        </doc>
+                    </param>
+
+                    <param name="likes" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-predictions">
+                            <![CDATA[A list of result ids. The user's tastes will temporarily incorporate their positive preference for these results.]]>
+                        </doc>
+                    </param>
+
+                    <param name="dislikes" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-predictions">
+                            <![CDATA[A list of result ids. The user's tastes will temporarily incorporate their negative preference for these results.]]>
+                        </doc>
+                    </param>
+
+                    <param name="responses" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-predictions">
+                            <![CDATA[A list of Teach Hunch About You response ids. The user's tastes will temporarily incorporate these responses.]]>
+                        </doc>
+                    </param>
+
+                    <param name="limit" type="xsd:integer" style="query" required="false" default="10">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-predictions">
+                            <![CDATA[An integer, defaulting to 10. At most this many predictions will be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="offset" type="xsd:integer" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-predictions">
+                            <![CDATA[An integer, defaulting to 0. This many of the top predictions will be skipped, and only predictions lower than these will be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="app_id" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-predictions">
+                            <![CDATA[Application credentials, proving that the call originated from your app. user_id must be for your app, in which case it can be passed instead of an auth_token. If specified, all three parameters (app_id, auth_sig, user_id) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="auth_sig" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-predictions">
+                            <![CDATA[Application credentials, proving that the call originated from your app. user_id must be for your app, in which case it can be passed instead of an auth_token. If specified, all three parameters (app_id, auth_sig, user_id) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="user_id" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-predictions">
+                            <![CDATA[Application credentials, proving that the call originated from your app. user_id must be for your app, in which case it can be passed instead of an auth_token. If specified, all three parameters (app_id, auth_sig, user_id) must be specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="callback" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-predictions">
+                            <![CDATA[A JSONP callback. This will be prepended to the parenthesized response, which will be returned as text/javascript.]]>
+                        </doc>
+                    </param>
+
+                    <param name="suppress_http_errors" type="xsd:boolean" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-predictions">
+                            <![CDATA[A boolean, defaulting to false. If true, even error responses will have an HTTP response code of 200.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="text/javascript"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="get-questions">
+            <method id="get_questions" name="POST" apigee:displayName="get-questions">
+                <apigee:tags>
+                    <apigee:tag primary="true">THAY</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="get-questions"/>
+
+                <doc title="get_questions" apigee:url="http://hunch.com/developers/v1/docs/reference/#get-questions">
+                    <![CDATA[Returns data for given Teach Hunch About You questions, or returns the next question to be asked to the authenticated user. Also, if the authenticated user has responded to any of the returned questions, their responses will be returned.]]>
+                </doc>
+
+                <request>
+                    <param name="auth_token" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-questions">
+                            <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
+                        </doc>
+                    </param>
+
+                    <param name="question_id" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-questions">
+                            <![CDATA[A question id, identifying the question to be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="callback" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-questions">
+                            <![CDATA[A JSONP callback. This will be prepended to the parenthesized response, which will be returned as text/javascript.]]>
+                        </doc>
+                    </param>
+
+                    <param name="suppress_http_errors" type="xsd:boolean" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-questions">
+                            <![CDATA[A boolean, defaulting to false. If true, even error responses will have an HTTP response code of 200.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="text/javascript"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="teach-hunch-about-you">
+            <method id="teach_hunch_about_you" name="POST" apigee:displayName="teach-hunch-about-you">
+                <apigee:tags>
+                    <apigee:tag primary="true">THAY</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="teach-hunch-about-you"/>
+
+                <doc title="teach_hunch_about_you" apigee:url="http://hunch.com/developers/v1/docs/reference/#teach-hunch-about-you">
+                    <![CDATA[Records the authenticated user's response to a Teach Hunch About You question.]]>
+                </doc>
+
+                <request>
+                    <param name="auth_token" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#teach-hunch-about-you">
+                            <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
+                        </doc>
+                    </param>
+
+                    <param name="question_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#teach-hunch-about-you">
+                            <![CDATA[A question id, identifying the question to be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="response_id" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#teach-hunch-about-you">
+                            <![CDATA[A response id, identifying the response the user chose. If not provided, then the user is recorded as having 'skipped' the given question.]]>
+                        </doc>
+                    </param>
+
+                    <param name="callback" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#teach-hunch-about-you">
+                            <![CDATA[A JSONP callback. This will be prepended to the parenthesized response, which will be returned as text/javascript.]]>
+                        </doc>
+                    </param>
+
+                    <param name="suppress_http_errors" type="xsd:boolean" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#teach-hunch-about-you">
+                            <![CDATA[A boolean, defaulting to false. If true, even error responses will have an HTTP response code of 200.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="text/javascript"/>
+                </response>
+            </method>
+        </resource>
+
+        <!-- Feed -->
+
+        <resource path="save-result">
+            <method id="save_result" name="POST" apigee:displayName="save-result">
+                <apigee:tags>
+                    <apigee:tag primary="true">Feed</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="save-result"/>
+
+                <doc title="save_result" apigee:url="http://hunch.com/developers/v1/docs/reference/#save-result">
+                    <![CDATA[Saves a result in the authenticated user's Hunch Feed.]]>
+                </doc>
+
+                <request>
+                    <param name="auth_token" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#save-result">
+                            <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
+                        </doc>
+                    </param>
+
+                    <param name="result_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#save-result">
+                            <![CDATA[Result id, identifying the result to be saved.]]>
+                        </doc>
+                    </param>
+
+                    <param name="callback" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#save-result">
+                            <![CDATA[A JSONP callback. This will be prepended to the parenthesized response, which will be returned as text/javascript.]]>
+                        </doc>
+                    </param>
+
+                    <param name="suppress_http_errors" type="xsd:boolean" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#save-result">
+                            <![CDATA[A boolean, defaulting to false. If true, even error responses will have an HTTP response code of 200.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="text/javascript"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="recommend-result">
+            <method id="recommend_result" name="POST" apigee:displayName="recommend-result">
+                <apigee:tags>
+                    <apigee:tag primary="true">Feed</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="recommend-result"/>
+
+                <doc title="recommend_result" apigee:url="http://hunch.com/developers/v1/docs/reference/#recommend-result">
+                    <![CDATA[Recommends a result in the authenticated user's Hunch Feed.]]>
+                </doc>
+
+                <request>
+                    <param name="auth_token" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#recommend-result">
+                            <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
+                        </doc>
+                    </param>
+
+                    <param name="result_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#recommend-result">
+                            <![CDATA[Result id, identifying the result to be recommended.]]>
+                        </doc>
+                    </param>
+
+                    <param name="recommendation" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#recommend-result">
+                            <![CDATA[A string, providing the text of the user's recommendation.]]>
+                        </doc>
+                    </param>
+
+                    <param name="callback" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#recommend-result">
+                            <![CDATA[A JSONP callback. This will be prepended to the parenthesized response, which will be returned as text/javascript.]]>
+                        </doc>
+                    </param>
+
+                    <param name="suppress_http_errors" type="xsd:boolean" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#recommend-result">
+                            <![CDATA[A boolean, defaulting to false. If true, even error responses will have an HTTP response code of 200.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="text/javascript"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="delete-save">
+            <method id="delete_save" name="POST" apigee:displayName="delete-save">
+                <apigee:tags>
+                    <apigee:tag primary="true">Feed</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="delete-save"/>
+
+                <doc title="delete_save" apigee:url="http://hunch.com/developers/v1/docs/reference/#delete-save">
+                    <![CDATA[Removes the authenticated user's save of a result they've previously saved in the Hunch Feed.]]>
+                </doc>
+
+                <request>
+                    <param name="auth_token" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#delete-save">
+                            <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
+                        </doc>
+                    </param>
+
+                    <param name="result_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#delete-save">
+                            <![CDATA[Result id, identifying the result whose save should be deleted.]]>
+                        </doc>
+                    </param>
+
+                    <param name="callback" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#delete-save">
+                            <![CDATA[A JSONP callback. This will be prepended to the parenthesized response, which will be returned as text/javascript.]]>
+                        </doc>
+                    </param>
+
+                    <param name="suppress_http_errors" type="xsd:boolean" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#delete-save">
+                            <![CDATA[A boolean, defaulting to false. If true, even error responses will have an HTTP response code of 200.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="text/javascript"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="delete-recommendation">
+            <method id="delete_recommendation" name="POST" apigee:displayName="delete-recommendation">
+                <apigee:tags>
+                    <apigee:tag primary="true">Feed</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="delete-recommendation"/>
+
+                <doc title="delete_recommendation" apigee:url="http://hunch.com/developers/v1/docs/reference/#delete-recommendation">
+                    <![CDATA[Removes the authenticated user's recommendation from a result they've previously recommended in the Hunch Feed.]]>
+                </doc>
+
+                <request>
+                    <param name="auth_token" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#delete-recommendation">
+                            <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
+                        </doc>
+                    </param>
+
+                    <param name="result_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#delete-recommendation">
+                            <![CDATA[Result id, identifying the result whose recommendation should be deleted.]]>
+                        </doc>
+                    </param>
+
+                    <param name="callback" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#delete-recommendation">
+                            <![CDATA[A JSONP callback. This will be prepended to the parenthesized response, which will be returned as text/javascript.]]>
+                        </doc>
+                    </param>
+
+                    <param name="suppress_http_errors" type="xsd:boolean" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#delete-recommendation">
+                            <![CDATA[A boolean, defaulting to false. If true, even error responses will have an HTTP response code of 200.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="text/javascript"/>
+                </response>
+            </method>
+        </resource>
+
+        <!-- Special -->
+
+        <resource path="batch">
+            <method id="batch" name="POST" apigee:displayName="batch">
+                <apigee:tags>
+                    <apigee:tag primary="true">Special</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="batch"/>
+
+                <doc title="save_result" apigee:url="http://hunch.com/developers/v1/docs/reference/#batch">
+                    <![CDATA[Combines multiple API calls into one. This can be useful for reducing latency, especially in mobile applications. Calls are executed in the order they are given; if a call fails then no calls after it are executed.]]>
+                </doc>
+
+                <request>
+                    <param name="calls" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#batch">
+                            <![CDATA[A JSON array, listing the desired method calls.]]>
+                        </doc>
+                    </param>
+
+                    <param name="callback" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#batch">
+                            <![CDATA[A JSONP callback. This will be prepended to the parenthesized response, which will be returned as text/javascript.]]>
+                        </doc>
+                    </param>
+
+                    <param name="suppress_http_errors" type="xsd:boolean" style="query" required="false" default="0">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#batch">
+                            <![CDATA[A boolean, defaulting to false. If true, even error responses will have an HTTP response code of 200.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="text/javascript"/>
+                </response>
+            </method>
+        </resource>
+
+    </resources>
+</application>

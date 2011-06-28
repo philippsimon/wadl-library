@@ -1,0 +1,449 @@
+<application xmlns="http://wadl.dev.java.net/2009/02"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+             xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
+
+    <resources base="http://api.yelp.com">
+        <!-- TODO: representations -->
+
+        <!-- API v1.0 -->
+
+        <!-- Review Search -->
+
+        <resource path="/business_review_search">
+            <method id="search_by_map_bounding_box" name="GET" apigee:displayName="business_review_search (by map bounding box)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Review Search</apigee:tag>
+                    <apigee:tag>API v1.0</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="/business_review_search"/>
+
+                <doc title="Yelp Review Search API" apigee:url="http://www.yelp.com/developers/documentation/search_api#searchBB">
+                    <![CDATA[This mechanism for searching allows the retrieval of business review information based on the bounding box of a particular map. A request can be sent to the Yelp API using the "top-left latitude and longitude" and "bottom-right latitude and longitude" for a geographical bounding box.]]>
+                </doc>
+
+                <request>
+                    <param name="term" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/search_api#searchBB">
+                            <![CDATA[String representing the name of business or search term being requested. (E.G. "bars")]]>
+                        </doc>
+                    </param>
+
+                    <!-- FIXME: impose restriction on limit param to be between 1-20 inclusive -->
+                    <param name="limit" type="xsd:integer" style="query" required="false" default="10">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/search_api#searchBB">
+                            <![CDATA[Specifies the number of businesses to return in the result set. Default is 10. Minimum value is 1 and maximum value is 20.]]>
+                        </doc>
+                    </param>
+
+                    <param name="tl_lat" type="xsd:long" style="query" required="true">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/search_api#searchBB">
+                            <![CDATA[Top left latitude of bounding box.]]>
+                        </doc>
+                    </param>
+
+                    <param name="tl_long" type="xsd:long" style="query" required="true">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/search_api#searchBB">
+                            <![CDATA[Top left longitude of bounding box.]]>
+                        </doc>
+                    </param>
+
+                    <param name="br_lat" type="xsd:long" style="query" required="true">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/search_api#searchBB">
+                            <![CDATA[Bottom right latitude of bounding box.]]>
+                        </doc>
+                    </param>
+
+                    <param name="br_long" type="xsd:long" style="query" required="true">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/search_api#searchBB">
+                            <![CDATA[Bottom right longitude of bounding box.]]>
+                        </doc>
+                    </param>
+
+                    <param name="category" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/search_api#narrowCat">
+                            <![CDATA[This parameter allows filtering of result set by a particular category. You can search in multiple categories by separating them with a plus character, e.g category=bars+poolhalls]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/x-pickle"/>
+                    <representation mediaType="application/vnd.php.serialized"/>
+                </response>
+            </method>
+
+            <method id="search_by_geo_point_and_radius" name="GET" apigee:displayName="business_review_search (by geo-point and radius)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Review Search</apigee:tag>
+                    <apigee:tag>API v1.0</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="/business_review_search"/>
+
+                <doc title="Yelp Review Search API" apigee:url="http://www.yelp.com/developers/documentation/search_api#searchGPR">
+                    <![CDATA[Enables searching for business review information within a certain radius of a particular location.]]>
+                </doc>
+
+                <request>
+                    <param name="term" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/search_api#searchGPR">
+                            <![CDATA[String representing the name of business or search term being requested. (E.G. "bars")]]>
+                        </doc>
+                    </param>
+
+                    <!-- FIXME: impose restriction on limit param to be between 1-20 inclusive -->
+                    <param name="limit" type="xsd:integer" style="query" required="false" default="10">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/search_api#searchGPR">
+                            <![CDATA[Specifies the number of businesses to return in the result set. Default is 10. Minimum value is 1 and maximum value is 20.]]>
+                        </doc>
+                    </param>
+
+                    <param name="lat" type="xsd:long" style="query" required="true">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/search_api#searchGPR">
+                            <![CDATA[Latitude of geo-point to search near.]]>
+                        </doc>
+                    </param>
+
+                    <param name="long" type="xsd:long" style="query" required="true">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/search_api#searchGPR">
+                            <![CDATA[Longitude of geo-point to search near.]]>
+                        </doc>
+                    </param>
+
+                    <!-- FIXME: impose restriction on radius param to be between 25 maximum -->
+                    <param name="radius" type="xsd:long" style="query" required="false">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/search_api#searchGPR">
+                            <![CDATA[Radius to use while searching around specified geo-point. Maximum value = 25. If a radius is not specified, it will be chosen based on the specificity of the location.]]>
+                        </doc>
+                    </param>
+
+                    <param name="category" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/search_api#narrowCat">
+                            <![CDATA[This parameter allows filtering of result set by a particular category. You can search in multiple categories by separating them with a plus character, e.g category=bars+poolhalls]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/x-pickle"/>
+                    <representation mediaType="application/vnd.php.serialized"/>
+                </response>
+            </method>
+
+            <method id="search_by_neighborhood_address_and_city" name="GET" apigee:displayName="business_review_search (by neighborhood, address or city)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Review Search</apigee:tag>
+                    <apigee:tag>API v1.0</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="/business_review_search"/>
+
+                <doc title="Yelp Review Search API" apigee:url="http://www.yelp.com/developers/documentation/search_api#searchHood">
+                    <![CDATA[Enables searching for business review information based on a particular neighborhood, address or city.]]>
+                </doc>
+
+                <request>
+                    <param name="term" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/search_api#searchHood">
+                            <![CDATA[String representing the name of business or search term being requested. (E.G. "bars")]]>
+                        </doc>
+                    </param>
+
+                    <!-- FIXME: impose restriction on limit param to be between 1-20 inclusive -->
+                    <param name="limit" type="xsd:integer" style="query" required="false" default="10">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/search_api#searchHood">
+                            <![CDATA[Specifies the number of businesses to return in the result set. Default is 10. Minimum value is 1 and maximum value is 20.]]>
+                        </doc>
+                    </param>
+
+                    <param name="location" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/search_api#searchHood">
+                            <![CDATA[Specifies the combination of "address, neighborhood, city, state or zip, optional country" to be used when searching for businesses.]]>
+                        </doc>
+                    </param>
+
+                    <param name="cc" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/search_api#searchHood">
+                            <![CDATA[ISO 3166-1 alpha-2 country code. Default country to use when parsing the location field. United States = US, Canada = CA, United Kingdom = GB (not UK).]]>
+                        </doc>
+                    </param>
+
+                    <!-- FIXME: impose restriction on radius param to be between 25 maximum -->
+                    <param name="radius" type="xsd:long" style="query" required="false">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/search_api#searchGPR">
+                            <![CDATA[Radius to use while searching around specified geo-point. Maximum value = 25. If a radius is not specified, it will be chosen based on the specificity of the location.]]>
+                        </doc>
+                    </param>
+
+                    <param name="category" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/search_api#narrowCat">
+                            <![CDATA[This parameter allows filtering of result set by a particular category. You can search in multiple categories by separating them with a plus character, e.g category=bars+poolhalls]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/x-pickle"/>
+                    <representation mediaType="application/vnd.php.serialized"/>
+                </response>
+            </method>
+        </resource>
+
+        <!-- Phone -->
+
+        <resource path="/phone_search">
+            <method id="phone_search" name="GET" apigee:displayName="phone_search">
+                <apigee:tags>
+                    <apigee:tag primary="true">Phone</apigee:tag>
+                    <apigee:tag>API v1.0</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="/phone_search"/>
+
+                <doc title="Yelp Phone API" apigee:url="http://www.yelp.com/developers/documentation/phone_api">
+                    <![CDATA[The Yelp Phone API enables the retrieval of business review information based on a phone number input parameter. If the phone number provided matches a business in the Yelp system, business and review information will be returned.]]>
+                </doc>
+
+                <request>
+                    <param name="phone" type="xsd:integer" style="query" required="true">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/phone_api">
+                            <![CDATA[Parameter that specifies the business phone number to search for. Outside of the US and Canada, include the international dialing code (e.g. +442079460000) or use the 'cc' parameter.]]>
+                        </doc>
+                    </param>
+
+                    <param name="cc" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/phone_api">
+                            <![CDATA[ISO 3166-1 alpha-2 country code. Default country to use when parsing the location field. United States = US, Canada = CA, United Kingdom = GB (not UK).]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/x-pickle"/>
+                    <representation mediaType="application/vnd.php.serialized"/>
+                </response>
+            </method>
+        </resource>
+
+        <!-- Neighborhood -->
+
+        <resource path="/neighborhood_search">
+            <method id="neighborhood_search_by_geocode" name="GET" apigee:displayName="neighborhood_search (by geocode)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Neighborhood</apigee:tag>
+                    <apigee:tag>API v1.0</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="/neighborhood_search"/>
+
+                <doc title="Yelp Neighborhood API" apigee:url="http://www.yelp.com/developers/documentation/neighborhood_api#getNeighborhoodsByGeocode">
+                    <![CDATA[Enables the determination of neighborhood name information for a single geo-point location.]]>
+                </doc>
+
+                <request>
+                    <param name="lat" type="xsd:long" style="query" required="true">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/neighborhood_api#getNeighborhoodsByGeocode">
+                            <![CDATA[Latitude of geo-point for which a neighborhood name is desired.]]>
+                        </doc>
+                    </param>
+
+                    <param name="long" type="xsd:long" style="query" required="true">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/neighborhood_api#getNeighborhoodsByGeocode">
+                            <![CDATA[Longitude of geo-point for which a neighborhood name is desired.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/x-pickle"/>
+                    <representation mediaType="application/vnd.php.serialized"/>
+                </response>
+            </method>
+
+            <method id="neighborhood_search_by_location" name="GET" apigee:displayName="neighborhood_search (by location)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Neighborhood</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="/neighborhood_search"/>
+
+                <doc title="Yelp Neighborhood API" apigee:url="http://www.yelp.com/developers/documentation/neighborhood_api#getNeighborhoodsByGeocode">
+                    <![CDATA[Enables the determination of neighborhood name information for a particular address.]]>
+                </doc>
+
+                <request>
+                    <param name="location" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/neighborhood_api#getNeighborhoodsByLocation">
+                            <![CDATA[Specifies the combination of "address, neighborhood, city, state or zip, optional country" to be used when searching for businesses.]]>
+                        </doc>
+                    </param>
+
+                    <param name="cc" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/neighborhood_api#getNeighborhoodsByLocation">
+                            <![CDATA[ISO 3166-1 alpha-2 country code. Default country to use when parsing the location field. United States = US, Canada = CA, United Kingdom = GB (not UK).]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/x-pickle"/>
+                    <representation mediaType="application/vnd.php.serialized"/>
+                </response>
+            </method>
+        </resource>
+
+        <!-- API v2.0 -->
+
+        <!-- Search -->
+
+        <resource path="/v2/search">
+            <method id="search" name="GET" apigee:displayName="search">
+                <apigee:tags>
+                    <apigee:tag primary="true">Search</apigee:tag>
+                    <apigee:tag>API v2.0</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="/v2/search"/>
+
+                <doc title="Yelp Search API" apigee:url="http://www.yelp.com/developers/documentation/v2/search_api#searchRequest">
+                    <![CDATA[Searches for local businesses.]]>
+                </doc>
+
+                <request>
+                    <param name="term" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/v2/search_api#searchGP">
+                            <![CDATA[Search term (e.g. "food", "restaurants"). If term isn't included we search everything.]]>
+                        </doc>
+                    </param>
+
+                    <param name="limit" type="xsd:integer" style="query" required="false">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/v2/search_api#searchGP">
+                            <![CDATA[Number of business results to return.]]>
+                        </doc>
+                    </param>
+
+                    <param name="offset" type="xsd:integer" style="query" required="false">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/v2/search_api#searchGP">
+                            <![CDATA[Offset the list of returned business results by this amount.]]>
+                        </doc>
+                    </param>
+
+                    <param name="sort" type="xsd:integer" style="query" required="false">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/v2/search_api#searchGP">
+                            <![CDATA[Sort mode: 0 = Best matched (default), 1 = Distance, 2 = Highest Rated. If the mode is 1 or 2 the max number of results is 40. Sort by distance is only supported for a location or geographic search. The rating sort is not strictly sorted by the rating value, but by an adjusted rating value that takes into account the number of ratings, similar to a bayesian average. This is so a business with 1 rating of 5 stars doesn't immediately jump to the top.]]>
+                        </doc>
+                    </param>
+
+                    <param name="category_filter" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/v2/search_api#searchGP">
+                            <![CDATA[Category to filter search results with. The category filter can be a list of comma delimited categories. For example, 'bars,french' will filter by Bars and French. The category identifier should be used (for example 'discgolf', not 'Disc Golf').]]>
+                        </doc>
+                    </param>
+
+                    <!-- FIXME: impose restriction on radius_filter param to be 40234 (25 miles) maximum -->
+                    <param name="radius_filter" type="xsd:integer" style="query" required="false">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/v2/search_api#searchGP">
+                            <![CDATA[Search radius in meters. If the value is too large, a AREA_TOO_LARGE error may be returned. The max value is 25 miles.]]>
+                        </doc>
+                    </param>
+
+                    <param name="claimed_filter" type="xsd:bool" style="query" required="false">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/v2/search_api#searchGP">
+                            <![CDATA[NOT IMPLEMENTED! Set to 1 to only show claimed businesses in search results, 0 otherwise]]>
+                        </doc>
+                    </param>
+
+                    <!-- Locale Parameters -->
+
+                    <param name="cc" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/v2/search_api#lParam">
+                            <![CDATA[ISO 3166-1 alpha-2 country code. Default country to use when parsing the location field. United States = US, Canada = CA, United Kingdom = GB (not UK).]]>
+                        </doc>
+                    </param>
+
+                    <param name="lang" type="xsd:string" style="query" required="false" default="en">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/v2/search_api#lParam">
+                            <![CDATA[ISO 639 language code (default=en). Reviews written in the specified language will be shown.]]>
+                        </doc>
+                    </param>
+
+                    <!-- Methods of Specifying Location. Exactly one of these is required. -->
+
+                    <param name="bounds" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/v2/search_api#searchGBB">
+                            <![CDATA[Location is specified by a bounding box, defined by a southwest latitude/longitude and a northeast latitude/longitude geographic coordinate. The bounding box format is defined as: "sw_latitude,sw_longitude|ne_latitude,ne_longitude", where each component is a double.]]>
+                        </doc>
+                    </param>
+
+                    <param name="ll" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/v2/search_api#searchGC">
+                            <![CDATA[Location is specified by geographic coordinates, defined as: "latitude,longitude,accuracy,altitude,altitude_accuracy", where each component is a double.]]>
+                        </doc>
+                    </param>
+
+                    <param name="location" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/v2/search_api#searchNAC">
+                            <![CDATA[Location is specified by a particular neighborhood, address or city.]]>
+                        </doc>
+                    </param>
+
+                    <param name="cll" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.yelp.com/developers/documentation/v2/search_api#searchNAC">
+                            <![CDATA[An optional latitude/longitude parameter used as a hint to the geocoder to disambiguate the location text. The format is "latitude,longitude", where each component is a double.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/x-pickle"/>
+                    <representation mediaType="application/vnd.php.serialized"/>
+                </response>
+            </method>
+        </resource>
+
+        <!-- Business -->
+
+        <resource path="/v2/business/{id}">
+            <param name="id" type="xsd:string" style="query" required="true"/>
+
+            <method id="business" name="GET" apigee:displayName="business">
+                <apigee:tags>
+                    <apigee:tag primary="true">Business</apigee:tag>
+                    <apigee:tag>API v2.0</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="/business/{id}"/>
+
+                <doc title="Yelp Business API" apigee:url="http://www.yelp.com/developers/documentation/v2/business">
+                    <![CDATA[Looks up a business by its Yelp ID.]]>
+                </doc>
+            </method>
+        </resource>
+    </resources>
+</application>
