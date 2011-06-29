@@ -230,6 +230,304 @@
         </resource>
 
 
+ <resource path="/chatter/likes/{likeId}">
+            <param name="likeID" type="xsd:string" style="query" required="true" default="">  </param>
+            <method id="likeGet" name="GET">
+                <apigee:tags  >
+                    <apigee:tag primary="true">Like</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/likes/{likeId}"/>
+                <doc   title=""
+                  apigee:url="">
+                  Gets info on a specified like.
+                </doc>
+            </method>
+            <method id="likeDelete" name="DELETE">
+                <apigee:tags  >
+                    <apigee:tag primary="true">Like</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/likes/{likeId}"/>
+                <doc   title=""
+                  apigee:url="">
+                  Deletes a specified like.
+                </doc>
+            </method>
+	</resource>
+
+
+ <resource path="/chatter/feeds/news/me/feed-items">
+            <method id="newsGet" name="GET">
+                <apigee:tags  >
+                    <apigee:tag primary="true">News</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/feeds/news/me/feed-items"/>
+                <doc   title=""
+                  apigee:url="">
+                  Gets news on a specified feed.
+                </doc>
+            </method>
+            <param name="text" type="xsd:string" style="query" required="true" default="">  </param>
+            <param name="url" type="xsd:string" style="query" required="false" default="">  </param>
+            <method id="newsPost" name="POST">
+                <apigee:tags  >
+                    <apigee:tag primary="true">News</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/feeds/news/me/feed-items?text={text}"/>
+                <doc   title=""
+                  apigee:url="">
+                  Posts news on a specified feed.
+                </doc>
+            </method>
+            <param name="contentDocumentId" type="xsd:string" style="query" required="false" default="">  </param>
+            <param name="fileName" type="xsd:string" style="query" required="false" default="">  </param>
+            <param name="feedItemFileUpload" type="xsd:string" style="query" required="false" default="">  </param>
+            <param name="desc" type="xsd:string" style="query" required="false" default="">  </param>
+            <param name="urlName" type="xsd:string" style="query" required="flase" default="">  </param>
+            <param name="userId" type="xsd:string" style="query" required="true" default="">  </param>
+            <method id="unFeedGet" name="GET">
+                <apigee:tags  >
+                    <apigee:tag primary="true">News</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/feeds/news/{userId}/feed-items"/>
+                <doc   title=""
+                  apigee:url="">
+                  Gets news on a specified user's feed items.
+                </doc>
+            </method> 
+            <method id="unFeedPost" name="POST">
+                <apigee:tags  >
+                    <apigee:tag primary="true">News</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/feeds/news/{userId}/feed-items?text={text}"/>
+                <doc   title=""
+                  apigee:url="">
+                  Post news on a specified user's feed items.
+                </doc>
+            </method>
+	</resource>
+
+
+ <resource path="/chatter/feeds/record/me/feed-items">
+            <method id="recordGet" name="GET">
+                <apigee:tags  >
+                    <apigee:tag primary="true">Record</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/feeds/record/me/feed-items"/>
+                <doc   title=""
+                  apigee:url="">
+                  Gets records on a specified feed.
+                </doc>
+            </method>
+            <param name="text" type="xsd:string" style="query" required="true" default="">  </param>
+            <param name="url" type="xsd:string" style="query" required="false" default="">  </param>
+            <method id="recordPost" name="POST">
+                <apigee:tags  >
+                    <apigee:tag primary="true">Record</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/feeds/record/me/feed-items?text={text}"/>
+                <doc   title=""
+                  apigee:url="">
+                  Posts a record on a specified feed.
+                </doc>
+            </method>
+            <param name="contentDocumentId" type="xsd:string" style="query" required="false" default="">  </param>
+            <param name="fileName" type="xsd:string" style="query" required="false" default="">  </param>
+            <param name="feedItemFileUpload" type="xsd:string" style="query" required="false" default="">  </param>
+            <param name="desc" type="xsd:string" style="query" required="false" default="">  </param>
+            <param name="urlName" type="xsd:string" style="query" required="flase" default="">  </param>
+            <param name="recordId" type="xsd:string" style="query" required="true" default="">  </param>
+            <method id="recordFeedGet" name="GET">
+                <apigee:tags  >
+                    <apigee:tag primary="true">Record</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/feeds/record/{recordId}/feed-items"/>
+                <doc   title=""
+                  apigee:url="">
+                  Gets records on a specified user's feed items.
+                </doc>
+            </method> 
+            <method id="recordFeedPost" name="POST">
+                <apigee:tags  >
+                    <apigee:tag primary="true">Record</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/feeds/record/{recordId}/feed-items?text={text}"/>
+                <doc   title=""
+                  apigee:url="">
+                  Post record on a specified user's feed items.
+                </doc>
+            </method>
+	</resource>
+
+
+ <resource path="/chatter/subscriptions/{subscriptionId}">
+            <param name="subscriptionId" type="xsd:string" style="query" required="true" default="">  </param>
+            <method id="subscriptionGet" name="GET">
+                <apigee:tags  >
+                    <apigee:tag primary="true">Subscription</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/subscriptions/{subscriptionId}"/>
+                <doc   title=""
+                  apigee:url="">
+                  Gets info on a specified subscription.
+                </doc>
+            </method>
+            <method id="subscriptionDelete" name="DELETE">
+                <apigee:tags  >
+                    <apigee:tag primary="true">Like</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/subscription/{subscriptionId}"/>
+                <doc   title=""
+                  apigee:url="">
+                  Deletes a specified subscription.
+                </doc>
+            </method>
+	</resource>
+
+
+ <resource path="/chatter/feeds/to/me/feed-items">
+            <method id="mentionGet" name="GET">
+                <apigee:tags  >
+                    <apigee:tag primary="true">Mentions</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/feeds/to/me/feed-items"/>
+                <doc   title=""
+                  apigee:url="">
+                  Gets @mentions of the current user.
+                </doc>
+            </method>
+            <param name="text" type="xsd:string" style="query" required="true" default="">  </param>
+            <param name="url" type="xsd:string" style="query" required="false" default="">  </param>
+            <method id="mentionPost" name="POST">
+                <apigee:tags  >
+                    <apigee:tag primary="true">Mentions</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/feeds/to/me/feed-items?text={text}"/>
+                <doc   title=""
+                  apigee:url="">
+                  Posts a @mention on the current user.
+                </doc>
+            </method>
+            <param name="contentDocumentId" type="xsd:string" style="query" required="false" default="">  </param>
+            <param name="fileName" type="xsd:string" style="query" required="false" default="">  </param>
+            <param name="feedItemFileUpload" type="xsd:string" style="query" required="false" default="">  </param>
+            <param name="desc" type="xsd:string" style="query" required="false" default="">  </param>
+            <param name="urlName" type="xsd:string" style="query" required="flase" default="">  </param>
+            <param name="userId" type="xsd:string" style="query" required="true" default="">  </param>
+            <method id="userMentionGet" name="GET">
+                <apigee:tags  >
+                    <apigee:tag primary="true">Mentions</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/feeds/to/{userId}/feed-items"/>
+                <doc   title=""
+                  apigee:url="">
+                  Gets @mentions on a specified user.
+                </doc>
+            </method> 
+            <method id="userMentionPost" name="POST">
+                <apigee:tags  >
+                    <apigee:tag primary="true">Mentions</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/feeds/to/{userId}/feed-items?text={text}"/>
+                <doc   title=""
+                  apigee:url="">
+                  Post @mentions on a specified user.
+                </doc>
+            </method>
+	</resource>
+
+
+ <resource path="/chatter/feeds/user-profile/me/feed-items">
+            <method id="profileGet" name="GET">
+                <apigee:tags  >
+                    <apigee:tag primary="true">Profile</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/feeds/user-profile/me/feed-items"/>
+                <doc   title=""
+                  apigee:url="">
+                  Gets profile feed of the current user.
+                </doc>
+            </method>
+            <param name="text" type="xsd:string" style="query" required="true" default="">  </param>
+            <param name="url" type="xsd:string" style="query" required="false" default="">  </param>
+            <method id="profilePost" name="POST">
+                <apigee:tags  >
+                    <apigee:tag primary="true">Profile</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/feeds/user-profile/me/feed-items?text={text}"/>
+                <doc   title=""
+                  apigee:url="">
+                  Posts a profile feed on the current user.
+                </doc>
+            </method>
+            <param name="contentDocumentId" type="xsd:string" style="query" required="false" default="">  </param>
+            <param name="fileName" type="xsd:string" style="query" required="false" default="">  </param>
+            <param name="feedItemFileUpload" type="xsd:string" style="query" required="false" default="">  </param>
+            <param name="desc" type="xsd:string" style="query" required="false" default="">  </param>
+            <param name="urlName" type="xsd:string" style="query" required="flase" default="">  </param>
+            <param name="userId" type="xsd:string" style="query" required="true" default="">  </param>
+            <method id="userProfileGet" name="GET">
+                <apigee:tags  >
+                    <apigee:tag primary="true">Profile</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/feeds/user-profile/{userId}/feed-items"/>
+                <doc   title=""
+                  apigee:url="">
+                  Gets profile feed on a specified user.
+                </doc>
+            </method> 
+            <method id="userProfilePost" name="POST">
+                <apigee:tags  >
+                    <apigee:tag primary="true">Profile</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/feeds/user-profile/{userId}/feed-items?text={text}"/>
+                <doc   title=""
+                  apigee:url="">
+                  Post profile feed on a specified user.
+                </doc>
+            </method>
+	</resource>
+
+
     </resources>
 
 </application>
