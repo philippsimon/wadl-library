@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:apigee="http://api.apigee.com/wadl/2010/07/" xmlns="http://wadl.dev.java.net/2009/02"
+             xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
+
+             <resources base="https://na1.salesforce.com/services/data/v22.0">
+
+               <resource path="/chatter/comments/{commentId}">
+            <param name="commentId" type="xsd:string" style="query" required="true" default="">  </param>
+            <method id="commentGet" name="GET">
+                <apigee:tags  >
+                    <apigee:tag primary="true">Comment</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/comments/{commentId}"/>
+                <doc   title=""
+                  apigee:url="">
+                  Gets info on a comment.
+                </doc>
+            </method>
+            <method id="commentDelete" name="DELETE">
+                <apigee:tags  >
+                    <apigee:tag primary="true">Comment</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/comments/{commentId}"/>
+                <doc   title=""
+                  apigee:url="">
+                  Deletes a comment.
+                </doc>
+            </method>
+        </resource>
+
+
+        <resource path="/chatter/feed-items/{feedItemId}">
+            <param name="feedItemId" type="xsd:string" style="query" required="true" default="">  </param>
+            <param name="page" type="xsd:string" style="query" required="false" default="">  </param>
+            <param name="text" type="xsd:string" style="query" required="false" default="">  </param>
+            <method id="feedItemGet" name="GET">
+                <apigee:tags  >
+                    <apigee:tag primary="true">FeedItem</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/feed-items/{feedItemId}"/>
+                <doc   title=""
+                  apigee:url="">
+                  Gets info on a feedItem.
+                </doc>
+            </method>
+            <method id="feedItemDelete" name="DELETE">
+                <apigee:tags  >
+                    <apigee:tag primary="true">FeedItem</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/feed-items/{feedItemId}"/>
+                <doc   title=""
+                  apigee:url="">
+                  Deletes a feedItem.
+                </doc>
+            </method>
+            <method id="feedItemCommentGet" name="GET">
+                <apigee:tags  >
+                    <apigee:tag primary="true">FeedItem</apigee:tag>
+                    <apigee:tag>Comment</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/feed-items/{feedItemId}/comments"/>
+                <doc   title=""
+                  apigee:url="">
+                  Gets comments on a feedItem.
+                </doc>
+            </method>
+            <method id="feedItemCommentPost" name="POST">
+                <apigee:tags  >
+                    <apigee:tag primary="true">FeedItem</apigee:tag>
+                    <apigee:tag>Comment</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/feed-items/{feedItemId}/comments?text={text}"/>
+                <doc   title=""
+                  apigee:url="">
+                  Post a comment on a feedItem.
+                </doc>
+            </method>
+            <method id="feedItemLikeGet" name="GET">
+                <apigee:tags  >
+                    <apigee:tag primary="true">FeedItem</apigee:tag>
+                    <apigee:tag>Like</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/feed-items/{feedItemId}/likes"/>
+                <doc   title=""
+                  apigee:url="">
+                  Gets likes on a feedItem.
+                </doc>
+            </method>
+            <method id="feedItemLikePost" name="POST">
+                <apigee:tags  >
+                    <apigee:tag primary="true">FeedItem</apigee:tag>
+                    <apigee:tag>Like</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/feed-items/{feedItemId}/likes?text={text}"/>
+                <doc   title=""
+                  apigee:url="">
+                  Post a like on a feedItem.
+        </resource>
+
+
+ <resource path="/chatter/group-memberships/{membershipId}">
+            <param name="membershipId" type="xsd:string" style="query" required="true" default="">  </param>
+            <method id="membershipGet" name="GET">
+                <apigee:tags  >
+                    <apigee:tag primary="true">Membership</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/group-memberships/{membershipId}"/>
+                <doc   title=""
+                  apigee:url="">
+                  Gets info on a subscriber to a group.
+                </doc>
+            </method>
+            <method id="membershipDelete" name="DELETE">
+                <apigee:tags  >
+                    <apigee:tag primary="true">Membership</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/group-memberships/{membershipId}"/>
+                <doc   title=""
+                  apigee:url="">
+                  Deletes a subscriber.
+                </doc>
+            </method>
+        </resource>
+
+
+ <resource path="/chatter/groups/{groupId}">
+            <param name="groupId" type="xsd:string" style="query" required="true" default="">  </param>
+            <param name="userId" type="xsd:string" style="query" required="false" default="">  </param>
+            <param name="fileUpload" type="xsd:string" style="query" required="false" default="">  </param>
+            <method id="groupGet" name="GET">
+                <apigee:tags  >
+                    <apigee:tag primary="true">Group</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/groups/{groupId}"/>
+                <doc   title=""
+                  apigee:url="">
+                  Gets info on a group.
+                </doc>
+            </method>
+            <method id="groupMembersGet" name="GET">
+                <apigee:tags  >
+                    <apigee:tag primary="true">Group</apigee:tag>
+                    <apigee:tag>Membership</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/groups/{groupId}/members"/>
+                <doc   title=""
+                  apigee:url="">
+                  Gets members of a group.
+                </doc>
+            </method>
+            <method id="groupMembersPost" name="POST">
+                <apigee:tags  >
+                    <apigee:tag primary="true">Group</apigee:tag>
+                    <apigee:tag>Membership</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/groups/{groupId}/members?userid={userid}"/>
+                <doc   title=""
+                  apigee:url="">
+                  Add member to a group.
+                </doc>
+              </method>
+            <method id="groupPhotosGet" name="GET">
+                <apigee:tags  >
+                    <apigee:tag primary="true">Group</apigee:tag>
+                    <apigee:tag>Photo</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/groups/{groupId}/photo"/>
+                <doc   title=""
+                  apigee:url="">
+                  Gets photos of a group.
+                </doc>
+              </method>
+            <method id="groupPhotosPost" name="POST">
+                <apigee:tags  >
+                    <apigee:tag primary="true">Group</apigee:tag>
+                    <apigee:tag>Photo</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/groups/{groupId}/photo?fileupload={fileupload}"/>
+                <doc   title=""
+                  apigee:url="">
+                  Post photos to a group.
+                </doc>
+              </method>
+              <!-- API does not say how to specify a photo
+            <method id="groupPhotosDelete" name="DELETE">
+                <apigee:tags  >
+                    <apigee:tag primary="true">Group</apigee:tag>
+                    <apigee:tag>Photo</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication   required="true"/>
+                <apigee:example  
+                  url="/chatter/groups/{groupId}/photo?fileupload={fileupload}"/>
+                <doc   title=""
+                  apigee:url="">
+                  Post photos to a group.
+                </doc>
+              </method>
+              -->
+        </resource>
+
+
+    </resources>
+
+</application>
