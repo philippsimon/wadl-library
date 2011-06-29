@@ -12,7 +12,7 @@
 
             <method id="commentGet" name="GET" apigee:displayName="comments/{commentId} (GET)">
                 <apigee:tags>
-                    <apigee:tag primary="true">Comment</apigee:tag>
+                    <apigee:tag primary="true">Comments</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -46,7 +46,7 @@
 
             <method id="feedItemGet" name="GET" apigee:displayName="feed-items/{feedItemId} (GET)">
                 <apigee:tags>
-                    <apigee:tag primary="true">FeedItem</apigee:tag>
+                    <apigee:tag primary="true">Feed Items</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -60,7 +60,7 @@
 
             <method id="feedItemDelete" name="DELETE" apigee:displayName="feed-items/{feedItemId} (DELETE)">
                 <apigee:tags>
-                    <apigee:tag primary="true">FeedItem</apigee:tag>
+                    <apigee:tag primary="true">Feed Items</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -74,8 +74,8 @@
 
             <method id="feedItemCommentGet" name="GET" apigee:displayName="feed-items/{feedItemId}/comments (GET)">
                 <apigee:tags>
-                    <apigee:tag primary="true">FeedItem</apigee:tag>
-                    <apigee:tag>Comment</apigee:tag>
+                    <apigee:tag primary="true">Feed Items</apigee:tag>
+                    <apigee:tag>Comments</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -89,8 +89,8 @@
 
             <method id="feedItemCommentPost" name="POST" apigee:displayName="feed-items/{feedItemId}/comments (POST)">
                 <apigee:tags>
-                    <apigee:tag primary="true">FeedItem</apigee:tag>
-                    <apigee:tag>Comment</apigee:tag>
+                    <apigee:tag primary="true">Feed Items</apigee:tag>
+                    <apigee:tag>Comments</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -104,8 +104,8 @@
 
             <method id="feedItemLikeGet" name="GET" apigee:displayName="feed-items/{feedItemId}/likes (GET)">
                 <apigee:tags>
-                    <apigee:tag primary="true">FeedItem</apigee:tag>
-                    <apigee:tag>Like</apigee:tag>
+                    <apigee:tag primary="true">Feed Items</apigee:tag>
+                    <apigee:tag>Likes</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -119,8 +119,8 @@
 
             <method id="feedItemLikePost" name="POST" apigee:displayName="feed-items/{feedItemId}/likes (POST)">
                 <apigee:tags>
-                    <apigee:tag primary="true">FeedItem</apigee:tag>
-                    <apigee:tag>Like</apigee:tag>
+                    <apigee:tag primary="true">Feed Items</apigee:tag>
+                    <apigee:tag>Likes</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -138,7 +138,7 @@
 
             <method id="membershipGet" name="GET" apigee:displayName="group-memberships/{membershipId} (GET)">
                 <apigee:tags>
-                    <apigee:tag primary="true">Membership</apigee:tag>
+                    <apigee:tag primary="true">Group Memberships</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -152,7 +152,7 @@
 
             <method id="membershipDelete" name="DELETE" apigee:displayName="group-memberships/{membershipId} (DELETE)">
                 <apigee:tags>
-                    <apigee:tag primary="true">Membership</apigee:tag>
+                    <apigee:tag primary="true">Group Memberships</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -172,7 +172,7 @@
 
             <method id="groupGet" name="GET" apigee:displayName="groups/{groupId}">
                 <apigee:tags>
-                    <apigee:tag primary="true">Group</apigee:tag>
+                    <apigee:tag primary="true">Groups</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -186,8 +186,8 @@
 
             <method id="groupMembersGet" name="GET" apigee:displayName="groups/{groupId}/members (GET)">
                 <apigee:tags>
-                    <apigee:tag primary="true">Group</apigee:tag>
-                    <apigee:tag>Membership</apigee:tag>
+                    <apigee:tag primary="true">Groups</apigee:tag>
+                    <apigee:tag>Group Memberships</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -201,8 +201,8 @@
 
             <method id="groupMembersPost" name="POST" apigee:displayName="groups/{groupId}/members (POST)">
                 <apigee:tags>
-                    <apigee:tag primary="true">Group</apigee:tag>
-                    <apigee:tag>Membership</apigee:tag>
+                    <apigee:tag primary="true">Groups</apigee:tag>
+                    <apigee:tag>Group Memberships</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -216,7 +216,7 @@
 
             <method id="groupPhotosGet" name="GET" apigee:displayName="groups/{groupId}/photos (GET)">
                 <apigee:tags>
-                    <apigee:tag primary="true">Group</apigee:tag>
+                    <apigee:tag primary="true">Groups</apigee:tag>
                     <apigee:tag>Photo</apigee:tag>
                 </apigee:tags>
 
@@ -231,7 +231,7 @@
 
             <method id="groupPhotosPost" name="POST" apigee:displayName="groups/{groupId}/photos (POST)">
                 <apigee:tags>
-                    <apigee:tag primary="true">Group</apigee:tag>
+                    <apigee:tag primary="true">Groups</apigee:tag>
                     <apigee:tag>Photo</apigee:tag>
                 </apigee:tags>
 
@@ -246,7 +246,7 @@
 
             <method id="groupPhotosDelete" name="DELETE" apigee:displayName="groups/{groupId}/photos (DELETE)">
                 <apigee:tags>
-                    <apigee:tag primary="true">Group</apigee:tag>
+                    <apigee:tag primary="true">Groups</apigee:tag>
                     <apigee:tag>Photo</apigee:tag>
                 </apigee:tags>
 
@@ -265,7 +265,7 @@
 
             <method id="likeGet" name="GET" apigee:displayName="likes/{likeId} (GET)">
                 <apigee:tags>
-                    <apigee:tag primary="true">Like</apigee:tag>
+                    <apigee:tag primary="true">Likes</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -279,7 +279,7 @@
 
             <method id="likeDelete" name="DELETE" apigee:displayName="likes/{likeId} (DELETE)">
                 <apigee:tags>
-                    <apigee:tag primary="true">Like</apigee:tag>
+                    <apigee:tag primary="true">Likes</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -304,7 +304,7 @@
 
             <method id="newsGet" name="GET" apigee:displayName="news/me/feed-items (GET)">
                 <apigee:tags>
-                    <apigee:tag primary="true">News</apigee:tag>
+                    <apigee:tag primary="true">News Feed</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -318,7 +318,7 @@
 
             <method id="newsPost" name="POST" apigee:displayName="news/me/feed-items (POST)">
                 <apigee:tags>
-                    <apigee:tag primary="true">News</apigee:tag>
+                    <apigee:tag primary="true">News Feed</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -332,7 +332,7 @@
 
             <method id="unFeedGet" name="GET" apigee:displayName="news/{userId}/feed-items (GET)">
                 <apigee:tags>
-                    <apigee:tag primary="true">News</apigee:tag>
+                    <apigee:tag primary="true">News Feed</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -346,7 +346,7 @@
 
             <method id="unFeedPost" name="POST" apigee:displayName="news/{userId}/feed-items (POST)">
                 <apigee:tags>
-                    <apigee:tag primary="true">News</apigee:tag>
+                    <apigee:tag primary="true">News Feed</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -371,7 +371,7 @@
 
             <method id="recordGet" name="GET" apigee:displayName="feeds/record/me/feed-items (GET)">
                 <apigee:tags>
-                    <apigee:tag primary="true">Record</apigee:tag>
+                    <apigee:tag primary="true">Record Feed</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -385,7 +385,7 @@
 
             <method id="recordPost" name="POST" apigee:displayName="feeds/record/me/feed-items (POST)">
                 <apigee:tags>
-                    <apigee:tag primary="true">Record</apigee:tag>
+                    <apigee:tag primary="true">Record Feed</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -399,7 +399,7 @@
 
             <method id="recordFeedGet" name="GET" apigee:displayName="feeds/record/{userId}/feed-items (GET)">
                 <apigee:tags>
-                    <apigee:tag primary="true">Record</apigee:tag>
+                    <apigee:tag primary="true">Record Feed</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -413,7 +413,7 @@
 
             <method id="recordFeedPost" name="POST" apigee:displayName="feeds/record/{userId}/feed-items (POST)">
                 <apigee:tags>
-                    <apigee:tag primary="true">Record</apigee:tag>
+                    <apigee:tag primary="true">Record Feed</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -431,7 +431,7 @@
 
             <method id="subscriptionGet" name="GET" apigee:displayName="subscriptions/{subscriptionId} (GET)">
                 <apigee:tags>
-                    <apigee:tag primary="true">Subscription</apigee:tag>
+                    <apigee:tag primary="true">Subscriptions</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -445,7 +445,7 @@
 
             <method id="subscriptionDelete" name="DELETE" apigee:displayName="subscriptions/{subscriptionId} (DELETE)">
                 <apigee:tags>
-                    <apigee:tag primary="true">Like</apigee:tag>
+                    <apigee:tag primary="true">Subscriptions</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -470,7 +470,7 @@
 
             <method id="mentionGet" name="GET" apigee:displayName="feeds/to/me/feed-items (GET)">
                 <apigee:tags>
-                    <apigee:tag primary="true">Mentions</apigee:tag>
+                    <apigee:tag primary="true">To Feed</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -484,7 +484,7 @@
 
             <method id="mentionPost" name="POST" apigee:displayName="feeds/to/me/feed-items (POST)">
                 <apigee:tags>
-                    <apigee:tag primary="true">Mentions</apigee:tag>
+                    <apigee:tag primary="true">To Feed</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -498,7 +498,7 @@
 
             <method id="userMentionGet" name="GET" apigee:displayName="feeds/to/{userId}/feed-items (GET)">
                 <apigee:tags>
-                    <apigee:tag primary="true">Mentions</apigee:tag>
+                    <apigee:tag primary="true">To Feed</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -512,7 +512,7 @@
 
             <method id="userMentionPost" name="POST" apigee:displayName="feeds/to/{userId}/feed-items (POST)">
                 <apigee:tags>
-                    <apigee:tag primary="true">Mentions</apigee:tag>
+                    <apigee:tag primary="true">To Feed</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -537,7 +537,7 @@
 
             <method id="profileGet" name="GET" apigee:displayName="feeds/user-profile/me/feed-items (GET)">
                 <apigee:tags>
-                    <apigee:tag primary="true">Profile</apigee:tag>
+                    <apigee:tag primary="true">User Profile Feed</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -551,7 +551,7 @@
 
             <method id="profilePost" name="POST" apigee:displayName="feeds/user-profile/me/feed-items (POST)">
                 <apigee:tags>
-                    <apigee:tag primary="true">Profile</apigee:tag>
+                    <apigee:tag primary="true">User Profile Feed</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -565,7 +565,7 @@
 
             <method id="userProfileGet" name="GET" apigee:displayName="feeds/user-profile/{userId}/feed-items (GET)">
                 <apigee:tags>
-                    <apigee:tag primary="true">Profile</apigee:tag>
+                    <apigee:tag primary="true">User Profile Feed</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -579,7 +579,7 @@
 
             <method id="userProfilePost" name="POST" apigee:displayName="feeds/user-profile/{userId}/feed-items (POST)">
                 <apigee:tags>
-                    <apigee:tag primary="true">Profile</apigee:tag>
+                    <apigee:tag primary="true">User Profile Feed</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -600,7 +600,7 @@
 
             <method id="userGet" name="GET" apigee:displayName="users/me">
                 <apigee:tags>
-                    <apigee:tag primary="true">User</apigee:tag>
+                    <apigee:tag primary="true">Users</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -614,7 +614,7 @@
 
             <method id="userFollowersGet" name="GET" apigee:displayName="users/me/followers (GET)">
                 <apigee:tags>
-                    <apigee:tag primary="true">User</apigee:tag>
+                    <apigee:tag primary="true">Users</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -629,7 +629,7 @@
             <!-- API does not specify what to POST
             <method id="userFollowersPost" name="POST" apigee:displayName="users/me/followers (POST)">
                 <apigee:tags>
-                    <apigee:tag primary="true">User</apigee:tag>
+                    <apigee:tag primary="true">Users</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -644,7 +644,7 @@
 
             <method id="userFollowingGet" name="GET" apigee:displayName="users/me/following (GET)">
                 <apigee:tags>
-                    <apigee:tag primary="true">User</apigee:tag>
+                    <apigee:tag primary="true">Users</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -658,7 +658,7 @@
 
             <method id="userFollowingPost" name="POST" apigee:displayName="users/me/following (POST)">
                 <apigee:tags>
-                    <apigee:tag primary="true">User</apigee:tag>
+                    <apigee:tag primary="true">Users</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -672,7 +672,7 @@
 
             <method id="userGroupGet" name="GET" apigee:displayName="users/me/groups">
                 <apigee:tags>
-                    <apigee:tag primary="true">User</apigee:tag>
+                    <apigee:tag primary="true">Users</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -686,7 +686,7 @@
 
             <method id="userPhotoGet" name="GET" apigee:displayName="users/me/photo (GET)">
                 <apigee:tags>
-                    <apigee:tag primary="true">User</apigee:tag>
+                    <apigee:tag primary="true">Users</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -700,7 +700,7 @@
 
             <method id="userPhotoPost" name="POST" apigee:displayName="users/me/photo (POST)">
                 <apigee:tags>
-                    <apigee:tag primary="true">User</apigee:tag>
+                    <apigee:tag primary="true">Users</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -714,7 +714,7 @@
 
             <method id="userPhotoDelete" name="DELETE" apigee:displayName="users/me/photo (DELETE)">
                 <apigee:tags>
-                    <apigee:tag primary="true">User</apigee:tag>
+                    <apigee:tag primary="true">Users</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -728,7 +728,7 @@
 
             <method id="userStatusGet" name="GET" apigee:displayName="users/me/status (GET)">
                 <apigee:tags>
-                    <apigee:tag primary="true">User</apigee:tag>
+                    <apigee:tag primary="true">Users</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -742,7 +742,7 @@
 
             <method id="userStatusPost" name="POST" apigee:displayName="users/me/status (POST)">
                 <apigee:tags>
-                    <apigee:tag primary="true">User</apigee:tag>
+                    <apigee:tag primary="true">Users</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -756,7 +756,7 @@
 
             <method id="userStatusDelete" name="DELETE" apigee:displayName="users/me/status (DELETE)">
                 <apigee:tags>
-                    <apigee:tag primary="true">User</apigee:tag>
+                    <apigee:tag primary="true">Users</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -770,7 +770,7 @@
 
             <method id="userIdGet" name="GET" apigee:displayName="users/{userId}">
                 <apigee:tags>
-                    <apigee:tag primary="true">User</apigee:tag>
+                    <apigee:tag primary="true">Users</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -784,7 +784,7 @@
 
             <method id="userIdFollowersGet" name="GET" apigee:displayName="users/{userId}/followers (GET)">
                 <apigee:tags>
-                    <apigee:tag primary="true">User</apigee:tag>
+                    <apigee:tag primary="true">Users</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -799,7 +799,7 @@
             <!-- API does not specify what to POST
             <method id="userIdFollowersPost" name="POST" apigee:displayName="users/{userId}/followers (POST)">
                 <apigee:tags>
-                    <apigee:tag primary="true">User</apigee:tag>
+                    <apigee:tag primary="true">Users</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -814,7 +814,7 @@
 
             <method id="userIdFollowingGet" name="GET" apigee:displayName="users/{userId}/following (GET)">
                 <apigee:tags>
-                    <apigee:tag primary="true">User</apigee:tag>
+                    <apigee:tag primary="true">Users</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -828,7 +828,7 @@
 
             <method id="userIdFollowingPost" name="POST" apigee:displayName="users/{userId}/following (POST)">
                 <apigee:tags>
-                    <apigee:tag primary="true">User</apigee:tag>
+                    <apigee:tag primary="true">Users</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -842,7 +842,7 @@
 
             <method id="userIdGroupGet" name="GET" apigee:displayName="users/{userId}/groups">
                 <apigee:tags>
-                    <apigee:tag primary="true">User</apigee:tag>
+                    <apigee:tag primary="true">Users</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -856,7 +856,7 @@
 
             <method id="userIdPhotoGet" name="GET" apigee:displayName="users/{userId}/photo (GET)">
                 <apigee:tags>
-                    <apigee:tag primary="true">User</apigee:tag>
+                    <apigee:tag primary="true">Users</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -870,7 +870,7 @@
 
             <method id="userIdPhotoPost" name="POST" apigee:displayName="users/{userId}/photo (POST)">
                 <apigee:tags>
-                    <apigee:tag primary="true">User</apigee:tag>
+                    <apigee:tag primary="true">Users</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -884,7 +884,7 @@
 
             <method id="userIdPhotoDelete" name="DELETE" apigee:displayName="users/{userId}/photo (DELETE)">
                 <apigee:tags>
-                    <apigee:tag primary="true">User</apigee:tag>
+                    <apigee:tag primary="true">Users</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -898,7 +898,7 @@
 
             <method id="userIdStatusGet" name="GET" apigee:displayName="users/{userId}/status (GET)">
                 <apigee:tags>
-                    <apigee:tag primary="true">User</apigee:tag>
+                    <apigee:tag primary="true">Users</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -912,7 +912,7 @@
 
             <method id="userIdStatusPost" name="POST" apigee:displayName="users/{userId}/status (POST)">
                 <apigee:tags>
-                    <apigee:tag primary="true">User</apigee:tag>
+                    <apigee:tag primary="true">Users</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -926,7 +926,7 @@
 
             <method id="userIdStatusDelete" name="DELETE" apigee:displayName="users/{userId}/status (DELETE)">
                 <apigee:tags>
-                    <apigee:tag primary="true">User</apigee:tag>
+                    <apigee:tag primary="true">Users</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
