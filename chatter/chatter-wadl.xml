@@ -5,9 +5,9 @@
              xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
              xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
 
-    <resources base="https://na1.salesforce.com/services/data/v22.0">
+    <resources base="https://na1.salesforce.com/services/data/v22.0/">
 
-        <resource path="/chatter/comments/{commentId}">
+        <resource path="chatter/comments/{commentId}">
             <param name="commentId" type="xsd:string" style="query" required="true" default=""/>
 
             <method id="commentGet" name="GET">
@@ -17,7 +17,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/comments/{commentId}"/>
+                <apigee:example url="chatter/comments/{commentId}"/>
 
                 <doc title="" apigee:url="">
                     Gets info on a comment.
@@ -31,7 +31,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/comments/{commentId}"/>
+                <apigee:example url="chatter/comments/{commentId}"/>
 
                 <doc title="" apigee:url="">
                     Deletes a comment.
@@ -39,7 +39,7 @@
             </method>
         </resource>
 
-        <resource path="/chatter/feed-items/{feedItemId}">
+        <resource path="chatter/feed-items/{feedItemId}">
             <param name="feedItemId" type="xsd:string" style="query" required="true" default=""/>
             <param name="page" type="xsd:string" style="query" required="false" default=""/>
             <param name="text" type="xsd:string" style="query" required="false" default=""/>
@@ -51,7 +51,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/feed-items/{feedItemId}"/>
+                <apigee:example url="chatter/feed-items/{feedItemId}"/>
 
                 <doc title="" apigee:url="">
                     Gets info on a feedItem.
@@ -65,7 +65,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/feed-items/{feedItemId}"/>
+                <apigee:example url="chatter/feed-items/{feedItemId}"/>
 
                 <doc title="" apigee:url="">
                     Deletes a feedItem.
@@ -80,7 +80,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/feed-items/{feedItemId}/comments"/>
+                <apigee:example url="chatter/feed-items/{feedItemId}/comments"/>
 
                 <doc title="" apigee:url="">
                     Gets comments on a feedItem.
@@ -95,7 +95,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/feed-items/{feedItemId}/comments?text={text}"/>
+                <apigee:example url="chatter/feed-items/{feedItemId}/comments?text={text}"/>
 
                 <doc title="" apigee:url="">
                     Post a comment on a feedItem.
@@ -110,7 +110,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/feed-items/{feedItemId}/likes"/>
+                <apigee:example url="chatter/feed-items/{feedItemId}/likes"/>
 
                 <doc title="" apigee:url="">
                     Gets likes on a feedItem.
@@ -125,7 +125,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/feed-items/{feedItemId}/likes?text={text}"/>
+                <apigee:example url="chatter/feed-items/{feedItemId}/likes?text={text}"/>
 
                 <doc title="" apigee:url="">
                     Post a like on a feedItem.
@@ -133,7 +133,7 @@
             </method>
         </resource>
 
-        <resource path="/chatter/group-memberships/{membershipId}">
+        <resource path="chatter/group-memberships/{membershipId}">
             <param name="membershipId" type="xsd:string" style="query" required="true" default=""/>
 
             <method id="membershipGet" name="GET">
@@ -143,7 +143,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/group-memberships/{membershipId}"/>
+                <apigee:example url="chatter/group-memberships/{membershipId}"/>
 
                 <doc title="" apigee:url="">
                     Gets info on a subscriber to a group.
@@ -157,7 +157,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/group-memberships/{membershipId}"/>
+                <apigee:example url="chatter/group-memberships/{membershipId}"/>
 
                 <doc title="" apigee:url="">
                     Deletes a subscriber.
@@ -165,7 +165,7 @@
             </method>
         </resource>
 
-        <resource path="/chatter/groups/{groupId}">
+        <resource path="chatter/groups/{groupId}">
             <param name="groupId" type="xsd:string" style="query" required="true" default=""/>
             <param name="userId" type="xsd:string" style="query" required="false" default=""/>
             <param name="fileUpload" type="xsd:string" style="query" required="false" default=""/>
@@ -177,7 +177,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/groups/{groupId}"/>
+                <apigee:example url="chatter/groups/{groupId}"/>
 
                 <doc title="" apigee:url="">
                     Gets info on a group.
@@ -192,7 +192,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/groups/{groupId}/members"/>
+                <apigee:example url="chatter/groups/{groupId}/members"/>
 
                 <doc title="" apigee:url="">
                     Gets members of a group.
@@ -207,7 +207,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/groups/{groupId}/members?userid={userid}"/>
+                <apigee:example url="chatter/groups/{groupId}/members?userid={userid}"/>
 
                 <doc title="" apigee:url="">
                     Add member to a group.
@@ -222,7 +222,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/groups/{groupId}/photo"/>
+                <apigee:example url="chatter/groups/{groupId}/photo"/>
 
                 <doc title="" apigee:url="">
                     Gets photos of a group.
@@ -237,7 +237,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/groups/{groupId}/photo?fileupload={fileupload}"/>
+                <apigee:example url="chatter/groups/{groupId}/photo?fileupload={fileupload}"/>
 
                 <doc title="" apigee:url="">
                     Post photos to a group.
@@ -252,7 +252,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/groups/{groupId}/photo?fileupload={fileupload}"/>
+                <apigee:example url="chatter/groups/{groupId}/photo?fileupload={fileupload}"/>
 
                 <doc title="" apigee:url="">
                     Post photos to a group.
@@ -260,7 +260,7 @@
             </method>
         </resource>
 
-        <resource path="/chatter/likes/{likeId}">
+        <resource path="chatter/likes/{likeId}">
             <param name="likeID" type="xsd:string" style="query" required="true" default=""/>
 
             <method id="likeGet" name="GET">
@@ -270,7 +270,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/likes/{likeId}"/>
+                <apigee:example url="chatter/likes/{likeId}"/>
 
                 <doc title="" apigee:url="">
                     Gets info on a specified like.
@@ -284,7 +284,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/likes/{likeId}"/>
+                <apigee:example url="chatter/likes/{likeId}"/>
 
                 <doc title="" apigee:url="">
                     Deletes a specified like.
@@ -292,7 +292,7 @@
             </method>
         </resource>
 
-        <resource path="/chatter/feeds/news/me/feed-items">
+        <resource path="chatter/feeds/news/me/feed-items">
             <param name="text" type="xsd:string" style="query" required="true" default=""/>
             <param name="url" type="xsd:string" style="query" required="false" default=""/>
             <param name="contentDocumentId" type="xsd:string" style="query" required="false" default=""/>
@@ -309,7 +309,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/feeds/news/me/feed-items"/>
+                <apigee:example url="chatter/feeds/news/me/feed-items"/>
 
                 <doc title="" apigee:url="">
                     Gets news on a specified feed.
@@ -323,7 +323,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/feeds/news/me/feed-items?text={text}"/>
+                <apigee:example url="chatter/feeds/news/me/feed-items?text={text}"/>
 
                 <doc title="" apigee:url="">
                     Posts news on a specified feed.
@@ -337,7 +337,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/feeds/news/{userId}/feed-items"/>
+                <apigee:example url="chatter/feeds/news/{userId}/feed-items"/>
 
                 <doc title="" apigee:url="">
                     Gets news on a specified user's feed items.
@@ -351,7 +351,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/feeds/news/{userId}/feed-items?text={text}"/>
+                <apigee:example url="chatter/feeds/news/{userId}/feed-items?text={text}"/>
 
                 <doc title="" apigee:url="">
                     Post news on a specified user's feed items.
@@ -359,7 +359,7 @@
             </method>
         </resource>
 
-        <resource path="/chatter/feeds/record/me/feed-items">
+        <resource path="chatter/feeds/record/me/feed-items">
             <param name="text" type="xsd:string" style="query" required="true" default=""/>
             <param name="url" type="xsd:string" style="query" required="false" default=""/>
             <param name="contentDocumentId" type="xsd:string" style="query" required="false" default=""/>
@@ -376,7 +376,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/feeds/record/me/feed-items"/>
+                <apigee:example url="chatter/feeds/record/me/feed-items"/>
 
                 <doc title="" apigee:url="">
                     Gets records on a specified feed.
@@ -390,7 +390,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/feeds/record/me/feed-items?text={text}"/>
+                <apigee:example url="chatter/feeds/record/me/feed-items?text={text}"/>
 
                 <doc title="" apigee:url="">
                     Posts a record on a specified feed.
@@ -404,7 +404,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/feeds/record/{recordId}/feed-items"/>
+                <apigee:example url="chatter/feeds/record/{recordId}/feed-items"/>
 
                 <doc title="" apigee:url="">
                     Gets records on a specified user's feed items.
@@ -418,7 +418,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/feeds/record/{recordId}/feed-items?text={text}"/>
+                <apigee:example url="chatter/feeds/record/{recordId}/feed-items?text={text}"/>
 
                 <doc title="" apigee:url="">
                     Post record on a specified user's feed items.
@@ -426,7 +426,7 @@
             </method>
         </resource>
 
-        <resource path="/chatter/subscriptions/{subscriptionId}">
+        <resource path="chatter/subscriptions/{subscriptionId}">
             <param name="subscriptionId" type="xsd:string" style="query" required="true" default=""/>
 
             <method id="subscriptionGet" name="GET">
@@ -436,7 +436,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/subscriptions/{subscriptionId}"/>
+                <apigee:example url="chatter/subscriptions/{subscriptionId}"/>
 
                 <doc title="" apigee:url="">
                     Gets info on a specified subscription.
@@ -450,7 +450,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/subscription/{subscriptionId}"/>
+                <apigee:example url="chatter/subscription/{subscriptionId}"/>
 
                 <doc title="" apigee:url="">
                     Deletes a specified subscription.
@@ -458,7 +458,7 @@
             </method>
         </resource>
 
-        <resource path="/chatter/feeds/to/me/feed-items">
+        <resource path="chatter/feeds/to/me/feed-items">
             <param name="text" type="xsd:string" style="query" required="true" default=""/>
             <param name="url" type="xsd:string" style="query" required="false" default=""/>
             <param name="contentDocumentId" type="xsd:string" style="query" required="false" default=""/>
@@ -475,7 +475,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/feeds/to/me/feed-items"/>
+                <apigee:example url="chatter/feeds/to/me/feed-items"/>
 
                 <doc title="" apigee:url="">
                     Gets @mentions of the current user.
@@ -489,7 +489,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/feeds/to/me/feed-items?text={text}"/>
+                <apigee:example url="chatter/feeds/to/me/feed-items?text={text}"/>
 
                 <doc title="" apigee:url="">
                     Posts a @mention on the current user.
@@ -503,7 +503,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/feeds/to/{userId}/feed-items"/>
+                <apigee:example url="chatter/feeds/to/{userId}/feed-items"/>
 
                 <doc title="" apigee:url="">
                     Gets @mentions on a specified user.
@@ -517,7 +517,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/feeds/to/{userId}/feed-items?text={text}"/>
+                <apigee:example url="chatter/feeds/to/{userId}/feed-items?text={text}"/>
 
                 <doc title="" apigee:url="">
                     Post @mentions on a specified user.
@@ -525,7 +525,7 @@
             </method>
         </resource>
 
-        <resource path="/chatter/feeds/user-profile/me/feed-items">
+        <resource path="chatter/feeds/user-profile/me/feed-items">
             <param name="text" type="xsd:string" style="query" required="true" default=""/>
             <param name="url" type="xsd:string" style="query" required="false" default=""/>
             <param name="contentDocumentId" type="xsd:string" style="query" required="false" default=""/>
@@ -542,7 +542,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/feeds/user-profile/me/feed-items"/>
+                <apigee:example url="chatter/feeds/user-profile/me/feed-items"/>
 
                 <doc title="" apigee:url="">
                     Gets profile feed of the current user.
@@ -556,7 +556,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/feeds/user-profile/me/feed-items?text={text}"/>
+                <apigee:example url="chatter/feeds/user-profile/me/feed-items?text={text}"/>
 
                 <doc title="" apigee:url="">
                     Posts a profile feed on the current user.
@@ -570,7 +570,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/feeds/user-profile/{userId}/feed-items"/>
+                <apigee:example url="chatter/feeds/user-profile/{userId}/feed-items"/>
 
                 <doc title="" apigee:url="">
                     Gets profile feed on a specified user.
@@ -584,7 +584,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/feeds/user-profile/{userId}/feed-items?text={text}"/>
+                <apigee:example url="chatter/feeds/user-profile/{userId}/feed-items?text={text}"/>
 
                 <doc title="" apigee:url="">
                     Post profile feed on a specified user.
@@ -592,7 +592,7 @@
             </method>
         </resource>
 
-        <resource path="/chatter/users/me">
+        <resource path="chatter/users/me">
             <param name="subjectId" type="xsd:string" style="query" required="true" default=""/>
             <param name="fileUpload" type="xsd:string" style="query" required="false" default=""/>
             <param name="text" type="xsd:string" style="query" required="true" default=""/>
@@ -605,7 +605,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/users/me"/>
+                <apigee:example url="chatter/users/me"/>
 
                 <doc title="" apigee:url="">
                     Returns information on the current user.
@@ -619,7 +619,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/users/me/followers"/>
+                <apigee:example url="chatter/users/me/followers"/>
 
                 <doc title="" apigee:url="">
                     Returns information on followers of the current user.
@@ -634,7 +634,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/users/me/followers"/>
+                <apigee:example url="chatter/users/me/followers"/>
 
                 <doc title="" apigee:url="">
                     Posts a profile feed on the current user.
@@ -649,7 +649,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/users/me/following"/>
+                <apigee:example url="chatter/users/me/following"/>
 
                 <doc title="" apigee:url="">
                     Returns information on who the user follows.
@@ -663,7 +663,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/users/me/following?subjectId={subjectId}"/>
+                <apigee:example url="chatter/users/me/following?subjectId={subjectId}"/>
 
                 <doc title="" apigee:url="">
                     Posts information on who the user follows.
@@ -677,7 +677,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/users/me/groups"/>
+                <apigee:example url="chatter/users/me/groups"/>
 
                 <doc title="" apigee:url="">
                     Returns information on groups the user is in.
@@ -691,7 +691,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/users/me/photo"/>
+                <apigee:example url="chatter/users/me/photo"/>
 
                 <doc title="" apigee:url="">
                     Returns information on the current user's photos.
@@ -705,7 +705,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/users/me/photo?fileUpload={fileUpload}"/>
+                <apigee:example url="chatter/users/me/photo?fileUpload={fileUpload}"/>
 
                 <doc title="" apigee:url="">
                     Post photo to current user's profile.
@@ -719,7 +719,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/users/me/photo?fileUpload={fileUpload}"/>
+                <apigee:example url="chatter/users/me/photo?fileUpload={fileUpload}"/>
 
                 <doc title="" apigee:url="">
                     Delete photo of current user's profile.
@@ -733,7 +733,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/users/me/status"/>
+                <apigee:example url="chatter/users/me/status"/>
 
                 <doc title="" apigee:url="">
                     Returns info of current user's status.
@@ -747,7 +747,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/users/me/status?text={text}"/>
+                <apigee:example url="chatter/users/me/status?text={text}"/>
 
                 <doc title="" apigee:url="">
                     Post text to current user's status.
@@ -761,7 +761,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/users/me/status?text={text}"/>
+                <apigee:example url="chatter/users/me/status?text={text}"/>
 
                 <doc title="" apigee:url="">
                     Delete current user's status containing text.
@@ -775,7 +775,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/users/{userId}"/>
+                <apigee:example url="chatter/users/{userId}"/>
 
                 <doc title="" apigee:url="">
                     Returns information on the specified user.
@@ -789,7 +789,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/users/{userId}/followers"/>
+                <apigee:example url="chatter/users/{userId}/followers"/>
 
                 <doc title="" apigee:url="">
                     Returns information on followers of the specified user.
@@ -804,7 +804,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/users/{userId}/followers"/>
+                <apigee:example url="chatter/users/{userId}/followers"/>
 
                 <doc title="" apigee:url="">
                     Posts a profile feed on the specified user.
@@ -819,7 +819,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/users/{userId}/following"/>
+                <apigee:example url="chatter/users/{userId}/following"/>
 
                 <doc title="" apigee:url="">
                     Returns information on who the specified user follows.
@@ -833,7 +833,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/users/{userId}/following?subjectId={subjectId}"/>
+                <apigee:example url="chatter/users/{userId}/following?subjectId={subjectId}"/>
 
                 <doc title="" apigee:url="">
                     Enables user to follow the specified record.
@@ -847,7 +847,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/users/{userId}/groups"/>
+                <apigee:example url="chatter/users/{userId}/groups"/>
 
                 <doc title="" apigee:url="">
                     Returns information on groups the specified user is in.
@@ -861,7 +861,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/users/{userId}/photo"/>
+                <apigee:example url="chatter/users/{userId}/photo"/>
 
                 <doc title="" apigee:url="">
                     Returns information on the specified user's photos.
@@ -875,7 +875,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/users/{userId}/photo?fileUpload={fileUpload}"/>
+                <apigee:example url="chatter/users/{userId}/photo?fileUpload={fileUpload}"/>
 
                 <doc title="" apigee:url="">
                     Post photo to specified user's profile.
@@ -889,7 +889,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/users/{userId}/photo?fileUpload={fileUpload}"/>
+                <apigee:example url="chatter/users/{userId}/photo?fileUpload={fileUpload}"/>
 
                 <doc title="" apigee:url="">
                     Delete photo of specified user's profile.
@@ -903,7 +903,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/users/{userId}/status"/>
+                <apigee:example url="chatter/users/{userId}/status"/>
 
                 <doc title="" apigee:url="">
                     Returns info of specified user's status.
@@ -917,7 +917,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/users/{userId}/status?text={text}"/>
+                <apigee:example url="chatter/users/{userId}/status?text={text}"/>
 
                 <doc title="" apigee:url="">
                     Post text to current user's status.
@@ -931,7 +931,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/chatter/users/{userId}/status?text={text}"/>
+                <apigee:example url="chatter/users/{userId}/status?text={text}"/>
 
                 <doc title="" apigee:url="">
                     Delete specified user's status containing text.
