@@ -7,8 +7,10 @@
 
     <resources base="https://na1.salesforce.com/services/data/v22.0/">
 
+        <!-- Comments -->
+
         <resource path="chatter/comments/{commentId}">
-            <param name="commentId" type="xsd:string" style="query" required="true" default=""/>
+            <param name="commentId" type="xsd:string" style="template" required="true" default=""/>
 
             <method id="commentGet" name="GET" apigee:displayName="comments/{commentId} (GET)">
                 <apigee:tags>
@@ -39,10 +41,10 @@
             </method>
         </resource>
 
+        <!-- Feed Items -->
+
         <resource path="chatter/feed-items/{feedItemId}">
-            <param name="feedItemId" type="xsd:string" style="query" required="true" default=""/>
-            <param name="page" type="xsd:string" style="query" required="false" default=""/>
-            <param name="text" type="xsd:string" style="query" required="false" default=""/>
+            <param name="feedItemId" type="xsd:string" style="template" required="true" default=""/>
 
             <method id="feedItemGet" name="GET" apigee:displayName="feed-items/{feedItemId} (GET)">
                 <apigee:tags>
@@ -52,6 +54,10 @@
                 <apigee:authentication required="true"/>
 
                 <apigee:example url="chatter/feed-items/{feedItemId}"/>
+
+                <request>
+                    <param name="page" type="xsd:string" style="query" required="false" default=""/>
+                </request>
 
                 <doc title="" apigee:url="">
                     Gets info on a feedItem.
@@ -71,6 +77,10 @@
                     Deletes a feedItem.
                 </doc>
             </method>
+        </resource>
+
+        <resource path="chatter/feed-items/{feedItemId}/comments">
+            <param name="feedItemId" type="xsd:string" style="template" required="true" default=""/>
 
             <method id="feedItemCommentGet" name="GET" apigee:displayName="feed-items/{feedItemId}/comments (GET)">
                 <apigee:tags>
@@ -81,6 +91,10 @@
                 <apigee:authentication required="true"/>
 
                 <apigee:example url="chatter/feed-items/{feedItemId}/comments"/>
+
+                <request>
+                    <param name="page" type="xsd:string" style="query" required="false" default=""/>
+                </request>
 
                 <doc title="" apigee:url="">
                     Gets comments on a feedItem.
@@ -95,12 +109,20 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="chatter/feed-items/{feedItemId}/comments?text={text}"/>
+                <apigee:example url="chatter/feed-items/{feedItemId}/comments"/>
+
+                <request>
+                    <param name="text" type="xsd:string" style="query" required="true" default=""/>
+                </request>
 
                 <doc title="" apigee:url="">
                     Post a comment on a feedItem.
                 </doc>
             </method>
+        </resource>
+
+        <resource path="chatter/feed-items/{feedItemId}/likes">
+            <param name="feedItemId" type="xsd:string" style="template" required="true" default=""/>
 
             <method id="feedItemLikeGet" name="GET" apigee:displayName="feed-items/{feedItemId}/likes (GET)">
                 <apigee:tags>
@@ -111,6 +133,10 @@
                 <apigee:authentication required="true"/>
 
                 <apigee:example url="chatter/feed-items/{feedItemId}/likes"/>
+
+                <request>
+                    <param name="page" type="xsd:string" style="query" required="false" default=""/>
+                </request>
 
                 <doc title="" apigee:url="">
                     Gets likes on a feedItem.
@@ -125,7 +151,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="chatter/feed-items/{feedItemId}/likes?text={text}"/>
+                <apigee:example url="chatter/feed-items/{feedItemId}/likes"/>
 
                 <doc title="" apigee:url="">
                     Post a like on a feedItem.
@@ -133,8 +159,10 @@
             </method>
         </resource>
 
+        <!-- Group Memberships -->
+
         <resource path="chatter/group-memberships/{membershipId}">
-            <param name="membershipId" type="xsd:string" style="query" required="true" default=""/>
+            <param name="membershipId" type="xsd:string" style="template" required="true" default=""/>
 
             <method id="membershipGet" name="GET" apigee:displayName="group-memberships/{membershipId} (GET)">
                 <apigee:tags>
@@ -165,10 +193,10 @@
             </method>
         </resource>
 
+        <!-- Groups -->
+
         <resource path="chatter/groups/{groupId}">
-            <param name="groupId" type="xsd:string" style="query" required="true" default=""/>
-            <param name="userId" type="xsd:string" style="query" required="false" default=""/>
-            <param name="fileUpload" type="xsd:string" style="query" required="false" default=""/>
+            <param name="groupId" type="xsd:string" style="template" required="true" default=""/>
 
             <method id="groupGet" name="GET" apigee:displayName="groups/{groupId}">
                 <apigee:tags>
@@ -183,6 +211,10 @@
                     Gets info on a group.
                 </doc>
             </method>
+        </resource>
+
+        <resource path="chatter/groups/{groupId}/members">
+            <param name="groupId" type="xsd:string" style="template" required="true" default=""/>
 
             <method id="groupMembersGet" name="GET" apigee:displayName="groups/{groupId}/members (GET)">
                 <apigee:tags>
@@ -193,6 +225,10 @@
                 <apigee:authentication required="true"/>
 
                 <apigee:example url="chatter/groups/{groupId}/members"/>
+
+                <request>
+                    <param name="page" type="xsd:string" style="query" required="false" default=""/>
+                </request>
 
                 <doc title="" apigee:url="">
                     Gets members of a group.
@@ -209,10 +245,18 @@
 
                 <apigee:example url="chatter/groups/{groupId}/members?userid={userid}"/>
 
+                <request>
+                    <param name="userId" type="xsd:string" style="query" required="false" default=""/>
+                </request>
+
                 <doc title="" apigee:url="">
                     Add member to a group.
                 </doc>
             </method>
+        </resource>
+
+        <resource path="chatter/groups/{groupId}/photos">
+            <param name="groupId" type="xsd:string" style="template" required="true" default=""/>
 
             <method id="groupPhotosGet" name="GET" apigee:displayName="groups/{groupId}/photos (GET)">
                 <apigee:tags>
@@ -239,6 +283,12 @@
 
                 <apigee:example url="chatter/groups/{groupId}/photo?fileupload={fileupload}"/>
 
+                <!-- this is form data
+                <request>
+                    <param name="fileUpload" type="xsd:string" style="query" required="false" default=""/>
+                </request>
+                -->
+
                 <doc title="" apigee:url="">
                     Post photos to a group.
                 </doc>
@@ -260,8 +310,10 @@
             </method>
         </resource>
 
+        <!-- Likes -->
+
         <resource path="chatter/likes/{likeId}">
-            <param name="likeID" type="xsd:string" style="query" required="true" default=""/>
+            <param name="likeId" type="xsd:string" style="template" required="true" default=""/>
 
             <method id="likeGet" name="GET" apigee:displayName="likes/{likeId} (GET)">
                 <apigee:tags>
@@ -292,16 +344,9 @@
             </method>
         </resource>
 
-        <resource path="chatter/feeds/news/me/feed-items">
-            <param name="text" type="xsd:string" style="query" required="true" default=""/>
-            <param name="url" type="xsd:string" style="query" required="false" default=""/>
-            <param name="contentDocumentId" type="xsd:string" style="query" required="false" default=""/>
-            <param name="fileName" type="xsd:string" style="query" required="false" default=""/>
-            <param name="feedItemFileUpload" type="xsd:string" style="query" required="false" default=""/>
-            <param name="desc" type="xsd:string" style="query" required="false" default=""/>
-            <param name="urlName" type="xsd:string" style="query" required="false" default=""/>
-            <param name="userId" type="xsd:string" style="query" required="true" default=""/>
+        <!-- News Feed -->
 
+        <resource path="chatter/feeds/news/me/feed-items">
             <method id="newsGet" name="GET" apigee:displayName="news/me/feed-items (GET)">
                 <apigee:tags>
                     <apigee:tag primary="true">News Feed</apigee:tag>
@@ -310,6 +355,10 @@
                 <apigee:authentication required="true"/>
 
                 <apigee:example url="chatter/feeds/news/me/feed-items"/>
+
+                <request>
+                    <param name="page" type="xsd:string" style="query" required="false" default=""/>
+                </request>
 
                 <doc title="" apigee:url="">
                     Gets news on a specified feed.
@@ -323,12 +372,26 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="chatter/feeds/news/me/feed-items?text={text}"/>
+                <apigee:example url="chatter/feeds/news/me/feed-items"/>
+
+                <request>
+                    <param name="contentDocumentId" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="fileName" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="feedItemFileUpload" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="desc" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="text" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="url" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="urlName" type="xsd:string" style="query" required="false" default=""/>
+                </request>
 
                 <doc title="" apigee:url="">
                     Posts news on a specified feed.
                 </doc>
             </method>
+        </resource>
+
+        <resource path="chatter/feeds/news/{userId}/feed-items">
+            <param name="userId" type="xsd:string" style="template" required="true" default=""/>
 
             <method id="unFeedGet" name="GET" apigee:displayName="news/{userId}/feed-items (GET)">
                 <apigee:tags>
@@ -338,6 +401,10 @@
                 <apigee:authentication required="true"/>
 
                 <apigee:example url="chatter/feeds/news/{userId}/feed-items"/>
+
+                <request>
+                    <param name="page" type="xsd:string" style="query" required="false" default=""/>
+                </request>
 
                 <doc title="" apigee:url="">
                     Gets news on a specified user's feed items.
@@ -351,13 +418,25 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="chatter/feeds/news/{userId}/feed-items?text={text}"/>
+                <apigee:example url="chatter/feeds/news/{userId}/feed-items"/>
+
+                <request>
+                    <param name="contentDocumentId" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="fileName" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="feedItemFileUpload" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="desc" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="text" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="url" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="urlName" type="xsd:string" style="query" required="false" default=""/>
+                </request>
 
                 <doc title="" apigee:url="">
                     Post news on a specified user's feed items.
                 </doc>
             </method>
         </resource>
+
+        <!-- Record Feed -->
 
         <resource path="chatter/feeds/record/me/feed-items">
             <param name="text" type="xsd:string" style="query" required="true" default=""/>
@@ -378,6 +457,10 @@
 
                 <apigee:example url="chatter/feeds/record/me/feed-items"/>
 
+                <request>
+                    <param name="page" type="xsd:string" style="query" required="false" default=""/>
+                </request>
+
                 <doc title="" apigee:url="">
                     Gets records on a specified feed.
                 </doc>
@@ -390,12 +473,26 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="chatter/feeds/record/me/feed-items?text={text}"/>
+                <apigee:example url="chatter/feeds/record/me/feed-items"/>
+
+                <request>
+                    <param name="contentDocumentId" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="fileName" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="feedItemFileUpload" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="desc" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="text" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="url" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="urlName" type="xsd:string" style="query" required="false" default=""/>
+                </request>
 
                 <doc title="" apigee:url="">
                     Posts a record on a specified feed.
                 </doc>
             </method>
+        </resource>
+
+        <resource path="chatter/feeds/record/{userId}/feed-items">
+            <param name="userId" type="xsd:string" style="template" required="true" default=""/>
 
             <method id="recordFeedGet" name="GET" apigee:displayName="feeds/record/{userId}/feed-items (GET)">
                 <apigee:tags>
@@ -405,6 +502,10 @@
                 <apigee:authentication required="true"/>
 
                 <apigee:example url="chatter/feeds/record/{recordId}/feed-items"/>
+
+                <request>
+                    <param name="page" type="xsd:string" style="query" required="false" default=""/>
+                </request>
 
                 <doc title="" apigee:url="">
                     Gets records on a specified user's feed items.
@@ -418,7 +519,17 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="chatter/feeds/record/{recordId}/feed-items?text={text}"/>
+                <apigee:example url="chatter/feeds/record/{recordId}/feed-items"/>
+
+                <request>
+                    <param name="contentDocumentId" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="fileName" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="feedItemFileUpload" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="desc" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="text" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="url" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="urlName" type="xsd:string" style="query" required="false" default=""/>
+                </request>
 
                 <doc title="" apigee:url="">
                     Post record on a specified user's feed items.
@@ -426,8 +537,10 @@
             </method>
         </resource>
 
+        <!-- Subscriptions -->
+
         <resource path="chatter/subscriptions/{subscriptionId}">
-            <param name="subscriptionId" type="xsd:string" style="query" required="true" default=""/>
+            <param name="subscriptionId" type="xsd:string" style="template" required="true" default=""/>
 
             <method id="subscriptionGet" name="GET" apigee:displayName="subscriptions/{subscriptionId} (GET)">
                 <apigee:tags>
@@ -458,16 +571,9 @@
             </method>
         </resource>
 
-        <resource path="chatter/feeds/to/me/feed-items">
-            <param name="text" type="xsd:string" style="query" required="true" default=""/>
-            <param name="url" type="xsd:string" style="query" required="false" default=""/>
-            <param name="contentDocumentId" type="xsd:string" style="query" required="false" default=""/>
-            <param name="fileName" type="xsd:string" style="query" required="false" default=""/>
-            <param name="feedItemFileUpload" type="xsd:string" style="query" required="false" default=""/>
-            <param name="desc" type="xsd:string" style="query" required="false" default=""/>
-            <param name="urlName" type="xsd:string" style="query" required="false" default=""/>
-            <param name="userId" type="xsd:string" style="query" required="true" default=""/>
+        <!-- To Feed -->
 
+        <resource path="chatter/feeds/to/me/feed-items">
             <method id="mentionGet" name="GET" apigee:displayName="feeds/to/me/feed-items (GET)">
                 <apigee:tags>
                     <apigee:tag primary="true">To Feed</apigee:tag>
@@ -476,6 +582,10 @@
                 <apigee:authentication required="true"/>
 
                 <apigee:example url="chatter/feeds/to/me/feed-items"/>
+
+                <request>
+                    <param name="page" type="xsd:string" style="query" required="false" default=""/>
+                </request>
 
                 <doc title="" apigee:url="">
                     Gets @mentions of the current user.
@@ -489,12 +599,26 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="chatter/feeds/to/me/feed-items?text={text}"/>
+                <apigee:example url="chatter/feeds/to/me/feed-items"/>
+
+                <request>
+                    <param name="contentDocumentId" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="fileName" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="feedItemFileUpload" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="desc" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="text" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="url" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="urlName" type="xsd:string" style="query" required="false" default=""/>
+                </request>
 
                 <doc title="" apigee:url="">
                     Posts a @mention on the current user.
                 </doc>
             </method>
+        </resource>
+
+        <resource path="chatter/feeds/to/{userId}/feed-items">
+            <param name="userId" type="xsd:string" style="template" required="true" default=""/>
 
             <method id="userMentionGet" name="GET" apigee:displayName="feeds/to/{userId}/feed-items (GET)">
                 <apigee:tags>
@@ -504,6 +628,10 @@
                 <apigee:authentication required="true"/>
 
                 <apigee:example url="chatter/feeds/to/{userId}/feed-items"/>
+
+                <request>
+                    <param name="page" type="xsd:string" style="query" required="false" default=""/>
+                </request>
 
                 <doc title="" apigee:url="">
                     Gets @mentions on a specified user.
@@ -517,7 +645,17 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="chatter/feeds/to/{userId}/feed-items?text={text}"/>
+                <apigee:example url="chatter/feeds/to/{userId}/feed-items"/>
+
+                <request>
+                    <param name="contentDocumentId" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="fileName" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="feedItemFileUpload" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="desc" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="text" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="url" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="urlName" type="xsd:string" style="query" required="false" default=""/>
+                </request>
 
                 <doc title="" apigee:url="">
                     Post @mentions on a specified user.
@@ -525,16 +663,9 @@
             </method>
         </resource>
 
-        <resource path="chatter/feeds/user-profile/me/feed-items">
-            <param name="text" type="xsd:string" style="query" required="true" default=""/>
-            <param name="url" type="xsd:string" style="query" required="false" default=""/>
-            <param name="contentDocumentId" type="xsd:string" style="query" required="false" default=""/>
-            <param name="fileName" type="xsd:string" style="query" required="false" default=""/>
-            <param name="feedItemFileUpload" type="xsd:string" style="query" required="false" default=""/>
-            <param name="desc" type="xsd:string" style="query" required="false" default=""/>
-            <param name="urlName" type="xsd:string" style="query" required="false" default=""/>
-            <param name="userId" type="xsd:string" style="query" required="true" default=""/>
+        <!-- User Profile Feed -->
 
+        <resource path="chatter/feeds/user-profile/me/feed-items">
             <method id="profileGet" name="GET" apigee:displayName="feeds/user-profile/me/feed-items (GET)">
                 <apigee:tags>
                     <apigee:tag primary="true">User Profile Feed</apigee:tag>
@@ -543,6 +674,10 @@
                 <apigee:authentication required="true"/>
 
                 <apigee:example url="chatter/feeds/user-profile/me/feed-items"/>
+
+                <request>
+                    <param name="page" type="xsd:string" style="query" required="false" default=""/>
+                </request>
 
                 <doc title="" apigee:url="">
                     Gets profile feed of the current user.
@@ -556,12 +691,26 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="chatter/feeds/user-profile/me/feed-items?text={text}"/>
+                <apigee:example url="chatter/feeds/user-profile/me/feed-items"/>
+
+                <request>
+                    <param name="contentDocumentId" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="fileName" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="feedItemFileUpload" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="desc" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="text" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="url" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="urlName" type="xsd:string" style="query" required="false" default=""/>
+                </request>
 
                 <doc title="" apigee:url="">
                     Posts a profile feed on the current user.
                 </doc>
             </method>
+        </resource>
+
+        <resource path="chatter/feeds/user-profile/{userId}/feed-items">
+            <param name="userId" type="xsd:string" style="template" required="true" default=""/>
 
             <method id="userProfileGet" name="GET" apigee:displayName="feeds/user-profile/{userId}/feed-items (GET)">
                 <apigee:tags>
@@ -571,6 +720,10 @@
                 <apigee:authentication required="true"/>
 
                 <apigee:example url="chatter/feeds/user-profile/{userId}/feed-items"/>
+
+                <request>
+                    <param name="page" type="xsd:string" style="query" required="false" default=""/>
+                </request>
 
                 <doc title="" apigee:url="">
                     Gets profile feed on a specified user.
@@ -584,7 +737,17 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="chatter/feeds/user-profile/{userId}/feed-items?text={text}"/>
+                <apigee:example url="chatter/feeds/user-profile/{userId}/feed-items"/>
+
+                <request>
+                    <param name="contentDocumentId" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="fileName" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="feedItemFileUpload" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="desc" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="text" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="url" type="xsd:string" style="query" required="false" default=""/>
+                    <param name="urlName" type="xsd:string" style="query" required="false" default=""/>
+                </request>
 
                 <doc title="" apigee:url="">
                     Post profile feed on a specified user.
@@ -592,12 +755,9 @@
             </method>
         </resource>
 
-        <resource path="chatter/users/me">
-            <param name="subjectId" type="xsd:string" style="query" required="true" default=""/>
-            <param name="fileUpload" type="xsd:string" style="query" required="false" default=""/>
-            <param name="text" type="xsd:string" style="query" required="true" default=""/>
-            <param name="userId" type="xsd:string" style="query" required="true" default=""/>
+        <!-- Users -->
 
+        <resource path="chatter/users/me">
             <method id="userGet" name="GET" apigee:displayName="users/me">
                 <apigee:tags>
                     <apigee:tag primary="true">Users</apigee:tag>
@@ -607,11 +767,17 @@
 
                 <apigee:example url="chatter/users/me"/>
 
+                <request>
+                    <param name="page" type="xsd:integer" style="query" required="false" default="0"/>
+                </request>
+
                 <doc title="" apigee:url="">
                     Returns information on the current user.
                 </doc>
             </method>
+        </resource>
 
+        <resource path="chatter/users/me/followers">
             <method id="userFollowersGet" name="GET" apigee:displayName="users/me/followers (GET)">
                 <apigee:tags>
                     <apigee:tag primary="true">Users</apigee:tag>
@@ -621,12 +787,15 @@
 
                 <apigee:example url="chatter/users/me/followers"/>
 
+                <request>
+                    <param name="page" type="xsd:integer" style="query" required="false" default="0"/>
+                </request>
+
                 <doc title="" apigee:url="">
                     Returns information on followers of the current user.
                 </doc>
             </method>
 
-            <!-- API does not specify what to POST
             <method id="userFollowersPost" name="POST" apigee:displayName="users/me/followers (POST)">
                 <apigee:tags>
                     <apigee:tag primary="true">Users</apigee:tag>
@@ -636,12 +805,15 @@
 
                 <apigee:example url="chatter/users/me/followers"/>
 
+                <!-- API does not specify what to POST -->
+
                 <doc title="" apigee:url="">
                     Posts a profile feed on the current user.
                 </doc>
             </method>
-            -->
+        </resource>
 
+        <resource path="chatter/users/me/following">
             <method id="userFollowingGet" name="GET" apigee:displayName="users/me/following (GET)">
                 <apigee:tags>
                     <apigee:tag primary="true">Users</apigee:tag>
@@ -651,8 +823,12 @@
 
                 <apigee:example url="chatter/users/me/following"/>
 
+                <request>
+                    <param name="page" type="xsd:integer" style="query" required="false" default="0"/>
+                </request>
+
                 <doc title="" apigee:url="">
-                    Returns information on who the user follows.
+                    Returns information on who the current user follows.
                 </doc>
             </method>
 
@@ -665,11 +841,17 @@
 
                 <apigee:example url="chatter/users/me/following?subjectId={subjectId}"/>
 
+                <request>
+                    <param name="subjectId" type="xsd:string" style="query" required="true" default=""/>
+                </request>
+
                 <doc title="" apigee:url="">
-                    Posts information on who the user follows.
+                    Posts information on who the current user follows.
                 </doc>
             </method>
+        </resource>
 
+        <resource path="chatter/users/me/groups">
             <method id="userGroupGet" name="GET" apigee:displayName="users/me/groups">
                 <apigee:tags>
                     <apigee:tag primary="true">Users</apigee:tag>
@@ -679,11 +861,17 @@
 
                 <apigee:example url="chatter/users/me/groups"/>
 
+                <request>
+                    <param name="page" type="xsd:integer" style="query" required="false" default="0"/>
+                </request>
+
                 <doc title="" apigee:url="">
-                    Returns information on groups the user is in.
+                    Returns information on groups the current user is in.
                 </doc>
             </method>
+        </resource>
 
+        <resource path="chatter/users/me/photo">
             <method id="userPhotoGet" name="GET" apigee:displayName="users/me/photo (GET)">
                 <apigee:tags>
                     <apigee:tag primary="true">Users</apigee:tag>
@@ -707,6 +895,12 @@
 
                 <apigee:example url="chatter/users/me/photo?fileUpload={fileUpload}"/>
 
+                <!-- this is form data
+                <request>
+                    <param name="fileUpload" type="xsd:string" style="query" required="true" default=""/>
+                </request>
+                -->
+
                 <doc title="" apigee:url="">
                     Post photo to current user's profile.
                 </doc>
@@ -725,7 +919,9 @@
                     Delete photo of current user's profile.
                 </doc>
             </method>
+        </resource>
 
+        <resource path="chatter/users/me/status">
             <method id="userStatusGet" name="GET" apigee:displayName="users/me/status (GET)">
                 <apigee:tags>
                     <apigee:tag primary="true">Users</apigee:tag>
@@ -747,7 +943,11 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="chatter/users/me/status?text={text}"/>
+                <apigee:example url="chatter/users/me/status"/>
+
+                <request>
+                    <param name="text" type="xsd:string" style="query" required="true" default=""/>
+                </request>
 
                 <doc title="" apigee:url="">
                     Post text to current user's status.
@@ -761,12 +961,20 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="chatter/users/me/status?text={text}"/>
+                <apigee:example url="chatter/users/me/status"/>
+
+                <request>
+                    <param name="text" type="xsd:string" style="query" required="true" default=""/>
+                </request>
 
                 <doc title="" apigee:url="">
                     Delete current user's status containing text.
                 </doc>
             </method>
+        </resource>
+
+        <resource path="chatter/users/{userId}">
+            <param name="userId" type="xsd:string" style="template" required="true" default=""/>
 
             <method id="userIdGet" name="GET" apigee:displayName="users/{userId}">
                 <apigee:tags>
@@ -777,10 +985,18 @@
 
                 <apigee:example url="chatter/users/{userId}"/>
 
+                <request>
+                    <param name="page" type="xsd:integer" style="query" required="false" default="0"/>
+                </request>
+
                 <doc title="" apigee:url="">
                     Returns information on the specified user.
                 </doc>
             </method>
+        </resource>
+
+        <resource path="chatter/users/{userId}/followers">
+            <param name="userId" type="xsd:string" style="template" required="true" default=""/>
 
             <method id="userIdFollowersGet" name="GET" apigee:displayName="users/{userId}/followers (GET)">
                 <apigee:tags>
@@ -791,12 +1007,15 @@
 
                 <apigee:example url="chatter/users/{userId}/followers"/>
 
+                <request>
+                    <param name="page" type="xsd:integer" style="query" required="false" default="0"/>
+                </request>
+
                 <doc title="" apigee:url="">
                     Returns information on followers of the specified user.
                 </doc>
             </method>
 
-            <!-- API does not specify what to POST
             <method id="userIdFollowersPost" name="POST" apigee:displayName="users/{userId}/followers (POST)">
                 <apigee:tags>
                     <apigee:tag primary="true">Users</apigee:tag>
@@ -806,13 +1025,18 @@
 
                 <apigee:example url="chatter/users/{userId}/followers"/>
 
+                <!-- API does not specify what to POST -->
+
                 <doc title="" apigee:url="">
                     Posts a profile feed on the specified user.
                 </doc>
             </method>
-            -->
+        </resource>
 
-            <method id="userIdFollowingGet" name="GET" apigee:displayName="users/{userId}/following (GET)">
+        <resource path="chatter/users/{userId}/following">
+            <param name="userId" type="xsd:string" style="template" required="true" default=""/>
+
+            <method id="userFollowingGet" name="GET" apigee:displayName="users/{userId}/following (GET)">
                 <apigee:tags>
                     <apigee:tag primary="true">Users</apigee:tag>
                 </apigee:tags>
@@ -821,12 +1045,16 @@
 
                 <apigee:example url="chatter/users/{userId}/following"/>
 
+                <request>
+                    <param name="page" type="xsd:integer" style="query" required="false" default="0"/>
+                </request>
+
                 <doc title="" apigee:url="">
                     Returns information on who the specified user follows.
                 </doc>
             </method>
 
-            <method id="userIdFollowingPost" name="POST" apigee:displayName="users/{userId}/following (POST)">
+            <method id="userFollowingPost" name="POST" apigee:displayName="users/{userId}/following (POST)">
                 <apigee:tags>
                     <apigee:tag primary="true">Users</apigee:tag>
                 </apigee:tags>
@@ -835,10 +1063,18 @@
 
                 <apigee:example url="chatter/users/{userId}/following?subjectId={subjectId}"/>
 
+                <request>
+                    <param name="subjectId" type="xsd:string" style="query" required="true" default=""/>
+                </request>
+
                 <doc title="" apigee:url="">
-                    Enables user to follow the specified record.
+                    Posts information on who the specified user follows.
                 </doc>
             </method>
+        </resource>
+
+        <resource path="chatter/users/{userId}/groups">
+            <param name="userId" type="xsd:string" style="template" required="true" default=""/>
 
             <method id="userIdGroupGet" name="GET" apigee:displayName="users/{userId}/groups">
                 <apigee:tags>
@@ -849,10 +1085,18 @@
 
                 <apigee:example url="chatter/users/{userId}/groups"/>
 
+                <request>
+                    <param name="page" type="xsd:integer" style="query" required="false" default="0"/>
+                </request>
+
                 <doc title="" apigee:url="">
                     Returns information on groups the specified user is in.
                 </doc>
             </method>
+        </resource>
+
+        <resource path="chatter/users/{userId}/photo">
+            <param name="userId" type="xsd:string" style="template" required="true" default=""/>
 
             <method id="userIdPhotoGet" name="GET" apigee:displayName="users/{userId}/photo (GET)">
                 <apigee:tags>
@@ -877,6 +1121,12 @@
 
                 <apigee:example url="chatter/users/{userId}/photo?fileUpload={fileUpload}"/>
 
+                <!-- this is form data
+                <request>
+                    <param name="fileUpload" type="xsd:string" style="query" required="true" default=""/>
+                </request>
+                -->
+
                 <doc title="" apigee:url="">
                     Post photo to specified user's profile.
                 </doc>
@@ -895,8 +1145,12 @@
                     Delete photo of specified user's profile.
                 </doc>
             </method>
+        </resource>
 
-            <method id="userIdStatusGet" name="GET" apigee:displayName="users/{userId}/status (GET)">
+        <resource path="chatter/users/{userId}/status">
+            <param name="userId" type="xsd:string" style="template" required="true" default=""/>
+
+            <method id="userStatusGet" name="GET" apigee:displayName="users/{userId}/status (GET)">
                 <apigee:tags>
                     <apigee:tag primary="true">Users</apigee:tag>
                 </apigee:tags>
@@ -910,28 +1164,36 @@
                 </doc>
             </method>
 
-            <method id="userIdStatusPost" name="POST" apigee:displayName="users/{userId}/status (POST)">
+            <method id="userStatusPost" name="POST" apigee:displayName="users/{userId}/status (POST)">
                 <apigee:tags>
                     <apigee:tag primary="true">Users</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="chatter/users/{userId}/status?text={text}"/>
+                <apigee:example url="chatter/users/{userId}/status"/>
+
+                <request>
+                    <param name="text" type="xsd:string" style="query" required="true" default=""/>
+                </request>
 
                 <doc title="" apigee:url="">
-                    Post text to current user's status.
+                    Post text to specified user's status.
                 </doc>
             </method>
 
-            <method id="userIdStatusDelete" name="DELETE" apigee:displayName="users/{userId}/status (DELETE)">
+            <method id="userStatusDelete" name="DELETE" apigee:displayName="users/{userId}/status (DELETE)">
                 <apigee:tags>
                     <apigee:tag primary="true">Users</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="chatter/users/{userId}/status?text={text}"/>
+                <apigee:example url="chatter/users/{userId}/status"/>
+
+                <request>
+                    <param name="text" type="xsd:string" style="query" required="true" default=""/>
+                </request>
 
                 <doc title="" apigee:url="">
                     Delete specified user's status containing text.
