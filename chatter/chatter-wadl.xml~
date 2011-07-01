@@ -14,7 +14,7 @@
 
             <method id="commentGet" name="GET" apigee:displayName="comments/{commentId} (GET)">
                 <apigee:tags>
-                    <apigee:tag primary="true">Comment</apigee:tag>
+                    <apigee:tag primary="true">Comments</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
