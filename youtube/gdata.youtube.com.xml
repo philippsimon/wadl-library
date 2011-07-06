@@ -203,7 +203,7 @@
 
                 <apigee:authentication required="false"/>
 
-                <apigee:example url="feeds/api/channels/{feedId}"/>
+                <apigee:example url="feeds/{projection}/channelstandardfeeds/{regionId}/{feedId}_{userType}/-/{categoryName}"/>
 
                 <doc title="channelstandardfeeds" apigee:url="http://code.google.com/intl/en/apis/youtube/2.0/developers_guide_protocol.html#Channel_Standard_Feeds">
                     <![CDATA[Returns standard feeds that list the most viewed or most subscribed YouTube channels.]]>
@@ -720,7 +720,7 @@
 
                 <apigee:authentication required="false"/>
 
-                <apigee:example url="feeds/api/videos"/>
+                <apigee:example url="feeds/api/playlists/snippets"/>
 
                 <doc title="playlists_search" apigee:url="http://code.google.com/intl/en/apis/youtube/2.0/developers_guide_protocol.html#Searching_for_Playlists">
                     <![CDATA[Retrieves a list of playlists matching a user-specified search term.]]>
@@ -1025,7 +1025,7 @@
 
                 <apigee:authentication required="false"/>
 
-                <apigee:example url="feeds/api/videos{-/category_or_tag}"/>
+                <apigee:example url="feeds/api/videos/-/{category_or_tag}"/>
 
                 <doc title="videos_category_tag" apigee:url="http://code.google.com/intl/en/apis/youtube/2.0/developers_guide_protocol.html#Browsing_with_Categories_and_Keywords">
                     <![CDATA[Retrieves a feed of all of the videos that are in a particular category or that are associated with a particular keyword.]]>
@@ -1761,14 +1761,14 @@
                 </doc>
             </param>
 
-            <method id="videos_responses_delete" name="DELETE" apigee:displayName="videos/{videoId}/responses/{responseId} (DELETE)">
+            <method id="videos_responses_delete" name="DELETE" apigee:displayName="videos/{videoId}/responses/{responseId}">
                 <apigee:tags>
                     <apigee:tag primary="true">Videos</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="feeds/api/videos/{videoId}/responses"/>
+                <apigee:example url="feeds/api/videos/{videoId}/responses/{responseId}"/>
 
                 <doc title="videos_responses_delete" apigee:url="http://code.google.com/intl/en/apis/youtube/2.0/developers_guide_protocol.html#Deleting_a_video_response">
                     <![CDATA[Deletes a video response.]]>
@@ -1860,7 +1860,7 @@
                 </doc>
             </param>
 
-            <method id="videos_complaints_post" name="POST" apigee:displayName="videos/{videoId}/complaints (POST)">
+            <method id="videos_complaints_post" name="POST" apigee:displayName="videos/{videoId}/complaints">
                 <apigee:tags>
                     <apigee:tag primary="true">Videos</apigee:tag>
                 </apigee:tags>
@@ -2295,7 +2295,13 @@
                 </doc>
             </param>
 
-            <method id="videos_captions_delete" name="DELETE" apigee:displayName="videos/{videoId}/captions/{videoId} (DELETE)">
+            <param name="trackId" type="xsd:string" style="template" required="true">
+                <doc apigee:url="http://code.google.com/intl/en/apis/youtube/2.0/developers_guide_protocol.html#Retrieve_Caption_Track">
+                    <![CDATA[The ID of the caption track to delete.]]>
+                </doc>
+            </param>
+
+            <method id="videos_captions_delete" name="DELETE" apigee:displayName="videos/{videoId}/captions/{trackId} (DELETE)">
                 <apigee:tags>
                     <apigee:tag primary="true">Videos</apigee:tag>
                     <apigee:tag>Captions</apigee:tag>
@@ -2303,7 +2309,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="feeds/api/videos/{videoId}/captions/{trackId} (DELETE)"/>
+                <apigee:example url="feeds/api/videos/{videoId}/captions/{trackId}"/>
 
                 <doc title="videos_captions_delete" apigee:url="http://code.google.com/intl/en/apis/youtube/2.0/developers_guide_protocol.html#Delete_Caption_Track">
                     <![CDATA[Deletes a caption track.]]>
@@ -2391,11 +2397,17 @@
 
             <param name="videoId" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://code.google.com/intl/en/apis/youtube/2.0/developers_guide_protocol.html#Retrieve_Caption_Track">
-                    <![CDATA[The ID of the video to retrieve the caption track for.]]>
+                    <![CDATA[The ID of the video that contains the caption track.]]>
                 </doc>
             </param>
 
-            <method id="videos_captiondata_get" name="GET" apigee:displayName="videos/{videoId}/captiondata/{videoId}">
+            <param name="trackId" type="xsd:string" style="template" required="true">
+                <doc apigee:url="http://code.google.com/intl/en/apis/youtube/2.0/developers_guide_protocol.html#Retrieve_Caption_Track">
+                    <![CDATA[The ID of the caption track to reference.]]>
+                </doc>
+            </param>
+
+            <method id="videos_captiondata_get" name="GET" apigee:displayName="videos/{videoId}/captiondata/{trackId} (GET)">
                 <apigee:tags>
                     <apigee:tag primary="true">Videos</apigee:tag>
                     <apigee:tag>Captions</apigee:tag>
@@ -2506,7 +2518,7 @@
                 </response>
             </method>
 
-            <method id="videos_captiondata_edit" name="PUT" apigee:displayName="videos/{videoId}/captiondata/{captionId} (PUT)">
+            <method id="videos_captiondata_edit" name="PUT" apigee:displayName="videos/{videoId}/captiondata/{trackId} (PUT)">
                 <apigee:tags>
                     <apigee:tag primary="true">Videos</apigee:tag>
                     <apigee:tag>Feeds</apigee:tag>
@@ -2514,7 +2526,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="feeds/api/videos/{videoId}/captions"/>
+                <apigee:example url="feeds/api/videos/{videoId}/captiondata/{trackId}"/>
 
                 <doc title="videos_captions_post" apigee:url="http://code.google.com/intl/en/apis/youtube/2.0/developers_guide_protocol.html#Create_Caption_Track">
                     <![CDATA[Creates a caption track for a video.]]>
@@ -3089,7 +3101,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="feeds/api/users/{username}/favorites"/>
+                <apigee:example url="feeds/api/users/{username}/favorites/{favoriteId}"/>
 
                 <doc title="users_favorites_delete" apigee:url="http://code.google.com/intl/en/apis/youtube/2.0/developers_guide_protocol.html#Deleting_a_favorite_video">
                     <![CDATA[Deletes a video from the user's list of favorites.]]>
@@ -4522,7 +4534,7 @@
                 <option value="mobile"/>
             </param>
 
-            <method id="users_inbox_get" name="GET" apigee:displayName="users/{username}/inbox (GET)">
+            <method id="users_inbox_get" name="GET" apigee:displayName="users/{username}/inbox">
                 <apigee:tags>
                     <apigee:tag primary="true">Users</apigee:tag>
                     <apigee:tag>Feeds</apigee:tag>
@@ -4640,7 +4652,7 @@
                 </doc>
             </param>
 
-            <method id="users_inbox_id_delete" name="DELETE" apigee:displayName="users/{username}/inbox/{messageId} (DELETE)">
+            <method id="users_inbox_id_delete" name="DELETE" apigee:displayName="users/{username}/inbox/{messageId}">
                 <apigee:tags>
                     <apigee:tag primary="true">Users</apigee:tag>
                 </apigee:tags>
@@ -4739,7 +4751,7 @@
                 </doc>
             </param>
 
-            <method id="users_inbox_post" name="POST" apigee:displayName="users/{messageRecipientUsername}/inbox (POST)">
+            <method id="users_inbox_post" name="POST" apigee:displayName="users/{messageRecipientUsername}/inbox">
                 <apigee:tags>
                     <apigee:tag primary="true">Users</apigee:tag>
                 </apigee:tags>
@@ -4838,7 +4850,7 @@
                 </doc>
             </param>
 
-            <method id="users_uploads_get" name="GET" apigee:displayName="users/{username}/uploads (GET)">
+            <method id="users_uploads_get" name="GET" apigee:displayName="users/{username}/uploads">
                 <apigee:tags>
                     <apigee:tag primary="true">Users</apigee:tag>
                     <apigee:tag>Feeds</apigee:tag>
@@ -5412,7 +5424,7 @@
                 </doc>
             </param>
 
-            <method id="users_events_get" name="GET" apigee:displayName="users/{username}/events (GET)">
+            <method id="users_events_get" name="GET" apigee:displayName="users/{username}/events">
                 <apigee:tags>
                     <apigee:tag primary="true">Activity Feeds</apigee:tag>
                     <apigee:tag>Users</apigee:tag>
@@ -5420,7 +5432,7 @@
 
                 <apigee:authentication required="false"/>
 
-                <apigee:example url="users/{username}/events"/>
+                <apigee:example url="feeds/api/users/{username}/events"/>
 
                 <doc title="users_events_get" apigee:url="http://code.google.com/intl/en/apis/youtube/2.0/developers_guide_protocol.html#User_activity_feeds">
                     <![CDATA[Returns a user's activity feed.]]>
@@ -5532,7 +5544,7 @@
                 <option value="mobile"/>
             </param>
 
-            <method id="users_friendsactivity_get" name="GET" apigee:displayName="users/default/friendsactivity (GET)">
+            <method id="users_friendsactivity_get" name="GET" apigee:displayName="users/default/friendsactivity">
                 <apigee:tags>
                     <apigee:tag primary="true">Activity Feeds</apigee:tag>
                     <apigee:tag>Users</apigee:tag>
@@ -5540,7 +5552,7 @@
 
                 <apigee:authentication required="false"/>
 
-                <apigee:example url="users/default/friendsactivity"/>
+                <apigee:example url="feeds/api/users/default/friendsactivity"/>
 
                 <doc title="users_friendsactivity_get" apigee:url="http://code.google.com/intl/en/apis/youtube/2.0/developers_guide_protocol.html#Friend_activity_feeds">
                     <![CDATA[Returns an activity feed for the logged-in user's friends.]]>
@@ -5652,7 +5664,7 @@
                 <option value="mobile"/>
             </param>
 
-            <method id="events_get" name="GET" apigee:displayName="events (GET)">
+            <method id="events_get" name="GET" apigee:displayName="events">
                 <apigee:tags>
                     <apigee:tag primary="true">Activity Feeds</apigee:tag>
                     <apigee:tag>Users</apigee:tag>
@@ -5660,7 +5672,7 @@
 
                 <apigee:authentication required="false"/>
 
-                <apigee:example url="events"/>
+                <apigee:example url="feeds/api/events"/>
 
                 <doc title="events_get" apigee:url="http://code.google.com/intl/en/apis/youtube/2.0/developers_guide_protocol.html#User_activity_feeds">
                     <![CDATA[Returns an activity feed for one or more users.]]>
@@ -6215,36 +6227,6 @@
                         </doc>
                     </param>
 
-                    <param name="fields" type="xsd:string" style="query" required="false">
-                        <doc apigee:url="http://code.google.com/intl/en/apis/youtube/2.0/reference.html#callbacksp">
-                            <![CDATA[The fields parameter serves one or both of the following purposes: 1. It identifies the data fields that should be included in a partial API response. 2. It specifies conditions that should be used to filter the result set. See API docs for more details. Note: The fields parameter is currently used for experimental features only.]]>
-                        </doc>
-                    </param>
-
-                    <param name="fields-language" type="xsd:string" style="query" required="false">
-                        <doc apigee:url="http://code.google.com/intl/en/apis/youtube/2.0/reference.html#fields-languagesp">
-                            <![CDATA[The fields-language parameter is being used temporarily to force the API server to apply new syntax rules affecting requests to retrieve partial API responses. To use the new syntax rules for partial API responses, or to filter results based on the presence of an element that does not contain text content, set the fields-language parameter value to r2. (This is the only valid value for this parameter.)]]>
-                        </doc>
-                    </param>
-
-                    <param name="max-results" type="xsd:integer" style="query" required="false">
-                        <doc apigee:url="http://code.google.com/intl/en/apis/youtube/2.0/reference.html#max-resultssp">
-                            <![CDATA[The max-results parameter specifies the maximum number of results that should be included in the result set. This parameter works in conjunction with the start-index parameter to determine which results to return. For example, to request the second set of 10 results – i.e. results 11-20 – set the max-results parameter to 10 and the start-index parameter to 11. The default value of this parameter is 25, and the maximum value is 50. However, for displaying lists of videos, we recommend that you set the max-results parameter to 10.]]>
-                        </doc>
-                    </param>
-
-                    <param name="prettyprint" type="xsd:boolean" style="query" required="false" default="false">
-                        <doc apigee:url="http://code.google.com/intl/en/apis/youtube/2.0/reference.html#prettyprintsp">
-                            <![CDATA[The prettyprint parameter lets you request an XML response formatted with indentations and line breaks. Set the parameter's value to true to have the response formatted as such. The default parameter value is false.]]>
-                        </doc>
-                    </param>
-
-                    <param name="start-index" type="xsd:integer" style="query" required="false">
-                        <doc apigee:url="http://code.google.com/intl/en/apis/youtube/2.0/reference.html#start-indexsp">
-                            <![CDATA[The start-index parameter specifies the index of the first matching result that should be included in the result set. This parameter uses a one-based index, meaning the first result is 1, the second result is 2 and so forth. This parameter works in conjunction with the max-results parameter to determine which results to return. For example, to request the second set of 10 results – i.e. results 11-20 – set the start-index parameter to 11 and the max-results parameter to 10.]]>
-                        </doc>
-                    </param>
-
                     <param name="strict" type="xsd:boolean" style="query" required="false" default="false">
                         <doc apigee:url="http://code.google.com/intl/en/apis/youtube/2.0/reference.html#strictsp">
                             <![CDATA[The strict parameter can be used to instruct YouTube to reject an API request if the request contains invalid request parameters. The default API behavior is to ignore invalid request parameters. If you want YouTube to reject API requests that contain invalid parameters, set the strict parameter value to true. For example, YouTube would reject the following request because "foo" is not a valid request parameter.]]>
@@ -6264,6 +6246,14 @@
                     <param name="key" type="xsd:string" style="query" required="false">
                         <doc apigee:url="http://code.google.com/intl/en/apis/youtube/2.0/reference.html#keysp">
                             <![CDATA[The key parameter specifies your developer key, an alphanumeric string that uniquely identifies the application making an API request. You can also use the X-GData-Key request header to specify your developer key. Your application does not need to specify your developer key twice by using both the key parameter and the X-GData-Key request header, but it should provide your developer key using at least one of those two methods.]]>
+                        </doc>
+                    </param>
+
+                    <!-- Method specific -->
+
+                    <param name="seconds" type="xsd:integer" style="query" required="false">
+                        <doc apigee:url="http://code.google.com/intl/en/apis/youtube/2.0/developers_guide_protocol.html#Retrieving_SUP_feed">
+                            <![CDATA[Specifies a time interval, in seconds, during which the activity feeds to be returned have been changed.]]>
                         </doc>
                     </param>
                 </request>
@@ -6294,7 +6284,7 @@
                 </doc>
             </param>
 
-            <method id="users_uploads_post" name="POST" apigee:displayName="users/{username}/uploads (POST) (Direct)">
+            <method id="users_uploads_post" name="POST" apigee:displayName="users/{username}/uploads [Direct]">
                 <apigee:tags>
                     <apigee:tag primary="true">Uploads</apigee:tag>
                     <apigee:tag>Videos</apigee:tag>
@@ -6341,7 +6331,7 @@
                 </doc>
             </param>
 
-            <method id="users_uploads_resumable_post" name="POST" apigee:displayName="users/{username}/uploads (POST) (Resumable)">
+            <method id="users_uploads_resumable_post" name="POST" apigee:displayName="users/{username}/uploads [Resumable]">
                 <apigee:tags>
                     <apigee:tag primary="true">Uploads</apigee:tag>
                     <apigee:tag>Videos</apigee:tag>
@@ -6349,7 +6339,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="feeds/api/users/{username}/uploads"/>
+                <apigee:example url="resumable/feeds/api/users/{username}/uploads"/>
 
                 <doc title="users_uploads_resumable_post" apigee:url="http://code.google.com/intl/en/apis/youtube/2.0/developers_guide_protocol.html#Resumable_uploads">
                     <![CDATA[Uploads a video (resumable). See API docs for request format.]]>
@@ -6379,7 +6369,7 @@
                 </doc>
             </param>
 
-            <method id="resumableupload_put" name="PUT" apigee:displayName="resumableupload/{id} (PUT)">
+            <method id="resumableupload_put" name="PUT" apigee:displayName="resumableupload/{id}">
                 <apigee:tags>
                     <apigee:tag primary="true">Uploads</apigee:tag>
                     <apigee:tag>Videos</apigee:tag>
