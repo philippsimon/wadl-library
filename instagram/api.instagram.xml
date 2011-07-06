@@ -1162,7 +1162,7 @@
 
     <resources base="http://instagr.am/">
         <resource path="p/{shortcode}/media">
-            <method id="media" name="GET" apigee:displayName="p/{shortcode}/media}">
+            <method id="media" name="GET" apigee:displayName="p/{shortcode}/media">
                 <apigee:tags>
                     <apigee:tag primary="true">Embedding</apigee:tag>
                 </apigee:tags>
