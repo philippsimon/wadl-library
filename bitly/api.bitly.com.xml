@@ -32,7 +32,7 @@
                     <param name="format" type="xsd:string" style="template" required="false" default="json">
                         <option value="xml" mediaType="application/xml"/>
                         <option value="json" mediaType="application/json"/>
-                        <option value="txt" mediaType="application/txt"/>
+                        <option value="txt" mediaType="text/plain"/>
                     </param>
 
                     <param name="domain" type="xsd:string" style="query" required="false" default="bit.ly">
@@ -46,7 +46,7 @@
                 <response>
                     <representation mediaType="application/xml"/>
                     <representation mediaType="application/json"/>
-                    <representation mediaType="application/txt"/>
+                    <representation mediaType="text/plain"/>
                 </response>
             </method>
         </resource>
@@ -75,7 +75,7 @@
                     <param name="format" type="xsd:string" style="template" required="false" default="json">
                         <option value="xml" mediaType="application/xml"/>
                         <option value="json" mediaType="application/json"/>
-                        <option value="txt" mediaType="application/txt"/>
+                        <option value="txt" mediaType="text/plain"/>
                     </param>
 
                     <param name="hash" type="xsd:string" style="query" required="false">
@@ -89,7 +89,7 @@
                 <response>
                     <representation mediaType="application/xml"/>
                     <representation mediaType="application/json"/>
-                    <representation mediaType="application/txt"/>
+                    <representation mediaType="text/plain"/>
                 </response>
             </method>
         </resource>
@@ -118,7 +118,7 @@
                     <param name="format" type="xsd:string" style="template" required="false" default="json">
                         <option value="xml" mediaType="application/xml"/>
                         <option value="json" mediaType="application/json"/>
-                        <option value="txt" mediaType="application/txt"/>
+                        <option value="txt" mediaType="text/plain"/>
                     </param>
 
                     <param name="x_apiKey" type="xsd:string" style="query" required="true">
@@ -132,7 +132,7 @@
                 <response>
                     <representation mediaType="application/xml"/>
                     <representation mediaType="application/json"/>
-                    <representation mediaType="application/txt"/>
+                    <representation mediaType="text/plain"/>
                 </response>
             </method>
         </resource>
@@ -161,7 +161,7 @@
                     <param name="format" type="xsd:string" style="template" required="false" default="json">
                         <option value="xml" mediaType="application/xml"/>
                         <option value="json" mediaType="application/json"/>
-                        <option value="txt" mediaType="application/txt"/>
+                        <option value="txt" mediaType="text/plain"/>
                     </param>
 
                     <param name="hash" type="xsd:string" style="query" required="false">
@@ -175,7 +175,7 @@
                 <response>
                     <representation mediaType="application/xml"/>
                     <representation mediaType="application/json"/>
-                    <representation mediaType="application/txt"/>
+                    <representation mediaType="text/plain"/>
                 </response>
             </method>
         </resource>
@@ -204,7 +204,7 @@
                     <param name="format" type="xsd:string" style="template" required="false" default="json">
                         <option value="xml" mediaType="application/xml"/>
                         <option value="json" mediaType="application/json"/>
-                        <option value="txt" mediaType="application/txt"/>
+                        <option value="txt" mediaType="text/plain"/>
                     </param>
 
                     <param name="hash" type="xsd:string" style="query" required="false">
@@ -218,7 +218,7 @@
                 <response>
                     <representation mediaType="application/xml"/>
                     <representation mediaType="application/json"/>
-                    <representation mediaType="application/txt"/>
+                    <representation mediaType="text/plain"/>
                 </response>
             </method>
         </resource>
@@ -247,7 +247,7 @@
                     <param name="format" type="xsd:string" style="template" required="false" default="json">
                         <option value="xml" mediaType="application/xml"/>
                         <option value="json" mediaType="application/json"/>
-                        <option value="txt" mediaType="application/txt"/>
+                        <option value="txt" mediaType="text/plain"/>
                     </param>
 
                     <param name="hash" type="xsd:string" style="query" required="false">
@@ -261,7 +261,7 @@
                 <response>
                     <representation mediaType="application/xml"/>
                     <representation mediaType="application/json"/>
-                    <representation mediaType="application/txt"/>
+                    <representation mediaType="text/plain"/>
                 </response>
             </method>
         </resource>
@@ -290,7 +290,7 @@
                     <param name="format" type="xsd:string" style="template" required="false" default="json">
                         <option value="xml" mediaType="application/xml"/>
                         <option value="json" mediaType="application/json"/>
-                        <option value="txt" mediaType="application/txt"/>
+                        <option value="txt" mediaType="text/plain"/>
                     </param>
 
                     <param name="hash" type="xsd:string" style="query" required="false">
@@ -304,7 +304,7 @@
                 <response>
                     <representation mediaType="application/xml"/>
                     <representation mediaType="application/json"/>
-                    <representation mediaType="application/txt"/>
+                    <representation mediaType="text/plain"/>
                 </response>
             </method>
         </resource>
@@ -333,7 +333,7 @@
                     <param name="format" type="xsd:string" style="template" required="false" default="json">
                         <option value="xml" mediaType="application/xml"/>
                         <option value="json" mediaType="application/json"/>
-                        <option value="txt" mediaType="application/txt"/>
+                        <option value="txt" mediaType="text/plain"/>
                     </param>
 
                     <param name="hash" type="xsd:string" style="query" required="false">
@@ -347,7 +347,7 @@
                 <response>
                     <representation mediaType="application/xml"/>
                     <representation mediaType="application/json"/>
-                    <representation mediaType="application/txt"/>
+                    <representation mediaType="text/plain"/>
                 </response>
             </method>
         </resource>
@@ -371,7 +371,7 @@
                     <param name="format" type="xsd:string" style="template" required="false" default="json">
                         <option value="xml" mediaType="application/xml"/>
                         <option value="json" mediaType="application/json"/>
-                        <option value="txt" mediaType="application/txt"/>
+                        <option value="txt" mediaType="text/plain"/>
                     </param>
 
                     <param name="domain" type="xsd:string" style="query" required="true">
@@ -385,7 +385,7 @@
                 <response>
                     <representation mediaType="application/xml"/>
                     <representation mediaType="application/json"/>
-                    <representation mediaType="application/txt"/>
+                    <representation mediaType="text/plain"/>
                 </response>
             </method>
         </resource>
@@ -409,7 +409,7 @@
                     <param name="format" type="xsd:string" style="template" required="false" default="json">
                         <option value="xml" mediaType="application/xml"/>
                         <option value="json" mediaType="application/json"/>
-                        <option value="txt" mediaType="application/txt"/>
+                        <option value="txt" mediaType="text/plain"/>
                     </param>
 
                     <param name="url" type="xsd:string" style="query" required="true">
@@ -423,7 +423,7 @@
                 <response>
                     <representation mediaType="application/xml"/>
                     <representation mediaType="application/json"/>
-                    <representation mediaType="application/txt"/>
+                    <representation mediaType="text/plain"/>
                 </response>
             </method>
         </resource>
@@ -452,7 +452,7 @@
                     <param name="format" type="xsd:string" style="template" required="false" default="json">
                         <option value="xml" mediaType="application/xml"/>
                         <option value="json" mediaType="application/json"/>
-                        <option value="txt" mediaType="application/txt"/>
+                        <option value="txt" mediaType="text/plain"/>
                     </param>
 
                     <param name="hash" type="xsd:string" style="query" required="false">
@@ -466,7 +466,7 @@
                 <response>
                     <representation mediaType="application/xml"/>
                     <representation mediaType="application/json"/>
-                    <representation mediaType="application/txt"/>
+                    <representation mediaType="text/plain"/>
                 </response>
             </method>
         </resource>
