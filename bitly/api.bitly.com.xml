@@ -23,16 +23,16 @@
                 </doc>
 
                 <request>
+                    <param name="format" type="xsd:string" style="query" required="false" default="json">
+                        <option value="xml"/>
+                        <option value="json"/>
+                        <option value="txt"/>
+                    </param>
+
                     <param name="longUrl" type="xsd:string" style="query" required="true">
                         <doc apigee:url="http://api.evdb.com/docs/events/new/">
                             <![CDATA[Long URL to be shortened.]]>
                         </doc>
-                    </param>
-
-                    <param name="format" type="xsd:string" style="template" required="false" default="json">
-                        <option value="xml"/>
-                        <option value="json"/>
-                        <option value="txt"/>
                     </param>
 
                     <param name="domain" type="xsd:string" style="query" required="false" default="bit.ly">
@@ -65,16 +65,16 @@
                 </doc>
 
                 <request>
-                    <param name="shortUrl" type="xsd:string" style="query" required="true">
-                        <doc>
-                            <![CDATA[Short URL to be expanded.]]>
-                        </doc>
-                    </param>
-
-                    <param name="format" type="xsd:string" style="template" required="false" default="json">
+                    <param name="format" type="xsd:string" style="query" required="false" default="json">
                         <option value="xml"/>
                         <option value="json"/>
                         <option value="txt"/>
+                    </param>
+
+                    <param name="shortUrl" type="xsd:string" style="query" required="false">
+                        <doc>
+                            <![CDATA[Short URL to be expanded.]]>
+                        </doc>
                     </param>
 
                     <param name="hash" type="xsd:string" style="query" required="false">
@@ -107,7 +107,7 @@
                 </doc>
 
                 <request>
-                    <param name="format" type="xsd:string" style="template" required="false" default="json">
+                    <param name="format" type="xsd:string" style="query" required="false" default="json">
                         <option value="xml"/>
                         <option value="json"/>
                         <option value="txt"/>
@@ -143,7 +143,7 @@
                 </doc>
 
                 <request>
-                    <param name="format" type="xsd:string" style="template" required="false" default="json">
+                    <param name="format" type="xsd:string" style="query" required="false" default="json">
                         <option value="xml"/>
                         <option value="json"/>
                         <option value="txt"/>
@@ -179,16 +179,16 @@
                 </doc>
 
                 <request>
-                    <param name="shortUrl" type="xsd:string" style="query" required="true">
-                        <doc>
-                            <![CDATA[Refers to one or more short URLs.]]>
-                        </doc>
-                    </param>
-
-                    <param name="format" type="xsd:string" style="template" required="false" default="json">
+                    <param name="format" type="xsd:string" style="query" required="false" default="json">
                         <option value="xml"/>
                         <option value="json"/>
                         <option value="txt"/>
+                    </param>
+
+                    <param name="shortUrl" type="xsd:string" style="query" required="false">
+                        <doc>
+                            <![CDATA[Refers to one or more short URLs.]]>
+                        </doc>
                     </param>
 
                     <param name="hash" type="xsd:string" style="query" required="false">
@@ -223,21 +223,21 @@
                 </doc>
 
                 <request>
-                    <param name="x_login" type="xsd:string" style="query" required="true">
-                        <doc>
-                            <![CDATA[The end users user's bitly login (for validation). ]]>
-                        </doc>
-                    </param>
-
-                    <param name="format" type="xsd:string" style="template" required="false" default="json">
+                    <param name="format" type="xsd:string" style="query" required="false" default="json">
                         <option value="xml"/>
                         <option value="json"/>
                         <option value="txt"/>
                     </param>
 
+                    <param name="x_login" type="xsd:string" style="query" required="true">
+                        <doc>
+                            <![CDATA[The end user's bitly login (for validation).]]>
+                        </doc>
+                    </param>
+
                     <param name="x_apiKey" type="xsd:string" style="query" required="true">
                         <doc>
-                            <![CDATA[The end users bitly apiKey (for validation).]]>
+                            <![CDATA[The end user's bitly apiKey (for validation).]]>
                         </doc>
                     </param>
                 </request>
@@ -267,16 +267,16 @@
                 </doc>
 
                 <request>
-                    <param name="shortUrl" type="xsd:string" style="query" required="true">
-                        <doc>
-                            <![CDATA[Refers to one or more short URLs.]]>
-                        </doc>
-                    </param>
-
-                    <param name="format" type="xsd:string" style="template" required="false" default="json">
+                    <param name="format" type="xsd:string" style="query" required="false" default="json">
                         <option value="xml"/>
                         <option value="json"/>
                         <option value="txt"/>
+                    </param>
+
+                    <param name="shortUrl" type="xsd:string" style="query" required="false">
+                        <doc>
+                            <![CDATA[Refers to one or more short URLs.]]>
+                        </doc>
                     </param>
 
                     <param name="hash" type="xsd:string" style="query" required="false">
@@ -309,16 +309,16 @@
                 </doc>
 
                 <request>
-                    <param name="shortUrl" type="xsd:string" style="query" required="true">
-                        <doc>
-                            <![CDATA[Refers to one short URL.]]>
-                        </doc>
-                    </param>
-
-                    <param name="format" type="xsd:string" style="template" required="false" default="json">
+                    <param name="format" type="xsd:string" style="query" required="false" default="json">
                         <option value="xml"/>
                         <option value="json"/>
                         <option value="txt"/>
+                    </param>
+
+                    <param name="shortUrl" type="xsd:string" style="query" required="false">
+                        <doc>
+                            <![CDATA[Refers to one short URL.]]>
+                        </doc>
                     </param>
 
                     <param name="hash" type="xsd:string" style="query" required="false">
@@ -351,16 +351,16 @@
                 </doc>
 
                 <request>
-                    <param name="shortUrl" type="xsd:string" style="query" required="true">
-                        <doc>
-                            <![CDATA[Refers to one short URL.]]>
-                        </doc>
-                    </param>
-
-                    <param name="format" type="xsd:string" style="template" required="false" default="json">
+                    <param name="format" type="xsd:string" style="query" required="false" default="json">
                         <option value="xml"/>
                         <option value="json"/>
                         <option value="txt"/>
+                    </param>
+
+                    <param name="shortUrl" type="xsd:string" style="query" required="false">
+                        <doc>
+                            <![CDATA[Refers to one short URL.]]>
+                        </doc>
                     </param>
 
                     <param name="hash" type="xsd:string" style="query" required="false">
@@ -393,16 +393,16 @@
                 </doc>
 
                 <request>
-                    <param name="shortUrl" type="xsd:string" style="query" required="true">
-                        <doc>
-                            <![CDATA[Refers to one or more short URLs.]]>
-                        </doc>
-                    </param>
-
-                    <param name="format" type="xsd:string" style="template" required="false" default="json">
+                    <param name="format" type="xsd:string" style="query" required="false" default="json">
                         <option value="xml"/>
                         <option value="json"/>
                         <option value="txt"/>
+                    </param>
+
+                    <param name="shortUrl" type="xsd:string" style="query" required="false">
+                        <doc>
+                            <![CDATA[Refers to one or more short URLs.]]>
+                        </doc>
                     </param>
 
                     <param name="hash" type="xsd:string" style="query" required="false">
@@ -435,21 +435,27 @@
                 </doc>
 
                 <request>
-                    <param name="shortUrl" type="xsd:string" style="query" required="true">
-                        <doc>
-                            <![CDATA[Refers to one or more short URLs.]]>
-                        </doc>
-                    </param>
-
-                    <param name="format" type="xsd:string" style="template" required="false" default="json">
+                    <param name="format" type="xsd:string" style="query" required="false" default="json">
                         <option value="xml"/>
                         <option value="json"/>
                         <option value="txt"/>
                     </param>
 
+                    <param name="shortUrl" type="xsd:string" style="query" required="false">
+                        <doc>
+                            <![CDATA[Refers to one or more short URLs.]]>
+                        </doc>
+                    </param>
+
                     <param name="hash" type="xsd:string" style="query" required="false">
                         <doc>
                             <![CDATA[Refers to one or more bitly hashes.]]>
+                        </doc>
+                    </param>
+
+                    <param name="days" type="xsd:positiveInteger" style="query" required="false" default="7">
+                        <doc>
+                            <![CDATA[Specifies the number of days for which to retrieve click data, from 1 to 30 (default 7).]]>
                         </doc>
                     </param>
                 </request>
