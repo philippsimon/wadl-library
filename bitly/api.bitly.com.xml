@@ -469,4 +469,151 @@
         </resource>
 
     </resources>
+
+    <resources base="https://api-ssl.bitly.com">
+        <!-- User -->
+
+        <resource path="/v3/user/clicks">
+            <method id="user_clicks" name="GET" apigee:displayName="user/clicks">
+                <apigee:tags>
+                    <apigee:tag primary="true">User</apigee:tag>
+                    <apigee:tag>Clicks</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="/v3/user/clicks"/>
+
+                <doc title="Bitly API Docs" apigee:url="http://code.google.com/p/bitly-api/wiki/ApiDocumentation">
+                    <![CDATA[OAuth 2 endpoint that provides the total clicks per day on a user’s bitly links.]]>
+                </doc>
+
+                <request>
+                    <param name="format" type="xsd:string" style="query" required="false" default="json">
+                        <option value="xml"/>
+                        <option value="json"/>
+                        <option value="txt"/>
+                    </param>
+
+                    <param name="days" type="xsd:integer" style="query" required="false" default="7">
+                        <doc>
+                            <![CDATA[An integer value for the number of days (counting backwards from the current day) from which to retrieve data (min:1, max:30, default:7).]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="text/plain"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="/v3/user/referrers">
+            <method id="user_referrers" name="GET" apigee:displayName="user/referrers">
+                <apigee:tags>
+                    <apigee:tag primary="true">User</apigee:tag>
+                    <apigee:tag>Clicks</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="/v3/user/referrers"/>
+
+                <doc title="Bitly API Docs" apigee:url="http://code.google.com/p/bitly-api/wiki/ApiDocumentation">
+                    <![CDATA[OAuth 2 endpoint that provides a list of top referrers (up to 500 per day) for a given user’s bitly links, and the number of clicks per referrer.]]>
+                </doc>
+
+                <request>
+                    <param name="format" type="xsd:string" style="query" required="false" default="json">
+                        <option value="xml"/>
+                        <option value="json"/>
+                        <option value="txt"/>
+                    </param>
+
+                    <param name="days" type="xsd:integer" style="query" required="false" default="7">
+                        <doc>
+                            <![CDATA[an integer value for the number of days (counting backwards from the current day) from which to retrieve data (min:1, max:30, default:7)]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="text/plain"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="/v3/user/countries">
+            <method id="user_countries" name="GET" apigee:displayName="user/countries">
+                <apigee:tags>
+                    <apigee:tag primary="true">User</apigee:tag>
+                    <apigee:tag>Clicks</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="/v3/user/countries"/>
+
+                <doc title="Bitly API Docs" apigee:url="http://code.google.com/p/bitly-api/wiki/ApiDocumentation">
+                    <![CDATA[OAuth 2 endpoint that provides a list of countries from which clicks on a given user’s bitly links are originating, and the number of clicks per country.]]>
+                </doc>
+
+                <request>
+                    <param name="format" type="xsd:string" style="query" required="false" default="json">
+                        <option value="xml"/>
+                        <option value="json"/>
+                        <option value="txt"/>
+                    </param>
+
+                    <param name="days" type="xsd:integer" style="query" required="false" default="7">
+                        <doc>
+                            <![CDATA[an integer value for the number of days (counting backwards from the current day) from which to retrieve data (min:1, max:30, default:7)]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="text/plain"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="/v3/user/realtime_links">
+            <method id="user_realtime_links" name="GET" apigee:displayName="user/realtime_links">
+                <apigee:tags>
+                    <apigee:tag primary="true">User</apigee:tag>
+                    <apigee:tag>Clicks</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="/v3/user/realtime_links"/>
+
+                <doc title="Bitly API Docs" apigee:url="http://code.google.com/p/bitly-api/wiki/ApiDocumentation">
+                    <![CDATA[OAuth 2 endpoint that provides a given user’s 100 most popular links based on click traffic in the past hour, and the number of clicks per link.]]>
+                </doc>
+
+                <request>
+                    <param name="format" type="xsd:string" style="query" required="false" default="json">
+                        <option value="xml"/>
+                        <option value="json"/>
+                        <option value="txt"/>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="text/plain"/>
+                </response>
+            </method>
+        </resource>
+
+    </resources>
 </application>
