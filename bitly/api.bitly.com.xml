@@ -6,7 +6,7 @@
 
     <resources base="http://api.bitly.com">
 
-        <!-- Events -->
+        <!-- Links -->
 
         <resource path="/v3/shorten">
             <method id="shorten" name="GET" apigee:displayName="shorten">
@@ -40,7 +40,6 @@
                         <option value="j.mp"/>
                         <option value="bitly.com"/>
                     </param>
-
                 </request>
 
                 <response>
@@ -83,265 +82,6 @@
                             <![CDATA[Refers to one or more bitly hashes.]]>
                         </doc>
                     </param>
-
-                </request>
-
-                <response>
-                    <representation mediaType="application/xml"/>
-                    <representation mediaType="application/json"/>
-                    <representation mediaType="text/plain"/>
-                </response>
-            </method>
-        </resource>
-
-        <resource path="/v3/validate">
-            <method id="validate" name="GET" apigee:displayName="validate">
-                <apigee:tags>
-                    <apigee:tag primary="true">Users</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="/v3/validate"/>
-
-                <doc title="Bitly API Docs" apigee:url="http://code.google.com/p/bitly-api/wiki/ApiDocumentation">
-                    <![CDATA[For any given a bitly user login and apiKey, you can validate that the pair is active.]]>
-                </doc>
-
-                <request>
-                    <param name="x_login" type="xsd:string" style="query" required="true">
-                        <doc>
-                            <![CDATA[The end users user's bitly login (for validation). ]]>
-                        </doc>
-                    </param>
-
-                    <param name="format" type="xsd:string" style="template" required="false" default="json">
-                        <option value="xml"/>
-                        <option value="json"/>
-                        <option value="txt"/>
-                    </param>
-
-                    <param name="x_apiKey" type="xsd:string" style="query" required="true">
-                        <doc>
-                            <![CDATA[The end users bitly apiKey (for validation).]]>
-                        </doc>
-                    </param>
-
-                </request>
-
-                <response>
-                    <representation mediaType="application/xml"/>
-                    <representation mediaType="application/json"/>
-                    <representation mediaType="text/plain"/>
-                </response>
-            </method>
-        </resource>
-
-        <resource path="/v3/clicks">
-            <method id="clicks" name="GET" apigee:displayName="clicks">
-                <apigee:tags>
-                    <apigee:tag primary="true">Clicks</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="/v3/clicks"/>
-
-                <doc title="Bitly API Docs" apigee:url="http://code.google.com/p/bitly-api/wiki/ApiDocumentation">
-                    <![CDATA[For one or more bitly URL's or hashes, you can generate statistics about the clicks on that link.]]>
-                </doc>
-
-                <request>
-                    <param name="shortUrl" type="xsd:string" style="query" required="true">
-                        <doc>
-                            <![CDATA[Refers to one or more short URLs.]]>
-                        </doc>
-                    </param>
-
-                    <param name="format" type="xsd:string" style="template" required="false" default="json">
-                        <option value="xml"/>
-                        <option value="json"/>
-                        <option value="txt"/>
-                    </param>
-
-                    <param name="hash" type="xsd:string" style="query" required="false">
-                        <doc>
-                            <![CDATA[Refers to one or more bitly hashes.]]>
-                        </doc>
-                    </param>
-
-                </request>
-
-                <response>
-                    <representation mediaType="application/xml"/>
-                    <representation mediaType="application/json"/>
-                    <representation mediaType="text/plain"/>
-                </response>
-            </method>
-        </resource>
-
-        <resource path="/v3/referrers">
-            <method id="referrers" name="GET" apigee:displayName="referrers">
-                <apigee:tags>
-                    <apigee:tag primary="true">Clicks</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="/v3/referrers"/>
-
-                <doc title="Bitly API Docs" apigee:url="http://code.google.com/p/bitly-api/wiki/ApiDocumentation">
-                    <![CDATA[Provides a list of referring sites for a specified bitly short link, and the number of clicks per referrer.]]>
-                </doc>
-
-                <request>
-                    <param name="shortUrl" type="xsd:string" style="query" required="true">
-                        <doc>
-                            <![CDATA[Refers to one short URL.]]>
-                        </doc>
-                    </param>
-
-                    <param name="format" type="xsd:string" style="template" required="false" default="json">
-                        <option value="xml"/>
-                        <option value="json"/>
-                        <option value="txt"/>
-                    </param>
-
-                    <param name="hash" type="xsd:string" style="query" required="false">
-                        <doc>
-                            <![CDATA[Refers to one bitly hash.]]>
-                        </doc>
-                    </param>
-
-                </request>
-
-                <response>
-                    <representation mediaType="application/xml"/>
-                    <representation mediaType="application/json"/>
-                    <representation mediaType="text/plain"/>
-                </response>
-            </method>
-        </resource>
-
-        <resource path="/v3/countries">
-            <method id="countries" name="GET" apigee:displayName="countries">
-                <apigee:tags>
-                    <apigee:tag primary="true">Clicks</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="/v3/countries"/>
-
-                <doc title="Bitly API Docs" apigee:url="http://code.google.com/p/bitly-api/wiki/ApiDocumentation">
-                    <![CDATA[Provides a list of countries from which clicks on a specified bitly short link have originated, and the number of clicks per country.]]>
-                </doc>
-
-                <request>
-                    <param name="shortUrl" type="xsd:string" style="query" required="true">
-                        <doc>
-                            <![CDATA[Refers to one short URL.]]>
-                        </doc>
-                    </param>
-
-                    <param name="format" type="xsd:string" style="template" required="false" default="json">
-                        <option value="xml"/>
-                        <option value="json"/>
-                        <option value="txt"/>
-                    </param>
-
-                    <param name="hash" type="xsd:string" style="query" required="false">
-                        <doc>
-                            <![CDATA[Refers to one bitly hash.]]>
-                        </doc>
-                    </param>
-
-                </request>
-
-                <response>
-                    <representation mediaType="application/xml"/>
-                    <representation mediaType="application/json"/>
-                    <representation mediaType="text/plain"/>
-                </response>
-            </method>
-        </resource>
-
-        <resource path="/v3/clicks_by_minute">
-            <method id="clicksByMinute" name="GET" apigee:displayName="clicksByMinute">
-                <apigee:tags>
-                    <apigee:tag primary="true">Clicks</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="/v3/clicks_by_minute"/>
-
-                <doc title="Bitly API Docs" apigee:url="http://code.google.com/p/bitly-api/wiki/ApiDocumentation">
-                    <![CDATA[For one or more bitly links, provides time series clicks per minute for the last hour in reverse chronological order (most recent to least recent).]]>
-                </doc>
-
-                <request>
-                    <param name="shortUrl" type="xsd:string" style="query" required="true">
-                        <doc>
-                            <![CDATA[Refers to one or more short URLs.]]>
-                        </doc>
-                    </param>
-
-                    <param name="format" type="xsd:string" style="template" required="false" default="json">
-                        <option value="xml"/>
-                        <option value="json"/>
-                        <option value="txt"/>
-                    </param>
-
-                    <param name="hash" type="xsd:string" style="query" required="false">
-                        <doc>
-                            <![CDATA[Refers to one or more bitly hashes.]]>
-                        </doc>
-                    </param>
-
-                </request>
-
-                <response>
-                    <representation mediaType="application/xml"/>
-                    <representation mediaType="application/json"/>
-                    <representation mediaType="text/plain"/>
-                </response>
-            </method>
-        </resource>
-
-        <resource path="/v3/clicks_by_day">
-            <method id="clicksByDay" name="GET" apigee:displayName="clicksByDay">
-                <apigee:tags>
-                    <apigee:tag primary="true">Clicks</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="/v3/clicks_by_day"/>
-
-                <doc title="Bitly API Docs" apigee:url="http://code.google.com/p/bitly-api/wiki/ApiDocumentation">
-                    <![CDATA[For one or more bitly links, provides time series clicks per day for the last 1-30 days in reverse chronological order (most recent to least recent).]]>
-                </doc>
-
-                <request>
-                    <param name="shortUrl" type="xsd:string" style="query" required="true">
-                        <doc>
-                            <![CDATA[Refers to one or more short URLs.]]>
-                        </doc>
-                    </param>
-
-                    <param name="format" type="xsd:string" style="template" required="false" default="json">
-                        <option value="xml"/>
-                        <option value="json"/>
-                        <option value="txt"/>
-                    </param>
-
-                    <param name="hash" type="xsd:string" style="query" required="false">
-                        <doc>
-                            <![CDATA[Refers to one or more bitly hashes.]]>
-                        </doc>
-                    </param>
-
                 </request>
 
                 <response>
@@ -367,7 +107,6 @@
                 </doc>
 
                 <request>
-
                     <param name="format" type="xsd:string" style="template" required="false" default="json">
                         <option value="xml"/>
                         <option value="json"/>
@@ -379,7 +118,6 @@
                             <![CDATA[A short domain.]]>
                         </doc>
                     </param>
-
                 </request>
 
                 <response>
@@ -405,7 +143,6 @@
                 </doc>
 
                 <request>
-
                     <param name="format" type="xsd:string" style="template" required="false" default="json">
                         <option value="xml"/>
                         <option value="json"/>
@@ -417,7 +154,6 @@
                             <![CDATA[One or more long URLs to lookup.]]>
                         </doc>
                     </param>
-
                 </request>
 
                 <response>
@@ -460,7 +196,6 @@
                             <![CDATA[Refers to one or more bitly hashes.]]>
                         </doc>
                     </param>
-
                 </request>
 
                 <response>
@@ -471,7 +206,261 @@
             </method>
         </resource>
 
+        <!-- Users -->
 
+        <resource path="/v3/validate">
+            <method id="validate" name="GET" apigee:displayName="validate">
+                <apigee:tags>
+                    <apigee:tag primary="true">Users</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="/v3/validate"/>
+
+                <doc title="Bitly API Docs" apigee:url="http://code.google.com/p/bitly-api/wiki/ApiDocumentation">
+                    <![CDATA[For any given a bitly user login and apiKey, you can validate that the pair is active.]]>
+                </doc>
+
+                <request>
+                    <param name="x_login" type="xsd:string" style="query" required="true">
+                        <doc>
+                            <![CDATA[The end users user's bitly login (for validation). ]]>
+                        </doc>
+                    </param>
+
+                    <param name="format" type="xsd:string" style="template" required="false" default="json">
+                        <option value="xml"/>
+                        <option value="json"/>
+                        <option value="txt"/>
+                    </param>
+
+                    <param name="x_apiKey" type="xsd:string" style="query" required="true">
+                        <doc>
+                            <![CDATA[The end users bitly apiKey (for validation).]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="text/plain"/>
+                </response>
+            </method>
+        </resource>
+
+        <!-- Clicks -->
+
+        <resource path="/v3/clicks">
+            <method id="clicks" name="GET" apigee:displayName="clicks">
+                <apigee:tags>
+                    <apigee:tag primary="true">Clicks</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="/v3/clicks"/>
+
+                <doc title="Bitly API Docs" apigee:url="http://code.google.com/p/bitly-api/wiki/ApiDocumentation">
+                    <![CDATA[For one or more bitly URL's or hashes, you can generate statistics about the clicks on that link.]]>
+                </doc>
+
+                <request>
+                    <param name="shortUrl" type="xsd:string" style="query" required="true">
+                        <doc>
+                            <![CDATA[Refers to one or more short URLs.]]>
+                        </doc>
+                    </param>
+
+                    <param name="format" type="xsd:string" style="template" required="false" default="json">
+                        <option value="xml"/>
+                        <option value="json"/>
+                        <option value="txt"/>
+                    </param>
+
+                    <param name="hash" type="xsd:string" style="query" required="false">
+                        <doc>
+                            <![CDATA[Refers to one or more bitly hashes.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="text/plain"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="/v3/referrers">
+            <method id="referrers" name="GET" apigee:displayName="referrers">
+                <apigee:tags>
+                    <apigee:tag primary="true">Clicks</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="/v3/referrers"/>
+
+                <doc title="Bitly API Docs" apigee:url="http://code.google.com/p/bitly-api/wiki/ApiDocumentation">
+                    <![CDATA[Provides a list of referring sites for a specified bitly short link, and the number of clicks per referrer.]]>
+                </doc>
+
+                <request>
+                    <param name="shortUrl" type="xsd:string" style="query" required="true">
+                        <doc>
+                            <![CDATA[Refers to one short URL.]]>
+                        </doc>
+                    </param>
+
+                    <param name="format" type="xsd:string" style="template" required="false" default="json">
+                        <option value="xml"/>
+                        <option value="json"/>
+                        <option value="txt"/>
+                    </param>
+
+                    <param name="hash" type="xsd:string" style="query" required="false">
+                        <doc>
+                            <![CDATA[Refers to one bitly hash.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="text/plain"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="/v3/countries">
+            <method id="countries" name="GET" apigee:displayName="countries">
+                <apigee:tags>
+                    <apigee:tag primary="true">Clicks</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="/v3/countries"/>
+
+                <doc title="Bitly API Docs" apigee:url="http://code.google.com/p/bitly-api/wiki/ApiDocumentation">
+                    <![CDATA[Provides a list of countries from which clicks on a specified bitly short link have originated, and the number of clicks per country.]]>
+                </doc>
+
+                <request>
+                    <param name="shortUrl" type="xsd:string" style="query" required="true">
+                        <doc>
+                            <![CDATA[Refers to one short URL.]]>
+                        </doc>
+                    </param>
+
+                    <param name="format" type="xsd:string" style="template" required="false" default="json">
+                        <option value="xml"/>
+                        <option value="json"/>
+                        <option value="txt"/>
+                    </param>
+
+                    <param name="hash" type="xsd:string" style="query" required="false">
+                        <doc>
+                            <![CDATA[Refers to one bitly hash.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="text/plain"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="/v3/clicks_by_minute">
+            <method id="clicksByMinute" name="GET" apigee:displayName="clicksByMinute">
+                <apigee:tags>
+                    <apigee:tag primary="true">Clicks</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="/v3/clicks_by_minute"/>
+
+                <doc title="Bitly API Docs" apigee:url="http://code.google.com/p/bitly-api/wiki/ApiDocumentation">
+                    <![CDATA[For one or more bitly links, provides time series clicks per minute for the last hour in reverse chronological order (most recent to least recent).]]>
+                </doc>
+
+                <request>
+                    <param name="shortUrl" type="xsd:string" style="query" required="true">
+                        <doc>
+                            <![CDATA[Refers to one or more short URLs.]]>
+                        </doc>
+                    </param>
+
+                    <param name="format" type="xsd:string" style="template" required="false" default="json">
+                        <option value="xml"/>
+                        <option value="json"/>
+                        <option value="txt"/>
+                    </param>
+
+                    <param name="hash" type="xsd:string" style="query" required="false">
+                        <doc>
+                            <![CDATA[Refers to one or more bitly hashes.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="text/plain"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="/v3/clicks_by_day">
+            <method id="clicksByDay" name="GET" apigee:displayName="clicksByDay">
+                <apigee:tags>
+                    <apigee:tag primary="true">Clicks</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="/v3/clicks_by_day"/>
+
+                <doc title="Bitly API Docs" apigee:url="http://code.google.com/p/bitly-api/wiki/ApiDocumentation">
+                    <![CDATA[For one or more bitly links, provides time series clicks per day for the last 1-30 days in reverse chronological order (most recent to least recent).]]>
+                </doc>
+
+                <request>
+                    <param name="shortUrl" type="xsd:string" style="query" required="true">
+                        <doc>
+                            <![CDATA[Refers to one or more short URLs.]]>
+                        </doc>
+                    </param>
+
+                    <param name="format" type="xsd:string" style="template" required="false" default="json">
+                        <option value="xml"/>
+                        <option value="json"/>
+                        <option value="txt"/>
+                    </param>
+
+                    <param name="hash" type="xsd:string" style="query" required="false">
+                        <doc>
+                            <![CDATA[Refers to one or more bitly hashes.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="text/plain"/>
+                </response>
+            </method>
+        </resource>
 
     </resources>
 </application>
