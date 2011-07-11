@@ -30,9 +30,9 @@
                     </param>
 
                     <param name="format" type="xsd:string" style="template" required="false" default="json">
-                        <option value="xml" mediaType="application/xml"/>
-                        <option value="json" mediaType="application/json"/>
-                        <option value="txt" mediaType="text/plain"/>
+                        <option value="xml"/>
+                        <option value="json"/>
+                        <option value="txt"/>
                     </param>
 
                     <param name="domain" type="xsd:string" style="query" required="false" default="bit.ly">
@@ -73,9 +73,9 @@
                     </param>
 
                     <param name="format" type="xsd:string" style="template" required="false" default="json">
-                        <option value="xml" mediaType="application/xml"/>
-                        <option value="json" mediaType="application/json"/>
-                        <option value="txt" mediaType="text/plain"/>
+                        <option value="xml"/>
+                        <option value="json"/>
+                        <option value="txt"/>
                     </param>
 
                     <param name="hash" type="xsd:string" style="query" required="false">
@@ -116,9 +116,9 @@
                     </param>
 
                     <param name="format" type="xsd:string" style="template" required="false" default="json">
-                        <option value="xml" mediaType="application/xml"/>
-                        <option value="json" mediaType="application/json"/>
-                        <option value="txt" mediaType="text/plain"/>
+                        <option value="xml"/>
+                        <option value="json"/>
+                        <option value="txt"/>
                     </param>
 
                     <param name="x_apiKey" type="xsd:string" style="query" required="true">
@@ -159,9 +159,9 @@
                     </param>
 
                     <param name="format" type="xsd:string" style="template" required="false" default="json">
-                        <option value="xml" mediaType="application/xml"/>
-                        <option value="json" mediaType="application/json"/>
-                        <option value="txt" mediaType="text/plain"/>
+                        <option value="xml"/>
+                        <option value="json"/>
+                        <option value="txt"/>
                     </param>
 
                     <param name="hash" type="xsd:string" style="query" required="false">
@@ -202,9 +202,9 @@
                     </param>
 
                     <param name="format" type="xsd:string" style="template" required="false" default="json">
-                        <option value="xml" mediaType="application/xml"/>
-                        <option value="json" mediaType="application/json"/>
-                        <option value="txt" mediaType="text/plain"/>
+                        <option value="xml"/>
+                        <option value="json"/>
+                        <option value="txt"/>
                     </param>
 
                     <param name="hash" type="xsd:string" style="query" required="false">
@@ -245,9 +245,9 @@
                     </param>
 
                     <param name="format" type="xsd:string" style="template" required="false" default="json">
-                        <option value="xml" mediaType="application/xml"/>
-                        <option value="json" mediaType="application/json"/>
-                        <option value="txt" mediaType="text/plain"/>
+                        <option value="xml"/>
+                        <option value="json"/>
+                        <option value="txt"/>
                     </param>
 
                     <param name="hash" type="xsd:string" style="query" required="false">
@@ -288,9 +288,9 @@
                     </param>
 
                     <param name="format" type="xsd:string" style="template" required="false" default="json">
-                        <option value="xml" mediaType="application/xml"/>
-                        <option value="json" mediaType="application/json"/>
-                        <option value="txt" mediaType="text/plain"/>
+                        <option value="xml"/>
+                        <option value="json"/>
+                        <option value="txt"/>
                     </param>
 
                     <param name="hash" type="xsd:string" style="query" required="false">
@@ -331,9 +331,9 @@
                     </param>
 
                     <param name="format" type="xsd:string" style="template" required="false" default="json">
-                        <option value="xml" mediaType="application/xml"/>
-                        <option value="json" mediaType="application/json"/>
-                        <option value="txt" mediaType="text/plain"/>
+                        <option value="xml"/>
+                        <option value="json"/>
+                        <option value="txt"/>
                     </param>
 
                     <param name="hash" type="xsd:string" style="query" required="false">
@@ -369,9 +369,9 @@
                 <request>
 
                     <param name="format" type="xsd:string" style="template" required="false" default="json">
-                        <option value="xml" mediaType="application/xml"/>
-                        <option value="json" mediaType="application/json"/>
-                        <option value="txt" mediaType="text/plain"/>
+                        <option value="xml"/>
+                        <option value="json"/>
+                        <option value="txt"/>
                     </param>
 
                     <param name="domain" type="xsd:string" style="query" required="true">
@@ -407,9 +407,9 @@
                 <request>
 
                     <param name="format" type="xsd:string" style="template" required="false" default="json">
-                        <option value="xml" mediaType="application/xml"/>
-                        <option value="json" mediaType="application/json"/>
-                        <option value="txt" mediaType="text/plain"/>
+                        <option value="xml"/>
+                        <option value="json"/>
+                        <option value="txt"/>
                     </param>
 
                     <param name="url" type="xsd:string" style="query" required="true">
@@ -450,9 +450,9 @@
                     </param>
 
                     <param name="format" type="xsd:string" style="template" required="false" default="json">
-                        <option value="xml" mediaType="application/xml"/>
-                        <option value="json" mediaType="application/json"/>
-                        <option value="txt" mediaType="text/plain"/>
+                        <option value="xml"/>
+                        <option value="json"/>
+                        <option value="txt"/>
                     </param>
 
                     <param name="hash" type="xsd:string" style="query" required="false">
