@@ -28,11 +28,6 @@
                 <request>
                     <!-- Tracking parameters -->
 
-                    <param name="trackingId" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://developer.shopping.com/docs/REST_Option_Reference">
-                            <![CDATA[SDC generated ID used for revenue tracking at the campaign (placement) level. This ID will be provided through the Partner Account Center when you sign up for the API. Previously known as a "linkin ID".]]>
-                        </doc>
-                    </param>
 
                     <param name="subTrackingId" type="xsd:string" style="query" required="false">
                         <doc apigee:url="http://developer.shopping.com/docs/REST_Option_Reference">
@@ -327,11 +322,6 @@
                 <request>
                     <!-- Tracking parameters -->
 
-                    <param name="trackingId" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://developer.shopping.com/docs/REST_Option_Reference">
-                            <![CDATA[SDC generated ID used for revenue tracking at the campaign (placement) level. This ID will be provided through the Partner Account Center when you sign up for the API. Previously known as a "linkin ID".]]>
-                        </doc>
-                    </param>
 
                     <param name="subTrackingId" type="xsd:string" style="query" required="false">
                         <doc apigee:url="http://developer.shopping.com/docs/REST_Option_Reference">
@@ -608,11 +598,6 @@
                 <request>
                     <!-- Tracking parameters -->
 
-                    <param name="trackingId" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://developer.shopping.com/docs/REST_Option_Reference">
-                            <![CDATA[SDC generated ID used for revenue tracking at the campaign (placement) level. This ID will be provided through the Partner Account Center when you sign up for the API. Previously known as a "linkin ID".]]>
-                        </doc>
-                    </param>
 
                     <param name="subTrackingId" type="xsd:string" style="query" required="false">
                         <doc apigee:url="http://developer.shopping.com/docs/REST_Option_Reference">
@@ -784,11 +769,6 @@
                 <request>
                     <!-- Tracking parameters -->
 
-                    <param name="trackingId" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://developer.shopping.com/docs/REST_Option_Reference">
-                            <![CDATA[SDC generated ID used for revenue tracking at the campaign (placement) level. This ID will be provided through the Partner Account Center when you sign up for the API. Previously known as a "linkin ID".]]>
-                        </doc>
-                    </param>
 
                     <param name="subTrackingId" type="xsd:string" style="query" required="false">
                         <doc apigee:url="http://developer.shopping.com/docs/REST_Option_Reference">
