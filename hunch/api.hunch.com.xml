@@ -23,6 +23,12 @@
                 </doc>
 
                 <request>
+                    <param name="auth_basic" type="xsd:integer" style="query" required="false" default="1">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/">
+                            <![CDATA[An authorization param, authenticating your app to use basic HTTP.]]>
+                        </doc>
+                    </param>
+
                     <param name="auth_token" type="xsd:string" style="query" required="false">
                         <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendations">
                             <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
@@ -244,6 +250,12 @@
                 </doc>
 
                 <request>
+                    <param name="auth_basic" type="xsd:integer" style="query" required="false" default="1">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/">
+                            <![CDATA[An authorization param, authenticating your app to use basic HTTP.]]>
+                        </doc>
+                    </param>
+
                     <param name="auth_token" type="xsd:string" style="query" required="false">
                         <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-results">
                             <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
@@ -399,6 +411,12 @@
                 </doc>
 
                 <request>
+                    <param name="auth_basic" type="xsd:integer" style="query" required="false" default="1">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/">
+                            <![CDATA[An authorization param, authenticating your app to use basic HTTP.]]>
+                        </doc>
+                    </param>
+
                     <param name="auth_token" type="xsd:string" style="query" required="false">
                         <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-similar-results">
                             <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
@@ -560,6 +578,12 @@
                 </doc>
 
                 <request>
+                    <param name="auth_basic" type="xsd:integer" style="query" required="false" default="1">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/">
+                            <![CDATA[An authorization param, authenticating your app to use basic HTTP.]]>
+                        </doc>
+                    </param>
+
                     <param name="auth_token" type="xsd:string" style="query" required="false">
                         <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#flag-result">
                             <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
@@ -621,6 +645,12 @@
                 </doc>
 
                 <request>
+                    <param name="auth_basic" type="xsd:integer" style="query" required="false" default="1">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/">
+                            <![CDATA[An authorization param, authenticating your app to use basic HTTP.]]>
+                        </doc>
+                    </param>
+
                     <param name="app_id" type="xsd:string" style="query" required="true">
                         <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-auth-token">
                             <![CDATA[Application credentials, proving that the call originated from your app.]]>
@@ -674,6 +704,12 @@
                 </doc>
 
                 <request>
+                    <param name="auth_basic" type="xsd:integer" style="query" required="false" default="1">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/">
+                            <![CDATA[An authorization param, authenticating your app to use basic HTTP.]]>
+                        </doc>
+                    </param>
+
                     <param name="app_id" type="xsd:string" style="query" required="true">
                         <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-token-status">
                             <![CDATA[Application credentials, proving that the call originated from your app.]]>
@@ -727,6 +763,12 @@
                 </doc>
 
                 <request>
+                    <param name="auth_basic" type="xsd:integer" style="query" required="false" default="1">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/">
+                            <![CDATA[An authorization param, authenticating your app to use basic HTTP.]]>
+                        </doc>
+                    </param>
+
                     <param name="auth_token" type="xsd:string" style="query" required="true">
                         <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-user-info">
                             <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
@@ -768,6 +810,12 @@
                 </doc>
 
                 <request>
+                    <param name="auth_basic" type="xsd:integer" style="query" required="false" default="1">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/">
+                            <![CDATA[An authorization param, authenticating your app to use basic HTTP.]]>
+                        </doc>
+                    </param>
+
                     <param name="auth_token" type="xsd:string" style="query" required="true">
                         <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-friends">
                             <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
@@ -845,6 +893,12 @@
                 </doc>
 
                 <request>
+                    <param name="auth_basic" type="xsd:integer" style="query" required="false" default="1">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/">
+                            <![CDATA[An authorization param, authenticating your app to use basic HTTP.]]>
+                        </doc>
+                    </param>
+
                     <param name="auth_token" type="xsd:string" style="query" required="true">
                         <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-tastemates">
                             <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
@@ -994,6 +1048,12 @@
                 </doc>
 
                 <request>
+                    <param name="auth_basic" type="xsd:integer" style="query" required="false" default="1">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/">
+                            <![CDATA[An authorization param, authenticating your app to use basic HTTP.]]>
+                        </doc>
+                    </param>
+
                     <param name="auth_token" type="xsd:string" style="query" required="true">
                         <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-recommendees">
                             <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
@@ -1061,6 +1121,12 @@
                 </doc>
 
                 <request>
+                    <param name="auth_basic" type="xsd:integer" style="query" required="false" default="1">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/">
+                            <![CDATA[An authorization param, authenticating your app to use basic HTTP.]]>
+                        </doc>
+                    </param>
+
                     <param name="topic_ids" type="xsd:string" style="query" required="false">
                         <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-result-topics">
                             <![CDATA[List of topic ids. Only result-topics in these topics will be returned as result-topics.]]>
@@ -1192,6 +1258,12 @@
                 </doc>
 
                 <request>
+                    <param name="auth_basic" type="xsd:integer" style="query" required="false" default="1">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/">
+                            <![CDATA[An authorization param, authenticating your app to use basic HTTP.]]>
+                        </doc>
+                    </param>
+
                     <param name="topic_ids" type="xsd:string" style="query" required="false">
                         <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-topics">
                             <![CDATA[List of topic ids. Data will be returned for these topics and their subtopics.]]>
@@ -1241,6 +1313,12 @@
                 </doc>
 
                 <request>
+                    <param name="auth_basic" type="xsd:integer" style="query" required="false" default="1">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/">
+                            <![CDATA[An authorization param, authenticating your app to use basic HTTP.]]>
+                        </doc>
+                    </param>
+
                     <param name="auth_token" type="xsd:string" style="query" required="true">
                         <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-activity">
                             <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
@@ -1396,6 +1474,12 @@
                 </doc>
 
                 <request>
+                    <param name="auth_basic" type="xsd:integer" style="query" required="false" default="1">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/">
+                            <![CDATA[An authorization param, authenticating your app to use basic HTTP.]]>
+                        </doc>
+                    </param>
+
                     <param name="auth_token" type="xsd:string" style="query" required="true">
                         <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-preferences">
                             <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
@@ -1467,6 +1551,12 @@
                 </doc>
 
                 <request>
+                    <param name="auth_basic" type="xsd:integer" style="query" required="false" default="1">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/">
+                            <![CDATA[An authorization param, authenticating your app to use basic HTTP.]]>
+                        </doc>
+                    </param>
+
                     <param name="auth_token" type="xsd:string" style="query" required="true">
                         <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#set-preference">
                             <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
@@ -1550,6 +1640,12 @@
                 </doc>
 
                 <request>
+                    <param name="auth_basic" type="xsd:integer" style="query" required="false" default="1">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/">
+                            <![CDATA[An authorization param, authenticating your app to use basic HTTP.]]>
+                        </doc>
+                    </param>
+
                     <param name="auth_token" type="xsd:string" style="query" required="false">
                         <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#delete-preference">
                             <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
@@ -1635,6 +1731,12 @@
                 </doc>
 
                 <request>
+                    <param name="auth_basic" type="xsd:integer" style="query" required="false" default="1">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/">
+                            <![CDATA[An authorization param, authenticating your app to use basic HTTP.]]>
+                        </doc>
+                    </param>
+
                     <param name="auth_token" type="xsd:string" style="query" required="true">
                         <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-predictions">
                             <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
@@ -1748,6 +1850,12 @@
                 </doc>
 
                 <request>
+                    <param name="auth_basic" type="xsd:integer" style="query" required="false" default="1">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/">
+                            <![CDATA[An authorization param, authenticating your app to use basic HTTP.]]>
+                        </doc>
+                    </param>
+
                     <param name="auth_token" type="xsd:string" style="query" required="false">
                         <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#get-questions">
                             <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
@@ -1795,6 +1903,12 @@
                 </doc>
 
                 <request>
+                    <param name="auth_basic" type="xsd:integer" style="query" required="false" default="1">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/">
+                            <![CDATA[An authorization param, authenticating your app to use basic HTTP.]]>
+                        </doc>
+                    </param>
+
                     <param name="auth_token" type="xsd:string" style="query" required="true">
                         <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#teach-hunch-about-you">
                             <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
@@ -1850,6 +1964,12 @@
                 </doc>
 
                 <request>
+                    <param name="auth_basic" type="xsd:integer" style="query" required="false" default="1">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/">
+                            <![CDATA[An authorization param, authenticating your app to use basic HTTP.]]>
+                        </doc>
+                    </param>
+
                     <param name="auth_token" type="xsd:string" style="query" required="true">
                         <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#save-result">
                             <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
@@ -1897,6 +2017,12 @@
                 </doc>
 
                 <request>
+                    <param name="auth_basic" type="xsd:integer" style="query" required="false" default="1">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/">
+                            <![CDATA[An authorization param, authenticating your app to use basic HTTP.]]>
+                        </doc>
+                    </param>
+
                     <param name="auth_token" type="xsd:string" style="query" required="true">
                         <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#recommend-result">
                             <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
@@ -1950,6 +2076,12 @@
                 </doc>
 
                 <request>
+                    <param name="auth_basic" type="xsd:integer" style="query" required="false" default="1">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/">
+                            <![CDATA[An authorization param, authenticating your app to use basic HTTP.]]>
+                        </doc>
+                    </param>
+
                     <param name="auth_token" type="xsd:string" style="query" required="true">
                         <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#delete-save">
                             <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
@@ -1997,6 +2129,12 @@
                 </doc>
 
                 <request>
+                    <param name="auth_basic" type="xsd:integer" style="query" required="false" default="1">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/">
+                            <![CDATA[An authorization param, authenticating your app to use basic HTTP.]]>
+                        </doc>
+                    </param>
+
                     <param name="auth_token" type="xsd:string" style="query" required="true">
                         <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#delete-recommendation">
                             <![CDATA[An authorization token, authenticating your app on behalf of the user.]]>
@@ -2046,6 +2184,12 @@
                 </doc>
 
                 <request>
+                    <param name="auth_basic" type="xsd:integer" style="query" required="false" default="1">
+                        <doc apigee:url="http://hunch.com/developers/v1/docs/">
+                            <![CDATA[An authorization param, authenticating your app to use basic HTTP.]]>
+                        </doc>
+                    </param>
+
                     <param name="calls" type="xsd:string" style="query" required="true">
                         <doc apigee:url="http://hunch.com/developers/v1/docs/reference/#batch">
                             <![CDATA[A JSON array, listing the desired method calls.]]>
