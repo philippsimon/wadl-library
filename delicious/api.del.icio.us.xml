@@ -46,47 +46,46 @@
 
                 <request>
                     <param name="url" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="">
-                            <![CDATA[The url of the item.]]>
+                        <doc apigee:url="http://www.delicious.com/help/api#posts_add">
+                            <![CDATA[The URL of the item.]]>
                         </doc>
                     </param>
 
                     <param name="description" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="">
+                        <doc apigee:url="http://www.delicious.com/help/api#posts_add">
                             <![CDATA[The description of the item.]]>
                         </doc>
                     </param>
 
                     <param name="extended" type="xsd:string" style="query" required="false">
-                        <doc apigee:url="">
+                        <doc apigee:url="http://www.delicious.com/help/api#posts_add">
                             <![CDATA[Notes for the item.]]>
                         </doc>
                     </param>
 
                     <param name="tags" type="xsd:string" style="query" required="false">
-                        <doc apigee:url="">
+                        <doc apigee:url="http://www.delicious.com/help/api#posts_add">
                             <![CDATA[Tags for the item (space delimited).]]>
                         </doc>
                     </param>
 
                     <param name="dt" type="xsd:string" style="query" required="false">
-                        <doc apigee:url="">
-                            <![CDATA[datestamp of the item (format "CCYY-MM-DDThh:mm:ssZ"). Requires a LITERAL "T" and "Z" like in ISO8601 at http://www.cl.cam.ac.uk/~mgk25/iso-time.html for example: "1984-09-01T14:21:31Z"]]>
+                        <doc apigee:url="http://www.delicious.com/help/api#posts_add">
+                            <![CDATA[Datestamp of the item (format "CCYY-MM-DDThh:mm:ssZ"). Requires a LITERAL "T" and "Z" like in ISO8601 at http://www.cl.cam.ac.uk/~mgk25/iso-time.html for example: "1984-09-01T14:21:31Z"]]>
                         </doc>
                     </param>
 
                     <param name="replace" type="xsd:string" style="query" required="false" default="no">
-                        <doc apigee:url="">
+                        <doc apigee:url="http://www.delicious.com/help/api#posts_add">
                             <![CDATA[Don't replace post if given url has already been posted.]]>
                         </doc>
                     </param>
 
-                    <param name="shared" type="xsd:string" style="query" required="false">
-                        <doc apigee:url="">
+                    <param name="shared" type="xsd:string" style="query" required="false" default="no">
+                        <doc apigee:url="http://www.delicious.com/help/api#posts_add">
                           <![CDATA[Make the item private.]]>
                         </doc>
                     </param>
-
                 </request>
 
                 <response>
@@ -111,8 +110,8 @@
 
                 <request>
                     <param name="url" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="">
-                            <![CDATA[The url of the item.]]>
+                        <doc apigee:url="http://www.delicious.com/help/api#posts_delete">
+                            <![CDATA[The URL of the item.]]>
                         </doc>
                     </param>
                 </request>
@@ -139,31 +138,31 @@
 
                 <request>
                     <param name="url" type="xsd:string" style="query" required="false">
-                        <doc apigee:url="">
+                        <doc apigee:url="http://www.delicious.com/help/api#posts_get">
                             <![CDATA[Fetch a bookmark for this URL, regardless of date. Note: Be sure to URL-encode the argument value.]]>
                         </doc>
                     </param>
 
                     <param name="hashes" type="xsd:string" style="query" required="false">
-                        <doc apigee:url="">
+                        <doc apigee:url="http://www.delicious.com/help/api#posts_get">
                             <![CDATA[Fetch multiple bookmarks by one or more URL MD5s regardless of date, separated by URL-encoded spaces (ie. '+').]]>
                         </doc>
                     </param>
 
                     <param name="meta" type="xsd:string" style="query" required="false" default="yes">
-                        <doc apigee:url="">
+                        <doc apigee:url="http://www.delicious.com/help/api#posts_get">
                             <![CDATA[Include change detection signatures on each item in a 'meta' attribute. Clients wishing to maintain a synchronized local store of bookmarks should retain the value of this attribute - its value will change when any significant field of the bookmark changes.]]>
                         </doc>
                     </param>
 
                     <param name="tag" type="xsd:string" style="query" required="false">
-                        <doc apigee:url="">
+                        <doc apigee:url="http://www.delicious.com/help/api#posts_get">
                             <![CDATA[Filter by this tag (space delimited).]]>
                         </doc>
                     </param>
 
                     <param name="dt" type="xsd:string" style="query" required="false">
-                        <doc apigee:url="">
+                        <doc apigee:url="http://www.delicious.com/help/api#posts_get">
                             <![CDATA[Filter by this date, defaults to the most recent date on which bookmarks were saved.]]>
                         </doc>
                     </param>
@@ -191,7 +190,7 @@
 
                 <request>
                     <param name="tag" type="xsd:string" style="query" required="false">
-                        <doc apigee:url="">
+                        <doc apigee:url="http://www.delicious.com/help/api#posts_dates">
                             <![CDATA[Filter by this tag.]]>
                         </doc>
                     </param>
@@ -219,13 +218,13 @@
 
                 <request>
                     <param name="tag" type="xsd:string" style="query" required="false">
-                        <doc apigee:url="">
+                        <doc apigee:url="http://www.delicious.com/help/api#posts_recent">
                             <![CDATA[Filter by this tag.]]>
                         </doc>
                     </param>
 
                     <param name="count" type="xsd:integer" style="query" required="false" default="15">
-                        <doc apigee:url="">
+                        <doc apigee:url="http://www.delicious.com/help/api#posts_recent">
                             <![CDATA[Number of items to retrieve (Default:15, Maximum:100).]]>
                         </doc>
                     </param>
@@ -253,37 +252,37 @@
 
                 <request>
                     <param name="results" type="xsd:integer" style="query" required="false">
-                        <doc apigee:url="">
+                        <doc apigee:url="http://www.delicious.com/help/api#posts_all">
                             <![CDATA[Return this many results.]]>
                         </doc>
                     </param>
 
                     <param name="start" type="xsd:integer" style="query" required="false">
-                        <doc apigee:url="">
+                        <doc apigee:url="http://www.delicious.com/help/api#posts_all">
                             <![CDATA[Start returning posts this many results into the set.]]>
                         </doc>
                     </param>
 
                     <param name="meta" type="xsd:string" style="query" required="false" default="yes">
-                        <doc apigee:url="">
+                        <doc apigee:url="http://www.delicious.com/help/api#posts_all">
                             <![CDATA[Include change detection signatures on each item in a 'meta' attribute. Clients wishing to maintain a synchronized local store of bookmarks should retain the value of this attribute - its value will change when any significant field of the bookmark changes.]]>
                         </doc>
                     </param>
 
                     <param name="tag" type="xsd:string" style="query" required="false">
-                        <doc apigee:url="">
+                        <doc apigee:url="http://www.delicious.com/help/api#posts_all">
                             <![CDATA[Filter by this tag.]]>
                         </doc>
                     </param>
 
                     <param name="fromdt" type="xsd:string" style="query" required="false">
-                        <doc apigee:url="">
+                        <doc apigee:url="http://www.delicious.com/help/api#posts_all">
                             <![CDATA[Filter for posts on this date or later.]]>
                         </doc>
                     </param>
 
                     <param name="todt" type="xsd:string" style="query" required="false">
-                        <doc apigee:url="">
+                        <doc apigee:url="http://www.delicious.com/help/api#posts_all">
                             <![CDATA[Filter for posts on this date or earlier.]]>
                         </doc>
                     </param>
@@ -319,6 +318,7 @@
             <method id="postSuggest" name="GET" apigee:displayName="posts/suggest">
                 <apigee:tags>
                     <apigee:tag primary="true">Posts</apigee:tag>
+                    <apigee:tag>Tags</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -331,7 +331,7 @@
 
                 <request>
                     <param name="url" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="">
+                        <doc apigee:url="http://www.delicious.com/help/api#posts_suggest">
                             <![CDATA[URL for which you'd like suggestions.]]>
                         </doc>
                     </param>
@@ -381,7 +381,7 @@
 
                 <request>
                     <param name="tag" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="">
+                        <doc apigee:url="http://www.delicious.com/help/api#tags_delete">
                             <![CDATA[Tag to delete.]]>
                         </doc>
                     </param>
@@ -409,13 +409,13 @@
 
                 <request>
                     <param name="old" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="">
+                        <doc apigee:url="http://www.delicious.com/help/api#tags_rename">
                             <![CDATA[Tag to rename.]]>
                         </doc>
                     </param>
 
                     <param name="new" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="">
+                        <doc apigee:url="http://www.delicious.com/help/api#tags_rename">
                             <![CDATA[New tag name.]]>
                         </doc>
                     </param>
@@ -445,7 +445,7 @@
 
                 <request>
                     <param name="bundle" type="xsd:string" style="query" required="false">
-                        <doc apigee:url="">
+                        <doc apigee:url="http://www.delicious.com/help/api#tags_bundles_all">
                             <![CDATA[Fetch just the named bundle.]]>
                         </doc>
                     </param>
@@ -473,13 +473,13 @@
 
                 <request>
                     <param name="bundle" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="">
+                        <doc apigee:url="http://www.delicious.com/help/api#tags_bundles_set">
                             <![CDATA[Name of the bundle.]]>
                         </doc>
                     </param>
 
                     <param name="tags" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="">
+                        <doc apigee:url="http://www.delicious.com/help/api#tags_bundles_set">
                             <![CDATA[List of tags, space-separated.]]>
                         </doc>
                     </param>
@@ -507,7 +507,7 @@
 
                 <request>
                     <param name="bundle" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="">
+                        <doc apigee:url="http://www.delicious.com/help/api#tags_bundles_delete">
                             <![CDATA[Name of the bundle.]]>
                         </doc>
                     </param>
