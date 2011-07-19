@@ -11,7 +11,7 @@
         <!-- Posts -->
 
         <resource path="posts/update">
-            <method id="postUpdate" name="GET" apigee:displayName="PostUpdate">
+            <method id="postUpdate" name="GET" apigee:displayName="posts/update">
                 <apigee:tags>
                     <apigee:tag primary="true">Update</apigee:tag>
                 </apigee:tags>
@@ -20,19 +20,18 @@
 
                 <apigee:example url="posts/update"/>
 
-                <doc title="PostUpdate" apigee:url="http://www.delicious.com/help/api#posts_update">
+                <doc title="posts/update" apigee:url="http://www.delicious.com/help/api#posts_update">
                     <![CDATA[Returns the last update time for the user, as well as the number of new items in the user's inbox since it was last visited.]]>
                 </doc>
-
 
                 <response>
                     <representation mediaType="application/json"/>
                 </response>
             </method>
-          </resource>
+        </resource>
 
         <resource path="posts/add">
-            <method id="postAdd" name="GET" apigee:displayName="PostAdd">
+            <method id="postAdd" name="GET" apigee:displayName="posts/add">
                 <apigee:tags>
                     <apigee:tag primary="true">Posts</apigee:tag>
                 </apigee:tags>
@@ -41,7 +40,7 @@
 
                 <apigee:example url="posts/add"/>
 
-                <doc title="PostAdd" apigee:url="http://www.delicious.com/help/api#posts_add">
+                <doc title="posts/add" apigee:url="http://www.delicious.com/help/api#posts_add">
                     <![CDATA[Add a post to Delicious.]]>
                 </doc>
 
@@ -90,17 +89,14 @@
 
                 </request>
 
-
-
                 <response>
                     <representation mediaType="application/json"/>
                 </response>
             </method>
-          </resource>
-
+        </resource>
 
         <resource path="posts/delete">
-            <method id="postDelete" name="GET" apigee:displayName="PostDelete">
+            <method id="postDelete" name="GET" apigee:displayName="posts/delete">
                 <apigee:tags>
                     <apigee:tag primary="true">Posts</apigee:tag>
                 </apigee:tags>
@@ -109,7 +105,7 @@
 
                 <apigee:example url="posts/delete"/>
 
-                <doc title="PostDelete" apigee:url="http://www.delicious.com/help/api#posts_delete">
+                <doc title="posts/delete" apigee:url="http://www.delicious.com/help/api#posts_delete">
                     <![CDATA[Delete a post from Delicious.]]>
                 </doc>
 
@@ -120,14 +116,15 @@
                         </doc>
                     </param>
                 </request>
+
                 <response>
                     <representation mediaType="application/json"/>
                 </response>
             </method>
-          </resource>
+        </resource>
 
         <resource path="posts/get">
-            <method id="postGet" name="GET" apigee:displayName="PostGet">
+            <method id="postGet" name="GET" apigee:displayName="posts/get">
                 <apigee:tags>
                     <apigee:tag primary="true">Posts</apigee:tag>
                 </apigee:tags>
@@ -136,7 +133,7 @@
 
                 <apigee:example url="posts/get"/>
 
-                <doc title="PostGet" apigee:url="http://www.delicious.com/help/api#posts_get">
+                <doc title="posts/get" apigee:url="http://www.delicious.com/help/api#posts_get">
                     <![CDATA[Returns one or more posts on a single day matching the arguments. If no date or url is given, most recent date will be used.]]>
                 </doc>
 
@@ -170,18 +167,44 @@
                             <![CDATA[Filter by this date, defaults to the most recent date on which bookmarks were saved.]]>
                         </doc>
                     </param>
-
                 </request>
 
                 <response>
                     <representation mediaType="application/json"/>
                 </response>
             </method>
-          </resource>
+        </resource>
 
+        <resource path="posts/dates">
+            <method id="postDates" name="GET" apigee:displayName="posts/dates">
+                <apigee:tags>
+                    <apigee:tag primary="true">Posts</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="posts/dates"/>
+
+                <doc title="posts/dates" apigee:url="http://www.delicious.com/help/api#posts_dates">
+                    <![CDATA[Returns a list of dates with the number of posts at each date.]]>
+                </doc>
+
+                <request>
+                    <param name="tag" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="">
+                            <![CDATA[Filter by this tag.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
 
         <resource path="posts/recent">
-            <method id="postRecent" name="GET" apigee:displayName="PostRecent">
+            <method id="postRecent" name="GET" apigee:displayName="posts/recent">
                 <apigee:tags>
                     <apigee:tag primary="true">Posts</apigee:tag>
                 </apigee:tags>
@@ -190,7 +213,7 @@
 
                 <apigee:example url="posts/recent"/>
 
-                <doc title="PostRecent" apigee:url="http://www.delicious.com/help/api#posts_recent">
+                <doc title="posts/recent" apigee:url="http://www.delicious.com/help/api#posts_recent">
                     <![CDATA[Returns a list of the most recent posts, filtered by argument. Maximum 100.]]>
                 </doc>
 
@@ -206,48 +229,16 @@
                             <![CDATA[Number of items to retrieve (Default:15, Maximum:100).]]>
                         </doc>
                     </param>
-
                 </request>
 
                 <response>
                     <representation mediaType="application/json"/>
                 </response>
             </method>
-          </resource>
-
-
-        <resource path="posts/dates">
-            <method id="postDates" name="GET" apigee:displayName="PostDates">
-                <apigee:tags>
-                    <apigee:tag primary="true">Posts</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="posts/dates"/>
-
-                <doc title="PostDates" apigee:url="http://www.delicious.com/help/api#posts_dates">
-                    <![CDATA[Returns a list of dates with the number of posts at each date.]]>
-                </doc>
-
-                <request>
-                    <param name="tag" type="xsd:string" style="query" required="false">
-                        <doc apigee:url="">
-                            <![CDATA[Filter by this tag.]]>
-                        </doc>
-                    </param>
-
-                </request>
-
-                <response>
-                    <representation mediaType="application/json"/>
-                </response>
-            </method>
-          </resource>
-
+        </resource>
 
         <resource path="posts/all">
-            <method id="postAll" name="GET" apigee:displayName="PostAll">
+            <method id="postAll" name="GET" apigee:displayName="posts/all">
                 <apigee:tags>
                     <apigee:tag primary="true">Posts</apigee:tag>
                 </apigee:tags>
@@ -256,7 +247,7 @@
 
                 <apigee:example url="posts/all"/>
 
-                <doc title="PostAll" apigee:url="http://www.delicious.com/help/api#posts_all">
+                <doc title="posts/all" apigee:url="http://www.delicious.com/help/api#posts_all">
                     <![CDATA[Returns all posts. Please use sparingly. Call the update function to see if you need to fetch this at all.]]>
                 </doc>
 
@@ -296,18 +287,16 @@
                             <![CDATA[Filter for posts on this date or earlier.]]>
                         </doc>
                     </param>
-
                 </request>
 
                 <response>
                     <representation mediaType="application/json"/>
                 </response>
             </method>
-          </resource>
-
+        </resource>
 
         <resource path="posts/all?hashes">
-            <method id="postAllHashes" name="GET" apigee:displayName="PostAllHashes">
+            <method id="postAllHashes" name="GET" apigee:displayName="posts/all?hashes">
                 <apigee:tags>
                     <apigee:tag primary="true">Posts</apigee:tag>
                 </apigee:tags>
@@ -316,7 +305,7 @@
 
                 <apigee:example url="posts/all?hashes"/>
 
-                <doc title="PostAllHashes" apigee:url="http://www.delicious.com/help/api#posts_all_hashes">
+                <doc title="posts/all?hashes" apigee:url="http://www.delicious.com/help/api#posts_all_hashes">
                     <![CDATA[Returns a change manifest of all posts. Call the update function to see if you need to fetch this at all.]]>
                 </doc>
 
@@ -324,11 +313,10 @@
                     <representation mediaType="application/json"/>
                 </response>
             </method>
-          </resource>
-
+        </resource>
 
         <resource path="posts/suggest">
-            <method id="postSuggest" name="GET" apigee:displayName="PostSuggest">
+            <method id="postSuggest" name="GET" apigee:displayName="posts/suggest">
                 <apigee:tags>
                     <apigee:tag primary="true">Posts</apigee:tag>
                 </apigee:tags>
@@ -337,7 +325,7 @@
 
                 <apigee:example url="posts/suggest"/>
 
-                <doc title="PostSuggest" apigee:url="http://www.delicious.com/help/api#posts_suggest">
+                <doc title="posts/suggest" apigee:url="http://www.delicious.com/help/api#posts_suggest">
                     <![CDATA[Returns a list of popular tags, recommended tags and network tags for a user.]]>
                 </doc>
 
@@ -347,18 +335,18 @@
                             <![CDATA[URL for which you'd like suggestions.]]>
                         </doc>
                     </param>
-
                 </request>
 
                 <response>
                     <representation mediaType="application/json"/>
                 </response>
             </method>
-          </resource>
+        </resource>
 
+        <!-- Tags -->
 
         <resource path="tags/get">
-            <method id="tagsGet" name="GET" apigee:displayName="TagsGet">
+            <method id="tagsGet" name="GET" apigee:displayName="tags/get">
                 <apigee:tags>
                     <apigee:tag primary="true">Tags</apigee:tag>
                 </apigee:tags>
@@ -367,7 +355,7 @@
 
                 <apigee:example url="tags/get"/>
 
-                <doc title="TagsGet" apigee:url="http://www.delicious.com/help/api#tags_get">
+                <doc title="tags/get" apigee:url="http://www.delicious.com/help/api#tags_get">
                     <![CDATA[Returns a list of tags and number of times used by a user.]]>
                 </doc>
 
@@ -375,11 +363,10 @@
                     <representation mediaType="application/json"/>
                 </response>
             </method>
-          </resource>
-
+        </resource>
 
         <resource path="tags/delete">
-            <method id="tagsDelete" name="GET" apigee:displayName="TagsDelete">
+            <method id="tagsDelete" name="GET" apigee:displayName="tags/delete">
                 <apigee:tags>
                     <apigee:tag primary="true">Tags</apigee:tag>
                 </apigee:tags>
@@ -388,7 +375,7 @@
 
                 <apigee:example url="tags/delete"/>
 
-                <doc title="TagsDelete" apigee:url="http://www.delicious.com/help/api#tags_delete">
+                <doc title="tags/delete" apigee:url="http://www.delicious.com/help/api#tags_delete">
                     <![CDATA[Delete an existing tag.]]>
                 </doc>
 
@@ -398,18 +385,16 @@
                             <![CDATA[Tag to delete.]]>
                         </doc>
                     </param>
-
                 </request>
 
                 <response>
                     <representation mediaType="application/json"/>
                 </response>
             </method>
-          </resource>
-
+        </resource>
 
         <resource path="tags/rename">
-            <method id="tagsRename" name="GET" apigee:displayName="TagsRename">
+            <method id="tagsRename" name="GET" apigee:displayName="tags/rename">
                 <apigee:tags>
                     <apigee:tag primary="true">Tags</apigee:tag>
                 </apigee:tags>
@@ -418,7 +403,7 @@
 
                 <apigee:example url="tags/rename"/>
 
-                <doc title="TagsRename" apigee:url="http://www.delicious.com/help/api#tags_rename">
+                <doc title="tags/rename" apigee:url="http://www.delicious.com/help/api#tags_rename">
                     <![CDATA[Rename an existing tag with a new tag name.]]>
                 </doc>
 
@@ -434,27 +419,27 @@
                             <![CDATA[New tag name.]]>
                         </doc>
                     </param>
-
                 </request>
 
                 <response>
                     <representation mediaType="application/json"/>
                 </response>
             </method>
-          </resource>
+        </resource>
 
+        <!-- Tag Bundles -->
 
-          <resource path="tags/bundles/all">
-            <method id="tagBundlesAll" name="GET" apigee:displayName="TagBundlesAll">
+        <resource path="tags/bundles/all">
+            <method id="tagBundlesAll" name="GET" apigee:displayName="tags/bundles/all">
                 <apigee:tags>
-                    <apigee:tag primary="true">TagBundles</apigee:tag>
+                    <apigee:tag primary="true">Tag Bundles</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
 
                 <apigee:example url="tags/bundles/all"/>
 
-                <doc title="TagBundlesAll" apigee:url="http://www.delicious.com/help/api#tags_bundles_all">
+                <doc title="tags/bundles/all" apigee:url="http://www.delicious.com/help/api#tags_bundles_all">
                     <![CDATA[Retrieve all of a user's bundles.]]>
                 </doc>
 
@@ -464,29 +449,26 @@
                             <![CDATA[Fetch just the named bundle.]]>
                         </doc>
                     </param>
-
                 </request>
 
                 <response>
                     <representation mediaType="application/json"/>
                 </response>
             </method>
-          </resource>
+        </resource>
 
-
-          <resource path="tags/bundles/set">
-            <method id="tagBundlesSet" name="GET" apigee:displayName="TagBundlesSet">
+        <resource path="tags/bundles/set">
+            <method id="tagBundlesSet" name="GET" apigee:displayName="tags/bundles/set">
                 <apigee:tags>
-                    <apigee:tag primary="true">TagBundles</apigee:tag>
+                    <apigee:tag primary="true">Tag Bundles</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
 
                 <apigee:example url="tags/bundles/set"/>
 
-                <doc title="TagBundlesSet" apigee:url="http://www.delicious.com/help/api#tags_bundles_set">
-                    <![CDATA[Assign a set of tags to a single bundle, wipes away previous settings for bundle.
-]]>
+                <doc title="tags/bundles/set" apigee:url="http://www.delicious.com/help/api#tags_bundles_set">
+                    <![CDATA[Assign a set of tags to a single bundle, wipes away previous settings for bundle.]]>
                 </doc>
 
                 <request>
@@ -501,27 +483,25 @@
                             <![CDATA[List of tags, space-separated.]]>
                         </doc>
                     </param>
-
                 </request>
 
                 <response>
                     <representation mediaType="application/json"/>
                 </response>
             </method>
-          </resource>
+        </resource>
 
-
-          <resource path="tags/bundles/delete">
-            <method id="tagBundlesDelete" name="GET" apigee:displayName="TagBundlesDelete">
+        <resource path="tags/bundles/delete">
+            <method id="tagBundlesDelete" name="GET" apigee:displayName="tags/bundles/delete">
                 <apigee:tags>
-                    <apigee:tag primary="true">TagBundles</apigee:tag>
+                    <apigee:tag primary="true">Tag Bundles</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
 
                 <apigee:example url="tags/bundles/delete"/>
 
-                <doc title="TagBundlesDelete" apigee:url="http://www.delicious.com/help/api#tags_bundles_delete">
+                <doc title="tags/bundles/delete" apigee:url="http://www.delicious.com/help/api#tags_bundles_delete">
                     <![CDATA[Delete a bundle.]]>
                 </doc>
 
@@ -531,14 +511,13 @@
                             <![CDATA[Name of the bundle.]]>
                         </doc>
                     </param>
-
                 </request>
 
                 <response>
                     <representation mediaType="application/json"/>
                 </response>
             </method>
-          </resource>
+        </resource>
 
     </resources>
 </application>
