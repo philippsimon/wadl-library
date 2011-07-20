@@ -1,0 +1,6 @@
+Known Issues:
+Each request must contain user, password, and app_key parameters so the console is using custom authentication to provide all 3.
+
+Limitations:
+None
+
