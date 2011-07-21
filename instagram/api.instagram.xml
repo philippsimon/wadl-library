@@ -302,7 +302,14 @@
                     <representation mediaType="application/json"/>
                 </response>
             </method>
+        </resource>
 
+        <resource path="users/{user-id}/relationship">
+            <param name="user-id" style="template" required="true">
+                <doc apigee:url="http://instagr.am/developer/endpoints/relationships/">
+                    <![CDATA[The ID of the user to reference.]]>
+                </doc>
+            </param>
             <method id="post_relationship" name="POST" apigee:displayName="users/{user-id}/relationship (POST)">
                 <apigee:tags>
                     <apigee:tag primary="true">Relationships</apigee:tag>
@@ -318,7 +325,9 @@
                 </doc>
 
                 <request>
-                    <param name="action" style="query" required="true">
+                  <representation>
+                    <apigee:payload><![CDATA[action={follow,unfollow,block,unblock,approve,deny}]]></apigee:payload>
+                    <!--<param name="action" style="query" required="true">
                         <doc apigee:url="http://instagr.am/developer/endpoints/relationships/#post_relationship">
                             <![CDATA[An action for the request.]]>
                         </doc>
@@ -328,7 +337,8 @@
                         <option value="unblock"/>
                         <option value="approve"/>
                         <option value="deny"/>
-                    </param>
+                    </param>-->
+                  </representation>
                 </request>
 
 
