@@ -491,12 +491,18 @@
                 </doc>
 
                 <request>
+                  <representation>
+                    <apigee:payload><![CDATA[text=]]></apigee:payload>
+                  </representation>
+                </request>
+
+                <!--                <request>
                     <param name="text" type="xsd:string" style="query" required="true">
                         <doc apigee:url="http://instagr.am/developer/endpoints/comments/#post_media_comments">
                             <![CDATA[Text to post as a comment on the media as specified in media-id.]]>
                         </doc>
                     </param>
-                </request>
+                </request> -->
 
                 <response>
                     <representation mediaType="application/json"/>
@@ -926,7 +932,7 @@
                 </doc>
 
                 <request>
-                    <param name="object" style="query" required="true" default="user" fixed="user">
+                  <!--   <param name="object" style="query" required="true" default="user" fixed="user">
                         <doc apigee:url="http://instagr.am/developer/realtime">
                             <![CDATA[The object you'd like to subscribe to]]>
                         </doc>
@@ -934,7 +940,7 @@
                         <option value="tag"/>
                         <option value="location"/>
                         <option value="geography"/>
-                    </param>
+                    </param> 
 
                     <param name="aspect" type="xsd:string" style="query" required="true" default="media" fixed="media">
                         <doc apigee:url="http://instagr.am/developer/realtime">
@@ -943,9 +949,30 @@
                         <option value="media"/>
                     </param>
 
+                    <param name="callback_url" type="xsd:anyURI" style="query" required="true">
+                        <doc apigee:url="http://instagr.am/developer/realtime">
+                          <![CDATA[URL that must accept GET and POST requests, and behave according to the API docs.]]>
+                        </doc>
+                    </param> -->
+
                     <param name="verify_token" type="xsd:string" style="query" required="true"/>
 
-                    <param name="callback_url" type="xsd:anyURI" style="query" required="true"/>
+                    <param name="client_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://instagr.am/developer/realtime">
+                          <![CDATA[Client ID of your application.]]>
+                        </doc>
+                    </param>
+
+                    <param name="client_secret" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://instagr.am/developer/realtime">
+                          <![CDATA[Client secret of your application.]]>
+                        </doc>
+                    </param>
+
+                  <representation>
+                    <apigee:payload><![CDATA[aspect=media;callback_url={callback URL};object=user;]]></apigee:payload>
+                  </representation>
+
                 </request>
 
                 <response>
@@ -967,6 +994,7 @@
                 </doc>
 
                 <request>
+                  <!--
                     <param name="object" style="query" required="true" default="tag" fixed="tag">
                         <doc apigee:url="http://instagr.am/developer/realtime">
                             <![CDATA[The object you'd like to subscribe to]]>
@@ -984,17 +1012,33 @@
                         <option value="media"/>
                     </param>
 
-                    <param name="verify_token" type="xsd:string" style="query" required="true"/>
 
-                    <param name="callback_url" type="xsd:anyURI" style="query" required="true"/>
+                    <param name="callback_url" type="xsd:anyURI" style="query" required="true"/> 
 
-                    <!-- Tag specific -->
 
                     <param name="object_id" type="xsd:string" style="query" required="true">
                         <doc apigee:url="http://instagr.am/developer/realtime">
                             <![CDATA[The tag to which you'd like to subscribe.]]>
                         </doc>
+                    </param> -->
+
+                    <param name="verify_token" type="xsd:string" style="query" required="true"/>
+
+                    <param name="client_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://instagr.am/developer/realtime">
+                          <![CDATA[Client ID of your application.]]>
+                        </doc>
                     </param>
+
+                    <param name="client_secret" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://instagr.am/developer/realtime">
+                          <![CDATA[Client secret of your application.]]>
+                        </doc>
+                    </param>
+
+                  <representation>
+                    <apigee:payload><![CDATA[aspect=media;callback_url={callback URL};object=tag;object_id={Tag you want to subscribe to};]]></apigee:payload>
+                  </representation>
                 </request>
 
                 <response>
@@ -1016,7 +1060,7 @@
                 </doc>
 
                 <request>
-                    <param name="object" style="query" required="true" default="location" fixed="location">
+                  <!--                    <param name="object" style="query" required="true" default="location" fixed="location">
                         <doc apigee:url="http://instagr.am/developer/realtime">
                             <![CDATA[The object you'd like to subscribe to]]>
                         </doc>
@@ -1033,17 +1077,31 @@
                         <option value="media"/>
                     </param>
 
-                    <param name="verify_token" type="xsd:string" style="query" required="true"/>
-
-                    <param name="callback_url" type="xsd:anyURI" style="query" required="true"/>
-
-                    <!-- Location specific -->
-
                     <param name="object_id" type="xsd:string" style="query" required="true">
                         <doc apigee:url="http://instagr.am/developer/realtime">
                             <![CDATA[The ID of the location to which you'd like to subscribe.]]>
                         </doc>
                     </param>
+
+                    <param name="callback_url" type="xsd:anyURI" style="query" required="true"/> -->
+
+                    <param name="verify_token" type="xsd:string" style="query" required="true"/>
+
+                    <param name="client_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://instagr.am/developer/realtime">
+                          <![CDATA[Client ID of your application.]]>
+                        </doc>
+                    </param>
+
+                    <param name="client_secret" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://instagr.am/developer/realtime">
+                          <![CDATA[Client secret of your application.]]>
+                        </doc>
+                    </param>
+
+                  <representation>
+                    <apigee:payload><![CDATA[aspect=media;callback_url={callback URL};object=location;object_id={Location ID you want to subscribe to};]]></apigee:payload>
+                  </representation>
                 </request>
 
                 <response>
@@ -1065,7 +1123,7 @@
                 </doc>
 
                 <request>
-                    <param name="object" style="query" required="true" default="geography" fixed="geography">
+                  <!--<param name="object" style="query" required="true" default="geography" fixed="geography">
                         <doc apigee:url="http://instagr.am/developer/realtime">
                             <![CDATA[The object you'd like to subscribe to]]>
                         </doc>
@@ -1082,13 +1140,24 @@
                         <option value="media"/>
                     </param>
 
+                    <param name="callback_url" type="xsd:anyURI" style="query" required="true"/>-->
+
                     <param name="verify_token" type="xsd:string" style="query" required="true"/>
 
-                    <param name="callback_url" type="xsd:anyURI" style="query" required="true"/>
+                    <param name="client_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://instagr.am/developer/realtime">
+                          <![CDATA[Client ID of your application.]]>
+                        </doc>
+                    </param>
 
-                    <!-- Geography specific -->
+                    <param name="client_secret" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://instagr.am/developer/realtime">
+                          <![CDATA[Client secret of your application.]]>
+                        </doc>
+                    </param>
 
-                    <param name="lat" type="xsd:double" style="query" required="true">
+
+                    <!--                    <param name="lat" type="xsd:double" style="query" required="true">
                         <doc apigee:url="http://instagr.am/developer/realtime">
                             <![CDATA[The latitude of the center point of the area you'd like to capture data around.]]>
                         </doc>
@@ -1104,7 +1173,11 @@
                         <doc apigee:url="http://instagr.am/developer/realtime">
                             <![CDATA[The radius of the area you'd like to capture data around. Maximum: 5000 meters]]>
                         </doc>
-                    </param>
+                    </param> -->
+
+                  <representation>
+                    <apigee:payload><![CDATA[aspect=media;callback_url={callback URL};object=geography;lat={latitude};lng={Longtitude};radius={radius};]]></apigee:payload>
+                  </representation>
                 </request>
 
                 <response>
@@ -1124,6 +1197,21 @@
                 <doc title="get_subscriptions" apigee:url="http://instagr.am/developer/realtime">
                     <![CDATA[Returns your current subscriptions.]]>
                 </doc>
+
+                <request>
+                    <param name="client_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://instagr.am/developer/realtime">
+                          <![CDATA[Client ID of your application.]]>
+                        </doc>
+                    </param>
+
+                    <param name="client_secret" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://instagr.am/developer/realtime">
+                          <![CDATA[Client secret of your application.]]>
+                        </doc>
+                    </param>
+                </request>
+
 
                 <response>
                     <representation mediaType="application/json"/>
@@ -1159,6 +1247,18 @@
                         <option value="tag"/>
                         <option value="location"/>
                         <option value="geography"/>
+                    </param>
+
+                    <param name="client_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://instagr.am/developer/realtime">
+                          <![CDATA[Client ID of your application.]]>
+                        </doc>
+                    </param>
+
+                    <param name="client_secret" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://instagr.am/developer/realtime">
+                          <![CDATA[Client secret of your application.]]>
+                        </doc>
                     </param>
                 </request>
 
