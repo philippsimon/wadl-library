@@ -74,6 +74,80 @@
             </method>
         </resource>
 
+        <resource path="api/info.{extension}">
+            <param name="extension" type="xsd:string" style="template" required="true">
+                <doc apigee:url="http://github.com/reddit/reddit/wiki/API">
+                    <![CDATA[Format of the data being returned. Accepted values: json (JSON), xml (XML)]]>
+                </doc>
+            </param>
+
+            <method id="get_info" name="GET" apigee:displayName="api/info">
+                <apigee:tags>
+                    <apigee:tag primary="true">Link</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="false"/>
+
+                <apigee:example url="api/info"/>
+
+                <doc title="get_info" apigee:url="http://github.com/reddit/reddit/wiki/API%3A-info.json">
+                    <![CDATA[Returns information about a URL's submissions.]]>
+                </doc>
+
+                <request>
+                    <param name="url" type="xsd:anyURI" style="query" required="false">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[Format: a URL. Specify either this or id.]]>
+                        </doc>
+                    </param>
+
+                    <param name="id" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[Format: a link ID. Specify either this or url.]]>
+                        </doc>
+                    </param>
+
+                    <param name="limit" type="xsd:integer" style="query" required="false">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[Presumably, limits the number of links returned. Format: a number.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="api/expando">
+            <method id="post_expando" name="POST" apigee:displayName="api/expando">
+                <apigee:tags>
+                    <apigee:tag primary="true">Link</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="false"/>
+
+                <apigee:example url="api/expando"/>
+
+                <doc title="post_expando" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Returns expanded link content.]]>
+                </doc>
+
+                <request>
+                    <param name="link_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The link to expand.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="text/html"/>
+                </response>
+            </method>
+        </resource>
+
         <!-- User -->
 
         <resource path="api/login">
@@ -139,8 +213,7 @@
         <resource path="api/me.json">
             <method id="get_me" name="GET" apigee:displayName="api/me.json">
                 <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                    <apigee:tag>User</apigee:tag>
+                    <apigee:tag primary="true">User</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -184,12 +257,240 @@
             </method>
         </resource>
 
+        <resource path="api/register">
+            <method id="post_register" name="POST" apigee:displayName="api/register">
+                <apigee:tags>
+                    <apigee:tag primary="true">User</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/register"/>
+
+                <doc title="post_register" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Registers a new user.]]>
+                </doc>
+
+                <request>
+                    <param name="user" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The username to register.]]>
+                        </doc>
+                    </param>
+
+                    <param name="email" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The user's email address.]]>
+                        </doc>
+                    </param>
+
+                    <param name="passwd" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The user's password.]]>
+                        </doc>
+                    </param>
+
+                    <param name="passwd2" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The user's password, again. Has to be the same as "passwd".]]>
+                        </doc>
+                    </param>
+
+                    <param name="dest" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[Destination?]]>
+                        </doc>
+                    </param>
+
+                    <param name="rem" type="xsd:boolean" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[Format: boolean]]>
+                        </doc>
+                    </param>
+
+                    <param name="reason" type="xsd:boolean" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[Possible accepted values: redirect, subscribe]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="api/delete_user">
+            <method id="post_delete_user" name="POST" apigee:displayName="api/delete_user">
+                <apigee:tags>
+                    <apigee:tag primary="true">User</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/delete_user"/>
+
+                <doc title="post_delete_user" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Permanently deletes the logged-in user.]]>
+                </doc>
+
+                <request>
+                    <param name="areyousure1" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[Verification. All three parameters must be "yes" to delete user successfully. Accepted values: yes, no]]>
+                        </doc>
+                    </param>
+
+                    <param name="areyousure2" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[Verification. All three parameters must be "yes" to delete user successfully. Accepted values: yes, no]]>
+                        </doc>
+                    </param>
+
+                    <param name="areyousure2" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[Verification. All three parameters must be "yes" to delete user successfully. Accepted values: yes, no]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="api/leavemoderator">
+            <method id="post_leavemoderator" name="POST" apigee:displayName="api/leavemoderator">
+                <apigee:tags>
+                    <apigee:tag primary="true">User</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/leavemoderator"/>
+
+                <doc title="post_leavemoderator" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Handles self-removal as moderator from a subreddit as rendered in the subreddit sidebox on any of that subreddit's pages.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[ID?]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="api/leavecontributor">
+            <method id="post_leavecontributor" name="POST" apigee:displayName="api/leavecontributor">
+                <apigee:tags>
+                    <apigee:tag primary="true">User</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/leavecontributor"/>
+
+                <doc title="post_leavecontributor" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Handles self-removal as contributor from a subreddit as rendered in the subreddit sidebox on any of that subreddit's pages.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[ID?]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="api/password">
+            <method id="post_password" name="POST" apigee:displayName="api/password">
+                <apigee:tags>
+                    <apigee:tag primary="true">User</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/password"/>
+
+                <doc title="post_password" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Sends a forgot-password message to an account holder.]]>
+                </doc>
+
+                <request>
+                    <param name="name" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[A username with a valid email address.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="api/resetpassword">
+            <method id="post_resetpassword" name="POST" apigee:displayName="api/resetpassword">
+                <apigee:tags>
+                    <apigee:tag primary="true">User</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/resetpassword"/>
+
+                <doc title="post_resetpassword" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Resets a user's password.]]>
+                </doc>
+
+                <request>
+                    <param name="reset" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[Cache key?]]>
+                        </doc>
+                    </param>
+
+                    <param name="passwd" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The new password.]]>
+                        </doc>
+                    </param>
+
+                    <param name="passwd2" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The new password, again. Must be the same as "passwd".]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
         <!-- Story -->
 
         <resource path="api/submit">
             <method id="submit" name="POST" apigee:displayName="api/submit">
                 <apigee:tags>
-                    <apigee:tag primary="true">Link</apigee:tag>
+                    <apigee:tag primary="true">Story</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -253,7 +554,7 @@
         <resource path="api/share">
             <method id="share" name="POST" apigee:displayName="api/share">
                 <apigee:tags>
-                    <apigee:tag primary="true">Link</apigee:tag>
+                    <apigee:tag primary="true">Story</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -314,56 +615,10 @@
             </method>
         </resource>
 
-        <resource path="api/info.{extension}">
-            <param name="extension" type="xsd:string" style="template" required="true">
-                <doc apigee:url="http://github.com/reddit/reddit/wiki/API">
-                    <![CDATA[Format of the data being returned. Accepted values: json (JSON), xml (XML)]]>
-                </doc>
-            </param>
-
-            <method id="get_info" name="GET" apigee:displayName="api/info">
-                <apigee:tags>
-                    <apigee:tag primary="true">Link</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="false"/>
-
-                <apigee:example url="api/info"/>
-
-                <doc title="get_info" apigee:url="http://github.com/reddit/reddit/wiki/API%3A-info.json">
-                    <![CDATA[Returns information about a URL's submissions.]]>
-                </doc>
-
-                <request>
-                    <param name="url" type="xsd:anyURI" style="query" required="false">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[Format: a URL. Specify either this or id.]]>
-                        </doc>
-                    </param>
-
-                    <param name="id" type="xsd:string" style="query" required="false">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[Format: a link ID. Specify either this or url.]]>
-                        </doc>
-                    </param>
-
-                    <param name="limit" type="xsd:integer" style="query" required="false">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[Presumably, limits the number of links returned. Format: a number.]]>
-                        </doc>
-                    </param>
-                </request>
-
-                <response>
-                    <representation mediaType="application/json"/>
-                </response>
-            </method>
-        </resource>
-
         <resource path="api/vote">
             <method id="post_vote" name="POST" apigee:displayName="api/vote">
                 <apigee:tags>
-                    <apigee:tag primary="true">Link</apigee:tag>
+                    <apigee:tag primary="true">Story</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -400,53 +655,24 @@
             </method>
         </resource>
 
-        <!-- Undocumented -->
-        <!-- (here be dragons) -->
-
-        <!-- ApiminimalController -->
-
-        <!-- ApiController -->
-
-        <!-- api/info is documented -->
-
-        <!-- api/me is documented -->
-
-        <resource path="api/feedback">
-            <method id="post_feedback" name="POST" apigee:displayName="api/feedback">
+        <resource path="api/fetch_title">
+            <method id="post_fetch_title" name="POST" apigee:displayName="api/fetch_title">
                 <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
+                    <apigee:tag primary="true">Story</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="api/feedback"/>
+                <apigee:example url="api/fetch_title"/>
 
-                <doc title="post_feedback" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Sends user feedback to Reddit admins.]]>
+                <doc title="post_fetch_title" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Returns the title for a story, given its URL.]]>
                 </doc>
 
                 <request>
-                    <param name="name" type="xsd:string" style="query" required="true">
+                    <param name="url" type="xsd:anyURL" style="query" required="true">
                         <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[A name.]]>
-                        </doc>
-                    </param>
-
-                    <param name="email" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[An email.]]>
-                        </doc>
-                    </param>
-
-                    <param name="reason" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[A reason for feedback. Accepted values: ad_inq (advertising inquiry), feedback, i18n (internationalization).]]>
-                        </doc>
-                    </param>
-
-                    <param name="text" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The feedback.]]>
+                            <![CDATA[The URL to fetch the title of.]]>
                         </doc>
                     </param>
                 </request>
@@ -457,10 +683,250 @@
             </method>
         </resource>
 
+        <resource path="api/marknsfw">
+            <method id="post_marknsfw" name="POST" apigee:displayName="api/marknsfw">
+                <apigee:tags>
+                    <apigee:tag primary="true">Story</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/marknsfw"/>
+
+                <doc title="post_marknsfw" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Marks a thing as NSFW.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The fullname of the thing to mark.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="api/unmarknsfw">
+            <method id="post_unmarknsfw" name="POST" apigee:displayName="api/unmarknsfw">
+                <apigee:tags>
+                    <apigee:tag primary="true">Story</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/unmarknsfw"/>
+
+                <doc title="post_unmarknsfw" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Marks a thing as SFW (unmarks as NSFW)]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The fullname of the thing to unmark.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="api/save">
+            <method id="post_save" name="POST" apigee:displayName="api/save">
+                <apigee:tags>
+                    <apigee:tag primary="true">Story</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/save"/>
+
+                <doc title="post_save" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Saves a thing/story.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The thing to save.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="api/unsave">
+            <method id="post_unsave" name="POST" apigee:displayName="api/unsave">
+                <apigee:tags>
+                    <apigee:tag primary="true">Story</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/unsave"/>
+
+                <doc title="post_unsave" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Unsaves a thing/story.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The thing to unsave.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <!-- Thing -->
+
+        <resource path="api/del">
+            <method id="post_del" name="POST" apigee:displayName="api/del">
+                <apigee:tags>
+                    <apigee:tag primary="true">Thing</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/del"/>
+
+                <doc title="post_del" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Deletes things.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The fullname of the thing to delete.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="api/editusertext">
+            <method id="post_editusertext" name="POST" apigee:displayName="api/editusertext">
+                <apigee:tags>
+                    <apigee:tag primary="true">Thing</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/editusertext"/>
+
+                <doc title="post_editusertext" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Updates the user text on a thing.]]>
+                </doc>
+
+                <request>
+                    <param name="thing_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The fullname of the thing to update.]]>
+                        </doc>
+                    </param>
+
+                    <param name="text" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The new text.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="api/remove">
+            <method id="post_remove" name="POST" apigee:displayName="api/remove">
+                <apigee:tags>
+                    <apigee:tag primary="true">Thing</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/remove"/>
+
+                <doc title="post_remove" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Removes a thing.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The thing to remove.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="api/approve">
+            <method id="post_approve" name="POST" apigee:displayName="api/approve">
+                <apigee:tags>
+                    <apigee:tag primary="true">Thing</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/approve"/>
+
+                <doc title="post_approve" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Approves a thing.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The thing to approve.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="api/distinguish">
+            <method id="post_distinguish" name="POST" apigee:displayName="api/distinguish">
+                <apigee:tags>
+                    <apigee:tag primary="true">Thing</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/distinguish"/>
+
+                <doc title="post_distinguish" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Distinguishes a thing.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The thing to distinguish.]]>
+                        </doc>
+                    </param>
+
+                    <param name="how" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[Accepted values: yes, no, admin.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
+        <!-- Message -->
+
         <resource path="api/compose">
             <method id="post_compose" name="POST" apigee:displayName="api/compose">
                 <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
+                    <apigee:tag primary="true">Message</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -503,123 +969,200 @@
             </method>
         </resource>
 
-        <!-- api/submit is (somewhat) documented -->
-
-        <resource path="api/fetch_title">
-            <method id="post_fetch_title" name="POST" apigee:displayName="api/fetch_title">
+        <resource path="api/collapse_message">
+            <method id="post_collapse_message" name="POST" apigee:displayName="api/collapse_message">
                 <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                    <apigee:tag>Link</apigee:tag>
+                    <apigee:tag primary="true">Message</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="api/fetch_title"/>
+                <apigee:example url="api/collapse_message"/>
 
-                <doc title="post_fetch_title" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Returns the title for a story, given its URL.]]>
-                </doc>
-
-                <request>
-                    <param name="url" type="xsd:anyURL" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The URL to fetch the title of.]]>
-                        </doc>
-                    </param>
-                </request>
-
-                <response>
-                    <representation mediaType="application/json"/>
-                </response>
-            </method>
-        </resource>
-
-        <!-- api/login is (somewhat) documented -->
-
-        <resource path="api/register">
-            <method id="post_register" name="POST" apigee:displayName="api/register">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                    <apigee:tag>User</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="api/register"/>
-
-                <doc title="post_register" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Registers a new user.]]>
-                </doc>
-
-                <request>
-                    <param name="user" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The username to register.]]>
-                        </doc>
-                    </param>
-
-                    <param name="email" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The user's email address.]]>
-                        </doc>
-                    </param>
-
-                    <param name="passwd" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The user's password.]]>
-                        </doc>
-                    </param>
-
-                    <param name="passwd2" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The user's password, again. Has to be the same as "passwd".]]>
-                        </doc>
-                    </param>
-
-                    <param name="dest" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[Destination?]]>
-                        </doc>
-                    </param>
-
-                    <param name="rem" type="xsd:boolean" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[Format: boolean]]>
-                        </doc>
-                    </param>
-
-                    <param name="reason" type="xsd:boolean" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[Possible accepted values: redirect, subscribe]]>
-                        </doc>
-                    </param>
-                </request>
-
-                <response>
-                    <representation mediaType="application/json"/>
-                </response>
-            </method>
-        </resource>
-
-        <resource path="api/leavemoderator">
-            <method id="post_leavemoderator" name="POST" apigee:displayName="api/leavemoderator">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                    <apigee:tag>User</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="api/leavemoderator"/>
-
-                <doc title="post_leavemoderator" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Handles self-removal as moderator from a subreddit as rendered in the subreddit sidebox on any of that subreddit's pages.]]>
+                <doc title="post_collapse_message" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Collapses a message.]]>
                 </doc>
 
                 <request>
                     <param name="id" type="xsd:string" style="query" required="true">
                         <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[ID?]]>
+                            <![CDATA[A list of messages to collapse.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="api/uncollapse_message">
+            <method id="post_uncollapse_message" name="POST" apigee:displayName="api/uncollapse_message">
+                <apigee:tags>
+                    <apigee:tag primary="true">Message</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/uncollapse_message"/>
+
+                <doc title="post_uncollapse_message" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Collapses a message.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[A list of messages to uncollapse.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="api/unread_message">
+            <method id="post_unread_message" name="POST" apigee:displayName="api/unread_message">
+                <apigee:tags>
+                    <apigee:tag primary="true">Message</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/unread_message"/>
+
+                <doc title="post_unread_message" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Mark a message as unread.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The message to mark as unread.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="api/read_message">
+            <method id="post_read_message" name="POST" apigee:displayName="api/read_message">
+                <apigee:tags>
+                    <apigee:tag primary="true">Message</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/read_message"/>
+
+                <doc title="post_read_message" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Mark a message as read.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The message to mark as read.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="api/hide_message">
+            <method id="post_hide_message" name="POST" apigee:displayName="api/hide_message">
+                <apigee:tags>
+                    <apigee:tag primary="true">Message</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/hide_message"/>
+
+                <doc title="post_hide_message" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Hides a message.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The message to hide.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="api/unhide_message">
+            <method id="post_unhide_message" name="POST" apigee:displayName="api/unhide_message">
+                <apigee:tags>
+                    <apigee:tag primary="true">Message</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/unhide_message"/>
+
+                <doc title="post_unhide_message" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Unhides a message.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The message to unhide.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="api/moremessages">
+            <method id="post_moremessages" name="POST" apigee:displayName="api/moremessages">
+                <apigee:tags>
+                    <apigee:tag primary="true">Message</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/moremessages"/>
+
+                <doc title="post_moremessages" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Retrieves more messages by parent.]]>
+                </doc>
+
+                <request>
+                    <param name="parent_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The message parent.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <!-- Comment -->
+
+        <resource path="api/comment">
+            <method id="post_comment" name="POST" apigee:displayName="api/comment">
+                <apigee:tags>
+                    <apigee:tag primary="true">Comment</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/comment"/>
+
+                <doc title="post_comment" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Posts a comment.]]>
+                </doc>
+
+                <request>
+                    <param name="parent" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The thing which is the parent of the new comment.]]>
+                        </doc>
+                    </param>
+
+                    <param name="text" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The text of the new comment.]]>
                         </doc>
                     </param>
                 </request>
@@ -630,25 +1173,48 @@
             </method>
         </resource>
 
-        <resource path="api/leavecontributor">
-            <method id="post_leavecontributor" name="POST" apigee:displayName="api/leavecontributor">
+        <resource path="api/morechildren">
+            <method id="post_morechildren" name="POST" apigee:displayName="api/morechildren">
                 <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                    <apigee:tag>User</apigee:tag>
+                    <apigee:tag primary="true">Comment</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="api/leavecontributor"/>
+                <apigee:example url="api/morechildren"/>
 
-                <doc title="post_leavecontributor" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Handles self-removal as contributor from a subreddit as rendered in the subreddit sidebox on any of that subreddit's pages.]]>
+                <doc title="post_morechildren" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Retrieves more comment children.]]>
                 </doc>
 
                 <request>
+                    <param name="link_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The id of the link to get the comments for.]]>
+                        </doc>
+                    </param>
+
+                    <param name="where" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[Comment sorting option.]]>
+                        </doc>
+                    </param>
+
+                    <param name="children" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[Children comment IDs.]]>
+                        </doc>
+                    </param>
+
+                    <param name="pv_hex" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[Maximum 40 characters?]]>
+                        </doc>
+                    </param>
+
                     <param name="id" type="xsd:string" style="query" required="true">
                         <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[ID?]]>
+                            <![CDATA[Some kind of ID.]]>
                         </doc>
                     </param>
                 </request>
@@ -659,54 +1225,12 @@
             </method>
         </resource>
 
-        <resource path="api/unfriend">
-            <method id="post_unfriend" name="POST" apigee:displayName="api/unfriend">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                    <apigee:tag>User</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="api/unfriend"/>
-
-                <doc title="post_unfriend" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Handles removal of a friend (a user-user relation) or removal of a user's privileges from a subreddit (a user-subreddit relation).  The user can either be passed in by name (name) or by fullname (id).  'container' will either be the current user or the subreddit.]]>
-                </doc>
-
-                <request>
-                    <param name="name" type="xsd:string" style="query" required="false">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The user's name.]]>
-                        </doc>
-                    </param>
-
-                    <param name="id" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The user's fullname.]]>
-                        </doc>
-                    </param>
-
-                    <param name="container" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[Either the current user or the subreddit.]]>
-                        </doc>
-                    </param>
-
-                    <param name="type" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[Accepted values: friend, moderator, contributor, banned]]>
-                        </doc>
-                    </param>
-                </request>
-            </method>
-        </resource>
+        <!-- Friends -->
 
         <resource path="api/friend">
             <method id="post_friend" name="POST" apigee:displayName="api/friend">
                 <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                    <apigee:tag>User</apigee:tag>
+                    <apigee:tag primary="true">Friend</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -749,11 +1273,52 @@
             </method>
         </resource>
 
+        <resource path="api/unfriend">
+            <method id="post_unfriend" name="POST" apigee:displayName="api/unfriend">
+                <apigee:tags>
+                    <apigee:tag primary="true">Friend</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/unfriend"/>
+
+                <doc title="post_unfriend" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Handles removal of a friend (a user-user relation) or removal of a user's privileges from a subreddit (a user-subreddit relation).  The user can either be passed in by name (name) or by fullname (id).  'container' will either be the current user or the subreddit.]]>
+                </doc>
+
+                <request>
+                    <param name="name" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The user's name.]]>
+                        </doc>
+                    </param>
+
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The user's fullname.]]>
+                        </doc>
+                    </param>
+
+                    <param name="container" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[Either the current user or the subreddit.]]>
+                        </doc>
+                    </param>
+
+                    <param name="type" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[Accepted values: friend, moderator, contributor, banned]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
         <resource path="api/friend_note">
             <method id="post_friend_note" name="POST" apigee:displayName="api/friend_note">
                 <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                    <apigee:tag>User</apigee:tag>
+                    <apigee:tag primary="true">Friend</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -784,11 +1349,12 @@
             </method>
         </resource>
 
+        <!-- Preferences -->
+
         <resource path="api/update">
             <method id="post_update" name="POST" apigee:displayName="api/update">
                 <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                    <apigee:tag>User</apigee:tag>
+                    <apigee:tag primary="true">Preferences</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -837,383 +1403,44 @@
             </method>
         </resource>
 
-        <resource path="api/delete_user">
-            <method id="post_delete_user" name="POST" apigee:displayName="api/delete_user">
+        <resource path="api/tb_commentspanel_show">
+            <method id="post_tb_commentspanel_show" name="POST" apigee:displayName="api/tb_commentspanel_show">
                 <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                    <apigee:tag>User</apigee:tag>
+                    <apigee:tag primary="true">Preferences</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="api/delete_user"/>
+                <apigee:example url="api/tb_commentspanel_show"/>
 
-                <doc title="post_delete_user" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Permanently deletes the logged-in user.]]>
+                <doc title="post_tb_commentspanel_show" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Turns on the preference to show comments panel.]]>
                 </doc>
-
-                <request>
-                    <param name="areyousure1" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[Verification. All three parameters must be "yes" to delete user successfully. Accepted values: yes, no]]>
-                        </doc>
-                    </param>
-
-                    <param name="areyousure2" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[Verification. All three parameters must be "yes" to delete user successfully. Accepted values: yes, no]]>
-                        </doc>
-                    </param>
-
-                    <param name="areyousure2" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[Verification. All three parameters must be "yes" to delete user successfully. Accepted values: yes, no]]>
-                        </doc>
-                    </param>
-                </request>
-
-                <response>
-                    <representation mediaType="application/json"/>
-                </response>
             </method>
         </resource>
 
-        <resource path="api/del">
-            <method id="post_del" name="POST" apigee:displayName="api/del">
+        <resource path="api/tb_commentspanel_hide">
+            <method id="post_tb_commentspanel_hide" name="POST" apigee:displayName="api/tb_commentspanel_hide">
                 <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
+                    <apigee:tag primary="true">Preferences</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="api/del"/>
+                <apigee:example url="api/tb_commentspanel_hide"/>
 
-                <doc title="post_del" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Deletes things.]]>
+                <doc title="post_tb_commentspanel_hide" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Turns off the preference to show comments panel.]]>
                 </doc>
-
-                <request>
-                    <param name="id" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The fullname of the thing to delete.]]>
-                        </doc>
-                    </param>
-                </request>
             </method>
         </resource>
 
-        <resource path="api/marknsfw">
-            <method id="post_marknsfw" name="POST" apigee:displayName="api/marknsfw">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                    <apigee:tag>Link</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="api/marknsfw"/>
-
-                <doc title="post_marknsfw" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Marks a thing as NSFW.]]>
-                </doc>
-
-                <request>
-                    <param name="id" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The fullname of the thing to mark.]]>
-                        </doc>
-                    </param>
-                </request>
-            </method>
-        </resource>
-
-        <resource path="api/unmarknsfw">
-            <method id="post_unmarknsfw" name="POST" apigee:displayName="api/unmarknsfw">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                    <apigee:tag>Link</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="api/unmarknsfw"/>
-
-                <doc title="post_unmarknsfw" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Marks a thing as SFW (unmarks as NSFW)]]>
-                </doc>
-
-                <request>
-                    <param name="id" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The fullname of the thing to unmark.]]>
-                        </doc>
-                    </param>
-                </request>
-            </method>
-        </resource>
-
-        <resource path="api/report">
-            <method id="post_report" name="POST" apigee:displayName="api/report">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="api/report"/>
-
-                <doc title="post_report" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[For reporting things.]]>
-                </doc>
-
-                <request>
-                    <param name="id" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The fullname of the thing to report.]]>
-                        </doc>
-                    </param>
-                </request>
-            </method>
-        </resource>
-
-        <resource path="api/editusertext">
-            <method id="post_editusertext" name="POST" apigee:displayName="api/editusertext">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="api/editusertext"/>
-
-                <doc title="post_editusertext" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Updates the user text on a thing.]]>
-                </doc>
-
-                <request>
-                    <param name="thing_id" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The fullname of the thing to update.]]>
-                        </doc>
-                    </param>
-
-                    <param name="text" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The new text.]]>
-                        </doc>
-                    </param>
-                </request>
-
-                <response>
-                    <representation mediaType="application/json"/>
-                </response>
-            </method>
-        </resource>
-
-        <resource path="api/comment">
-            <method id="post_comment" name="POST" apigee:displayName="api/comment">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="api/comment"/>
-
-                <doc title="post_comment" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Posts a comment.]]>
-                </doc>
-
-                <request>
-                    <param name="parent" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The thing which is the parent of the new comment.]]>
-                        </doc>
-                    </param>
-
-                    <param name="text" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The text of the new comment.]]>
-                        </doc>
-                    </param>
-                </request>
-
-                <response>
-                    <representation mediaType="application/json"/>
-                </response>
-            </method>
-        </resource>
-
-        <!-- api/share is (somewhat) documented -->
-
-        <!-- api/vote is documented -->
-
-        <resource path="api/subreddit_stylesheet">
-            <method id="post_subreddit_stylesheet" name="POST" apigee:displayName="api/subreddit_stylesheet">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                    <apigee:tag>Subreddit</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="api/subreddit_stylesheet"/>
-
-                <doc title="post_subreddit_stylesheet" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Updates the CSS for a subreddit.]]>
-                </doc>
-
-                <request>
-                    <param name="stylesheet_contents" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The stylesheet.]]>
-                        </doc>
-                    </param>
-
-                    <param name="op" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[Operation. Accepted values: save, preview]]>
-                        </doc>
-                    </param>
-                </request>
-
-                <response>
-                    <representation mediaType="application/json"/>
-                </response>
-            </method>
-        </resource>
-
-        <resource path="api/delete_sr_img">
-            <method id="post_delete_sr_img" name="POST" apigee:displayName="api/delete_sr_img">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                    <apigee:tag>Subreddit</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="api/delete_sr_img"/>
-
-                <doc title="post_delete_sr_img" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Deletes a subreddit image. Called called upon requested delete on /about/stylesheet. Updates the site's image list, and causes the <li> which wraps the image to be hidden.]]>
-                </doc>
-
-                <request>
-                    <param name="img_name" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The image to delete.]]>
-                        </doc>
-                    </param>
-                </request>
-
-                <response>
-                    <representation mediaType="application/json"/>
-                </response>
-            </method>
-        </resource>
-
-        <resource path="api/delete_sr_header">
-            <method id="post_delete_sr_header" name="POST" apigee:displayName="api/delete_sr_header">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                    <apigee:tag>Subreddit</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="api/delete_sr_header"/>
-
-                <doc title="post_delete_sr_header" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Called when the user request that the header on a subreddit be reset.]]>
-                </doc>
-
-                <request>
-                    <param name="img_name" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The image to delete.]]>
-                        </doc>
-                    </param>
-                </request>
-
-                <response>
-                    <representation mediaType="application/json"/>
-                </response>
-            </method>
-        </resource>
-
-        <resource path="api/upload_sr_img">
-            <method id="get_upload_sr_img" name="GET" apigee:displayName="api/upload_sr_img (GET)">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                    <apigee:tag>Subreddit</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="api/upload_sr_img"/>
-
-                <doc title="get_upload_sr_img" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Completely unnecessary method which exists because safari can be dumb too.  On page reload after an image has been posted in safari, the iframe to which the request posted preserves the URL of the POST, and safari attempts to execute a GET against it.  The iframe is hidden, so what it returns is completely irrelevant.]]>
-                </doc>
-
-                <response>
-                    <representation mediaType="text/plain"/>
-                </response>
-            </method>
-        </resource>
-
-        <resource path="api/upload_sr_img">
-            <method id="post_upload_sr_img" name="POST" apigee:displayName="api/upload_sr_img (POST)">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                    <apigee:tag>Subreddit</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="api/upload_sr_img"/>
-
-                <doc title="post_upload_sr_img" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Called on /about/stylesheet when an image needs to be replaced or uploaded, as well as on /about/edit for updating the header.  Unlike every other POST in this controller, this method does not get called with Ajax but rather is from the original form POSTing to a hidden iFrame.  Unfortunately, this means the response needs to generate an page with a script tag to fire the requisite updates to the parent document, and, more importantly, that we can't use our normal toolkit for passing those responses back. The result of this function is a rendered UploadedImage() object in charge of firing the completedUploadImage() call in JS.]]>
-                </doc>
-
-                <request>
-                    <param name="name" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The name for the image.]]>
-                        </doc>
-                    </param>
-
-                    <param name="formid" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[Form ID. Maximum 100 characters.]]>
-                        </doc>
-                    </param>
-
-                    <param name="header" type="xsd:boolean" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[Whether or not this is a header image? Accepted values: 0, 1]]>
-                        </doc>
-                    </param>
-
-                    <param name="sponsor" type="xsd:boolean" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[Whether or not something is sponsored? Used by admins only. Accepted values: 0, 1]]>
-                        </doc>
-                    </param>
-                </request>
-
-                <response>
-                    <representation mediaType="text/plain"/>
-                </response>
-            </method>
-        </resource>
+        <!-- Subreddit -->
 
         <resource path="api/site_admin">
             <method id="post_site_admin" name="POST" apigee:displayName="api/site_admin">
                 <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                    <apigee:tag>Subreddit</apigee:tag>
+                    <apigee:tag primary="true">Subreddit</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -1328,10 +1555,297 @@
             </method>
         </resource>
 
+        <resource path="api/subreddit_stylesheet">
+            <method id="post_subreddit_stylesheet" name="POST" apigee:displayName="api/subreddit_stylesheet">
+                <apigee:tags>
+                    <apigee:tag primary="true">Subreddit</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/subreddit_stylesheet"/>
+
+                <doc title="post_subreddit_stylesheet" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Updates the CSS for a subreddit.]]>
+                </doc>
+
+                <request>
+                    <param name="stylesheet_contents" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The stylesheet.]]>
+                        </doc>
+                    </param>
+
+                    <param name="op" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[Operation. Accepted values: save, preview]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="api/delete_sr_img">
+            <method id="post_delete_sr_img" name="POST" apigee:displayName="api/delete_sr_img">
+                <apigee:tags>
+                    <apigee:tag primary="true">Subreddit</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/delete_sr_img"/>
+
+                <doc title="post_delete_sr_img" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Deletes a subreddit image. Called called upon requested delete on /about/stylesheet. Updates the site's image list, and causes the <li> which wraps the image to be hidden.]]>
+                </doc>
+
+                <request>
+                    <param name="img_name" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The image to delete.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="api/delete_sr_header">
+            <method id="post_delete_sr_header" name="POST" apigee:displayName="api/delete_sr_header">
+                <apigee:tags>
+                    <apigee:tag primary="true">Subreddit</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/delete_sr_header"/>
+
+                <doc title="post_delete_sr_header" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Called when the user request that the header on a subreddit be reset.]]>
+                </doc>
+
+                <request>
+                    <param name="img_name" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The image to delete.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="api/upload_sr_img">
+            <method id="get_upload_sr_img" name="GET" apigee:displayName="api/upload_sr_img (GET)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Subreddit</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/upload_sr_img"/>
+
+                <doc title="get_upload_sr_img" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Completely unnecessary method which exists because safari can be dumb too.  On page reload after an image has been posted in safari, the iframe to which the request posted preserves the URL of the POST, and safari attempts to execute a GET against it.  The iframe is hidden, so what it returns is completely irrelevant.]]>
+                </doc>
+
+                <response>
+                    <representation mediaType="text/plain"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="api/upload_sr_img">
+            <method id="post_upload_sr_img" name="POST" apigee:displayName="api/upload_sr_img (POST)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Subreddit</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/upload_sr_img"/>
+
+                <doc title="post_upload_sr_img" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Called on /about/stylesheet when an image needs to be replaced or uploaded, as well as on /about/edit for updating the header.  Unlike every other POST in this controller, this method does not get called with Ajax but rather is from the original form POSTing to a hidden iFrame.  Unfortunately, this means the response needs to generate an page with a script tag to fire the requisite updates to the parent document, and, more importantly, that we can't use our normal toolkit for passing those responses back. The result of this function is a rendered UploadedImage() object in charge of firing the completedUploadImage() call in JS.]]>
+                </doc>
+
+                <request>
+                    <param name="name" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The name for the image.]]>
+                        </doc>
+                    </param>
+
+                    <param name="formid" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[Form ID. Maximum 100 characters.]]>
+                        </doc>
+                    </param>
+
+                    <param name="header" type="xsd:boolean" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[Whether or not this is a header image? Accepted values: 0, 1]]>
+                        </doc>
+                    </param>
+
+                    <param name="sponsor" type="xsd:boolean" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[Whether or not something is sponsored? Used by admins only. Accepted values: 0, 1]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="text/plain"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="api/subscribe">
+            <method id="post_subscribe" name="POST" apigee:displayName="api/subscribe">
+                <apigee:tags>
+                    <apigee:tag primary="true">Subreddit</apigee:tag>
+                    <apigee:tag>User</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/subscribe"/>
+
+                <doc title="post_subscribe" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Subscribes or unsubscribes the logged-in user to a subreddit.]]>
+                </doc>
+
+                <request>
+                    <param name="action" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[Accepted values: sub (subscribe), unsub (unsubscribe)]]>
+                        </doc>
+                    </param>
+
+                    <param name="sr" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The subreddit.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="api/search_reddit_names">
+            <method id="post_search_reddit_names" name="POST" apigee:displayName="api/search_reddit_names">
+                <apigee:tags>
+                    <apigee:tag primary="true">Subreddit</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="false"/>
+
+                <apigee:example url="api/search_reddit_names"/>
+
+                <doc title="post_search_reddit_names" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Searches for subreddits with the given query.]]>
+                </doc>
+
+                <request>
+                    <param name="query" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The search query. Maximum 50 characters.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
+        <!-- Other -->
+
+        <resource path="api/feedback">
+            <method id="post_feedback" name="POST" apigee:displayName="api/feedback">
+                <apigee:tags>
+                    <apigee:tag primary="true">Other</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/feedback"/>
+
+                <doc title="post_feedback" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Sends user feedback to Reddit admins.]]>
+                </doc>
+
+                <request>
+                    <param name="name" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[A name.]]>
+                        </doc>
+                    </param>
+
+                    <param name="email" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[An email.]]>
+                        </doc>
+                    </param>
+
+                    <param name="reason" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[A reason for feedback. Accepted values: ad_inq (advertising inquiry), feedback, i18n (internationalization).]]>
+                        </doc>
+                    </param>
+
+                    <param name="text" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The feedback.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="api/report">
+            <method id="post_report" name="POST" apigee:displayName="api/report">
+                <apigee:tags>
+                    <apigee:tag primary="true">Other</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/report"/>
+
+                <doc title="post_report" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Reports a thing.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                            <![CDATA[The fullname of the thing to report.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
         <resource path="api/searchfeedback">
             <method id="post_searchfeedback" name="POST" apigee:displayName="api/searchfeedback">
                 <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
+                    <apigee:tag primary="true">Other</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -1370,360 +1884,10 @@
             </method>
         </resource>
 
-        <resource path="api/remove">
-            <method id="post_remove" name="POST" apigee:displayName="api/remove">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="api/remove"/>
-
-                <doc title="post_remove" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Removes a thing.]]>
-                </doc>
-
-                <request>
-                    <param name="id" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The thing to remove.]]>
-                        </doc>
-                    </param>
-                </request>
-            </method>
-        </resource>
-
-        <resource path="api/approve">
-            <method id="post_approve" name="POST" apigee:displayName="api/approve">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="api/approve"/>
-
-                <doc title="post_approve" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Approves a thing.]]>
-                </doc>
-
-                <request>
-                    <param name="id" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The thing to approve.]]>
-                        </doc>
-                    </param>
-                </request>
-            </method>
-        </resource>
-
-        <resource path="api/distinguish">
-            <method id="post_distinguish" name="POST" apigee:displayName="api/distinguish">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="api/distinguish"/>
-
-                <doc title="post_distinguish" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Distinguishes a thing.]]>
-                </doc>
-
-                <request>
-                    <param name="id" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The thing to distinguish.]]>
-                        </doc>
-                    </param>
-
-                    <param name="how" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[Accepted values: yes, no, admin.]]>
-                        </doc>
-                    </param>
-                </request>
-
-                <response>
-                    <representation mediaType="application/json"/>
-                </response>
-            </method>
-        </resource>
-
-        <resource path="api/save">
-            <method id="post_save" name="POST" apigee:displayName="api/save">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="api/save"/>
-
-                <doc title="post_save" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Saves a thing.]]>
-                </doc>
-
-                <request>
-                    <param name="id" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The thing to save.]]>
-                        </doc>
-                    </param>
-                </request>
-            </method>
-        </resource>
-
-        <resource path="api/unsave">
-            <method id="post_unsave" name="POST" apigee:displayName="api/unsave">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="api/unsave"/>
-
-                <doc title="post_unsave" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Unsaves a thing.]]>
-                </doc>
-
-                <request>
-                    <param name="id" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The thing to unsave.]]>
-                        </doc>
-                    </param>
-                </request>
-            </method>
-        </resource>
-
-        <resource path="api/collapse_message">
-            <method id="post_collapse_message" name="POST" apigee:displayName="api/collapse_message">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="api/collapse_message"/>
-
-                <doc title="post_collapse_message" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Collapses a message.]]>
-                </doc>
-
-                <request>
-                    <param name="id" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[A list of messages to collapse.]]>
-                        </doc>
-                    </param>
-                </request>
-            </method>
-        </resource>
-
-        <resource path="api/uncollapse_message">
-            <method id="post_uncollapse_message" name="POST" apigee:displayName="api/uncollapse_message">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="api/uncollapse_message"/>
-
-                <doc title="post_uncollapse_message" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Collapses a message.]]>
-                </doc>
-
-                <request>
-                    <param name="id" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[A list of messages to uncollapse.]]>
-                        </doc>
-                    </param>
-                </request>
-            </method>
-        </resource>
-
-        <resource path="api/unread_message">
-            <method id="post_unread_message" name="POST" apigee:displayName="api/unread_message">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="api/unread_message"/>
-
-                <doc title="post_unread_message" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Mark a message as unread.]]>
-                </doc>
-
-                <request>
-                    <param name="id" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The message to mark as unread.]]>
-                        </doc>
-                    </param>
-                </request>
-            </method>
-        </resource>
-
-        <resource path="api/read_message">
-            <method id="post_read_message" name="POST" apigee:displayName="api/read_message">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="api/read_message"/>
-
-                <doc title="post_read_message" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Mark a message as read.]]>
-                </doc>
-
-                <request>
-                    <param name="id" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The message to mark as read.]]>
-                        </doc>
-                    </param>
-                </request>
-            </method>
-        </resource>
-
-        <resource path="api/hide_message">
-            <method id="post_hide_message" name="POST" apigee:displayName="api/hide_message">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="api/hide_message"/>
-
-                <doc title="post_hide_message" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Hides a message.]]>
-                </doc>
-
-                <request>
-                    <param name="id" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The message to hide.]]>
-                        </doc>
-                    </param>
-                </request>
-            </method>
-        </resource>
-
-        <resource path="api/unhide_message">
-            <method id="post_unhide_message" name="POST" apigee:displayName="api/unhide_message">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="api/unhide_message"/>
-
-                <doc title="post_unhide_message" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Unhides a message.]]>
-                </doc>
-
-                <request>
-                    <param name="id" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The message to unhide.]]>
-                        </doc>
-                    </param>
-                </request>
-            </method>
-        </resource>
-
-        <resource path="api/moremessages">
-            <method id="post_moremessages" name="POST" apigee:displayName="api/moremessages">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="api/moremessages"/>
-
-                <doc title="post_moremessages" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Retrieves more messages by parent.]]>
-                </doc>
-
-                <request>
-                    <param name="parent_id" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The message parent.]]>
-                        </doc>
-                    </param>
-                </request>
-            </method>
-        </resource>
-
-        <resource path="api/morechildren">
-            <method id="post_morechildren" name="POST" apigee:displayName="api/morechildren">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="api/morechildren"/>
-
-                <doc title="post_morechildren" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Retrieves more comment children.]]>
-                </doc>
-
-                <request>
-                    <param name="link_id" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The id of the link to get the comments for.]]>
-                        </doc>
-                    </param>
-
-                    <param name="where" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[Comment sorting option.]]>
-                        </doc>
-                    </param>
-
-                    <param name="children" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[Children comment IDs.]]>
-                        </doc>
-                    </param>
-
-                    <param name="pv_hex" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[Maximum 40 characters?]]>
-                        </doc>
-                    </param>
-
-                    <param name="id" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[Some kind of ID.]]>
-                        </doc>
-                    </param>
-                </request>
-
-                <response>
-                    <representation mediaType="application/json"/>
-                </response>
-            </method>
-        </resource>
-
         <resource path="api/bookmarklet">
             <method id="get_bookmarklet" name="GET" apigee:displayName="api/bookmarklet">
                 <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
+                    <apigee:tag primary="true">Other</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -1760,141 +1924,10 @@
             </method>
         </resource>
 
-        <resource path="api/password">
-            <method id="post_password" name="POST" apigee:displayName="api/password">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                    <apigee:tag>User</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="api/password"/>
-
-                <doc title="post_password" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Sends a forgot-password message to an account holder.]]>
-                </doc>
-
-                <request>
-                    <param name="name" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[A username with a valid email address.]]>
-                        </doc>
-                    </param>
-                </request>
-
-                <response>
-                    <representation mediaType="application/json"/>
-                </response>
-            </method>
-        </resource>
-
-        <resource path="api/resetpassword">
-            <method id="post_resetpassword" name="POST" apigee:displayName="api/resetpassword">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="api/resetpassword"/>
-
-                <doc title="post_resetpassword" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Resets a user's password.]]>
-                </doc>
-
-                <request>
-                    <param name="reset" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[Cache key?]]>
-                        </doc>
-                    </param>
-
-                    <param name="passwd" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The new password.]]>
-                        </doc>
-                    </param>
-
-                    <param name="passwd2" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The new password, again. Must be the same as "passwd".]]>
-                        </doc>
-                    </param>
-                </request>
-
-                <response>
-                    <representation mediaType="application/json"/>
-                </response>
-            </method>
-        </resource>
-
-        <resource path="api/noframe">
-            <method id="post_noframe" name="POST" apigee:displayName="api/noframe">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="api/noframe"/>
-
-                <doc title="post_noframe" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Removes the Reddit toolbar if it is enabled in the user's preferences]]>
-                </doc>
-            </method>
-        </resource>
-
-        <resource path="api/frame">
-            <method id="post_frame" name="POST" apigee:displayName="api/frame">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="api/frame"/>
-
-                <doc title="post_frame" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Adds the Reddit toolbar if it is disabled in the user's preferences]]>
-                </doc>
-            </method>
-        </resource>
-
-        <resource path="api/subscribe">
-            <method id="post_subscribe" name="POST" apigee:displayName="api/subscribe">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="api/subscribe"/>
-
-                <doc title="post_subscribe" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Subscribes or unsubscribes the logged-in user to a subreddit.]]>
-                </doc>
-
-                <request>
-                    <param name="action" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[Accepted values: sub (subscribe), unsub (unsubscribe)]]>
-                        </doc>
-                    </param>
-
-                    <param name="sr" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The subreddit.]]>
-                        </doc>
-                    </param>
-                </request>
-            </method>
-        </resource>
-
         <resource path="api/edit_error">
             <method id="post_edit_error" name="POST" apigee:displayName="api/edit_error">
                 <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
+                    <apigee:tag primary="true">Other</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -1925,10 +1958,42 @@
             </method>
         </resource>
 
+        <resource path="api/noframe">
+            <method id="post_noframe" name="POST" apigee:displayName="api/noframe">
+                <apigee:tags>
+                    <apigee:tag primary="true">Other</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/noframe"/>
+
+                <doc title="post_noframe" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Removes the Reddit toolbar if it is enabled in the user's preferences]]>
+                </doc>
+            </method>
+        </resource>
+
+        <resource path="api/frame">
+            <method id="post_frame" name="POST" apigee:displayName="api/frame">
+                <apigee:tags>
+                    <apigee:tag primary="true">Other</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/frame"/>
+
+                <doc title="post_frame" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                    <![CDATA[Adds the Reddit toolbar if it is disabled in the user's preferences]]>
+                </doc>
+            </method>
+        </resource>
+
         <resource path="api/gadget">
             <method id="get_gadget" name="GET" apigee:displayName="api/gadget">
                 <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
+                    <apigee:tag primary="true">Other</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
@@ -1955,94 +2020,6 @@
 
                 <response>
                     <representation mediaType="application/json"/>
-                </response>
-            </method>
-        </resource>
-
-        <resource path="api/tb_commentspanel_show">
-            <method id="post_tb_commentspanel_show" name="POST" apigee:displayName="api/tb_commentspanel_show">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="false"/>
-
-                <apigee:example url="api/tb_commentspanel_show"/>
-
-                <doc title="post_tb_commentspanel_show" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Turns on the preference to show comments panel.]]>
-                </doc>
-            </method>
-        </resource>
-
-        <resource path="api/tb_commentspanel_hide">
-            <method id="post_tb_commentspanel_hide" name="POST" apigee:displayName="api/tb_commentspanel_hide">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="false"/>
-
-                <apigee:example url="api/tb_commentspanel_hide"/>
-
-                <doc title="post_tb_commentspanel_hide" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Turns off the preference to show comments panel.]]>
-                </doc>
-            </method>
-        </resource>
-
-        <resource path="api/search_reddit_names">
-            <method id="post_search_reddit_names" name="POST" apigee:displayName="api/search_reddit_names">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="false"/>
-
-                <apigee:example url="api/search_reddit_names"/>
-
-                <doc title="post_search_reddit_names" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Searches for subreddits with the given query.]]>
-                </doc>
-
-                <request>
-                    <param name="query" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The search query. Maximum 50 characters.]]>
-                        </doc>
-                    </param>
-                </request>
-
-                <response>
-                    <representation mediaType="application/json"/>
-                </response>
-            </method>
-        </resource>
-
-        <resource path="api/expando">
-            <method id="post_expando" name="POST" apigee:displayName="api/expando">
-                <apigee:tags>
-                    <apigee:tag primary="true">Undocumented</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="false"/>
-
-                <apigee:example url="api/expando"/>
-
-                <doc title="post_expando" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Returns expanded link content.]]>
-                </doc>
-
-                <request>
-                    <param name="link_id" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The link to expand.]]>
-                        </doc>
-                    </param>
-                </request>
-
-                <response>
-                    <representation mediaType="text/html"/>
                 </response>
             </method>
         </resource>
