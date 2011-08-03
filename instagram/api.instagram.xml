@@ -838,82 +838,6 @@
             </method>
         </resource>
 
-        <!-- Geographies -->
-
-        <resource path="geographies/{media-id}/media/recent">
-            <param name="media-id" style="template" required="true">
-                <doc apigee:url="http://instagr.am/developer/endpoints/geographies/">
-                    <![CDATA[The ID of the media object to reference.]]>
-                </doc>
-            </param>
-
-            <method id="get_geographies_media_recent" name="GET" apigee:displayName="geographies/{media-id}/media/recent">
-                <apigee:tags>
-                    <apigee:tag primary="true">Geographies</apigee:tag>
-                    <apigee:tag>Media</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="geographies/{media-id}/media/recent"/>
-
-                <doc title="get_geographies_media_recent" apigee:url="http://instagr.am/developer/endpoints/geographies/#get_geographies_media_recent">
-                    <![CDATA[Get most recent media from a geography subscription that you created.]]>
-                </doc>
-
-                <response>
-                    <representation mediaType="application/json"/>
-                </response>
-            </method>
-        </resource>
-
-        <!-- Embedding -->
-
-        <resource path="oembed">
-            <method id="oembed" name="GET" apigee:displayName="oembed">
-                <apigee:tags>
-                    <apigee:tag primary="true">Embedding</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="false"/>
-
-                <apigee:example url="oembed"/>
-
-                <doc title="oembed" apigee:url="http://instagr.am/developer/embedding/#oembed">
-                    <![CDATA[Given a short link, returns information about the media associated with that link.]]>
-                </doc>
-
-                <request>
-                    <param name="url" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://instagr.am/developer/embedding/#oembed">
-                            <![CDATA[A short link, like http://instagr.am/p/BUG/]]>
-                        </doc>
-                    </param>
-
-                    <param name="maxwidth" type="xsd:positiveInteger" style="query" required="false">
-                        <doc apigee:url="http://instagr.am/developer/embedding/#oembed">
-                            <![CDATA[Maximum width of returned media]]>
-                        </doc>
-                    </param>
-
-                    <param name="maxheight" type="xsd:positiveInteger" style="query" required="false">
-                        <doc apigee:url="http://instagr.am/developer/embedding/#oembed">
-                            <![CDATA[Maximum height of returned media]]>
-                        </doc>
-                    </param>
-
-                    <param name="callback" type="xsd:string" style="query" required="false">
-                        <doc apigee:url="http://instagr.am/developer/embedding/#oembed">
-                            <![CDATA[A JSON callback to be invoked]]>
-                        </doc>
-                    </param>
-                </request>
-
-                <response>
-                    <representation mediaType="application/json"/>
-                </response>
-            </method>
-        </resource>
 
         <!-- Subscriptions -->
 
@@ -1270,36 +1194,5 @@
 
     </resources>
 
-    <resources base="http://instagr.am/">
-        <resource path="p/{shortcode}/media">
-            <method id="media" name="GET" apigee:displayName="p/{shortcode}/media">
-                <apigee:tags>
-                    <apigee:tag primary="true">Embedding</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="false"/>
-
-                <apigee:example url="p/{shortcode}/media"/>
-
-                <doc title="media" apigee:url="http://instagr.am/developer/embedding/#media">
-                    <![CDATA[Given a short link, issues a redirect to that media's JPG file]]>
-                </doc>
-
-                <request>
-                    <param name="size" type="xsd:string" style="query" required="false" default="m">
-                        <doc apigee:url="http://instagr.am/developer/embedding/#media">
-                            <![CDATA[The size of the image to be returned.]]>
-                        </doc>
-                        <option value="t"/>
-                        <option value="m"/>
-                        <option value="l"/>
-                    </param>
-                </request>
-
-                <response>
-                    <representation mediaType="application/json"/>
-                </response>
-            </method>
-        </resource>
     </resources>
 </application>
