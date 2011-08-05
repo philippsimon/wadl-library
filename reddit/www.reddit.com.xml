@@ -150,7 +150,13 @@
 
         <!-- User -->
 
-        <resource path="api/login">
+        <resource path="api/login/{username}">
+            <param name="username" type="xsd:string" style="template" required="true">
+                <doc apigee:url="https://github.com/reddit/reddit/wiki/API%3A-login">
+                    <![CDATA[The username to log in as.]]>
+                </doc>
+            </param>
+
             <method id="login" name="POST" apigee:displayName="api/login">
                 <apigee:tags>
                     <apigee:tag primary="true">User</apigee:tag>
@@ -158,22 +164,28 @@
 
                 <apigee:authentication required="false"/>
 
-                <apigee:example url="api/login"/>
+                <apigee:example url="api/login/{username}"/>
 
-                <doc title="login" apigee:url="http://github.com/reddit/reddit/wiki/API">
+                <doc title="login" apigee:url="https://github.com/reddit/reddit/wiki/API%3A-login">
                     <![CDATA[Logs a user in. Returns a SetCookie line in the HTTP header, identifying the new session.]]>
                 </doc>
 
                 <request>
-                    <param name="username" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/wiki/API">
-                            <![CDATA[The user's name.]]>
+                    <param name="user" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="https://github.com/reddit/reddit/wiki/API%3A-login">
+                            <![CDATA[The username to authenticate as. This is redundant, but required.]]>
                         </doc>
                     </param>
 
                     <param name="passwd" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/wiki/API">
-                            <![CDATA[The user's password.]]>
+                        <doc apigee:url="https://github.com/reddit/reddit/wiki/API%3A-login">
+                            <![CDATA[The plain-text password for the account.]]>
+                        </doc>
+                    </param>
+
+                    <param name="api_type" type="xsd:string" style="query" required="true" fixed="json" default="json">
+                        <doc apigee:url="https://github.com/reddit/reddit/wiki/API%3A-login">
+                            <![CDATA[Must be "json" for the style of auth used in this documentation.]]>
                         </doc>
                     </param>
                 </request>
@@ -514,12 +526,6 @@
                         </doc>
                     </param>
 
-                    <param name="uh" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/wiki/API">
-                            <![CDATA[The user modhash.]]>
-                        </doc>
-                    </param>
-
                     <param name="kind" type="xsd:string" style="query" required="true">
                         <doc apigee:url="http://github.com/reddit/reddit/wiki/API">
                             <![CDATA[Accepted values: link, self.]]>
@@ -596,12 +602,6 @@
                         </doc>
                     </param>
 
-                    <param name="uh" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/wiki/API">
-                            <![CDATA[The user modhash.]]>
-                        </doc>
-                    </param>
-
                     <param name="renderstyle" type="xsd:string" style="query" required="false">
                         <doc apigee:url="http://github.com/reddit/reddit/wiki/API">
                             <![CDATA[Presumably, the email format. Known accepted value: html]]>
@@ -626,25 +626,19 @@
                 <apigee:example url="api/vote"/>
 
                 <doc title="post_vote" apigee:url="http://github.com/reddit/reddit/wiki/API%3A-vote">
-                    <![CDATA[Casts a vote on a story/comment.]]>
+                    <![CDATA[Casts or rescinds a vote on a story/comment.]]>
                 </doc>
 
                 <request>
-                    <param name="uh" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The user's modhash.]]>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://github.com/reddit/reddit/wiki/API%3A-vote">
+                            <![CDATA[The fullname of the thing you are voting for.]]>
                         </doc>
                     </param>
 
                     <param name="dir" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                        <doc apigee:url="http://github.com/reddit/reddit/wiki/API%3A-vote">
                             <![CDATA[The vote you are going to cast. Use 1 to vote up, 0 to rescind a vote, or -1 to vote down. Note that previous votes are not additive. If the user previously voted 1, voting -1 will change the vote to -1, not 0. Accepted values: -1 (downvote), 0 (neutral-vote), 1 (upvote)]]>
-                        </doc>
-                    </param>
-
-                    <param name="id" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The thing to cast a vote on.]]>
                         </doc>
                     </param>
                 </request>
@@ -741,17 +735,21 @@
 
                 <apigee:example url="api/save"/>
 
-                <doc title="post_save" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Saves a thing/story.]]>
+                <doc title="post_save" apigee:url="https://github.com/reddit/reddit/wiki/API%3A-save">
+                    <![CDATA[Saves a post.]]>
                 </doc>
 
                 <request>
                     <param name="id" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The thing to save.]]>
+                        <doc apigee:url="https://github.com/reddit/reddit/wiki/API%3A-save">
+                            <![CDATA[The fullname of the post to save.]]>
                         </doc>
                     </param>
                 </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
             </method>
         </resource>
 
@@ -765,17 +763,77 @@
 
                 <apigee:example url="api/unsave"/>
 
-                <doc title="post_unsave" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                    <![CDATA[Unsaves a thing/story.]]>
+                <doc title="post_unsave" apigee:url="https://github.com/reddit/reddit/wiki/API%3A-unsave">
+                    <![CDATA[Unsaves a post.]]>
                 </doc>
 
                 <request>
                     <param name="id" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The thing to unsave.]]>
+                        <doc apigee:url="https://github.com/reddit/reddit/wiki/API%3A-unsave">
+                            <![CDATA[The fullname of the post to unsave.]]>
                         </doc>
                     </param>
                 </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="api/hide">
+            <method id="post_hide" name="POST" apigee:displayName="api/hide">
+                <apigee:tags>
+                    <apigee:tag primary="true">Story</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/hide"/>
+
+                <doc title="post_hide" apigee:url="https://github.com/reddit/reddit/wiki/API%3A-hide">
+                    <![CDATA[Hides a post.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="https://github.com/reddit/reddit/wiki/API%3A-hide">
+                            <![CDATA[The fullname of the post to hide.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="api/unhide">
+            <method id="post_unhide" name="POST" apigee:displayName="api/unhide">
+                <apigee:tags>
+                    <apigee:tag primary="true">Story</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/unhide"/>
+
+                <doc title="post_unhide" apigee:url="https://github.com/reddit/reddit/wiki/API%3A-unhide">
+                    <![CDATA[Unhides a post.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="https://github.com/reddit/reddit/wiki/API%3A-unhide">
+                            <![CDATA[The fullname of the post to unhide.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
             </method>
         </resource>
 
@@ -1149,20 +1207,20 @@
 
                 <apigee:example url="api/comment"/>
 
-                <doc title="post_comment" apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
+                <doc title="post_comment" apigee:url="https://github.com/reddit/reddit/wiki/API%3A-comment">
                     <![CDATA[Posts a comment.]]>
                 </doc>
 
                 <request>
                     <param name="parent" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The thing which is the parent of the new comment.]]>
+                        <doc apigee:url="https://github.com/reddit/reddit/wiki/API%3A-comment">
+                            <![CDATA[The fullname of the thing or comment you are commenting on.]]>
                         </doc>
                     </param>
 
                     <param name="text" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[The text of the new comment.]]>
+                        <doc apigee:url="https://github.com/reddit/reddit/wiki/API%3A-comment">
+                            <![CDATA[The markdown content of the comment you are posting.]]>
                         </doc>
                     </param>
                 </request>
@@ -1770,6 +1828,137 @@
             </method>
         </resource>
 
+        <!-- Flair -->
+
+        <resource path="api/flairlist">
+            <method id="flairlist" name="GET" apigee:displayName="api/flairlist">
+                <apigee:tags>
+                    <apigee:tag primary="true">Flair</apigee:tag>
+                    <apigee:tag>Subreddit</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/flairlist"/>
+
+                <doc title="flairlist" apigee:url="https://github.com/reddit/reddit/wiki/API%3A-flairlist">
+                    <![CDATA[Returns the flair assignments of a subreddit.]]>
+                </doc>
+
+                <request>
+                    <param name="r" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="https://github.com/reddit/reddit/wiki/API%3A-flairlist">
+                            <![CDATA[The name of the subreddit.]]>
+                        </doc>
+                    </param>
+
+                    <param name="limit" type="xsd:positiveInteger" style="query" required="true" default="100">
+                        <doc apigee:url="https://github.com/reddit/reddit/wiki/API%3A-flairlist">
+                            <![CDATA[The maximum number of items to return (up to 1000).]]>
+                        </doc>
+                    </param>
+
+                    <param name="after" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="https://github.com/reddit/reddit/wiki/API%3A-flairlist">
+                            <![CDATA[Return entries starting after this user.]]>
+                        </doc>
+                    </param>
+
+                    <param name="before" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="https://github.com/reddit/reddit/wiki/API%3A-flairlist">
+                            <![CDATA[Return entries starting before this user.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="api/flair">
+            <method id="flair" name="GET" apigee:displayName="api/flair">
+                <apigee:tags>
+                    <apigee:tag primary="true">Flair</apigee:tag>
+                    <apigee:tag>User</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/flair"/>
+
+                <doc title="flair" apigee:url="https://github.com/reddit/reddit/wiki/API%3A-flair">
+                    <![CDATA[Sets or clears a user's flair in a subreddit.]]>
+                </doc>
+
+                <request>
+                    <param name="r" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="https://github.com/reddit/reddit/wiki/API%3A-flair">
+                            <![CDATA[The name of the subreddit.]]>
+                        </doc>
+                    </param>
+
+                    <param name="name" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="https://github.com/reddit/reddit/wiki/API%3A-flair">
+                            <![CDATA[The name of the user.]]>
+                        </doc>
+                    </param>
+
+                    <param name="text" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="https://github.com/reddit/reddit/wiki/API%3A-flair">
+                            <![CDATA[The flair text to assign. Note: If an empty string is assigned to both text and css_class, then flair for the user will be removed.]]>
+                        </doc>
+                    </param>
+
+                    <param name="css_class" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="https://github.com/reddit/reddit/wiki/API%3A-flair">
+                            <![CDATA[The CSS class to assign to the flair text. Note: If an empty string is assigned to both text and css_class, then flair for the user will be removed.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="api/flaircsv.json">
+            <method id="flaircsv" name="POST" apigee:displayName="api/flaircsv">
+                <apigee:tags>
+                    <apigee:tag primary="true">Flair</apigee:tag>
+                    <apigee:tag>Subreddit</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="api/flaircsv.json"/>
+
+                <doc title="flaircsv" apigee:url="https://github.com/reddit/reddit/wiki/API%3A-flaircsv">
+                    <![CDATA[Posts a CSV file of flair settings to a subreddit.]]>
+                </doc>
+
+                <request>
+                    <param name="r" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="https://github.com/reddit/reddit/wiki/API%3A-flaircsv">
+                            <![CDATA[The name of the subreddit.]]>
+                        </doc>
+                    </param>
+
+                    <param name="flair_csv" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="https://github.com/reddit/reddit/wiki/API%3A-flaircsv">
+                            <![CDATA[CSV file contents, up to 100 lines.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
         <!-- Other -->
 
         <resource path="api/feedback">
@@ -1899,12 +2088,6 @@
                 </doc>
 
                 <request>
-                    <param name="uh" type="xsd:string" style="query" required="true">
-                        <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
-                            <![CDATA[User modhash.]]>
-                        </doc>
-                    </param>
-
                     <param name="what" type="xsd:string" style="query" required="true">
                         <doc apigee:url="http://github.com/reddit/reddit/blob/master/r2/r2/controllers/api.py">
                             <![CDATA[Action. Accepted values: like, dislike, save.]]>
