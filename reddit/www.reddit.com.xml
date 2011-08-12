@@ -88,7 +88,7 @@
 
                 <apigee:authentication required="false"/>
 
-                <apigee:example url="api/info"/>
+                <apigee:example url="api/info.json"/>
 
                 <doc title="get_info" apigee:url="http://github.com/reddit/reddit/wiki/API%3A-info.json">
                     <![CDATA[Returns information about a URL's submissions.]]>
@@ -230,7 +230,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="api/me"/>
+                <apigee:example url="api/me.json"/>
 
                 <doc title="get_me" apigee:url="http://github.com/reddit/reddit/wiki/API%3A-me.json">
                     <![CDATA[Returns information about the logged-in user.]]>
@@ -242,21 +242,21 @@
             </method>
         </resource>
 
-        <resource path="api/mine.{extension}">
+        <resource path="reddits/mine.{extension}">
             <param name="extension" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://github.com/reddit/reddit/wiki/API">
                     <![CDATA[Format of the data being returned. Accepted values: json (JSON), xml (XML)]]>
                 </doc>
             </param>
 
-            <method id="get_mine" name="GET" apigee:displayName="api/mine.{extension}">
+            <method id="get_mine" name="GET" apigee:displayName="reddits/mine.{extension}">
                 <apigee:tags>
                     <apigee:tag primary="true">User</apigee:tag>
                 </apigee:tags>
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="api/mine.json"/>
+                <apigee:example url="reddits/mine.json"/>
 
                 <doc title="get_mine" apigee:url="http://github.com/reddit/reddit/wiki/API%3A-mine.json">
                     <![CDATA[Returns information about the subreddits the currently logged-in user subscribes to.]]>
