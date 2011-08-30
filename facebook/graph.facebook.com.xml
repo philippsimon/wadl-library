@@ -32,7 +32,7 @@
 
                 <apigee:example url="/search?q={q}"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/api">
+                <doc apigee:url="http://developers.facebook.com/docs/api">
                     <![CDATA[Search over all public objects in the social graph]]>
                 </doc>
             </method>
@@ -61,7 +61,7 @@
 
                 <apigee:example url="/{album}"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/album">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/album">
                      <![CDATA[A photo album]]>
                 </doc>
             </method>
@@ -99,7 +99,7 @@
 
                 <apigee:example url="/{album}/photos"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/album">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/album">
                     <![CDATA[The photos contained in this album]]>
                 </doc>
             </method>
@@ -137,7 +137,7 @@
 
                 <apigee:example url="/{album}/comments"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/album">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/album">
                     <![CDATA[The comments made on this album]]>
                 </doc>
             </method>
@@ -166,7 +166,7 @@
 
                 <apigee:example url="/{event}"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/event">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/event">
                     <![CDATA[Specifies information about an event, including the location, event name, and which invitees plan to attend.]]>
                 </doc>
             </method>
@@ -203,7 +203,7 @@
                 <apigee:authentication required="true"/>
 
                 <apigee:example url="/{event}/feed"/>
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/event">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/event">
                     <![CDATA[This event's wall]]>
                 </doc>
             </method>
@@ -241,7 +241,7 @@
 
                 <apigee:example url="/{event}/noreply"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/event">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/event">
                     <![CDATA[All of the users who have been not yet responded to their invitation to this event]]>
                 </doc>
             </method>
@@ -279,7 +279,7 @@
 
                 <apigee:example url="/{event}/maybe"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/event">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/event">
                     <![CDATA[All of the users who have been responded "Maybe" to their invitation to this event]]>
                 </doc>
             </method>
@@ -317,7 +317,7 @@
 
                 <apigee:example url="/{event}/invited"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/event">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/event">
                     <![CDATA[All of the users who have been invited to this event]]>
                 </doc>
             </method>
@@ -355,7 +355,7 @@
 
                 <apigee:example url="/{event}/attending"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/event">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/event">
                     <![CDATA[All of the users who are attending this event]]>
                 </doc>
             </method>
@@ -393,7 +393,7 @@
 
                 <apigee:example url="/{event}/declined"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/event">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/event">
                     <![CDATA[All of the users who declined their invitation to this event]]>
                 </doc>
             </method>
@@ -424,7 +424,7 @@
 
                 <apigee:example url="/{event}/picture"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/event">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/event">
                     <![CDATA[The event's profile picture]]>
                 </doc>
             </method>
@@ -453,7 +453,7 @@
 
                 <apigee:example url="/{group}"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/group">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/group">
                     <![CDATA[A Facebook group]]>
                 </doc>
             </method>
@@ -491,7 +491,7 @@
 
                 <apigee:example url="/{group}/feed"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/group">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/group">
                     <![CDATA[This group's wall]]>
                 </doc>
             </method>
@@ -529,7 +529,7 @@
 
                 <apigee:example url="/{group}/members"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/group">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/group">
                     <![CDATA[All of the users who are members of this group]]>
                 </doc>
             </method>
@@ -560,7 +560,7 @@
 
                 <apigee:example url="/{group}/picture"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/group">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/group">
                     <![CDATA[The profile picture of this group]]>
                 </doc>
             </method>
@@ -589,7 +589,7 @@
 
                 <apigee:example url="/{link}"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/link">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/link">
                     <![CDATA[A link shared on a user's wall]]>
                 </doc>
             </method>
@@ -627,7 +627,7 @@
 
                 <apigee:example url="/{link}/comments"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/link">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/link">
                     <![CDATA[All of the comments on this link]]>
                 </doc>
             </method>
@@ -656,7 +656,7 @@
 
                 <apigee:example url="/{note}"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/note">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/note">
                     <![CDATA[A Facebook note]]>
                 </doc>
             </method>
@@ -694,7 +694,7 @@
 
                 <apigee:example url="/{note}/comments"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/note">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/note">
                     <![CDATA[All of the comments on this note]]>
                 </doc>
             </method>
@@ -732,7 +732,7 @@
 
                 <apigee:example url="/{note}/likes"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/note">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/note">
                     <![CDATA[People who like the note]]>
                 </doc>
             </method>
@@ -761,7 +761,7 @@
 
                 <apigee:example url="/{page}"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/page">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/page">
                     <![CDATA[Returns a Page]]>
                 </doc>
             </method>
@@ -799,7 +799,7 @@
 
                 <apigee:example url="/{page}/feed"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/page">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/page">
                     <![CDATA[The page's wall]]>
                 </doc>
             </method>
@@ -830,7 +830,7 @@
 
                 <apigee:example url="/{page}/picture"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/page">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/page">
                     <![CDATA[The page's profile picture]]>
                 </doc>
             </method>
@@ -868,7 +868,7 @@
 
                 <apigee:example url="/{page}/tagged"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/page">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/page">
                     <![CDATA[The photos, videos, and posts in which this page has been tagged]]>
                 </doc>
             </method>
@@ -906,7 +906,7 @@
 
                 <apigee:example url="/{page}/links"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/page">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/page">
                     <![CDATA[The page's posted links]]>
                 </doc>
             </method>
@@ -944,7 +944,7 @@
 
                 <apigee:example url="/{page}/photos"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/page">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/page">
                     <![CDATA[The photos this page has uploaded]]>
                 </doc>
             </method>
@@ -982,7 +982,7 @@
 
                 <apigee:example url="/{page}/groups"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/page">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/page">
                     <![CDATA[The groups this page is a member of]]>
                 </doc>
             </method>
@@ -1020,7 +1020,7 @@
 
                 <apigee:example url="/{page}/albums"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/page">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/page">
                     <![CDATA[The photo albums this page has created]]>
                 </doc>
             </method>
@@ -1058,7 +1058,7 @@
 
                 <apigee:example url="/{page}/statuses"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/page">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/page">
                     <![CDATA[The page's status updates]]>
                 </doc>
             </method>
@@ -1096,7 +1096,7 @@
 
                 <apigee:example url="/{page}/videos"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/page">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/page">
                     <![CDATA[The videos this page has created]]>
                 </doc>
             </method>
@@ -1134,7 +1134,7 @@
 
                 <apigee:example url="/{page}/notes"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/page">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/page">
                     <![CDATA[The page's notes]]>
                 </doc>
             </method>
@@ -1172,7 +1172,7 @@
 
                 <apigee:example url="/{page}/posts"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/page">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/page">
                     <![CDATA[The page's own posts]]>
                 </doc>
             </method>
@@ -1210,7 +1210,7 @@
 
                 <apigee:example url="/{page}/events"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/page">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/page">
                     <![CDATA[The events this page is attending]]>
                 </doc>
             </method>
@@ -1248,7 +1248,7 @@
 
                 <apigee:example url="/{page}/checkins"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/page">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/page">
                     <![CDATA[Checkins made by the friends of the current session user]]>
                 </doc>
             </method>
@@ -1277,7 +1277,7 @@
 
                 <apigee:example url="/{photo}"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/photo">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/photo">
                     <![CDATA[An individual photo]]>
                 </doc>
             </method>
@@ -1315,7 +1315,7 @@
 
                 <apigee:example url="/{photo}/comments"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/photo">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/photo">
                     <![CDATA[All of the comments on this photo]]>
                 </doc>
             </method>
@@ -1353,7 +1353,7 @@
 
                 <apigee:example url="/{photo}/likes"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/photo">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/photo">
                     <![CDATA[People who like the photo]]>
                 </doc>
             </method>
@@ -1377,7 +1377,7 @@
                 </apigee:tags>
                 <apigee:authentication required="true"/>
                 <apigee:example url="/{post}"/>
-                <doc title=""
+                <doc
                      apigee:url="http://developers.facebook.com/docs/reference/api/post">
                     <![CDATA[An individual entry in a profile's feed]]></doc>
             </method>
@@ -1407,7 +1407,7 @@
                 </apigee:tags>
                 <apigee:authentication required="true"/>
                 <apigee:example url="/{post}/comments"/>
-                <doc title=""
+                <doc
                      apigee:url="http://developers.facebook.com/docs/reference/api/post">
                     <![CDATA[All of the comments on this post]]></doc>
             </method>
@@ -1431,7 +1431,7 @@
                 </apigee:tags>
                 <apigee:authentication required="true"/>
                 <apigee:example url="/{status}"/>
-                <doc title=""
+                <doc
                      apigee:url="http://developers.facebook.com/docs/reference/api/status">
                     <![CDATA[A status message on a user's wall]]></doc>
             </method>
@@ -1461,7 +1461,7 @@
                 </apigee:tags>
                 <apigee:authentication required="true"/>
                 <apigee:example url="/{status}/comments"/>
-                <doc title=""
+                <doc
                      apigee:url="http://developers.facebook.com/docs/reference/api/status">
                     <![CDATA[All of the comments on this message]]></doc>
             </method>
@@ -1486,7 +1486,7 @@
                 </apigee:tags>
                 <apigee:authentication required="false"/>
                 <apigee:example url="/{user}"/>
-                <doc title=""
+                <doc
                      apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[A user profile.]]></doc>
             </method>
@@ -1512,7 +1512,7 @@
                 </apigee:tags>
                 <apigee:authentication required="true"/>
                 <apigee:example url="/{user}/home?q={q}"/>
-                <doc title=""
+                <doc
                      apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[Search an individual user's News Feed, restricted to that user's friends]]></doc>
             </method>
@@ -1542,7 +1542,7 @@
                 </apigee:tags>
                 <apigee:authentication required="true"/>
                 <apigee:example url="/{user}/home"/>
-                <doc title=""
+                <doc
                      apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The user's News Feed. Requires the read_stream permission]]></doc>
             </method>
@@ -1572,7 +1572,7 @@
                 </apigee:tags>
                 <apigee:authentication required="true"/>
                 <apigee:example url="/{user}/feed"/>
-                <doc title=""
+                <doc
                      apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The user's wall. Requires the read_stream permission to see non-public posts.]]></doc>
             </method>
@@ -1602,7 +1602,7 @@
                 </apigee:tags>
                 <apigee:authentication required="true"/>
                 <apigee:example url="/{user}/tagged"/>
-                <doc title=""
+                <doc
                      apigee:url="http://developers.facebook.com/docs/reference/api/user"><![CDATA[The photos, videos, and posts in which this user has been tagged. Requires the user_photo_tags,
                     user_video_tags, friend_photo_tags, or friend_video_tags permissions
                ]]></doc>
@@ -1633,7 +1633,7 @@
                 </apigee:tags>
                 <apigee:authentication required="true"/>
                 <apigee:example url="/{user}/posts"/>
-                <doc title=""
+                <doc
                      apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The user's own posts. Requires the read_stream permission to see non-public posts.]]></doc>
             </method>
@@ -1664,7 +1664,7 @@
 
                 <apigee:example url="/{user}/picture"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/user">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The user's profile picture]]>
                 </doc>
             </method>
@@ -1702,7 +1702,7 @@
 
                 <apigee:example url="/{user}/friends"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/user">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The user's friends]]>
                 </doc>
             </method>
@@ -1740,7 +1740,7 @@
 
                 <apigee:example url="/{user}/activities"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/user">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The activities listed on the user's profile]]>
                 </doc>
             </method>
@@ -1778,7 +1778,7 @@
 
                 <apigee:example url="/{user}/checkins"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/api#places">
+                <doc apigee:url="http://developers.facebook.com/docs/api#places">
                     <![CDATA[The music listed on the user's profile]]>
                 </doc>
             </method>
@@ -1816,7 +1816,7 @@
 
                 <apigee:example url="/{user}/interests"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/user">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The interests listed on the user's profile]]>
                 </doc>
             </method>
@@ -1854,7 +1854,7 @@
 
                 <apigee:example url="/{user}/music"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/user">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The music listed on the user's profile]]>
                 </doc>
             </method>
@@ -1892,7 +1892,7 @@
 
                 <apigee:example url="/{user}/books"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/user">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The books listed on the user's profile]]>
                 </doc>
             </method>
@@ -1930,7 +1930,7 @@
 
                 <apigee:example url="/{user}/movies"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/user">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The movies listed on the user's profile]]>
                 </doc>
             </method>
@@ -1968,7 +1968,7 @@
 
                 <apigee:example url="/{user}/television"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/user">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The television listed on the user's profile]]>
                 </doc>
             </method>
@@ -2006,7 +2006,7 @@
 
                 <apigee:example url="/{user}/likes"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/user">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[All the pages this user has liked. Requires the user_likes or friend_likes permission]]>
                 </doc>
             </method>
@@ -2044,7 +2044,7 @@
 
                 <apigee:example url="/{user}/photos"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/user">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The photos this user is tagged in. Requires the user_photos or friend_photos permission]]>
                 </doc>
             </method>
@@ -2082,7 +2082,7 @@
 
                 <apigee:example url="/{user}/albums"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/user">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The photo albums this user has created. Requires the user_photos or friend_photos permission]]>
                 </doc>
             </method>
@@ -2120,7 +2120,7 @@
 
                 <apigee:example url="/{user}/videos"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/user">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The videos this user has been tagged in. Requires the user_videos or friend_videos permission.]]>
                 </doc>
             </method>
@@ -2158,7 +2158,7 @@
 
                 <apigee:example url="/{user}/groups"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/user">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The groups this user is a member of. Requires the user_groups or friend_groups permission]]>
                 </doc>
             </method>
@@ -2196,7 +2196,7 @@
 
                 <apigee:example url="/{user}/statuses"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/user">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The user's status updates. Requires the read_stream permission]]>
                 </doc>
             </method>
@@ -2234,7 +2234,7 @@
 
                 <apigee:example url="/{user}/links"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/user">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The user's posted links. Requires the read_stream permission]]>
                 </doc>
             </method>
@@ -2272,7 +2272,7 @@
 
                 <apigee:example url="/{user}/notes"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/user">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The user's notes. Requires the read_stream permission]]>
                 </doc>
             </method>
@@ -2310,7 +2310,7 @@
 
                 <apigee:example url="/{user}/events"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/user">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The events this user is attending. Requires the user_events or friend_events permission]]>
                 </doc>
             </method>
@@ -2348,7 +2348,7 @@
 
                 <apigee:example url="/{user}/inbox"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/user">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The threads in this user's inbox. Requires the read_mailbox permission]]>
                 </doc>
             </method>
@@ -2386,7 +2386,7 @@
 
                 <apigee:example url="/{user}/outbox"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/user">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The messages in this user's outbox. Requires the read_mailbox permission]]>
                 </doc>
             </method>
@@ -2424,7 +2424,7 @@
 
                 <apigee:example url="/{user}/updates"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/user">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The updates in this user's inbox. Requires the read_mailbox permission]]>
                 </doc>
             </method>
@@ -2462,7 +2462,7 @@
 
                 <apigee:example url="/{user}/accounts"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/user">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The Facebook pages owned by the current user]]>
                 </doc>
             </method>
@@ -2491,7 +2491,7 @@
 
                 <apigee:example url="/{video}"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/video">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/video">
                     <![CDATA[An individual video]]>
                 </doc>
             </method>
@@ -2529,7 +2529,7 @@
 
                 <apigee:example url="/{video}/comments"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/video">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/video">
                     <![CDATA[All of the comments on this video]]>
                 </doc>
             </method>
@@ -2579,7 +2579,7 @@
 
                 <apigee:example url="/{profile_id}/feed"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/api">
+                <doc apigee:url="http://developers.facebook.com/docs/api">
                     <![CDATA[Write to the given profile's feed/wall.]]>
                 </doc>
             </method>
@@ -2602,7 +2602,7 @@
 
                 <apigee:example url="/{post_id}/comments"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/api">
+                <doc apigee:url="http://developers.facebook.com/docs/api">
                     <![CDATA[Comment on the given post]]>
                 </doc>
             </method>
@@ -2622,7 +2622,7 @@
 
                 <apigee:example url="/{post_id}/likes"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/api">
+                <doc apigee:url="http://developers.facebook.com/docs/api">
                     <![CDATA[Write to the given profile's feed/wall.]]>
                 </doc>
             </method>
@@ -2670,7 +2670,7 @@
 
                 <apigee:example url="/{profile_id}/notes"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/api">
+                <doc apigee:url="http://developers.facebook.com/docs/api">
                     <![CDATA[Write a note on the given profile.]]>
                 </doc>
             </method>
@@ -2698,7 +2698,7 @@
 
                 <apigee:example url="/{profile_id}/links"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/api">
+                <doc apigee:url="http://developers.facebook.com/docs/api">
                     <![CDATA[Write a note on the given profile.]]>
                 </doc>
             </method>
@@ -2718,7 +2718,7 @@
 
                 <apigee:example url="/{profile_id}/events"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/api">
+                <doc apigee:url="http://developers.facebook.com/docs/api">
                     <![CDATA[Post an event in the given profile.]]>
                 </doc>
             </method>
@@ -2737,7 +2737,7 @@
 
                 <apigee:example url="/{event_id}/attending"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/api">
+                <doc apigee:url="http://developers.facebook.com/docs/api">
                     <![CDATA[Attend the given event.]]>
                 </doc>
             </method>
@@ -2756,7 +2756,7 @@
 
                 <apigee:example url="/{event_id}/maybe"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/api">
+                <doc apigee:url="http://developers.facebook.com/docs/api">
                     <![CDATA[Maybe attend the given event.]]>
                 </doc>
             </method>
@@ -2775,7 +2775,7 @@
 
                 <apigee:example url="/{event_id}/declined"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/api">
+                <doc apigee:url="http://developers.facebook.com/docs/api">
                     <![CDATA[Decline the given event.]]>
                 </doc>
             </method>
@@ -2803,7 +2803,7 @@
 
                 <apigee:example url="/{profile_id}/albums"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/api">
+                <doc apigee:url="http://developers.facebook.com/docs/api">
                     <![CDATA[Create an album.]]>
                 </doc>
             </method>
@@ -2828,7 +2828,7 @@
 
                 <apigee:example url="/{album_id}/photos"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/api">
+                <doc apigee:url="http://developers.facebook.com/docs/api">
                     <![CDATA[Upload a photo to an album.]]>
                 </doc>
             </method>
@@ -2848,7 +2848,7 @@
 
                 <apigee:example url="/{object_id}"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/api">
+                <doc apigee:url="http://developers.facebook.com/docs/api">
                     <![CDATA[Delete an object in the graph.]]>
                 </doc>
             </method>
@@ -2866,7 +2866,7 @@
 
                 <apigee:example url="/{post_id}/likes"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/api">
+                <doc apigee:url="http://developers.facebook.com/docs/api">
                     <![CDATA[Remove a 'like' from a post.]]>
                 </doc>
             </method>
@@ -2894,7 +2894,7 @@
 
                 <apigee:example url="/{checkin}"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/checkin">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/checkin">
                     <![CDATA[A check-in that was made through Facebook Places.]]>
                 </doc>
             </method>
@@ -2917,7 +2917,7 @@
 
                 <apigee:example url="/{application}"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/application">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/application">
                     <![CDATA[An application's profile]]>
                 </doc>
             </method>
@@ -2955,7 +2955,7 @@
 
                 <apigee:example url="/{application}/feed"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/application">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/application">
                     <![CDATA[The application's wall.]]>
                 </doc>
             </method>
@@ -2993,7 +2993,7 @@
 
                 <apigee:example url="/{application}/posts"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/application">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/application">
                     <![CDATA[The application's own posts.]]>
                 </doc>
             </method>
@@ -3024,7 +3024,7 @@
 
                 <apigee:example url="/{application}/picture"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/application">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/application">
                     <![CDATA[The application's logo]]>
                 </doc>
             </method>
@@ -3062,7 +3062,7 @@
 
                 <apigee:example url="/{application}/tagged"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/application">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/application">
                     <![CDATA[The photos, videos, and posts in which this application has been tagged.]]>
                 </doc>
             </method>
@@ -3100,7 +3100,7 @@
 
                 <apigee:example url="/{application}/links"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/application">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/application">
                     <![CDATA[The application's posted links.]]>
                 </doc>
             </method>
@@ -3138,7 +3138,7 @@
 
                 <apigee:example url="/{application}/photos"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/application">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/application">
                     <![CDATA[The photos this application is tagged in.]]>
                 </doc>
             </method>
@@ -3176,7 +3176,7 @@
 
                 <apigee:example url="/{application}/albums"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/application">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/application">
                     <![CDATA[The photo albums this application has created.]]>
                 </doc>
             </method>
@@ -3214,7 +3214,7 @@
 
                 <apigee:example url="/{application}/statuses"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/application">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/application">
                     <![CDATA[The application's status updates.]]>
                 </doc>
             </method>
@@ -3252,7 +3252,7 @@
 
                 <apigee:example url="/{application}/videos"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/application">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/application">
                     <![CDATA[The videos this application has created]]>
                 </doc>
             </method>
@@ -3290,7 +3290,7 @@
 
                 <apigee:example url="/{application}/notes"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/application">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/application">
                     <![CDATA[The application's notes.]]>
                 </doc>
             </method>
@@ -3328,7 +3328,7 @@
 
                 <apigee:example url="/{application}/events"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/application">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/application">
                     <![CDATA[The events this page is managing]]>
                 </doc>
             </method>
@@ -3366,7 +3366,7 @@
 
                 <apigee:example url="/{application}/insights"/>
 
-                <doc title="" apigee:url="http://developers.facebook.com/docs/reference/api/application">
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/application">
                     <![CDATA[Usage metrics for this application]]>
                 </doc>
             </method>
