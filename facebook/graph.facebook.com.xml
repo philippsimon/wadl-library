@@ -1426,6 +1426,44 @@
             </method>
         </resource>
 
+        <resource path="{post}/likes">
+            <param name="post" required="true" type="xsd:string" style="template" default="19292868552_118464504835613">
+                <doc>Represents the ID of the post object.</doc>
+            </param>
+
+            <param name="since" required="false" type="xsd:string" style="query" default="last week">
+                <doc>A UNIX timestamp or any date accepted by strtotime</doc>
+            </param>
+
+            <param name="until" required="false" type="xsd:string" style="query" default="yesterday">
+                <doc>A UNIX timestamp or any date accepted by strtotime</doc>
+            </param>
+
+            <param name="limit" required="false" type="xsd:integer" style="query" default="3">
+                <doc>Limit the number of items returned.</doc>
+            </param>
+
+            <param name="offset" required="false" type="xsd:integer" style="query" default="2">
+                <doc>An offset to the response. Useful for paging.</doc>
+            </param>
+
+            <method id="getpostlikes" name="GET">
+                <apigee:tags>
+                    <apigee:tag primary="true">Post</apigee:tag>
+                    <apigee:tag>Connection</apigee:tag>
+                    <apigee:tag>Likes</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="/{post}/likes"/>
+
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/post">
+                    <![CDATA[All of the likes on this post]]>
+                </doc>
+            </method>
+        </resource>
+
         <!-- Status -->
 
         <resource path="{status}">
