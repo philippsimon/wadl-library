@@ -31,7 +31,7 @@
         </resource>
 
         <resource path="posts/add">
-            <method id="postAdd" name="GET" apigee:displayName="posts/add">
+            <method id="postAdd" name="PUT" apigee:displayName="posts/add">
                 <apigee:tags>
                     <apigee:tag primary="true">Posts</apigee:tag>
                 </apigee:tags>
@@ -95,7 +95,7 @@
         </resource>
 
         <resource path="posts/delete">
-            <method id="postDelete" name="GET" apigee:displayName="posts/delete">
+            <method id="postDelete" name="DELETE" apigee:displayName="posts/delete">
                 <apigee:tags>
                     <apigee:tag primary="true">Posts</apigee:tag>
                 </apigee:tags>
@@ -366,7 +366,7 @@
         </resource>
 
         <resource path="tags/delete">
-            <method id="tagsDelete" name="GET" apigee:displayName="tags/delete">
+            <method id="tagsDelete" name="DELETE" apigee:displayName="tags/delete">
                 <apigee:tags>
                     <apigee:tag primary="true">Tags</apigee:tag>
                 </apigee:tags>
@@ -394,7 +394,7 @@
         </resource>
 
         <resource path="tags/rename">
-            <method id="tagsRename" name="GET" apigee:displayName="tags/rename">
+            <method id="tagsRename" name="POST" apigee:displayName="tags/rename">
                 <apigee:tags>
                     <apigee:tag primary="true">Tags</apigee:tag>
                 </apigee:tags>
@@ -458,7 +458,7 @@
         </resource>
 
         <resource path="tags/bundles/set">
-            <method id="tagBundlesSet" name="GET" apigee:displayName="tags/bundles/set">
+            <method id="tagBundlesSet" name="PUT" apigee:displayName="tags/bundles/set">
                 <apigee:tags>
                     <apigee:tag primary="true">Tag Bundles</apigee:tag>
                 </apigee:tags>
@@ -492,7 +492,7 @@
         </resource>
 
         <resource path="tags/bundles/delete">
-            <method id="tagBundlesDelete" name="GET" apigee:displayName="tags/bundles/delete">
+            <method id="tagBundlesDelete" name="DELETE" apigee:displayName="tags/bundles/delete">
                 <apigee:tags>
                     <apigee:tag primary="true">Tag Bundles</apigee:tag>
                 </apigee:tags>
