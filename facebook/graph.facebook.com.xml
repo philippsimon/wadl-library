@@ -1365,21 +1365,26 @@
             <param name="post" required="true" type="xsd:string" style="template" default="19292868552_118464504835613">
                 <doc>Represents the ID of the post object.</doc>
             </param>
+
             <param name="metadata" required="false" type="xsd:string" style="query" default="0">
                 <doc>The Graph API supports introspection of objects, which enables you to see all of the connections
                     an object has without knowing its type ahead of time.
                 </doc>
             </param>
+
             <method id="getpost" name="GET">
                 <apigee:tags>
                     <apigee:tag primary="true">Post</apigee:tag>
                     <apigee:tag>Object</apigee:tag>
                 </apigee:tags>
+
                 <apigee:authentication required="true"/>
+
                 <apigee:example url="/{post}"/>
-                <doc
-                     apigee:url="http://developers.facebook.com/docs/reference/api/post">
-                    <![CDATA[An individual entry in a profile's feed]]></doc>
+
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/post">
+                    <![CDATA[An individual entry in a profile's feed]]>
+                </doc>
             </method>
         </resource>
 
@@ -1387,29 +1392,37 @@
             <param name="post" required="true" type="xsd:string" style="template" default="19292868552_118464504835613">
                 <doc>Represents the ID of the post object.</doc>
             </param>
+
             <param name="since" required="false" type="xsd:string" style="query" default="last week">
                 <doc>A UNIX timestamp or any date accepted by strtotime</doc>
             </param>
+
             <param name="until" required="false" type="xsd:string" style="query" default="yesterday">
                 <doc>A UNIX timestamp or any date accepted by strtotime</doc>
             </param>
+
             <param name="limit" required="false" type="xsd:integer" style="query" default="3">
                 <doc>Limit the number of items returned.</doc>
             </param>
+
             <param name="offset" required="false" type="xsd:integer" style="query" default="2">
                 <doc>An offset to the response. Useful for paging.</doc>
             </param>
+
             <method id="getpostcomments" name="GET">
                 <apigee:tags>
                     <apigee:tag primary="true">Post</apigee:tag>
                     <apigee:tag>Connection</apigee:tag>
                     <apigee:tag>Comments</apigee:tag>
                 </apigee:tags>
+
                 <apigee:authentication required="true"/>
+
                 <apigee:example url="/{post}/comments"/>
-                <doc
-                     apigee:url="http://developers.facebook.com/docs/reference/api/post">
-                    <![CDATA[All of the comments on this post]]></doc>
+
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/post">
+                    <![CDATA[All of the comments on this post]]>
+                </doc>
             </method>
         </resource>
 
@@ -1419,21 +1432,26 @@
             <param name="status" required="true" type="xsd:string" style="template" default="367501354973">
                 <doc>Represents the ID of the status object.</doc>
             </param>
+
             <param name="metadata" required="false" type="xsd:string" style="query" default="0">
                 <doc>The Graph API supports introspection of objects, which enables you to see all of the connections
                     an object has without knowing its type ahead of time.
                 </doc>
             </param>
+
             <method id="getstatus" name="GET">
                 <apigee:tags>
                     <apigee:tag primary="true">Status Message</apigee:tag>
                     <apigee:tag>Object</apigee:tag>
                 </apigee:tags>
+
                 <apigee:authentication required="true"/>
+
                 <apigee:example url="/{status}"/>
-                <doc
-                     apigee:url="http://developers.facebook.com/docs/reference/api/status">
-                    <![CDATA[A status message on a user's wall]]></doc>
+
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/status">
+                    <![CDATA[A status message on a user's wall]]>
+                </doc>
             </method>
         </resource>
 
@@ -1441,80 +1459,97 @@
             <param name="status" required="true" type="xsd:string" style="template" default="367501354973">
                 <doc>Represents the ID of the status object.</doc>
             </param>
+
             <param name="since" required="false" type="xsd:string" style="query" default="last week">
                 <doc>A UNIX timestamp or any date accepted by strtotime</doc>
             </param>
+
             <param name="until" required="false" type="xsd:string" style="query" default="yesterday">
                 <doc>A UNIX timestamp or any date accepted by strtotime</doc>
             </param>
+
             <param name="limit" required="false" type="xsd:integer" style="query" default="3">
                 <doc>Limit the number of items returned.</doc>
             </param>
+
             <param name="offset" required="false" type="xsd:integer" style="query" default="2">
                 <doc>An offset to the response. Useful for paging.</doc>
             </param>
+
             <method id="getstatuscomments" name="GET">
                 <apigee:tags>
                     <apigee:tag primary="true">Status Message</apigee:tag>
                     <apigee:tag>Connection</apigee:tag>
                     <apigee:tag>Comments</apigee:tag>
                 </apigee:tags>
+
                 <apigee:authentication required="true"/>
+
                 <apigee:example url="/{status}/comments"/>
-                <doc
-                     apigee:url="http://developers.facebook.com/docs/reference/api/status">
-                    <![CDATA[All of the comments on this message]]></doc>
+
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/status">
+                    <![CDATA[All of the comments on this message]]>
+                </doc>
             </method>
         </resource>
 
         <!-- User -->
 
         <resource path="{user}">
-            <param name="user" required="true" type="xsd:string" style="template"
-                   default="robertscoble">
+            <param name="user" required="true" type="xsd:string" style="template" default="robertscoble">
                 <doc>Represents the ID of the user object.</doc>
             </param>
+
             <param name="metadata" required="false" type="xsd:string" style="query" default="0">
                 <doc>The Graph API supports introspection of objects, which enables you to see all of the connections an
                     object has without knowing its type ahead of time.
                 </doc>
             </param>
+
             <method id="getuser" name="GET">
                 <apigee:tags>
                     <apigee:tag primary="true">User</apigee:tag>
                     <apigee:tag>Object</apigee:tag>
                 </apigee:tags>
+
                 <apigee:authentication required="false"/>
+
                 <apigee:example url="/{user}"/>
-                <doc
-                     apigee:url="http://developers.facebook.com/docs/reference/api/user">
-                    <![CDATA[A user profile.]]></doc>
+
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
+                    <![CDATA[A user profile.]]>
+                </doc>
             </method>
         </resource>
 
         <resource path="{user}/home">
-            <param name="user" required="true" type="xsd:string" style="template"
-                   default="robertscoble">
+            <param name="user" required="true" type="xsd:string" style="template" default="robertscoble">
                 <doc>Represents the ID of the user object.</doc>
             </param>
+
             <param name="metadata" required="false" type="xsd:string" style="query" default="0">
                 <doc>The Graph API supports introspection of objects, which enables you to see all of the connections an
                     object has without knowing its type ahead of time.
                 </doc>
             </param>
+
             <param name="q" required="false" type="xsd:string" style="query" default="facebook">
                 <doc>The text for which to search.</doc>
             </param>
+
             <method id="getusersearch" name="GET">
                 <apigee:tags>
                     <apigee:tag primary="true">Search</apigee:tag>
                     <apigee:tag>User</apigee:tag>
                 </apigee:tags>
+
                 <apigee:authentication required="true"/>
+
                 <apigee:example url="/{user}/home?q={q}"/>
-                <doc
-                     apigee:url="http://developers.facebook.com/docs/reference/api/user">
-                    <![CDATA[Search an individual user's News Feed, restricted to that user's friends]]></doc>
+
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
+                    <![CDATA[Search an individual user's News Feed, restricted to that user's friends]]>
+                </doc>
             </method>
         </resource>
 
@@ -1522,29 +1557,37 @@
             <param name="user" required="true" type="xsd:string" style="template" default="me">
                 <doc>Represents the ID of the user object.</doc>
             </param>
+
             <param name="since" required="false" type="xsd:string" style="query" default="last week">
                 <doc>A UNIX timestamp or any date accepted by strtotime</doc>
             </param>
+
             <param name="until" required="false" type="xsd:string" style="query" default="yesterday">
                 <doc>A UNIX timestamp or any date accepted by strtotime</doc>
             </param>
+
             <param name="limit" required="false" type="xsd:integer" style="query" default="3">
                 <doc>Limit the number of items returned.</doc>
             </param>
+
             <param name="offset" required="false" type="xsd:integer" style="query" default="2">
                 <doc>An offset to the response. Useful for paging.</doc>
             </param>
+
             <method id="getuserhome" name="GET">
                 <apigee:tags>
                     <apigee:tag primary="true">User</apigee:tag>
                     <apigee:tag>Connection</apigee:tag>
                     <apigee:tag>Home</apigee:tag>
                 </apigee:tags>
+
                 <apigee:authentication required="true"/>
+
                 <apigee:example url="/{user}/home"/>
-                <doc
-                     apigee:url="http://developers.facebook.com/docs/reference/api/user">
-                    <![CDATA[The user's News Feed. Requires the read_stream permission]]></doc>
+
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
+                    <![CDATA[The user's News Feed. Requires the read_stream permission]]>
+                </doc>
             </method>
         </resource>
 
@@ -1552,29 +1595,37 @@
             <param name="user" required="true" type="xsd:string" style="template" default="me">
                 <doc>Represents the ID of the user object.</doc>
             </param>
+
             <param name="since" required="false" type="xsd:string" style="query" default="last week">
                 <doc>A UNIX timestamp or any date accepted by strtotime</doc>
             </param>
+
             <param name="until" required="false" type="xsd:string" style="query" default="yesterday">
                 <doc>A UNIX timestamp or any date accepted by strtotime</doc>
             </param>
+
             <param name="limit" required="false" type="xsd:integer" style="query" default="3">
                 <doc>Limit the number of items returned.</doc>
             </param>
+
             <param name="offset" required="false" type="xsd:integer" style="query" default="2">
                 <doc>An offset to the response. Useful for paging.</doc>
             </param>
+
             <method id="getuserfeed" name="GET">
                 <apigee:tags>
                     <apigee:tag primary="true">User</apigee:tag>
                     <apigee:tag>Connection</apigee:tag>
                     <apigee:tag>Feed</apigee:tag>
                 </apigee:tags>
+
                 <apigee:authentication required="true"/>
+
                 <apigee:example url="/{user}/feed"/>
-                <doc
-                     apigee:url="http://developers.facebook.com/docs/reference/api/user">
-                    <![CDATA[The user's wall. Requires the read_stream permission to see non-public posts.]]></doc>
+
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
+                    <![CDATA[The user's wall. Requires the read_stream permission to see non-public posts.]]>
+                </doc>
             </method>
         </resource>
 
@@ -1582,30 +1633,37 @@
             <param name="user" required="true" type="xsd:string" style="template" default="me">
                 <doc>Represents the ID of the user object.</doc>
             </param>
+
             <param name="since" required="false" type="xsd:string" style="query" default="last week">
                 <doc>A UNIX timestamp or any date accepted by strtotime</doc>
             </param>
+
             <param name="until" required="false" type="xsd:string" style="query" default="yesterday">
                 <doc>A UNIX timestamp or any date accepted by strtotime</doc>
             </param>
+
             <param name="limit" required="false" type="xsd:integer" style="query" default="3">
                 <doc>Limit the number of items returned.</doc>
             </param>
+
             <param name="offset" required="false" type="xsd:integer" style="query" default="2">
                 <doc>An offset to the response. Useful for paging.</doc>
             </param>
+
             <method id="getusertagged" name="GET">
                 <apigee:tags>
                     <apigee:tag primary="true">User</apigee:tag>
                     <apigee:tag>Connection</apigee:tag>
                     <apigee:tag>Tagged</apigee:tag>
                 </apigee:tags>
+
                 <apigee:authentication required="true"/>
+
                 <apigee:example url="/{user}/tagged"/>
-                <doc
-                     apigee:url="http://developers.facebook.com/docs/reference/api/user"><![CDATA[The photos, videos, and posts in which this user has been tagged. Requires the user_photo_tags,
-                    user_video_tags, friend_photo_tags, or friend_video_tags permissions
-               ]]></doc>
+
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
+                    <![CDATA[The photos, videos, and posts in which this user has been tagged. Requires the user_photo_tags, user_video_tags, friend_photo_tags, or friend_video_tags permissions]]>
+                </doc>
             </method>
         </resource>
 
@@ -1613,29 +1671,37 @@
             <param name="user" required="true" type="xsd:string" style="template" default="me">
                 <doc>Represents the ID of the user object.</doc>
             </param>
+
             <param name="since" required="false" type="xsd:string" style="query" default="last week">
                 <doc>A UNIX timestamp or any date accepted by strtotime</doc>
             </param>
+
             <param name="until" required="false" type="xsd:string" style="query" default="yesterday">
                 <doc>A UNIX timestamp or any date accepted by strtotime</doc>
             </param>
+
             <param name="limit" required="false" type="xsd:integer" style="query" default="3">
                 <doc>Limit the number of items returned.</doc>
             </param>
+
             <param name="offset" required="false" type="xsd:integer" style="query" default="2">
                 <doc>An offset to the response. Useful for paging.</doc>
             </param>
+
             <method id="getuserposts" name="GET">
                 <apigee:tags>
                     <apigee:tag primary="true">User</apigee:tag>
                     <apigee:tag>Connection</apigee:tag>
                     <apigee:tag>Posts</apigee:tag>
                 </apigee:tags>
+
                 <apigee:authentication required="true"/>
+
                 <apigee:example url="/{user}/posts"/>
-                <doc
-                     apigee:url="http://developers.facebook.com/docs/reference/api/user">
-                    <![CDATA[The user's own posts. Requires the read_stream permission to see non-public posts.]]></doc>
+
+                <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
+                    <![CDATA[The user's own posts. Requires the read_stream permission to see non-public posts.]]>
+                </doc>
             </method>
         </resource>
 
