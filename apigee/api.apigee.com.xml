@@ -136,14 +136,23 @@
                   Retrieves the user's SmartKey in exchange for the user's credentials.
                 ]]></doc>
             </method>
+        </resource>
+        <resource path="/smartkeys/{smartkey}/providers/{providername}">
+            <param name="format" type="xsd:string" style="template" required="true" default="json">
+                <option value="xml" mediaType="application/xml"/>
+                <option value="json" mediaType="application/json"/>
+            </param>
+            <param name="smartkey" type="xsd:string" style="template" required="true" default="USER-SMARTKEY" />
+            <param name="providername" type="xsd:string" style="template" required="true" default="twitter" />
+
             <method id="getUsersCredentials2" name="GET" apigee:displayName="Get User Credentials">
                 <apigee:tags>
                     <apigee:tag primary="true">2. Working with SmartKeys</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication required="false"/>
-                <apigee:example url="/smartkeys/{smartkey}/providers/{provider_name}.{format}"/>
+                <apigee:example url="/smartkeys/{smartkey}/providers/{providername}.{format}"/>
                 <doc><![CDATA[
-                  Retrieves auth credentials for the user identified by {smartkey} corresponding to the provider {provider_name}.
+                  Retrieves auth credentials for the user identified by {smartkey} corresponding to the provider {providername}.
                 ]]></doc>
             </method>
 
@@ -152,9 +161,9 @@
                     <apigee:tag primary="true">2. Working with SmartKeys</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication required="false"/>
-                <apigee:example url="/smartkeys/{smartkey}/providers/{provider_name}.{format}"/>
+                <apigee:example url="/smartkeys/{smartkey}/providers/{providername}.{format}"/>
                 <doc><![CDATA[
-                  Adds auth credentials for the user identified by {smartkey} corresponding to the provider {provider_name}.
+                  Adds auth credentials for the user identified by {smartkey} corresponding to the provider {providername}.
                 ]]></doc>
                 <request>
                     <param name="Content-Type" required="true" type="xsd:string" style="header" default="application/json"/>
@@ -174,9 +183,9 @@
                     <apigee:tag primary="true">2. Working with SmartKeys</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication required="false"/>
-                <apigee:example url="/smartkeys/{smartkey}/providers/{provider_name}.{format}"/>
+                <apigee:example url="/smartkeys/{smartkey}/providers/{providername}.{format}"/>
                 <doc><![CDATA[
-                  Updates auth credentials for the user identified by {smartkey} corresponding to the provider {provider_name}.
+                  Updates auth credentials for the user identified by {smartkey} corresponding to the provider {providername}.
                 ]]></doc>
                 <request>
                     <param name="Content-Type" required="true" type="xsd:string" style="header" default="application/json"/>
@@ -196,19 +205,22 @@
                     <apigee:tag primary="true">2. Working with SmartKeys</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication required="false"/>
-                <apigee:example url="/smartkeys/{smartkey}/providers/{provider_name}.{format}"/>
+                <apigee:example url="/smartkeys/{smartkey}/providers/{providername}.{format}"/>
                 <doc><![CDATA[
-                  Deletes auth credentials for the user identified by {smartkey} corresponding to the provider {provider_name}.
+                  Deletes auth credentials for the user identified by {smartkey} corresponding to the provider {providername}.
                 ]]></doc>
             </method>			
         </resource>
         <resource path="/providers/{providername}/authorize">
+        <param name="providername" type="xsd:string" style="template" required="true" default="twitter" />
+        <param name="app_callback" type="xsd:string" style="query" required="true" default="USER-SMARTKEY" />
+        <param name="app_callback" type="xsd:string" style="query" required="true" default="https://apigee.com" />
             <method id="startDance" name="GET" apigee:displayName="Begin an OAuth dance">
                 <apigee:tags>
                     <apigee:tag primary="true">2. Working with SmartKeys</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication required="true"/>
-                <apigee:example url="/providers/{providername}/authorize?smartkey={smartkey}"/>
+                <apigee:example url="/providers/{providername}/authorize?smartkey={smartkey}&amp;app_callback=https://apigee.com"/>
                 <doc><![CDATA[
                   Visit this URL in a new browser tab—do not issue this request in the Console, or it will fail!
                 ]]></doc>
@@ -225,20 +237,6 @@
                 <apigee:example url="/twitter/{1/statuses/home_timeline.json}?smartkey={smartkey}"/>
                 <doc><![CDATA[
                   Use a SmartKey to make an authenticated request to Twitter.
-                ]]></doc>
-            </method>
-        </resource>
-		<resource path="/linkedin/{providerResource}">
-            <param name="providerResource" type="xsd:string" style="template" required="true" default="v1/people/~" />
-
-            <method id="linkedInExample" name="GET" apigee:displayName="LinkedIn user profile">
-                <apigee:tags>
-                    <apigee:tag primary="true">3. Example Provider Calls</apigee:tag>
-                </apigee:tags>
-                <apigee:authentication required="false"/>
-                <apigee:example url="/linkedin/{v1/people/~}?smartkey={smartkey}"/>
-                <doc><![CDATA[
-                  Use a SmartKey to make an authenticated request to LinkedIn.
                 ]]></doc>
             </method>
         </resource>
