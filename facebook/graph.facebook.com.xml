@@ -102,17 +102,20 @@
                 </doc>
 
                 <request>
-                    <!--
-                    <representation mediaType="multipart/form-data">
-                        <param name="source" required="true" style="query">
-                            <doc>Photo content</doc>
-                        </param>
-                    </representation>
-                    -->
-
                     <param name="message" required="false" type="xsd:string" style="query">
                         <doc>Photo description</doc>
                     </param>
+
+                    <representation mediaType="multipart/form-data">
+                        <apigee:payload>
+                            <![CDATA[source=]]>
+                        </apigee:payload>
+                        <!--
+                        <param name="source" required="true" style="query">
+                            <doc>Photo content</doc>
+                        </param>
+                        -->
+                    </representation>
                 </request>
             </method>
         </resource>
@@ -2383,17 +2386,20 @@
                 </doc>
 
                 <request>
-                    <!--
-                    <representation mediaType="multipart/form-data">
-                        <param name="source" required="true" style="query">
-                            <doc>Photo content</doc>
-                        </param>
-                    </representation>
-                    -->
-
                     <param name="message" required="false" type="xsd:string" style="query">
                         <doc>Photo description</doc>
                     </param>
+
+                    <representation mediaType="multipart/form-data">
+                        <apigee:payload>
+                            <![CDATA[source=]]>
+                        </apigee:payload>
+                        <!--
+                        <param name="source" required="true" style="query">
+                            <doc>Photo content</doc>
+                        </param>
+                        -->
+                    </representation>
                 </request>
             </method>
         </resource>
@@ -2523,14 +2529,6 @@
                 </doc>
 
                 <request>
-                    <!--
-                    <representation mediaType="multipart/form-data">
-                        <param name="source" required="true" style="query">
-                            <doc>Video content</doc>
-                        </param>
-                    </representation>
-                    -->
-
                     <param name="title" required="false" type="xsd:string" style="query">
                         <doc>Video title</doc>
                     </param>
@@ -2538,6 +2536,17 @@
                     <param name="description" required="false" type="xsd:string" style="query">
                         <doc>Video description</doc>
                     </param>
+
+                    <representation mediaType="multipart/form-data">
+                        <apigee:payload>
+                            <![CDATA[source=]]>
+                        </apigee:payload>
+                        <!--
+                        <param name="source" required="true" style="query">
+                            <doc>Video content</doc>
+                        </param>
+                        -->
+                    </representation>
                 </request>
             </method>
         </resource>
@@ -4403,17 +4412,20 @@
                 </doc>
 
                 <request>
-                    <!--
-                    <representation mediaType="multipart/form-data">
-                        <param name="source" required="true" style="query">
-                            <doc>Photo content</doc>
-                        </param>
-                    </representation>
-                    -->
-
                     <param name="message" required="false" type="xsd:string" style="query">
                         <doc>Photo description</doc>
                     </param>
+
+                    <representation mediaType="multipart/form-data">
+                        <apigee:payload>
+                            <![CDATA[source=]]>
+                        </apigee:payload>
+                        <!--
+                        <param name="source" required="true" style="query">
+                            <doc>Photo content</doc>
+                        </param>
+                        -->
+                    </representation>
                 </request>
             </method>
         </resource>
@@ -4740,14 +4752,6 @@
                 </doc>
 
                 <request>
-                    <!--
-                    <representation mediaType="multipart/form-data">
-                        <param name="source" required="true" style="query">
-                            <doc>Video content</doc>
-                        </param>
-                    </representation>
-                    -->
-
                     <param name="title" required="false" type="xsd:string" style="query">
                         <doc>Video title</doc>
                     </param>
@@ -4755,6 +4759,17 @@
                     <param name="description" required="false" type="xsd:string" style="query">
                         <doc>Video description</doc>
                     </param>
+
+                    <representation mediaType="multipart/form-data">
+                        <apigee:payload>
+                            <![CDATA[source=]]>
+                        </apigee:payload>
+                        <!--
+                        <param name="source" required="true" style="query">
+                            <doc>Video content</doc>
+                        </param>
+                        -->
+                    </representation>
                 </request>
             </method>
         </resource>
