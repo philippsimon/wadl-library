@@ -951,7 +951,7 @@
         <!-- Checkin -->
 
         <resource path="{checkin}">
-            <param name="checkin" required="true" type="xsd:string" style="template" default="me">
+            <param name="checkin" required="true" type="xsd:string" style="template">
                 <doc>Represents the ID of the checkin object.</doc>
             </param>
 
@@ -971,7 +971,7 @@
         </resource>
 
         <resource path="{checkin}/comments">
-            <param name="checkin" required="true" type="xsd:string" style="template" default="me">
+            <param name="checkin" required="true" type="xsd:string" style="template">
                 <doc>Represents the ID of the checkin object.</doc>
             </param>
 
@@ -1015,7 +1015,7 @@
         </resource>
 
         <resource path="{checkin}/likes">
-            <param name="checkin" required="true" type="xsd:string" style="template" default="me">
+            <param name="checkin" required="true" type="xsd:string" style="template">
                 <doc>Represents the ID of the checkin object.</doc>
             </param>
 
