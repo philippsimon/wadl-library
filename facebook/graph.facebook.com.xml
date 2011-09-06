@@ -3403,7 +3403,7 @@
 
                 <apigee:authentication required="false"/>
 
-                <apigee:example url="/{user}"/>
+                <apigee:example url="/me"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[A user profile.]]>
@@ -3431,7 +3431,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/accounts"/>
+                <apigee:example url="/me/accounts"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The Facebook apps and pages owned by the current user]]>
@@ -3454,7 +3454,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/achievements"/>
+                <apigee:example url="/me/achievements"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The Facebook apps and pages owned by the current user]]>
@@ -3471,7 +3471,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/achievements"/>
+                <apigee:example url="/me/achievements"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[Posts an achievement for the user]]>
@@ -3493,7 +3493,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/achievements"/>
+                <apigee:example url="/me/achievements"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[Deletes an achievement for the user]]>
@@ -3521,7 +3521,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/activities"/>
+                <apigee:example url="/me/activities"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The activities listed on the user's profile]]>
@@ -3543,7 +3543,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/albums"/>
+                <apigee:example url="/me/albums"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The photo albums this user has created]]>
@@ -3559,7 +3559,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/albums"/>
+                <apigee:example url="/me/albums"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[Creates an album for the user]]>
@@ -3595,7 +3595,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/apprequests"/>
+                <apigee:example url="/me/apprequests"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The user's outstanding requests from an app.]]>
@@ -3617,7 +3617,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/books"/>
+                <apigee:example url="/me/books"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The books listed on the user's profile.]]>
@@ -3639,7 +3639,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/checkins"/>
+                <apigee:example url="/me/checkins"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/api#places">
                     <![CDATA[The places that the user has checked-into]]>
@@ -3655,7 +3655,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/checkins"/>
+                <apigee:example url="/me/checkins"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/api#places">
                     <![CDATA[Checks the user into a place]]>
@@ -3703,7 +3703,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/events"/>
+                <apigee:example url="/me/events"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The events this user is attending.]]>
@@ -3719,7 +3719,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/events"/>
+                <apigee:example url="/me/events"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[Creates an event for the user]]>
@@ -3770,7 +3770,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/feed"/>
+                <apigee:example url="/me/feed"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[This user's wall]]>
@@ -3786,7 +3786,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/feed"/>
+                <apigee:example url="/me/feed"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[Posts a link on this user's wall]]>
@@ -3812,7 +3812,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/feed"/>
+                <apigee:example url="/me/feed"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[Creates a post on this user's wall]]>
@@ -3862,7 +3862,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/feed"/>
+                <apigee:example url="/me/feed"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[Posts a status message on this user's wall]]>
@@ -3890,7 +3890,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/friendlists"/>
+                <apigee:example url="/me/friendlists"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[Creates a FriendList for the user]]>
@@ -3918,7 +3918,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/friends"/>
+                <apigee:example url="/me/friends"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The user's friends]]>
@@ -3944,7 +3944,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/friends/{friend}"/>
+                <apigee:example url="/me/friends/{friend}"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[Checks if the given user is a friend of the current user]]>
@@ -3966,7 +3966,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/games"/>
+                <apigee:example url="/me/games"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[Games the user has added to the Arts and Entertainment section of their profile.]]>
@@ -3988,7 +3988,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/groups"/>
+                <apigee:example url="/me/groups"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The Groups that the user belongs to.]]>
@@ -4010,7 +4010,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/home"/>
+                <apigee:example url="/me/home"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The user's news feed]]>
@@ -4032,7 +4032,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/inbox"/>
+                <apigee:example url="/me/inbox"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The threads in this user's inbox.]]>
@@ -4054,7 +4054,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/interests"/>
+                <apigee:example url="/me/interests"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The interests listed on the user's profile]]>
@@ -4076,7 +4076,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/likes"/>
+                <apigee:example url="/me/likes"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[All the pages this user has liked.]]>
@@ -4102,7 +4102,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/likes/{page}"/>
+                <apigee:example url="/me/likes/{page}"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[Checks if the user likes the given page.]]>
@@ -4124,7 +4124,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/links"/>
+                <apigee:example url="/me/links"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The user's posted links.]]>
@@ -4140,7 +4140,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/links"/>
+                <apigee:example url="/me/links"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[Posts a link on the user's profile page]]>
@@ -4172,7 +4172,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/movies"/>
+                <apigee:example url="/me/movies"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The movies listed on the user's profile]]>
@@ -4194,7 +4194,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/music"/>
+                <apigee:example url="/me/music"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The music listed on the user's profile]]>
@@ -4216,7 +4216,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/notes"/>
+                <apigee:example url="/me/notes"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The user's notes]]>
@@ -4232,7 +4232,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/notes"/>
+                <apigee:example url="/me/notes"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[Creates a note on behalf of the user]]>
@@ -4264,7 +4264,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/notifications"/>
+                <apigee:example url="/me/notifications"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The user's notifications]]>
@@ -4292,7 +4292,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/outbox"/>
+                <apigee:example url="/me/outbox"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The messages in this user's outbox.]]>
@@ -4314,7 +4314,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/payments"/>
+                <apigee:example url="/me/payments"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The transactions the user placed with an application.]]>
@@ -4336,7 +4336,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/permissions"/>
+                <apigee:example url="/me/permissions"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The permissions that user has granted the application.]]>
@@ -4352,7 +4352,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/permissions"/>
+                <apigee:example url="/me/permissions"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[De-authorizes an application or revokes a specific extended permissions on behalf of a user]]>
@@ -4380,7 +4380,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/photos"/>
+                <apigee:example url="/me/photos"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The photos the user is tagged in]]>
@@ -4396,7 +4396,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/photos"/>
+                <apigee:example url="/me/photos"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[Posts a photo to the user's Wall]]>
@@ -4432,7 +4432,7 @@
 
                 <apigee:authentication required="false"/>
 
-                <apigee:example url="/{user}/picture"/>
+                <apigee:example url="/me/picture"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The user's profile picture]]>
@@ -4465,7 +4465,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/pokes"/>
+                <apigee:example url="/me/pokes"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The user's pokes]]>
@@ -4487,7 +4487,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/posts"/>
+                <apigee:example url="/me/posts"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The user's posts]]>
@@ -4503,7 +4503,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/posts"/>
+                <apigee:example url="/me/posts"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[Creates a post on behalf of the user]]>
@@ -4563,7 +4563,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/scores"/>
+                <apigee:example url="/me/scores"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The scores for the user]]>
@@ -4579,7 +4579,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/scores"/>
+                <apigee:example url="/me/scores"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[Posts a score for the user]]>
@@ -4607,7 +4607,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/statuses"/>
+                <apigee:example url="/me/statuses"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The user's status updates]]>
@@ -4623,7 +4623,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/statuses"/>
+                <apigee:example url="/me/statuses"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[Posts a status message on the user]]>
@@ -4651,7 +4651,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/tagged"/>
+                <apigee:example url="/me/tagged"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[Posts the user is tagged in]]>
@@ -4673,7 +4673,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/television"/>
+                <apigee:example url="/me/television"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The television listed on the user's profile]]>
@@ -4695,7 +4695,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/updates"/>
+                <apigee:example url="/me/updates"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The updates in this user's inbox.]]>
@@ -4717,7 +4717,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/videos"/>
+                <apigee:example url="/me/videos"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[The videos this user has been tagged in]]>
@@ -4733,7 +4733,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="/{user}/videos"/>
+                <apigee:example url="/me/videos"/>
 
                 <doc apigee:url="http://developers.facebook.com/docs/reference/api/user">
                     <![CDATA[Publishes a video on behalf of the user]]>
