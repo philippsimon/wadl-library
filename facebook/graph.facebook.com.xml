@@ -2907,7 +2907,7 @@
                 <doc>Represents the ID of a user.</doc>
             </param>
 
-            <method id="getpageblockeduser" name="GET" apigee:displayName="{page}/blocked (GET)">
+            <method id="getpageblockeduser" name="GET" apigee:displayName="{page}/blocked/{user} (GET)">
                 <apigee:tags>
                     <apigee:tag primary="true">Page</apigee:tag>
                     <apigee:tag>Connection</apigee:tag>
