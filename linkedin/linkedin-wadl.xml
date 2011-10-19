@@ -9,7 +9,7 @@
 		<resource path="people/~">
 			<method id="profile_api" name="GET">
 				<apigee:tags>
-					<apigee:tag primary="true">Profile</apigee:tag>
+					<apigee:tag primary="true">1. Profile</apigee:tag>
 				</apigee:tags>
 				<apigee:authentication required="true" />
 				<apigee:example url="/people/~" />
@@ -22,7 +22,7 @@
 		<resource path="people/id">
 			<method id="profile_id_api" name="GET">
 				<apigee:tags>
-					<apigee:tag primary="true">Profile</apigee:tag>
+					<apigee:tag primary="true">1. Profile</apigee:tag>
 				</apigee:tags>
 				<apigee:authentication required="true" />
 				<apigee:example url="/people/id={id}" />
@@ -35,7 +35,7 @@
 		<resource path="people/url">
 			<method id="profile_url_api" name="GET">
 				<apigee:tags>
-					<apigee:tag primary="true">Profile</apigee:tag>
+					<apigee:tag primary="true">1. Profile</apigee:tag>
 				</apigee:tags>
 				<apigee:authentication required="true" />
 				<apigee:example url="/people/url={public-profile-url}" />
@@ -166,7 +166,7 @@
 			</param>
 			<method id="people_search_api" name="GET">
 				<apigee:tags>
-					<apigee:tag primary="true">People Search</apigee:tag>
+					<apigee:tag primary="true">2. People Search</apigee:tag>
 				</apigee:tags>
 				<apigee:authentication required="true" />
 				<apigee:example url="/people-search" />
@@ -197,7 +197,7 @@
 			</param>
 			<method id="connection_api" name="GET">
 				<apigee:tags>
-					<apigee:tag primary="true">Connections</apigee:tag>
+					<apigee:tag primary="true">3. Connections</apigee:tag>
 				</apigee:tags>
 				<apigee:authentication required="true" />
 				<apigee:example url="/people/~/connections" />
@@ -228,7 +228,7 @@
 			</param>
 			<method id="connection_id_api" name="GET">
 				<apigee:tags>
-					<apigee:tag primary="true">Connections</apigee:tag>
+					<apigee:tag primary="true">3. Connections</apigee:tag>
 				</apigee:tags>
 				<apigee:authentication required="true" />
 				<apigee:example url="/people/id={id}/connections" />
@@ -259,7 +259,7 @@
 			</param>
 			<method id="connection_url_api" name="GET">
 				<apigee:tags>
-					<apigee:tag primary="true">Connections</apigee:tag>
+					<apigee:tag primary="true">3. Connections</apigee:tag>
 				</apigee:tags>
 				<apigee:authentication required="true" />
 				<apigee:example url="/people/url={public-profile-url}/connections" />
@@ -272,7 +272,7 @@
 		<resource path="people/~/mailbox">
 			<method id="messaging_api" name="POST" apigee:displayName="Send Message">
 				<apigee:tags>
-					<apigee:tag primary="true">Mailbox</apigee:tag>
+					<apigee:tag primary="true">4. Mailbox</apigee:tag>
 				</apigee:tags>
 				<apigee:authentication required="true" />
 				<apigee:example url="/people/~/mailbox" />
@@ -305,7 +305,7 @@
 		<resource path="people/~/mailbox">
 			<method id="invitation_api" name="POST" apigee:displayName="Send Invitation">
 				<apigee:tags>
-					<apigee:tag primary="true">Mailbox</apigee:tag>
+					<apigee:tag primary="true">4. Mailbox</apigee:tag>
 				</apigee:tags>
 				<apigee:authentication required="true" />
 				<apigee:example url="/people/~/mailbox" />
@@ -368,9 +368,9 @@
 					update stream.
 				</doc>
 			</param>
-			<method id="network_updates_api" name="GET">
+			<method id="network_updates_api" name="GET" apigee:displayName="Get Network Updates">
 				<apigee:tags>
-					<apigee:tag primary="true">Network Updates</apigee:tag>
+					<apigee:tag primary="true">5. Network Updates</apigee:tag>
 				</apigee:tags>
 				<apigee:authentication required="true" />
 				<apigee:example url="/people/~/network/updates" />
@@ -380,23 +380,10 @@
 			</method>
 		</resource>
 
-		<resource path="people/~/network/network-stats">
-			<method id="network_stats_api" name="GET">
-				<apigee:tags>
-					<apigee:tag primary="true">Network Statistics</apigee:tag>
-				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/people/~/network/network-stats" />
-				<doc title="" apigee:url="http://developer.linkedin.com/docs/DOC-1006"><![CDATA[
-                    Information about the member's network, such as how many connections they have one and two degrees away.
-                ]]></doc>
-			</method>
-		</resource>
-
 		<resource path="people/~/person-activities">
-			<method id="post_network_update_api" name="POST">
+			<method id="post_network_update_api" name="POST" apigee:displayName="Post Network Updates">
 				<apigee:tags>
-					<apigee:tag primary="true">Post Network Update</apigee:tag>
+					<apigee:tag primary="true">5. Network Updates</apigee:tag>
 				</apigee:tags>
 				<apigee:authentication required="true" />
 				<apigee:example url="/people/~/person-activities" />
@@ -421,7 +408,7 @@
 		<resource path="people/~/network/updates/update-comments">
 			<method id="get_update_comments_api" name="GET" apigee:displayName="Read Comments">
 				<apigee:tags>
-					<apigee:tag primary="true">Comments and Likes</apigee:tag>
+					<apigee:tag primary="true">6. Comments, Likes and Shares</apigee:tag>
 				</apigee:tags>
 				<apigee:authentication required="true" />
 				<apigee:example url="/people/~/network/updates/key={NETWORK-UPDATE-KEY}/update-comments" />
@@ -434,7 +421,7 @@
 		<resource path="people/~/network/updates/likes">
 			<method id="get_update_likes_api" name="GET" apigee:displayName="Read Likes">
 				<apigee:tags>
-					<apigee:tag primary="true">Comments and Likes</apigee:tag>
+					<apigee:tag primary="true">6. Comments, Likes and Shares</apigee:tag>
 				</apigee:tags>
 				<apigee:authentication required="true" />
 				<apigee:example url="/people/~/network/updates/key={NETWORK-UPDATE-KEY}/likes" />
@@ -447,7 +434,7 @@
 		<resource path="people/~/network/updates/update-comments">
 			<method id="post_update_comments_api" name="POST" apigee:displayName="Comment">
 				<apigee:tags>
-					<apigee:tag primary="true">Comments and Likes</apigee:tag>
+					<apigee:tag primary="true">6. Comments, Likes and Shares</apigee:tag>
 				</apigee:tags>
 				<apigee:authentication required="true" />
 				<apigee:example url="/people/~/network/updates/key={NETWORK-UPDATE-KEY}/update-comments" />
@@ -471,7 +458,7 @@
 		<resource path="people/~/network/updates/is-liked">
 			<method id="post_update_likes_api" name="PUT" apigee:displayName="Like">
 				<apigee:tags>
-					<apigee:tag primary="true">Comments and Likes</apigee:tag>
+					<apigee:tag primary="true">6. Comments, Likes and Shares</apigee:tag>
 				</apigee:tags>
 				<apigee:authentication required="true" />
 				<apigee:example url="/people/~/network/updates/key={NETWORK-UPDATE-KEY}/is-liked" />
@@ -493,7 +480,7 @@
 		<resource path="people/~/shares">
 			<method id="post_update_likes_api1" name="POST" apigee:displayName="Add Share">
 				<apigee:tags>
-					<apigee:tag primary="true">Share</apigee:tag>
+					<apigee:tag primary="true">6. Comments, Likes and Shares</apigee:tag>
 				</apigee:tags>
 				<apigee:authentication required="true" />
 				<apigee:example url="/people/~/shares" />
@@ -525,7 +512,7 @@
 		<resource path="people/~/shares">
 			<method id="post_update_likes_api2" name="POST" apigee:displayName="Reshare">
 				<apigee:tags>
-					<apigee:tag primary="true">Share</apigee:tag>
+					<apigee:tag primary="true">6. Comments, Likes and Shares</apigee:tag>
 				</apigee:tags>
 				<apigee:authentication required="true" />
 				<apigee:example url="/people/~/shares" />
@@ -557,7 +544,7 @@
 		<resource path="people/~:(current-share)">
 			<method id="post_update_likes_api3" name="GET" apigee:displayName="Read Current Share">
 				<apigee:tags>
-					<apigee:tag primary="true">Share</apigee:tag>
+					<apigee:tag primary="true">6. Comments, Likes and Shares</apigee:tag>
 				</apigee:tags>
 				<apigee:authentication required="true" />
 				<apigee:example url="/people/~:(current-share)" />
@@ -574,9 +561,9 @@
 			<param name="scope" type="xsd:string" style="query" required="false" default="self">
 				<doc>self to return member's feed. Omitted to return aggregated network feed.</doc>
 			</param>
-			<method id="post_update_likes_api4" name="GET">
+			<method id="post_update_likes_api4" name="GET" apigee:displayName="Retrieve Share">
 				<apigee:tags>
-					<apigee:tag primary="true">Retrieving Share</apigee:tag>
+					<apigee:tag primary="true">6. Comments, Likes and Shares</apigee:tag>
 				</apigee:tags>
 				<apigee:authentication required="true" />
 				<apigee:example url="/people/~/network?type=SHAR" />
@@ -585,5 +572,308 @@
                 ]]></doc>
 			</method>
 		</resource>
+		
+		<resource path="companies/email-domain">
+			<method id="get_company_by_domain" name="GET" apigee:displayName="Get Company by Email Domain">
+				<apigee:tags>
+					<apigee:tag primary="true">7. Company</apigee:tag>
+				</apigee:tags>
+				<apigee:authentication required="true" />
+				<apigee:example url="/companies?email-domain=linkedin.com" />
+				<doc title="" apigee:url="https://developer.linkedin.com/documents/company-lookup-api-and-fields"><![CDATA[
+                    Use the Company Profile API to find companies using a company ID, a universal name, or an email domain. You can retrieve data for individual or multiple companies. The API returns a list of companies with matching profiles. Each entry can contain the basic company information available in the company profile (such as company ID, logo, site URL, and more) and handles to additional company content (such as RSS stream or Twitter feed).
+                    
+                    2 Legged Authentication works for this call.
+                ]]></doc>
+			</method>
+		</resource>
+
+		<resource path="companies/id">
+			<method id="get_company_by_id" name="GET" apigee:displayName="Get Company by ID">
+				<apigee:tags>
+					<apigee:tag primary="true">7. Company</apigee:tag>
+				</apigee:tags>
+				<apigee:authentication required="true" />
+				<apigee:example url="/companies/1337" />
+				<doc title="" apigee:url="https://developer.linkedin.com/documents/company-lookup-api-and-fields"><![CDATA[
+                    Use the Company Profile API to find companies using a company ID, a universal name, or an email domain. You can retrieve data for individual or multiple companies. The API returns a list of companies with matching profiles. Each entry can contain the basic company information available in the company profile (such as company ID, logo, site URL, and more) and handles to additional company content (such as RSS stream or Twitter feed).
+                    
+                    2 Legged Authentication works for this call.
+                ]]></doc>
+			</method>
+		</resource>
+
+		<resource path="companies/bulk">
+			<method id="get_company_bulk" name="GET" apigee:displayName="Bulk Company Request">
+				<apigee:tags>
+					<apigee:tag primary="true">7. Company</apigee:tag>
+				</apigee:tags>
+				<apigee:authentication required="true" />
+				<apigee:example url="/companies::(162479,universal-name=linkedin)" />
+				<doc title="" apigee:url="https://developer.linkedin.com/documents/company-lookup-api-and-fields"><![CDATA[
+                    Use the Company Profile API to find companies using a company ID, a universal name, or an email domain. You can retrieve data for individual or multiple companies. The API returns a list of companies with matching profiles. Each entry can contain the basic company information available in the company profile (such as company ID, logo, site URL, and more) and handles to additional company content (such as RSS stream or Twitter feed).
+                ]]></doc>
+			</method>
+		</resource>
+		
+		<resource path="company-search">
+			<method id="company-search" name="GET" apigee:displayName="Company Search">
+				<apigee:tags>
+					<apigee:tag primary="true">7. Company</apigee:tag>
+				</apigee:tags>
+				<apigee:authentication required="true" />
+				<apigee:example url="/company-search?keywords=LinkedIn" />
+				<doc title="" apigee:url="https://developer.linkedin.com/documents/company-search"><![CDATA[
+                    Use the Company Search API to find companies using keywords, industry, location, or some other criteria. It returns a collection of matching companies. Each entry can contain much of the information available on the company page.
+                ]]></doc>
+			</method>
+		</resource>
+		
+		<resource path="people/~/following/companies">
+			<method id="followed-companies" name="GET" apigee:displayName="Followed Companies">
+				<apigee:tags>
+					<apigee:tag primary="true">7. Company</apigee:tag>
+				</apigee:tags>
+				<apigee:authentication required="true" />
+				<apigee:example url="/people/~/following/companies" />
+				<doc title="" apigee:url="https://developer.linkedin.com/documents/company-follow-and-suggestions"><![CDATA[
+                    Retrieve a list of companies the member is following.
+                ]]></doc>
+			</method>
+		</resource>
+		
+		<resource path="people/~/suggestions/to-follow/companies">
+			<method id="recommended-companies" name="GET" apigee:displayName="Recommended Companies">
+				<apigee:tags>
+					<apigee:tag primary="true">7. Company</apigee:tag>
+				</apigee:tags>
+				<apigee:authentication required="true" />
+				<apigee:example url="/people/~/suggestions/to-follow/companies" />
+				<doc title="" apigee:url="https://developer.linkedin.com/documents/company-follow-and-suggestions"><![CDATA[
+                    Retrieve a list of recommendations for the member to follow.
+                ]]></doc>
+			</method>
+		</resource>
+
+		<resource path="people/~/following/companies">
+			<method id="follow-company" name="POST" apigee:displayName="Follow a Company">
+				<apigee:tags>
+					<apigee:tag primary="true">7. Company</apigee:tag>
+				</apigee:tags>
+				<apigee:authentication required="true" />
+				<apigee:example url="/people/~/following/companies" />
+				<doc title="" apigee:url="https://developer.linkedin.com/documents/company-follow-and-suggestions"><![CDATA[
+                    Start following a company.
+                ]]></doc>
+                <request>
+					<representation>
+						<apigee:payload><![CDATA[
+<company>
+  <id>1337</id>
+</company>
+                ]]></apigee:payload>
+					</representation>
+				</request>
+			</method>
+		</resource>
+		
+		<resource path="people/~/group-memberships/4058745">
+			<method id="join-group" name="PUT" apigee:displayName="Join a Group">
+				<apigee:tags>
+					<apigee:tag primary="true">8. Groups</apigee:tag>
+				</apigee:tags>
+				<apigee:authentication required="true" />
+				<apigee:example url="/people/~/group-memberships/4058745" />
+				<doc title="" apigee:url="https://developer.linkedin.com/documents/groups-api"><![CDATA[
+                    Join a group - this is the test group for people using the Groups API.  Joining it will make the other calls work.
+                ]]></doc>
+                <request>
+					<representation>
+						<apigee:payload><![CDATA[
+<group-membership>
+   <membership-state> 
+     <code>member</code>
+   </membership-state>
+</group-membership>
+                ]]></apigee:payload>
+					</representation>
+				</request>
+			</method>
+		</resource>
+		
+	 	<resource path="people/~/group-memberships/4058745">
+			<method id="leave-group" name="DELETE" apigee:displayName="Leave a Group">
+				<apigee:tags>
+					<apigee:tag primary="true">8. Groups</apigee:tag>
+				</apigee:tags>
+				<apigee:authentication required="true" />
+				<apigee:example url="/people/~/group-memberships/4058745" />
+				<doc title="" apigee:url="https://developer.linkedin.com/documents/groups-api"><![CDATA[
+                    Leave the API Groups Test Group.
+                ]]></doc>
+			</method>
+		</resource>
+
+		
+		<resource path="people/~/group-memberships">
+			<method id="get-groups" name="GET" apigee:displayName="Get Groups">
+				<apigee:tags>
+					<apigee:tag primary="true">8. Groups</apigee:tag>
+				</apigee:tags>
+				<apigee:authentication required="true" />
+				<apigee:example url="/people/~/group-memberships" />
+				<doc title="" apigee:url="https://developer.linkedin.com/documents/groups-api"><![CDATA[
+                    Get groups the member belongs to.
+                ]]></doc>
+			</method>
+		</resource>
+		
+		<resource path="/people/~/suggestions/groups">
+			<method id="get-suggested-groups" name="GET" apigee:displayName="Get Suggested Groups">
+				<apigee:tags>
+					<apigee:tag primary="true">8. Groups</apigee:tag>
+				</apigee:tags>
+				<apigee:authentication required="true" />
+				<apigee:example url="/people/~/suggestions/groups" />
+				<doc title="" apigee:url="https://developer.linkedin.com/documents/groups-api"><![CDATA[
+                    Get suggested groups for the member.
+                ]]></doc>
+			</method>
+		</resource>
+
+        <resource path="people/~/group-memberships/settings">
+ 			<method id="group-settings" name="GET" apigee:displayName="Show Group Settings">
+				<apigee:tags>
+					<apigee:tag primary="true">8. Groups</apigee:tag>
+				</apigee:tags>
+				<apigee:authentication required="true" />
+				<apigee:example url="/people/~/group-memberships/4058745:(show-group-logo-in-profile,contact-email,email-digest-frequency,email-announcements-from-managers,allow-messages-from-members,email-for-every-new-post)" />
+				<doc title="" apigee:url="https://developer.linkedin.com/documents/groups-api"><![CDATA[
+                    Get groups the member belongs to.
+                ]]></doc>
+			</method>
+		</resource>
+		
+		<resource path="groups/id/posts">
+ 			<method id="group-posts" name="GET" apigee:displayName="Get Group Posts">
+				<apigee:tags>
+					<apigee:tag primary="true">8. Groups</apigee:tag>
+				</apigee:tags>
+				<apigee:authentication required="false" />
+				<apigee:example url="/groups/4058745/posts:(creation-timestamp,title,summary,creator:(first-name,last-name,picture-url,headline),likes,attachment:(image-url,content-domain,content-url,title,summary),relation-to-viewer)" />
+				<doc title="" apigee:url="https://developer.linkedin.com/documents/groups-api"><![CDATA[
+                    Get posts for this group.
+                    
+                    2 Legged Authentication works for this call when looking at open groups.
+                ]]></doc>
+			</method>
+		</resource>
+		
+		<resource path="groups/id/posts">
+ 			<method id="create-group-post" name="POST" apigee:displayName="Create a Group Post">
+				<apigee:tags>
+					<apigee:tag primary="true">8. Groups</apigee:tag>
+				</apigee:tags>
+				<apigee:authentication required="true" />
+				<apigee:example url="/groups/4058745/posts" />
+				<doc title="" apigee:url="https://developer.linkedin.com/documents/groups-api"><![CDATA[
+                    Create a post in a group.
+                ]]></doc>
+                
+                <request>
+					<representation>
+						<apigee:payload><![CDATA[
+<post>
+<title>Posting from the Apigee Console</title>
+<summary>This post was made from the Apigee console at http://developer.linkedin.com/rest-console</summary>
+</post>
+                ]]></apigee:payload>
+					</representation>
+				</request>
+			</method>
+		</resource>
+		
+		<resource path="posts/id/relation-to-viewer/is-liked">
+ 			<method id="like-group-post" name="PUT" apigee:displayName="Like a Group Post">
+				<apigee:tags>
+					<apigee:tag primary="true">8. Groups</apigee:tag>
+				</apigee:tags>
+				<apigee:authentication required="true" />
+				<apigee:example url="posts/g-4058745-S-67686308/relation-to-viewer/is-liked" />
+				<doc title="" apigee:url="https://developer.linkedin.com/documents/groups-api"><![CDATA[
+                    Like a post in a group (this is the first post in the Groups API Test Group.)
+                ]]></doc>
+                
+                <request>
+					<representation>
+						<apigee:payload><![CDATA[
+<is-liked>true</is-liked>
+                ]]></apigee:payload>
+					</representation>
+				</request>
+			</method>
+		</resource>
+		
+		<resource path="posts/id/comments">
+ 			<method id="comment-on-group-post" name="POST" apigee:displayName="Comment on a Group Post">
+				<apigee:tags>
+					<apigee:tag primary="true">8. Groups</apigee:tag>
+				</apigee:tags>
+				<apigee:authentication required="true" />
+				<apigee:example url="posts/g-4058745-S-67686308/comments" />
+				<doc title="" apigee:url="https://developer.linkedin.com/documents/groups-api"><![CDATA[
+                    Comment on a post in a group (this is the first post in the Groups API Test Group.)
+                ]]></doc>
+                
+                <request>
+					<representation>
+						<apigee:payload><![CDATA[
+<comment>
+<text>This is a comment on the post from the Apigee Console.</text>
+</comment>
+                ]]></apigee:payload>
+					</representation>
+				</request>
+			</method>
+		</resource>
+		
+		<resource path="job-search">
+ 			<method id="job-search" name="GET" apigee:displayName="Search Jobs">
+				<apigee:tags>
+					<apigee:tag primary="true">9. Jobs</apigee:tag>
+				</apigee:tags>
+				<apigee:authentication required="true" />
+				<apigee:example url="job-search?distance=10" />
+				<doc title="" apigee:url="https://developer.linkedin.com/documents/job-search-api"><![CDATA[
+                    Search for jobs - by default it searches for jobs near the logged in member.  Other parameters can be found on the job search documentation page on the developer portal.
+                ]]></doc>
+			</method>
+		</resource>
+		<resource path="people/~/suggestions/job-suggestions">
+ 			<method id="recommended-jobs" name="GET" apigee:displayName="Get Recommended Jobs">
+				<apigee:tags>
+					<apigee:tag primary="true">9. Jobs</apigee:tag>
+				</apigee:tags>
+				<apigee:authentication required="true" />
+				<apigee:example url="people/~/suggestions/job-suggestions" />
+				<doc title="" apigee:url="https://developer.linkedin.com/documents/job-bookmarks-and-suggestions"><![CDATA[
+                    Get recommended jobs for this member.
+                ]]></doc>
+			</method>
+		</resource>
+		
+		<resource path="jobs/id">
+			<method id="job-details" name="GET" apigee:displayName="Get Job Details">
+				<apigee:tags>
+					<apigee:tag primary="true">9. Jobs</apigee:tag>
+				</apigee:tags>
+				<apigee:authentication required="true" />
+				<apigee:example url="/jobs/{JOB-ID}" />
+				<doc title="" apigee:url="https://developer.linkedin.com/documents/job-lookup-api-and-fields"><![CDATA[
+                    Retrieve information about a specific job.  You need to input the ID for the job in the URL for this to work.  Use the job search or recommended jobs calls above to get a job ID to use for this call.
+                ]]></doc>
+			</method>
+		</resource>
+		
 	</resources>
 </application>
