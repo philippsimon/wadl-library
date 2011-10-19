@@ -1,13 +1,11 @@
-<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-	xmlns:apigee="http://api.apigee.com/wadl/2010/07/" xmlns="http://wadl.dev.java.net/2009/02"
-	xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:apigee="http://api.apigee.com/wadl/2010/07/" xmlns="http://wadl.dev.java.net/2009/02" xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
 
 	<resources base="https://api.twilio.com/2010-04-01/Accounts">
 
 		<resource path="/{AccountSid}.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account</doc>
@@ -17,16 +15,16 @@
 					<apigee:tag primary="true">Accounts</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/account"><![CDATA[Returns the account details for the {AccountSid}.]]></doc>
 			</method>
 		</resource>
 
 		<resource path="/{AccountSid}.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account</doc>
@@ -39,16 +37,20 @@
 					<apigee:tag primary="true">Accounts</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/account"><![CDATA[Allows you to modify the 'FriendlyName' for the {AccountSid} via POST.]]></doc>
-			</method>
+			    <request>
+				   <param name="Content-Type" type="string" style="header" required="true" default="application/x-www-form-urlencoded"/>
+                   <param name="FriendlyName" type="string" style="query" required="true" default=""/>
+                </request>
+            </method>
 		</resource>
 
 		<resource path="/{AccountSid}.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account</doc>
@@ -61,10 +63,14 @@
 					<apigee:tag primary="true">Accounts</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/account"><![CDATA[Allows you to modify the 'FriendlyName' for the {AccountSid} via PUT.]]></doc>
-			</method>
+			    <request>
+				   <param name="Content-Type" type="string" style="header" required="true" default="application/x-www-form-urlencoded"/>
+                   <param name="FriendlyName" type="string" style="query" required="true" default=""/>
+                </request>
+            </method>
 		</resource>
 
 		<resource path="">
@@ -73,8 +79,8 @@
 					<apigee:tag primary="true">Accounts</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/account"><![CDATA[
 					Right now, your credentials are tied to one and only one account, so the list resource only contains your single
 					account.
@@ -84,8 +90,8 @@
 
 		<resource path="/{AccountSid}/SMS/Messages.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account.</doc>
@@ -116,16 +122,22 @@
 					<apigee:tag primary="true">SMS Messages</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/SMS/Messages?From={FromPhoneNumber}&amp;To={ToPhoneNumber}&amp;Body={Body}" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/SMS/Messages"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/sending-sms"><![CDATA[Send a new outgoing message.]]></doc>
+				<request>
+				   <param name="Content-Type" type="string" style="header" required="true" default="application/x-www-form-urlencoded"/>
+				   <param name="From" type="string" style="query" required="true" default=""/>
+				   <param name="To" type="string" style="query" required="true" default=""/>
+				   <param name="Body" type="string" style="query" required="true" default=""/>
+				</request>
 			</method>
 		</resource>
 
 		<resource path="/{AccountSid}/SMS/Messages.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account</doc>
@@ -148,16 +160,16 @@
 					<apigee:tag primary="true">SMS Messages</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/SMS/Messages" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/SMS/Messages"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/sms"><![CDATA[Returns a list of SMS messages associated with your account identified by {AccountSid}.]]></doc>
 			</method>
 		</resource>
 
 		<resource path="/{AccountSid}/SMS/Messages/{SMSMessageSid}.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account</doc>
@@ -170,16 +182,16 @@
 					<apigee:tag primary="true">SMS Messages</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/SMS/Messages/{SMSMessageSid}" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/SMS/Messages/{SMSMessageSid}"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/sms"><![CDATA[Returns a single SMS message specified by the provided {SMSMessageSid}.]]></doc>
 			</method>
 		</resource>
 
 		<resource path="/{AccountSid}/OutgoingCallerIds.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id</doc>
@@ -195,16 +207,16 @@
 					<apigee:tag primary="true">Outgoing Caller ID</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/OutgoingCallerIds" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/OutgoingCallerIds"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/outgoing-caller-ids"><![CDATA[Returns the list of outgoing caller ids for this account]]></doc>
 			</method>
 		</resource>
 
 		<resource path="/{AccountSid}/OutgoingCallerIds.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id</doc>
@@ -229,16 +241,23 @@
 					<apigee:tag primary="true">Outgoing Caller ID</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/OutgoingCallerIds?PhoneNumber={PhoneNumber}" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/OutgoingCallerIds"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/outgoing-caller-ids"><![CDATA[Adds a new caller id to your account]]></doc>
-			</method>
+			    <request>
+				   <param name="Content-Type" type="string" style="header" required="true" default="application/x-www-form-urlencoded"/>
+                   <param name="PhoneNumber" type="string" style="query" required="true" default=""/>
+                   <param name="FriendlyName" type="string" style="query" required="true" default=""/>
+                   <param name="CallDelay" type="string" style="query" required="true" default="0"/>
+                   <param name="Extension" type="string" style="query" required="true" default=""/>
+                 </request>
+            </method>
 		</resource>
 
 		<resource path="/{AccountSid}/OutgoingCallerIds/{OutgoingCallerIdSid}.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id</doc>
@@ -251,16 +270,16 @@
 					<apigee:tag primary="true">Outgoing Caller ID</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/OutgoingCallerIds/{OutgoingCallerIdSid}" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/OutgoingCallerIds/{OutgoingCallerIdSid}"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/outgoing-caller-ids"><![CDATA[Returns a single outgoing caller id specified by the provided {OutgoingCallerIdSid}]]></doc>
 			</method>
 		</resource>
 
 		<resource path="/{AccountSid}/OutgoingCallerIds/{OutgoingCallerIdSid}.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id</doc>
@@ -279,19 +298,23 @@
 					<apigee:tag primary="true">Outgoing Caller ID</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/OutgoingCallerIds/{OutgoingCallerIdSid}" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/OutgoingCallerIds/{OutgoingCallerIdSid}"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/outgoing-caller-ids"><![CDATA[
 					Updates the outgoing caller id specified by the provided {OutgoingCallerIdSid} and returns the updated resource if
 					successful via POST.
 				]]></doc>
+                <request>
+				   <param name="Content-Type" type="string" style="header" required="true" default="application/x-www-form-urlencoded"/>
+                   <param name="FriendlyName" type="string" style="query" required="true" default=""/>
+                </request>
 			</method>
 		</resource>
 
 		<resource path="/{AccountSid}/OutgoingCallerIds/{OutgoingCallerIdSid}.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id</doc>
@@ -310,19 +333,23 @@
 					<apigee:tag primary="true">Outgoing Caller ID</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/OutgoingCallerIds/{OutgoingCallerIdSid}" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/OutgoingCallerIds/{OutgoingCallerIdSid}"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/outgoing-caller-ids"><![CDATA[
 					Updates the outgoing caller id specified by the provided {OutgoingCallerIdSid} and returns the updated resource if
 					successful via PUT.
 				]]></doc>
+                <request>
+				   <param name="Content-Type" type="string" style="header" required="true" default="application/x-www-form-urlencoded"/>
+                   <param name="FriendlyName" type="string" style="query" required="true" default=""/>
+                </request>
 			</method>
 		</resource>
 
 		<resource path="/{AccountSid}/OutgoingCallerIds/{OutgoingCallerIdSid}.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id</doc>
@@ -335,16 +362,16 @@
 					<apigee:tag primary="true">Outgoing Caller ID</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/OutgoingCallerIds/{OutgoingCallerIdSid}" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/OutgoingCallerIds/{OutgoingCallerIdSid}"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/outgoing-caller-ids"><![CDATA[Deletes the outgoing caller id specified by the provided {OutgoingCallerIdSid}]]></doc>
 			</method>
 		</resource>
 
 		<resource path="/{AccountSid}/AvailablePhoneNumbers/{IsoCountryCode}/Local.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id</doc>
@@ -398,8 +425,8 @@
 					<apigee:tag primary="true">Available Phone Numbers</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/AvailablePhoneNumbers/{IsoCountryCode}/Local" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/AvailablePhoneNumbers/{IsoCountryCode}/Local"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/available-phone-numbers"><![CDATA[
 					Returns a list of local AvailablePhoneNumber resource representations, each representing a phone number that is
 					currently available for provisioning within your account.
@@ -409,8 +436,8 @@
 
 		<resource path="/{AccountSid}/AvailablePhoneNumbers/{IsoCountryCode}/TollFree.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id</doc>
@@ -429,8 +456,8 @@
 					<apigee:tag primary="true">Available Phone Numbers</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/AvailablePhoneNumbers/{IsoCountryCode}/TollFree" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/AvailablePhoneNumbers/{IsoCountryCode}/TollFree"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/available-phone-numbers"><![CDATA[
 					Returns a list of toll-free AvailablePhoneNumber resource representations, each representing a phone number that is
 					currently available for provisioning within your account.
@@ -440,8 +467,8 @@
 
 		<resource path="/{AccountSid}/Calls/{CallSid}.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id</doc>
@@ -454,16 +481,16 @@
 					<apigee:tag primary="true">Calls</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/Calls/{CallSid}" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/Calls/{CallSid}"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/call"><![CDATA[Returns the single Call resource identified by {CallSid}.]]></doc>
 			</method>
 		</resource>
 
 		<resource path="/{AccountSid}/Calls/{CallSid}.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id</doc>
@@ -488,16 +515,22 @@
 					<apigee:tag primary="true">Modify Live Call</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/Calls/{CallSid}" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/Calls/{CallSid}"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/change-call-state"><![CDATA[Modifies a live call. Modification could be redirection or termination of the call.]]></doc>
-			</method>
+			    <request>
+				   <param name="Content-Type" type="string" style="header" required="true" default="application/x-www-form-urlencoded"/>
+                   <param name="Url" type="string" style="query" required="true" default=""/>
+                   <param name="Method" type="string" style="query" required="true" default="POST"/>
+                   <param name="Status" type="string" style="query" required="true" default=""/>
+                </request>
+            </method>
 		</resource>
 
 		<resource path="/{AccountSid}/Calls.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id</doc>
@@ -532,8 +565,8 @@
 					<apigee:tag primary="true">Calls</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/Calls" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/Calls"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/call"><![CDATA[
 					Returns a list of phone calls made to and from the account identified by {AccountSid}, sorted by DateUpdated with
 					most-recent calls first.
@@ -543,8 +576,8 @@
 
 		<resource path="/{AccountSid}/Calls.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id</doc>
@@ -607,16 +640,22 @@
 					<apigee:tag primary="true">Making Calls</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/Calls?From={FromPhoneNumber}&amp;To={ToPhoneNumber}&amp;Url={Url}" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/Calls"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/making_calls"><![CDATA[Make a call.]]></doc>
-			</method>
+			    <request>
+				   <param name="Content-Type" type="string" style="header" required="true" default="application/x-www-form-urlencoded"/>
+                   <param name="From" type="string" style="query" required="true" default=""/>
+                   <param name="To" type="string" style="query" required="true" default=""/>
+                   <param name="Url" type="string" style="query" required="true" default=""/>
+                </request>
+            </method>
 		</resource>
 
 		<resource path="/{AccountSid}/IncomingPhoneNumbers/{IncomingPhoneNumberSid}.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id.</doc>
@@ -629,16 +668,16 @@
 					<apigee:tag primary="true">Incoming Phone Numbers</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/IncomingPhoneNumbers/{IncomingPhoneNumberSid}" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/IncomingPhoneNumbers/{IncomingPhoneNumberSid}"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/incoming-phone-numbers"><![CDATA[Fetches the details of a phone number purchased from Twilio]]></doc>
 			</method>
 		</resource>
 
 		<resource path="/{AccountSid}/IncomingPhoneNumbers/{IncomingPhoneNumberSid}.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id.</doc>
@@ -692,16 +731,34 @@
 					<apigee:tag primary="true">Incoming Phone Numbers</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/IncomingPhoneNumbers/{IncomingPhoneNumberSid}" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/IncomingPhoneNumbers/{IncomingPhoneNumberSid}"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/incoming-phone-numbers"><![CDATA[Update an incoming phone number obtained from Twilio via POST.]]></doc>
-			</method>
+			    <request>
+				   <param name="Content-Type" type="string" style="header" required="true" default="application/x-www-form-urlencoded"/>
+                   <param name="FriendlyName" type="string" style="query" required="true" default=""/>
+                   <param name="ApiVersion" type="string" style="query" required="true" default=""/>
+                   <param name="VoiceUrl" type="string" style="query" required="true" default=""/>
+                   <param name="VoiceMethod" type="string" style="query" required="true" default=""/>
+                   <param name="VoiceFallbackUrl" type="string" style="query" required="true" default=""/>
+                   <param name="StatusCallback" type="string" style="query" required="true" default=""/>
+                   <param name="StatusCallbackMethod" type="string" style="query" required="true" default=""/>
+                   <param name="VoiceCallerIdLookup" type="string" style="query" required="true" default=""/>
+                   <param name="VoiceApplicationSid" type="string" style="query" required="true" default=""/>
+                   <param name="SmsUrl" type="string" style="query" required="true" default=""/>
+                   <param name="SmsMethod" type="string" style="query" required="true" default=""/>
+                   <param name="SmsFallbackUrl" type="string" style="query" required="true" default=""/>
+                   <param name="SmsFallbackMethod" type="string" style="query" required="true" default=""/>
+                   <param name="SmsApplicationSid" type="string" style="query" required="true" default=""/>
+                   <param name="AccountSid" type="string" style="query" required="true" default=""/>
+                </request>
+            </method>
 		</resource>
 
 		<resource path="/{AccountSid}/IncomingPhoneNumbers/{IncomingPhoneNumberSid}.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id.</doc>
@@ -755,16 +812,34 @@
 					<apigee:tag primary="true">Incoming Phone Numbers</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/IncomingPhoneNumbers/{IncomingPhoneNumberSid}" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/IncomingPhoneNumbers/{IncomingPhoneNumberSid}"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/incoming-phone-numbers"><![CDATA[Update an incoming phone number obtained from Twilio via PUT.]]></doc>
-			</method>
+			    <request>
+				   <param name="Content-Type" type="string" style="header" required="true" default="application/x-www-form-urlencoded"/>
+                   <param name="FriendlyName" type="string" style="query" required="true" default=""/>
+                   <param name="ApiVersion" type="string" style="query" required="true" default=""/>
+                   <param name="VoiceUrl" type="string" style="query" required="true" default=""/>
+                   <param name="VoiceMethod" type="string" style="query" required="true" default=""/>
+                   <param name="VoiceFallbackUrl" type="string" style="query" required="true" default=""/>
+                   <param name="StatusCallback" type="string" style="query" required="true" default=""/>
+                   <param name="StatusCallbackMethod" type="string" style="query" required="true" default=""/>
+                   <param name="VoiceCallerIdLookup" type="string" style="query" required="true" default=""/>
+                   <param name="VoiceApplicationSid" type="string" style="query" required="true" default=""/>
+                   <param name="SmsUrl" type="string" style="query" required="true" default=""/>
+                   <param name="SmsMethod" type="string" style="query" required="true" default=""/>
+                   <param name="SmsFallbackUrl" type="string" style="query" required="true" default=""/>
+                   <param name="SmsFallbackMethod" type="string" style="query" required="true" default=""/>
+                   <param name="SmsApplicationSid" type="string" style="query" required="true" default=""/>
+                   <param name="AccountSid" type="string" style="query" required="true" default=""/>
+                </request>
+            </method>
 		</resource>
 
 		<resource path="/{AccountSid}/IncomingPhoneNumbers/{IncomingPhoneNumberSid}.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id.</doc>
@@ -777,16 +852,16 @@
 					<apigee:tag primary="true">Incoming Phone Numbers</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/IncomingPhoneNumbers/{IncomingPhoneNumberSid}" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/IncomingPhoneNumbers/{IncomingPhoneNumberSid}"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/incoming-phone-numbers"><![CDATA[Deletes a phone number purchased from Twilio]]></doc>
 			</method>
 		</resource>
 
 		<resource path="/{AccountSid}/IncomingPhoneNumbers.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id.</doc>
@@ -805,16 +880,16 @@
 					<apigee:tag primary="true">Incoming Phone Numbers</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/IncomingPhoneNumbers" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/IncomingPhoneNumbers"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/incoming-phone-numbers"><![CDATA[Returns a list of incoming phone number resources, each representing a phone number given to your account]]></doc>
 			</method>
 		</resource>
 
 		<resource path="/{AccountSid}/IncomingPhoneNumbers.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id.</doc>
@@ -871,18 +946,36 @@
 					<apigee:tag primary="true">Incoming Phone Numbers</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/IncomingPhoneNumbers?PhoneNumber={PhoneNumber}" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/IncomingPhoneNumbers"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/incoming-phone-numbers"><![CDATA[
 					Adds a new phone number to your account. If a phone number is found for your request, Twilio will add it to your account
 				]]></doc>
-			</method>
+			    <request>
+				   <param name="Content-Type" type="string" style="header" required="true" default="application/x-www-form-urlencoded"/>
+                   <param name="PhoneNumber" type="string" style="query" required="true" default=""/>
+                   <param name="FriendlyName" type="string" style="query" required="true" default=""/>
+                   <param name="VoiceUrl" type="string" style="query" required="true" default=""/>
+                   <param name="VoiceMethod" type="string" style="query" required="true" default=""/>
+                   <param name="VoiceFallbackUrl" type="string" style="query" required="true" default=""/>
+                   <param name="StatusCallback" type="string" style="query" required="true" default=""/>
+                   <param name="StatusCallbackMethod" type="string" style="query" required="true" default=""/>
+                   <param name="VoiceCallerIdLookup" type="string" style="query" required="true" default=""/>
+                   <param name="VoiceApplicationSid" type="string" style="query" required="true" default=""/>
+                   <param name="SmsUrl" type="string" style="query" required="true" default=""/>
+                   <param name="SmsMethod" type="string" style="query" required="true" default=""/>
+                   <param name="SmsFallbackUrl" type="string" style="query" required="true" default=""/>
+                   <param name="SmsFallbackMethod" type="string" style="query" required="true" default=""/>
+                   <param name="SmsApplicationSid" type="string" style="query" required="true" default=""/>
+                   <param name="AccountSid" type="string" style="query" required="true" default=""/>
+                </request>
+            </method>
 		</resource>
 
 		<resource path="/{AccountSid}/IncomingPhoneNumbers.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id.</doc>
@@ -940,16 +1033,34 @@
 					<apigee:tag primary="true">Incoming Phone Numbers</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/IncomingPhoneNumbers?AreaCode={AreaCode}" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/IncomingPhoneNumbers"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/incoming-phone-numbers"><![CDATA[Adds a random phone number available for the area depending on the Area Code provided]]></doc>
-			</method>
+			    <request>
+				   <param name="Content-Type" type="string" style="header" required="true" default="application/x-www-form-urlencoded"/>
+                   <param name="AreaCode" type="string" style="query" required="true" default=""/>
+                   <param name="FriendlyName" type="string" style="query" required="true" default=""/>
+                   <param name="VoiceUrl" type="string" style="query" required="true" default=""/>
+                   <param name="VoiceMethod" type="string" style="query" required="true" default=""/>
+                   <param name="VoiceFallbackUrl" type="string" style="query" required="true" default=""/>
+                   <param name="StatusCallback" type="string" style="query" required="true" default=""/>
+                   <param name="StatusCallbackMethod" type="string" style="query" required="true" default=""/>
+                   <param name="VoiceCallerIdLookup" type="string" style="query" required="true" default=""/>
+                   <param name="VoiceApplicationSid" type="string" style="query" required="true" default=""/>
+                   <param name="SmsUrl" type="string" style="query" required="true" default=""/>
+                   <param name="SmsMethod" type="string" style="query" required="true" default=""/>
+                   <param name="SmsFallbackUrl" type="string" style="query" required="true" default=""/>
+                   <param name="SmsFallbackMethod" type="string" style="query" required="true" default=""/>
+                   <param name="SmsApplicationSid" type="string" style="query" required="true" default=""/>
+                   <param name="AccountSid" type="string" style="query" required="true" default=""/>
+                </request>
+            </method>
 		</resource>
 
 		<resource path="/{AccountSid}/Calls/{CallSid}/Recordings.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id</doc>
@@ -969,16 +1080,16 @@
 					<apigee:tag primary="true">Calls</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/Calls/{CallSid}/Recordings" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/Calls/{CallSid}/Recordings"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/call"><![CDATA[Returns a recording list for the {CallSid}]]></doc>
 			</method>
 		</resource>
 
 		<resource path="/{AccountSid}/Recordings.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id</doc>
@@ -998,16 +1109,16 @@
 					<apigee:tag primary="true">Recordings</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/Recordings" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/Recordings"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/recording"><![CDATA[Returns a recording list associated with this {AccountSid}]]></doc>
 			</method>
 		</resource>
 
 		<resource path="/{AccountSid}/Recordings/{RecordingSid}/Transcriptions.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id</doc>
@@ -1020,8 +1131,8 @@
 					<apigee:tag primary="true">Recordings</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/Recordings/{RecordingSid}/Transcriptions" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/Recordings/{RecordingSid}/Transcriptions"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/recording"><![CDATA[
 					Each Recording instance resource has a Transcriptions subresource which represents the set of transcriptions generated
 					from the recording (if any). Represents the set of transcriptions available for the recording identified by
@@ -1032,8 +1143,8 @@
 
 		<resource path="/{AccountSid}/Transcriptions/{TranscriptionSid}.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id</doc>
@@ -1046,16 +1157,16 @@
 					<apigee:tag primary="true">Transcriptions</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/Transcriptions/{TranscriptionSid}" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/Transcriptions/{TranscriptionSid}"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/transcription"><![CDATA[Returns a single Transcription resource representation identified by the given {TranscriptionSid}.]]></doc>
 			</method>
 		</resource>
 
 		<resource path="/{AccountSid}/Transcriptions.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id</doc>
@@ -1065,8 +1176,8 @@
 					<apigee:tag primary="true">Transcriptions</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/Transcriptions" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/Transcriptions"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/transcription"><![CDATA[
 					Returns a set of Transcription resource representations that includes paging information, sorted by 'DateUpdated', with
 					most recent transcripts first.
@@ -1076,9 +1187,9 @@
 
 		<resource path="/{AccountSid}/Recordings/{RecordingSid}.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="wav">
-				<option value="wav" mediaType="audio/x-wav" />
-				<option value="mp3" mediaType="audio/mpeg" />
-				<option value="xml" mediaType="application/xml" />
+				<option value="wav" mediaType="audio/x-wav"/>
+				<option value="mp3" mediaType="audio/mpeg"/>
+				<option value="xml" mediaType="application/xml"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id</doc>
@@ -1091,17 +1202,17 @@
 					<apigee:tag primary="true">Recordings</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/Recordings/{RecordingSid}" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/Recordings/{RecordingSid}"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/recording"><![CDATA[Returns a recording]]></doc>
 			</method>
 		</resource>
 
 		<resource path="/{AccountSid}/Recordings/{RecordingSid}.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="wav">
-				<option value="wav" mediaType="audio/x-wav" />
-				<option value="mp3" mediaType="audio/mpeg" />
-				<option value="xml" mediaType="application/xml" />
+				<option value="wav" mediaType="audio/x-wav"/>
+				<option value="mp3" mediaType="audio/mpeg"/>
+				<option value="xml" mediaType="application/xml"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id</doc>
@@ -1114,16 +1225,16 @@
 					<apigee:tag primary="true">Recordings</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/Recordings/{RecordingSid}" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/Recordings/{RecordingSid}"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/recording"><![CDATA[Deletes a recording]]></doc>
 			</method>
 		</resource>
 
 		<resource path="/{AccountSid}/Notifications/{NotificationSid}.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id</doc>
@@ -1136,16 +1247,16 @@
 					<apigee:tag primary="true">Notifications</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/Notifications/{NotificationSid}" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/Notifications/{NotificationSid}"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/notification"><![CDATA[Returns a notification]]></doc>
 			</method>
 		</resource>
 
 		<resource path="/{AccountSid}/Notifications/{NotificationSid}.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id</doc>
@@ -1158,16 +1269,16 @@
 					<apigee:tag primary="true">Notifications</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/Notifications/{NotificationSid}" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/Notifications/{NotificationSid}"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/notification"><![CDATA[Deletes a notification]]></doc>
 			</method>
 		</resource>
 
 		<resource path="/{AccountSid}/Notifications.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id</doc>
@@ -1190,16 +1301,16 @@
 					<apigee:tag primary="true">Notifications</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/Notifications" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/Notifications"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/notification"><![CDATA[Returns a notification list]]></doc>
 			</method>
 		</resource>
 
 		<resource path="/{AccountSid}/Calls/{CallSid}/Notifications.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id</doc>
@@ -1225,16 +1336,16 @@
 					<apigee:tag primary="true">Calls</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/Calls/{CallSid}/Notifications" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/Calls/{CallSid}/Notifications"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/notification"><![CDATA[Returns a notification list]]></doc>
 			</method>
 		</resource>
 
 		<resource path="/{AccountSid}/Conferences/{ConferenceSid}.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id</doc>
@@ -1247,16 +1358,16 @@
 					<apigee:tag primary="true">Conferences</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/Conferences/{ConferenceSid}" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/Conferences/{ConferenceSid}"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/conference"><![CDATA[Returns a representation of the conference identified by {ConferenceSid}.]]></doc>
 			</method>
 		</resource>
 
 		<resource path="/{AccountSid}/Conferences/{ConferenceSid}/Participants.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id</doc>
@@ -1272,16 +1383,16 @@
 					<apigee:tag primary="true">Conferences</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/Conferences/{ConferenceSid}/Participants" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/Conferences/{ConferenceSid}/Participants"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/conference"><![CDATA[Returns the list of participants in the conference identified by {ConferenceSid}.]]></doc>
 			</method>
 		</resource>
 
 		<resource path="/{AccountSid}/Conferences.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id</doc>
@@ -1311,16 +1422,16 @@
 					<apigee:tag primary="true">Conferences</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/Conferences" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/Conferences"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/conference"><![CDATA[Returns a list of conferences within an account identified by {AccountSid}.]]></doc>
 			</method>
 		</resource>
 
 		<resource path="/{AccountSid}/Conferences/{ConferenceSid}/Participants/{CallSid}.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id</doc>
@@ -1336,16 +1447,16 @@
 					<apigee:tag primary="true">Participants</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants/{CallSid}" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants/{CallSid}"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/participant"><![CDATA[Returns a representation of this participant.]]></doc>
 			</method>
 		</resource>
 
 		<resource path="/{AccountSid}/Conferences/{ConferenceSid}/Participants/{CallSid}.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id</doc>
@@ -1364,16 +1475,20 @@
 					<apigee:tag primary="true">Participants</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/Conferences/{ConferenceSid}/Participants/{CallSid}" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/Conferences/{ConferenceSid}/Participants/{CallSid}"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/participant"><![CDATA[Mute a participant.]]></doc>
-			</method>
+			    <request>
+				   <param name="Content-Type" type="string" style="header" required="true" default="application/x-www-form-urlencoded"/>
+                   <param name="Muted" type="string" style="query" required="true" default=""/>
+                </request>
+            </method>
 		</resource>
 
 		<resource path="/{AccountSid}/Conferences/{ConferenceSid}/Participants/{CallSid}.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id</doc>
@@ -1389,16 +1504,16 @@
 					<apigee:tag primary="true">Participants</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/Conferences/{ConferenceSid}/Participants/{CallSid}" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/Conferences/{ConferenceSid}/Participants/{CallSid}"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/participant"><![CDATA[Kick a participant from a conference.]]></doc>
 			</method>
 		</resource>
 
 		<resource path="/{AccountSid}/Conferences/{ConferenceSid}/Participants.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id</doc>
@@ -1409,21 +1524,21 @@
 			<param name="Muted" required="false" type="xsd:string" style="query">
 				<doc>Only show participants that are muted or unmuted. Either true or false.</doc>
 			</param>
-			<method id="getParticipantListForConference" name="GET" apigee:displayName="GetParticipantListForConference">
+			<method id="getParticipantListForConference2" name="GET" apigee:displayName="GetParticipantListForConference">
 				<apigee:tags>
 					<apigee:tag primary="true">Participants</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/Conferences/{ConferenceSid}/Participants" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/Conferences/{ConferenceSid}/Participants"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/participant"><![CDATA[Returns the list of participants in the conference identified by {ConferenceSid}.]]></doc>
 			</method>
 		</resource>
 
 		<resource path="/{AccountSid}/Sandbox.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id</doc>
@@ -1433,16 +1548,16 @@
 					<apigee:tag primary="true">Sandbox</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/Sandbox" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/Sandbox"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/sandbox"><![CDATA[Returns the Sandbox resource associated with the account identified by {AccountSid}.]]></doc>
 			</method>
 		</resource>
 
 		<resource path="/{AccountSid}/Sandbox.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id</doc>
@@ -1466,16 +1581,23 @@
 					<apigee:tag primary="true">Sandbox</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/Sandbox" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/Sandbox"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/sandbox"><![CDATA[Updates the Sandbox resource via POST.]]></doc>
-			</method>
+			    <request>
+				   <param name="Content-Type" type="string" style="header" required="true" default="application/x-www-form-urlencoded"/>
+                   <param name="VoiceUrl" type="string" style="query" required="true" default=""/>
+                   <param name="VoiceMethod" type="string" style="query" required="true" default="POST"/>
+                   <param name="SmsUrl" type="string" style="query" required="true" default=""/>
+                   <param name="SmsMethod" type="string" style="query" required="true" default="POST"/>
+                </request>
+            </method>
 		</resource>
 
 		<resource path="/{AccountSid}/Sandbox.{format}">
 			<param name="format" type="xsd:string" style="template" required="true" default="xml">
-				<option value="xml" mediaType="application/xml" />
-				<option value="json" mediaType="application/json" />
+				<option value="xml" mediaType="application/xml"/>
+				<option value="json" mediaType="application/json"/>
 			</param>
 			<param name="AccountSid" required="true" type="xsd:string" style="template">
 				<doc>Represents the unique id of the Account responsible for this caller Id</doc>
@@ -1499,9 +1621,16 @@
 					<apigee:tag primary="true">Sandbox</apigee:tag>
 					<apigee:tag>Objects</apigee:tag>
 				</apigee:tags>
-				<apigee:authentication required="true" />
-				<apigee:example url="/{AccountSid}/Sandbox" />
+				<apigee:authentication required="true"/>
+				<apigee:example url="/{AccountSid}/Sandbox"/>
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/sandbox"><![CDATA[Updates the Sandbox resource via PUT.]]></doc>
+                <request>
+				   <param name="Content-Type" type="string" style="header" required="true" default="application/x-www-form-urlencoded"/>
+                   <param name="VoiceUrl" type="string" style="query" required="true" default=""/>
+                   <param name="VoiceMethod" type="string" style="query" required="true" default="POST"/>
+                   <param name="SmsUrl" type="string" style="query" required="true" default=""/>
+                   <param name="SmsMethod" type="string" style="query" required="true" default="POST"/>
+                </request>
 			</method>
 		</resource>
 	</resources>

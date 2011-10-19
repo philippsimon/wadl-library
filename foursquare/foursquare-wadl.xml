@@ -188,7 +188,7 @@
 			<param name="ll" type="xsd:string" style="template" required="false">
 				<doc>Latitude and longitude of the user's location.</doc>
 			</param>
-			<method id="getTips" name="GET">
+			<method id="getUserTips" name="GET">
 				<apigee:tags>
 					<apigee:tag primary="true">User</apigee:tag>
 				</apigee:tags>

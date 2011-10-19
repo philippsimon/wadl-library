@@ -3,7 +3,7 @@
              xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd
              http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
              
-    <resources base="http://openapi.etsy.com/v2/sandbox/private">
+    <resources base="http://sandbox.openapi.etsy.com/v2/private">
         <resource path="/countries/{country_id}">
             <param name="country_id" type="array" style="template" required="true" default=""/>
             <method name="GET" apigee:displayName="getCountry" id="getCountry">
