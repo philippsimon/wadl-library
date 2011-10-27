@@ -1,0 +1,364 @@
+<application xmlns="http://wadl.dev.java.net/2009/02"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+             xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
+
+             <resources base="https://maps.googleapis.com/maps/api/">
+
+              <!-- Directions -->
+
+                <resource path="directions">
+                  <method id="directions" name="GET" apigee:displayName="Directions">
+                      <apigee:tags>
+                          <apigee:tag primary="true">Directions</apigee:tag>
+                      </apigee:tags>
+      
+                      <apigee:authentication required="false"/>
+      
+                      <apigee:example url="directions/{output}?parameters"/>
+      
+                      <doc title="Directions" apigee:url="http://code.google.com/apis/maps/documentation/directions/#RequestParameters">
+                        <![CDATA[The Google Directions API is a service that calculates directions between locations.]]>
+                      </doc>
+      
+                      <request>
+                          <!-- Required parameters -->
+      
+                          <param name="output" type="xsd:string" style="template" required="false">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/directions/#RequestParameters">
+                              <![CDATA[The format that will be returned. (e.g JSON, XML)]]>
+                              </doc>
+                          </param>
+                        
+                          <param name="origin" type="xsd:string" style="query" required="true">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/directions/#RequestParameters">
+                              <![CDATA[The address or textual latitude/longtitude value from which you use to calculate directions.]]>
+                              </doc>
+                          </param>
+
+                          <param name="destination" type="xsd:string" style="query" required="true">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/directions/#RequestParameters">
+                              <![CDATA[The address or textual latitude/longtitude value from which you use to calculate directions.]]>
+                              </doc>
+                          </param>
+
+                          <!-- Optional Parameters-->
+                          <param name="mode" type="xsd:string" style="query" required="false">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/directions/#RequestParameters">
+                              <![CDATA[Specifies what mode of transportation to use. (Defaults to Driving, can be Walking, or bicycling) )]]>
+                              </doc>
+                          </param>
+
+                          <param name="waypoints" type="xsd:string" style="query" required="false">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/directions/#RequestParameters">
+                              <![CDATA[specifies an array of waypoints. Waypoints alter a route by routing it through the specified location(s). A waypoint is specified as either a latitude/longitude coordinate or as an address which will be geocoded.]]>
+                              </doc>
+                          </param>
+      
+                          <param name="alternatives" type="xsd:boolean" style="query" required="false">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/directions/#RequestParameters">
+                              <![CDATA[if set to true, specifies that the Directions service may provide more than one route alternative in the response. Note that providing route alternatives may increase the response time from the server.]]>
+                              </doc>
+                          </param>
+      
+                          <param name="avoid" type="xsd:string" style="query" required="false">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/directions/#RequestParameters">
+                              <![CDATA[Indicates the calculated routes should avoid indicated features. Supports tolls and highways.]]>
+                              </doc>
+                          </param>
+
+                          <param name="units" type="xsd:string" style="query" required="false">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/directions/#RequestParameters">
+                              <![CDATA[specifies what unit system to use when displaying results.]]>
+                              </doc>
+                          </param>
+      
+                          <param name="region" type="xsd:string" style="query" required="false">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/directions/#RequestParameters">
+                              <![CDATA[The region code, specified as a ccTLD ("top-level domain") two-character value.]]>
+                              </doc>
+                          </param>
+      
+                          <param name="sensor" type="xsd:boolean" style="query" required="true">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/directions/#RequestParameters">
+                              <![CDATA[Indicates whether or not the directions request comes from a device with a location sensor. This value must be either true or false.]]>
+                              </doc>
+                          </param>
+      
+                      </request>
+      
+                      <response>
+                          <representation mediaType="application/json"/>
+                          <representation mediaType="application/xml"/>
+                      </response>
+                  </method>
+      
+              </resource>
+      
+              <resource path="Distance Matrix">
+                  <method id="Distance Matrix" name="GET" apigee:displayName="Distance Matrx">
+                      <apigee:tags>
+                          <apigee:tag primary="true">DistanceMatrix</apigee:tag>
+                      </apigee:tags>
+      
+                      <apigee:authentication required="false"/>
+      
+                      <apigee:example url="distancematrix/{output}?parameters"/>
+      
+                      <doc title="DistanceMatrix" apigee:url="http://code.google.com/apis/maps/documentation/distancematrix/">
+                        <![CDATA[The Google Distance Matrix API is a service that provides travel distance and time for a matrix of origins and destinations.]]>
+                      </doc>
+      
+                      <request>
+                          <param name="output" type="xsd:string" style="template" required="false">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/directions/#RequestParameters">
+                              <![CDATA[The format that will be returned. (e.g JSON, XML)]]>
+                              </doc>
+                          </param>
+
+                          <param name="origins" type="xsd:string" style="query" required="true">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/distancematrix"/>
+                              <![CDATA[The addresses or textual latitude/longtitude value from which you use to calculate directions, separated with |.]]>
+                              </doc>
+                          </param>
+
+                          <param name="destinations" type="xsd:string" style="query" required="true">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/distancematrix/">
+                              <![CDATA[The addresses or textual latitude/longtitude value from which you use to calculate directions, separated with |.]]>
+                              </doc>
+                          </param>
+
+                          <!-- Optional Parameters-->
+                          <param name="mode" type="xsd:string" style="query" required="false">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/distancematrix/">
+                              <![CDATA[Specifies what mode of transportation to use. (Defaults to Driving, can be Walking, or bicycling)]]>
+                              </doc>
+                          </param>
+
+ 
+                          <param name="language" type="xsd:string" style="template" required="false">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/distancematrix/">
+                              <![CDATA[The language in which to return results.]]>
+                              </doc>
+                          </param>
+      
+                          <param name="avoid" type="xsd:string" style="query" required="false">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/distancematrix/">
+                              <![CDATA[Indicates the calculated routes should avoid indicated features. Supports tolls and highways.]]>
+                              </doc>
+                          </param>
+
+                          <param name="units" type="xsd:string" style="query" required="false">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/distancematrix">
+                              <![CDATA[specifies what unit system to use when displaying results.]]>
+                              </doc>
+                          </param>
+      
+                          <param name="sensor" type="xsd:boolean" style="query" required="true">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/distancematrix">
+                              <![CDATA[Indicates whether or not the directions request comes from a device with a location sensor. This value must be either true or false.]]>
+                              </doc>
+                          </param>
+
+                      </request>
+      
+                      <response>
+                          <representation mediaType="application/json"/>
+                          <representation mediaType="application/xml"/>
+                      </response>
+                  </method>
+              </resource>
+      
+              <resource path="Elevation">
+                  <method id="Elevation" name="GET" apigee:displayName="Elevation">
+                      <apigee:tags>
+                          <apigee:tag primary="true">Elevation</apigee:tag>
+                      </apigee:tags>
+      
+                      <apigee:authentication required="false"/>
+      
+                      <apigee:example url="elevation/{output}?parameters"/>
+      
+                      <doc title="Elevation" apigee:url="http://code.google.com/apis/maps/documentation/elevation/">
+                        <![CDATA[The Google Elevation API provides you a simple interface to query locations on the earth for elevation data.]]>
+                      </doc>
+      
+                      <request>
+      
+                          <param name="output" type="xsd:string" style="template" required="false">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/elevation/">
+                              <![CDATA[The format that will be returned. (e.g JSON, XML)]]>
+                              </doc>
+                          </param>
+      
+                          <!-- Must specify either locations || path and samples -->
+                          <param name="locations" type="xsd:string" style="query" required="true">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/elevation/">
+                              <![CDATA[defines the location(s) on the earth from which to return elevation data. This parameter takes either a single location as a comma-separated {latitude,longitude} pair (e.g. "40.714728,-73.998672") or multiple latitude/longitude pairs passed as an array or as an encoded polyline]]>
+                              </doc>
+                          </param>
+      
+                          <param name="path" type="xsd:string" style="query" required="true">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/elevation/">
+                              <![CDATA[defines a path on the earth for which to return elevation data. This parameter defines a set of two or more ordered {latitude,longitude} pairs defining a path along the surface of the earth.]]>
+                              </doc>
+                          </param>
+      
+                          <param name="sensor" type="xsd:boolean" style="query" required="true">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/elevation/">
+                              <![CDATA[Indicates whether or not the directions request comes from a device with a location sensor. This value must be either true or false.]]>
+                              </doc>
+                          </param>
+      
+                      </request>
+      
+                      <response>
+                          <representation mediaType="application/json"/>
+                          <representation mediaType="application/xml"/>
+                      </response>
+                  </method>
+      
+       </resource>
+                    <resource path="Geocoding">
+                  <method id="Geocoding" name="GET" apigee:displayName="GeoCoding">
+                      <apigee:tags>
+                          <apigee:tag primary="true">GeoCoding</apigee:tag>
+                      </apigee:tags>
+      
+                      <apigee:authentication required="false"/>
+      
+                      <apigee:example url="geocode/{output}?parameters"/>
+      
+                      <doc title="Geocoding" apigee:url="http://code.google.com/apis/maps/documentation/geocoding/">
+                        <![CDATA[Geocoding is the process of converting addresses (like "1600 Amphitheatre Parkway, Mountain View, CA") into geographic coordinates (like latitude 37.423021 and longitude -122.083739), which you can use to place markers or position the map. The Google Geocoding API provides a direct way to access a geocoder via an HTTP request. Additionally, the service allows you to perform the converse operation (turning coordinates into addresses); this process is known as "reverse geocoding."]]>
+                      </doc>
+      
+                      <request>
+      
+                          <param name="output" type="xsd:string" style="template" required="false">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/geocoding/">
+                              <![CDATA[The format that will be returned. (e.g JSON, XML)]]>
+                              </doc>
+                          </param>
+      
+                          <param name="address" type="xsd:string" style="query" required="true">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/geocoding/">
+                              <![CDATA[The address that you want to geocode.]]>
+                              </doc>
+                          </param>
+      
+                          <param name="latlng" type="xsd:string" style="query" required="true">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/geocoding/">
+                              <![CDATA[The textual latitude/longitude value for which you wish to obtain the closest, human-readable address.]]>
+                              </doc>
+                          </param>
+      
+                          <param name="bounds" type="xsd:string" style="query" required="false">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/geocoding/">
+                              <![CDATA[The bounding box of the viewport within which to bias geocode results more prominently.]]>
+                              </doc>
+                          </param>
+                          <param name="region" type="xsd:string" style="query" required="false">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/geocoding/">
+                              <![CDATA[The region code, specified as a ccTLD ("top-level domain") two-character value.]]>
+                              </doc>
+                          </param>
+
+                          <param name="language" type="xsd:string" style="template" required="false">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/geocoding/">
+                              <![CDATA[The language in which to return results.]]>
+                              </doc>
+                          </param>
+
+                          <param name="sensor" type="xsd:boolean" style="query" required="true">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/geocoding/">
+                              <![CDATA[Indicates whether or not the directions request comes from a device with a location sensor. This value must be either true or false.]]>
+                              </doc>
+                          </param>
+      
+                      </request>
+      
+                      <response>
+                          <representation mediaType="application/json"/>
+                          <representation mediaType="application/xml"/>
+                      </response>
+                  </method>
+      
+       </resource>
+                    <resource path="Places">
+                  <method id="Places" name="GET" apigee:displayName="Places">
+                      <apigee:tags>
+                          <apigee:tag primary="true">Places</apigee:tag>
+                      </apigee:tags>
+      
+                      <apigee:authentication required="true"/>
+      
+                      <apigee:example url="place/search/{output}?parameters"/>
+      
+                      <doc title="Places" apigee:url="http://code.google.com/apis/maps/documentation/places/">
+                        <![CDATA[Geocoding is the process of converting addresses (like "1600 Amphitheatre Parkway, Mountain View, CA") into geographic coordinates (like latitude 37.423021 and longitude -122.083739), which you can use to place markers or position the map. The Google Geocoding API provides a direct way to access a geocoder via an HTTP request. Additionally, the service allows you to perform the converse operation (turning coordinates into addresses); this process is known as "reverse geocoding."]]>
+                      </doc>
+      
+                      <request>
+      
+                          <param name="output" type="xsd:string" style="template" required="false">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/places/">
+                              <![CDATA[The format that will be returned. (e.g JSON, XML)]]>
+                              </doc>
+                          </param>
+      
+                          <param name="location" type="xsd:string" style="query" required="true">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/places/">
+                              <![CDATA[The latitude/longitude around which to retrieve Place information. This must be specified as latitude,longitude.]]>
+                              </doc>
+                          </param>
+      
+                          <param name="radius" type="xsd:string" style="query" required="true">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/places/">
+                              <![CDATA[The distance (in meters) within which to return Place results. The recommended best practice is to set radius based on the accuracy of the location signal as given by the location sensor. Note that setting a radius biases results to the indicated area, but may not fully restrict results to the specified area.]]>
+                              </doc>
+                          </param>
+      
+                          <param name="types" type="xsd:string" style="query" required="false">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/places/">
+                              <![CDATA[ Restricts the results to Places matching at least one of the specified types. Types should be separated with a pipe symbol ]]>
+                              </doc>
+                          </param>
+
+                          <param name="language" type="xsd:string" style="template" required="false">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/places/">
+                              <![CDATA[The language in which to return results.]]>
+                              </doc>
+                          </param>
+
+                          <param name="name" type="xsd:string" style="query" required="false">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/places/">
+                              <![CDATA[A term to be matched against the names of Places. Results will be restricted to those containing the passed name value. When a name is included, the area being searched may be broadened, to ensure a suitable number of results.]]>
+                              </doc>
+                          </param>
+
+                          <param name="key" type="xsd:string" style="query" required="true">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/places/">
+                              <![CDATA[Your application's API key. This key identifies your application for purposes of quota management and so that Places added from your application are made immediately available to your app.]]>
+                              </doc>
+                          </param>
+
+                          <param name="sensor" type="xsd:boolean" style="query" required="true">
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/places/">
+                              <![CDATA[Indicates whether or not the directions request comes from a device with a location sensor. This value must be either true or false.]]>
+                              </doc>
+                          </param>
+      
+                      </request>
+      
+                      <response>
+                          <representation mediaType="application/json"/>
+                          <representation mediaType="application/xml"/>
+                      </response>
+                  </method>
+      
+       </resource>
+
+    </resources>
+      </application>
