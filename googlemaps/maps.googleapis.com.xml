@@ -97,7 +97,7 @@
               </resource>
       
               <resource path="Distance Matrix">
-                  <method id="Distance Matrix" name="GET" apigee:displayName="Distance Matrx">
+                  <method id="DistanceMatrix" name="GET" apigee:displayName="Distance Matrx">
                       <apigee:tags>
                           <apigee:tag primary="true">DistanceMatrix</apigee:tag>
                       </apigee:tags>
@@ -118,7 +118,7 @@
                           </param>
 
                           <param name="origins" type="xsd:string" style="query" required="true">
-                            <doc apigee:url="http://code.google.com/apis/maps/documentation/distancematrix"/>
+                            <doc apigee:url="http://code.google.com/apis/maps/documentation/distancematrix">
                               <![CDATA[The addresses or textual latitude/longtitude value from which you use to calculate directions, separated with |.]]>
                               </doc>
                           </param>
