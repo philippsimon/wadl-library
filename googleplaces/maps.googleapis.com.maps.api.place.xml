@@ -155,7 +155,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url="add/json?sensor=true_or_false&key=api_key"/>
+                <apigee:example url="add/json?sensor=true_or_false&amp;key=api_key"/>
 
                 <doc title="CheckIns" apigee:url="http://code.google.com/apis/maps/documentation/places/#PlaceSearches">
                     <![CDATA[Check-in activity from your application is reflected in the Place search results that are returned - popular establishments are ranked more highly, making it easy for your users to find likely matches.]]>
@@ -205,7 +205,7 @@
 
                 <apigee:authentication required="true"/>
 
-                <apigee:example url=""/>
+                <apigee:example url="add/json?sensor=true_or_false&amp;key=api_key"/>
 
                 <doc title="Reports" apigee:url="http://code.google.com/apis/maps/documentation/places/#PlaceSearches">
                     <![CDATA[Check-in activity from your application is reflected in the Place search results that are returned - popular establishments are ranked more highly, making it easy for your users to find likely matches.]]>
