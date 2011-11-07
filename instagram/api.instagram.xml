@@ -864,7 +864,7 @@
                         <option value="tag"/>
                         <option value="location"/>
                         <option value="geography"/>
-                    </param>
+                    </param> 
 
                     <param name="aspect" type="xsd:string" style="query" required="true" default="media" fixed="media">
                         <doc apigee:url="http://instagr.am/developer/realtime">
@@ -937,7 +937,7 @@
                     </param>
 
 
-                    <param name="callback_url" type="xsd:anyURI" style="query" required="true"/>
+                    <param name="callback_url" type="xsd:anyURI" style="query" required="true"/> 
 
 
                     <param name="object_id" type="xsd:string" style="query" required="true">

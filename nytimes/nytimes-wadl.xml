@@ -88,7 +88,13 @@
 
         <resource path="books/{version}/lists">
 
-            <param name="version" type="xsd:string" style="query" required="true" default="v2">
+            <param name="response-format" type="xsd:string" style="template" required="false" default="json">
+                <doc apigee:url="http://developer.nytimes.com/docs/best_sellers_api/#h3-common-params">
+                    <![CDATA[The API version. The current version is v2. (Version 1 is for internal use only.)]]>
+                </doc>
+            </param>
+
+            <param name="version" type="xsd:string" style="template" required="true" default="v2">
                 <doc apigee:url="http://developer.nytimes.com/docs/best_sellers_api/#h3-common-params">
                     <![CDATA[The API version. The current version is v2. (Version 1 is for internal use only.)]]>
                 </doc>
@@ -156,13 +162,13 @@
 
         <resource path="books/{version}/lists.{response-format}">
 
-            <param name="version" type="xsd:string" style="query" required="true" default="v2">
+            <param name="version" type="xsd:string" style="template" required="true" default="v2">
                 <doc apigee:url="http://developer.nytimes.com/docs/best_sellers_api/#h3-common-params">
                     <![CDATA[The API version. The current version is v2. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/best_sellers_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return XML or serialized PHP, add the appropriate extension to your request URI. JSON is the default format; you do not need to add the .json extension to get a JSON response. Accepted values: json (implicit default), xml, sphp]]>
                 </doc>
@@ -281,13 +287,13 @@
 
         <resource path="books/{version}/lists/best-sellers/history.{response-format}">
 
-            <param name="version" type="xsd:string" style="query" required="true" default="v2">
+            <param name="version" type="xsd:string" style="template" required="true" default="v2">
                 <doc apigee:url="http://developer.nytimes.com/docs/best_sellers_api/#h3-common-params">
                     <![CDATA[The API version. The current version is v2. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false" >
+            <param name="response-format" type="xsd:string" style="template" required="false" >
                 <doc apigee:url="http://developer.nytimes.com/docs/best_sellers_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return XML or serialized PHP, add the appropriate extension to your request URI. JSON is the default format; you do not need to add the .json extension to get a JSON response. Accepted values: json (implicit default), xml, sphp]]>
                 </doc>
@@ -380,13 +386,13 @@
         </resource>
 
         <resource path="books/{version}/lists/names.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v2">
+            <param name="version" type="xsd:string" style="template" required="true" default="v2">
                 <doc apigee:url="http://developer.nytimes.com/docs/best_sellers_api/#h3-common-params">
                     <![CDATA[The API version. The current version is v2. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/best_sellers_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return XML or serialized PHP, add the appropriate extension to your request URI. JSON is the default format; you do not need to add the .json extension to get a JSON response. Accepted values: json (implicit default), xml, sphp]]>
                 </doc>
@@ -429,19 +435,19 @@
         <!-- Candidates -->
 
         <resource path="elections/us/{version}/finances/{campaign-cycle}/candidates/search.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[The API version. The current version is v3. Support for version 2 ended in February 2011. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="campaign-cycle" type="xsd:string" style="query" required="true">
+            <param name="campaign-cycle" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[An even numbered year representing the campaign cycle. Presidential data: 2008–present. Congressional data: 2000–present. Format: YYYY]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the .json extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -489,25 +495,25 @@
         </resource>
 
         <resource path="elections/us/{version}/finances/{campaign-cycle}/candidates/{fec-id}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[The API version. The current version is v3. Support for version 2 ended in February 2011. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="campaign-cycle" type="xsd:string" style="query" required="true">
+            <param name="campaign-cycle" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[An even numbered year representing the campaign cycle. Presidential data: 2008–present. Congressional data: 2000–present. Format: YYYY]]>
                 </doc>
             </param>
 
-            <param name="fec-id" type="xsd:string" style="query" required="true">
+            <param name="fec-id" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-candidate-details">
                     <![CDATA[The FEC assigns a unique ID to each candidate. Note that this request type uses the candidate ID, not the committee ID used in the Presidential Candidate Details request type. To find a candidate's official FEC ID, use a candidate search request or the FEC web site. Format: P | H | S + 9 digits (P = President; H = House; S = Senate)]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the .json extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -549,25 +555,25 @@
         </resource>
 
         <resource path="elections/us/{version}/finances/{campaign-cycle}/candidates/leaders/{category}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[The API version. The current version is v3. Support for version 2 ended in February 2011. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="campaign-cycle" type="xsd:string" style="query" required="true">
+            <param name="campaign-cycle" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[An even numbered year representing the campaign cycle. Presidential data: 2008–present. Congressional data: 2000–present. Format: YYYY]]>
                 </doc>
             </param>
 
-            <param name="category" type="xsd:string" style="query" required="true">
+            <param name="category" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-candidate-leaders">
                     <![CDATA[One of the following categories: candidate-loan, contribution-total, debts-owed, disbusements-total, end-cash, individual-total, pac-total, receipts-total, refund-total]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the .json extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -609,37 +615,37 @@
         </resource>
 
         <resource path="elections/us/{version}/finances/{campaign-cycle}/seats/{state}/{chamber}/{district}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[The API version. The current version is v3. Support for version 2 ended in February 2011. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="state" type="xsd:string" style="query" required="true">
+            <param name="state" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-state-candidates">
                     <![CDATA[Two-letter state abbreviation]]>
                 </doc>
             </param>
 
-            <param name="chamber" type="xsd:string" style="query" required="false">
+            <param name="chamber" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-state-candidates">
                     <![CDATA[Accepted values: house, senate. Optional.]]>
                 </doc>
             </param>
 
-            <param name="district" type="xsd:string" style="query" required="false">
+            <param name="district" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-state-candidates">
                     <![CDATA[House of Representatives district number. For "at large" districts (Alaska, Delaware, Montana, North Dakota, South Dakota, Vermont and Wyoming), specify the number 1. If you do not specify a district, all House candidates for state will be returned. If you specify a district in a Senate request, it will be ignored. Optional.]]>
                 </doc>
             </param>
 
-            <param name="category" type="xsd:string" style="query" required="true">
+            <param name="category" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-candidate-leaders">
                     <![CDATA[One of the following categories: candidate-loan, contribution-total, debts-owed, disbusements-total, end-cash, individual-total, pac-total, receipts-total, refund-total]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the .json extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -681,19 +687,19 @@
         </resource>
 
         <resource path="elections/us/{version}/finances/{campaign-cycle}/candidates/new.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[The API version. The current version is v3. Support for version 2 ended in February 2011. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="campaign-cycle" type="xsd:string" style="query" required="true">
+            <param name="campaign-cycle" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[An even numbered year representing the campaign cycle. Presidential data: 2008–present. Congressional data: 2000–present. NOTE: Only the current campaign cycle is supported. Format: YYYY]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the .json extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -737,19 +743,19 @@
         <!-- Committees -->
 
         <resource path="elections/us/{version}/finances/{campaign-cycle}/committees/search.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[The API version. The current version is v3. Support for version 2 ended in February 2011. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="campaign-cycle" type="xsd:string" style="query" required="true">
+            <param name="campaign-cycle" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[An even numbered year representing the campaign cycle. Presidential data: 2008–present. Congressional data: 2000–present. Format: YYYY]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the .json extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -797,25 +803,25 @@
         </resource>
 
         <resource path="elections/us/{version}/finances/{campaign-cycle}/committees/{fec-id}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[The API version. The current version is v3. Support for version 2 ended in February 2011. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="campaign-cycle" type="xsd:string" style="query" required="true">
+            <param name="campaign-cycle" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[An even numbered year representing the campaign cycle. Presidential data: 2008–present. Congressional data: 2000–present. Format: YYYY]]>
                 </doc>
             </param>
 
-            <param name="fec-id" type="xsd:string" style="query" required="true">
+            <param name="fec-id" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-candidate-details">
                     <![CDATA[The FEC assigns a unique ID to each committee. To find a committee's official FEC ID, use a committee search request or the FEC web site. Format: C + 9 digits]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the .json extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -857,19 +863,19 @@
         </resource>
 
         <resource path="elections/us/{version}/finances/{campaign-cycle}/committees/new.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[The API version. The current version is v3. Support for version 2 ended in February 2011. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="campaign-cycle" type="xsd:string" style="query" required="true">
+            <param name="campaign-cycle" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[An even numbered year representing the campaign cycle. Presidential data: 2008–present. Congressional data: 2000–present. NOTE: Only the curent campaign cycle is supported. Format: YYYY]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the .json extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -911,25 +917,25 @@
         </resource>
 
         <resource path="elections/us/{version}/finances/{campaign-cycle}/committees/{fec-id}/contributions/.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[The API version. The current version is v3. Support for version 2 ended in February 2011. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="campaign-cycle" type="xsd:string" style="query" required="true">
+            <param name="campaign-cycle" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[An even numbered year representing the campaign cycle. Presidential data: 2008–present. Congressional data: 2000–present. Format: YYYY]]>
                 </doc>
             </param>
 
-            <param name="fec-id" type="xsd:string" style="query" required="true">
+            <param name="fec-id" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-candidate-details">
                     <![CDATA[The FEC assigns a unique ID to each committee. To find a committee's official FEC ID, use a committee search request or the FEC web site. Format: C + 9 digits]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the .json extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -977,31 +983,31 @@
         </resource>
 
         <resource path="elections/us/{version}/finances/{campaign-cycle}/committees/{fec-id}/contributions/candidates/{candidate-id}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[The API version. The current version is v3. Support for version 2 ended in February 2011. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="campaign-cycle" type="xsd:string" style="query" required="true">
+            <param name="campaign-cycle" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[An even numbered year representing the campaign cycle. Presidential data: 2008–present. Congressional data: 2000–present. Format: YYYY]]>
                 </doc>
             </param>
 
-            <param name="fec-id" type="xsd:string" style="query" required="true">
+            <param name="fec-id" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-candidate-details">
                     <![CDATA[The FEC assigns a unique ID to each committee. To find a committee's official FEC ID, use a committee search request or the FEC web site. If the fec-id does not exist in the data for the specified campaign-cycle, a 404 will be returned. Format: C + 9 digits]]>
                 </doc>
             </param>
 
-            <param name="candidate-id" type="xsd:string" style="query" required="true">
+            <param name="candidate-id" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-candidate-details">
                     <![CDATA[The FEC assigns a unique ID to each candidate. To find a candidate's official FEC ID, use a candidate search request or the FEC web site. If the candidate-id does not exist in the data for the specified committee in the specified campaign-cycle, a 404 will be returned. Format: P | H | S + 9 digits (P = President; H = House; S = Senate)]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the .json extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -1044,25 +1050,25 @@
         </resource>
 
         <resource path="elections/us/{version}/finances/{campaign-cycle}/committees/{fec-id}/filings.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[The API version. The current version is v3. Support for version 2 ended in February 2011. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="campaign-cycle" type="xsd:string" style="query" required="true">
+            <param name="campaign-cycle" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[An even numbered year representing the campaign cycle. Presidential data: 2008–present. Congressional data: 2000–present. Format: YYYY]]>
                 </doc>
             </param>
 
-            <param name="fec-id" type="xsd:string" style="query" required="true">
+            <param name="fec-id" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-candidate-details">
                     <![CDATA[The FEC assigns a unique ID to each committee. To find a committee's official FEC ID, use a committee search request or the FEC web site. If the fec-id does not exist in the data for the specified campaign-cycle, a 404 will be returned. Format: C + 9 digits]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the .json extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -1104,19 +1110,19 @@
         </resource>
 
         <resource path="elections/us/{version}/finances/{campaign-cycle}/committees/leadership.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[The API version. The current version is v3. Support for version 2 ended in February 2011. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="campaign-cycle" type="xsd:string" style="query" required="true">
+            <param name="campaign-cycle" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[An even numbered year representing the campaign cycle. Presidential data: 2008–present. Congressional data: 2000–present. Format: YYYY]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the .json extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -1160,19 +1166,19 @@
         <!-- Presidential Campaigns -->
 
         <resource path="elections/us/{version}/finances/{campaign-cycle}/president/totals.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[The API version. The current version is v3. Support for version 2 ended in February 2011. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="campaign-cycle" type="xsd:string" style="query" required="true">
+            <param name="campaign-cycle" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[An even numbered year representing the campaign cycle. Presidential data: 2008–present. Congressional data: 2000–present. Format: YYYY]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the .json extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -1214,25 +1220,25 @@
         </resource>
 
         <resource path="elections/us/{version}/finances/{campaign-cycle}/president/candidates/{candidate-name-or-committeeID}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[The API version. The current version is v3. Support for version 2 ended in February 2011. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="campaign-cycle" type="xsd:string" style="query" required="true">
+            <param name="campaign-cycle" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[An even numbered year representing the campaign cycle. Presidential data: 2008–present. Congressional data: 2000–present. Format: YYYY]]>
                 </doc>
             </param>
 
-            <param name="candidate-name-or-committeeID" type="xsd:string" style="query" required="true">
+            <param name="candidate-name-or-committeeID" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-pres-candidate-details">
                     <![CDATA[Either the candidate's name, or the FEC committee ID. Candidate name format: {last-name}[,first-name]  (first-name is optional) If you include a first name, there should be no space after the comma. If you do not include a first-name, data will be returned for all candidates with the last-name you specify. Committee ID format: C + 9 digits. The FEC assigns a unique ID to each campaign committee. Note that this request type uses the committee ID, not the candidate ID used in the main Candidate Details request type.]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the .json extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -1275,19 +1281,19 @@
         </resource>
 
         <resource path="elections/us/{version}/finances/{campaign-cycle}/president/{resource-type}/{location}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[The API version. The current version is v3. Support for version 2 ended in February 2011. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="campaign-cycle" type="xsd:string" style="query" required="true">
+            <param name="campaign-cycle" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[An even numbered year representing the campaign cycle. Presidential data: 2008–present. Congressional data: 2000–present. Format: YYYY]]>
                 </doc>
             </param>
 
-            <param name="resource-type" type="xsd:string" style="query" required="true">
+            <param name="resource-type" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-pres-state-zip">
                     <![CDATA[Accepted values: states, zips]]>
                 </doc>
@@ -1341,19 +1347,19 @@
         </resource>
 
         <resource path="elections/us/{version}/finances/{campaign-cycle}/president/contributions/donorsearch.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[The API version. The current version is v3. Support for version 2 ended in February 2011. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="campaign-cycle" type="xsd:string" style="query" required="true">
+            <param name="campaign-cycle" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[An even numbered year representing the campaign cycle. Presidential data: 2008–present. Congressional data: 2000–present. Format: YYYY]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the .json extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -1409,37 +1415,37 @@
         <!-- Electronic Filings -->
 
         <resource path="elections/us/{version}/finances/{campaign-cycle}/filings/{year}/{month}/{day}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[The API version. The current version is v3. Support for version 2 ended in February 2011. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="campaign-cycle" type="xsd:string" style="query" required="true">
+            <param name="campaign-cycle" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[An even numbered year representing the campaign cycle. Presidential data: 2008–present. Congressional data: 2000–present. Format: YYYY]]>
                 </doc>
             </param>
 
-            <param name="year" type="xsd:string" style="query" required="true">
+            <param name="year" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-electronic-filings-by-date">
                     <![CDATA[The date the documents were filed. Note that some filings (such as correspondence to the FEC) do not reflect campaign activity for a particular time period but still have a filing date. Format: YYYY]]>
                 </doc>
             </param>
 
-            <param name="month" type="xsd:string" style="query" required="true">
+            <param name="month" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-electronic-filings-by-date">
                     <![CDATA[The date the documents were filed. Note that some filings (such as correspondence to the FEC) do not reflect campaign activity for a particular time period but still have a filing date. Format: MM]]>
                 </doc>
             </param>
 
-            <param name="day" type="xsd:string" style="query" required="true">
+            <param name="day" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-electronic-filings-by-date">
                     <![CDATA[The date the documents were filed. Note that some filings (such as correspondence to the FEC) do not reflect campaign activity for a particular time period but still have a filing date. Format: DD]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the .json extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -1481,19 +1487,19 @@
         </resource>
 
         <resource path="elections/us/{version}/finances/{campaign-cycle}/filings/types.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[The API version. The current version is v3. Support for version 2 ended in February 2011. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="campaign-cycle" type="xsd:string" style="query" required="true">
+            <param name="campaign-cycle" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[An even numbered year representing the campaign cycle. Presidential data: 2008–present. Congressional data: 2000–present. Format: YYYY]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the .json extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -1535,25 +1541,25 @@
         </resource>
 
         <resource path="elections/us/{version}/finances/{campaign-cycle}/filings/types/{form-type-id}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[The API version. The current version is v3. Support for version 2 ended in February 2011. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="campaign-cycle" type="xsd:string" style="query" required="true">
+            <param name="campaign-cycle" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[An even numbered year representing the campaign cycle. Presidential data: 2008–present. Congressional data: 2000–present. Format: YYYY]]>
                 </doc>
             </param>
 
-            <param name="form-type-id" type="xsd:string" style="query" required="true">
+            <param name="form-type-id" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-electronic-filings-by-type">
                     <![CDATA[The FEC electronic filing form type ID. To get form type IDs, use an electronic filing form types request. Format: F + integer]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/campaign_finance_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the .json extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -1597,13 +1603,13 @@
         <!-- Community API -->
 
         <resource path="community/{version}/comments/recent.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v2">
+            <param name="version" type="xsd:string" style="template" required="true" default="v2">
                 <doc apigee:url="http://developer.nytimes.com/docs/community_api/#h3-common-params">
                     <![CDATA[The current version is v2. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/community_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return XML or serialized PHP, add the appropriate extension to your request URI. JSON is the default format; you do not need to add the .json extension to get a JSON response. Accepted values: json (implicit default), xml, sphp]]>
                 </doc>
@@ -1657,13 +1663,13 @@
         </resource>
 
         <resource path="community/{version}/comments/random.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v2">
+            <param name="version" type="xsd:string" style="template" required="true" default="v2">
                 <doc apigee:url="http://developer.nytimes.com/docs/community_api/#h3-common-params">
                     <![CDATA[The current version is v2. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/community_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return XML or serialized PHP, add the appropriate extension to your request URI. JSON is the default format; you do not need to add the .json extension to get a JSON response. Accepted values: json (implicit default), xml, sphp]]>
                 </doc>
@@ -1699,19 +1705,19 @@
         </resource>
 
         <resource path="community/{version}/comments/by-date/{date}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v2">
+            <param name="version" type="xsd:string" style="template" required="true" default="v2">
                 <doc apigee:url="http://developer.nytimes.com/docs/community_api/#h3-common-params">
                     <![CDATA[The current version is v2. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="date" type="xsd:string" style="query" required="true">
+            <param name="date" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/community_api/#commentsDate">
                     <![CDATA[The date for which you want to retrieve comments. Format: YYYYMMDD]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/community_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return XML or serialized PHP, add the appropriate extension to your request URI. JSON is the default format; you do not need to add the .json extension to get a JSON response. Accepted values: json (implicit default), xml, sphp]]>
                 </doc>
@@ -1759,19 +1765,19 @@
         </resource>
 
         <resource path="community/{version}/comments/user/id/{user-id}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v2">
+            <param name="version" type="xsd:string" style="template" required="true" default="v2">
                 <doc apigee:url="http://developer.nytimes.com/docs/community_api/#h3-common-params">
                     <![CDATA[The current version is v2. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="user-id" type="xsd:integer" style="query" required="true">
+            <param name="user-id" type="xsd:integer" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/community_api/#commentsUser">
                     <![CDATA[The ID of a specific NYTimes.com user. To get user-id values, refer to the <userComments> node in responses to other request types. Example: 56135867]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/community_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return XML or serialized PHP, add the appropriate extension to your request URI. JSON is the default format; you do not need to add the .json extension to get a JSON response. Accepted values: json (implicit default), xml, sphp]]>
                 </doc>
@@ -1819,19 +1825,19 @@
         </resource>
 
         <resource path="community/{version}/comments/url/{match-type}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v2">
+            <param name="version" type="xsd:string" style="template" required="true" default="v2">
                 <doc apigee:url="http://developer.nytimes.com/docs/community_api/#h3-common-params">
                     <![CDATA[The current version is v2. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="match-type" type="xsd:string" style="query" required="true">
+            <param name="match-type" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/community_api/#commentsURL">
                     <![CDATA[Sets the search type: get only the URL you specify, or search for similar URLs. If you specify exact-match, the first 25 comments associated with that URL will be returned if the URL is found. If there is no exact match, an empty result set will be returned. If you specify closest-stem-match, the most similar URLs will be returned. (No comments will be returned.) Accepted values: exact-match, closest-stem-match]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/community_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return XML or serialized PHP, add the appropriate extension to your request URI. JSON is the default format; you do not need to add the .json extension to get a JSON response. Accepted values: json (implicit default), xml, sphp]]>
                 </doc>
@@ -1889,25 +1895,25 @@
         <!-- Members -->
 
         <resource path="politics/{version}/us/legislative/congress/{congress-number}/{chamber}/members.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="congress-number" type="xsd:integer" style="query" required="true">
+            <param name="congress-number" type="xsd:integer" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-members">
                     <![CDATA[The number of the Congress during which the members served. Format: House of Representatives: 102–112, Senate: 80–112. For a table of years and session numbers, see the official site of the U.S. Senate.]]>
                 </doc>
             </param>
 
-            <param name="chamber" type="xsd:string" style="query" required="true">
+            <param name="chamber" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-members">
                     <![CDATA[Accepted values: house, senate]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -1955,19 +1961,19 @@
         </resource>
 
         <resource path="politics/{version}/us/legislative/congress/members/{member-id}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="member-id" type="xsd:string" style="query" required="true">
+            <param name="member-id" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-member-roles">
                     <![CDATA[The member's unique ID number. To find a member's ID number, get the list of members for the appropriate House or Senate. You can also use the Biographical Directory of the United States Congress to get a member's ID. In search results, each member's name is linked to a record by index ID (e.g., http://bioguide.congress.gov/scripts/biodisplay.pl?index=C001041). Use the index ID as member-id in your request. Format: alphanumeric]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -2003,13 +2009,13 @@
         </resource>
 
         <resource path="politics/{version}/us/legislative/congress/members/new.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -2045,31 +2051,31 @@
         </resource>
 
         <resource path="politics/{version}/us/legislative/congress/members/{chamber}/{state}/{district}/current.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="chamber" type="xsd:string" style="query" required="true">
+            <param name="chamber" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-current-member">
                     <![CDATA[Accepted values: house, senate. When chamber=senate, this request returns both current senators, if available. When chamber=house, this request returns the current occupant of the district seat.]]>
                 </doc>
             </param>
 
-            <param name="state" type="xsd:string" style="query" required="true">
+            <param name="state" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-current-member">
                     <![CDATA[Format: Two-letter state abbreviation]]>
                 </doc>
             </param>
 
-            <param name="district" type="xsd:string" style="query" required="false">
+            <param name="district" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-current-member">
                     <![CDATA[Only required for House requests. If you specify a district in a Senate request, it will be ignored. Specify the district number; for "at large" districts (Alaska, Delaware, Montana, North Dakota, South Dakota, Vermont and Wyoming), specify the number 1. Format: House of Representatives district number]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -2105,25 +2111,25 @@
         </resource>
 
         <resource path="politics/{version}/us/legislative/congress/{congress-number}/{chamber}/members/leaving.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="congress-number" type="xsd:integer" style="query" required="true">
+            <param name="congress-number" type="xsd:integer" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-members-leaving">
                     <![CDATA[The number of the Congress during which the members served. Accepted values: 111, 112. Data for previous Congresses will be added soon.]]>
                 </doc>
             </param>
 
-            <param name="chamber" type="xsd:string" style="query" required="true">
+            <param name="chamber" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-members-leaving">
                     <![CDATA[Accepted values: house, senate]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -2159,19 +2165,19 @@
         </resource>
 
         <resource path="politics/{version}/us/legislative/congress/members/{member-id}/votes.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="member-id" type="xsd:string" style="query" required="true">
+            <param name="member-id" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-member-positions">
                     <![CDATA[The member's unique ID number. To find a member's ID number, get the list of members for the appropriate House or Senate. You can also use the Biographical Directory of the United States Congress to get a member's ID. In search results, each member's name is linked to a record by index ID (e.g., http://bioguide.congress.gov/scripts/biodisplay.pl?index=C001041). Use the index ID as member-id in your request. Format: alphanumeric]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -2207,37 +2213,37 @@
         </resource>
 
         <resource path="politics/{version}/us/legislative/congress/members/{first-member-id}/votes/{second-member-id}/{congress-number}/{chamber}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="first-member-id" type="xsd:string" style="query" required="true">
+            <param name="first-member-id" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-compare-members">
                     <![CDATA[The unique ID number of the first member you want to compare. To find a member's ID number, get the list of members for the appropriate House or Senate. You can also use the Biographical Directory of the United States Congress to get a member's ID. In search results, each member's name is linked to a record by index ID (e.g., http://bioguide.congress.gov/scripts/biodisplay.pl?index=C001041). Use the index ID as member-id in your request. Format: alphanumeric]]>
                 </doc>
             </param>
 
-            <param name="second-member-id" type="xsd:string" style="query" required="true">
+            <param name="second-member-id" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-compare-members">
                     <![CDATA[The unique ID number of the second member you want to compare. To find a member's ID number, get the list of members for the appropriate House or Senate. You can also use the Biographical Directory of the United States Congress to get a member's ID. In search results, each member's name is linked to a record by index ID (e.g., http://bioguide.congress.gov/scripts/biodisplay.pl?index=C001041). Use the index ID as member-id in your request. Format: alphanumeric]]>
                 </doc>
             </param>
 
-            <param name="congress-number" type="xsd:integer" style="query" required="true">
+            <param name="congress-number" type="xsd:integer" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-compare-members">
                     <![CDATA[The number of the Congress in which the members served. For a table of years and session numbers, see the official site of the U.S. Senate. If the two members did not serve together in the Congress and chamber you specify, an error will be returned. Accepted values: Senate: 101–112, House: 102–112.]]>
                 </doc>
             </param>
 
-            <param name="chamber" type="xsd:string" style="query" required="true">
+            <param name="chamber" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-compare-members">
                     <![CDATA[Accepted values: house, senate. If the two members did not serve together in the Congress and chamber you specify, an error will be returned. Accepted values: Senate: 101–112, House: 102–112.]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -2273,25 +2279,25 @@
         </resource>
 
         <resource path="politics/{version}/us/legislative/congress/members/{member-id}/bills/{type}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="member-id" type="xsd:string" style="query" required="true">
+            <param name="member-id" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-cosponsor-bills">
                     <![CDATA[The member's unique ID number. To find a member's ID number, get the list of members for the appropriate House or Senate. You can also use the Biographical Directory of the United States Congress to get a member's ID. In search results, each member's name is linked to a record by index ID (e.g., http://bioguide.congress.gov/scripts/biodisplay.pl?index=C001041). Use the index ID as member-id in your request. Format: alphanumeric]]>
                 </doc>
             </param>
 
-            <param name="type" type="xsd:string" style="query" required="true">
+            <param name="type" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-cosponsor-bills">
                     <![CDATA[Accepted values: cosponsored, withdrawn. "cosponsored" returns the 20 bills most recently cosponsored by member-id. "withdrawn" returns the 20 most recently withdrawn cosponsorships for member-id.]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -2327,37 +2333,37 @@
         </resource>
 
         <resource path="politics/{version}/us/legislative/congress/members/{member-id-1}/bills/{member-id-2}/{congress-number}/{chamber}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="member-id-1" type="xsd:string" style="query" required="true">
+            <param name="member-id-1" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-member-sponsorship-comparison">
                     <![CDATA[The unique ID number of the first member you want to compare. To find a member's ID number, get the list of members for the appropriate House or Senate. You can also use the Biographical Directory of the United States Congress to get a member's ID. In search results, each member's name is linked to a record by index ID (e.g., http://bioguide.congress.gov/scripts/biodisplay.pl?index=C001041). Use the index ID as member-id in your request. Format: alphanumeric]]>
                 </doc>
             </param>
 
-            <param name="member-id-2" type="xsd:string" style="query" required="true">
+            <param name="member-id-2" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-member-sponsorship-comparison">
                     <![CDATA[The unique ID number of the second member you want to compare. To find a member's ID number, get the list of members for the appropriate House or Senate. You can also use the Biographical Directory of the United States Congress to get a member's ID. In search results, each member's name is linked to a record by index ID (e.g., http://bioguide.congress.gov/scripts/biodisplay.pl?index=C001041). Use the index ID as member-id in your request. Format: alphanumeric]]>
                 </doc>
             </param>
 
-            <param name="congress-number" type="xsd:integer" style="query" required="true">
+            <param name="congress-number" type="xsd:integer" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-member-sponsorship-comparison">
                     <![CDATA[The number of the Congress in which the members served. For a table of years and session numbers, see the official site of the U.S. Senate. If the two members did not serve together in the Congress and chamber you specify, an error will be returned. Accepted values: Senate: 101–112, House: 102–112.]]>
                 </doc>
             </param>
 
-            <param name="chamber" type="xsd:string" style="query" required="true">
+            <param name="chamber" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-member-sponsorship-comparison">
                     <![CDATA[Accepted values: house, senate. If the two members did not serve together in the Congress and chamber you specify, an error will be returned. Accepted values: Senate: 101–112, House: 102–112.]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -2393,19 +2399,19 @@
         </resource>
 
         <resource path="politics/{version}/us/legislative/congress/members/{member-id}/floor_appearances.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="member-id" type="xsd:string" style="query" required="true">
+            <param name="member-id" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-member-floor-appearances">
                     <![CDATA[The member's unique ID number. To find a member's ID number, get the list of members for the appropriate House or Senate. You can also use the Biographical Directory of the United States Congress to get a member's ID. In search results, each member's name is linked to a record by index ID (e.g., http://bioguide.congress.gov/scripts/biodisplay.pl?index=C001041). Use the index ID as member-id in your request. Format: alphanumeric]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -2444,37 +2450,37 @@
         <!-- Votes -->
 
         <resource path="politics/{version}/us/legislative/congress/{congress-number}/{chamber}/sessions/{session-number}/votes/{roll-call-number}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="congress-number" type="xsd:integer" style="query" required="true">
+            <param name="congress-number" type="xsd:integer" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-votes">
                     <![CDATA[The number of the Congress during which the vote was taken. Accepted values: House of Representatives: 102–112, Senate: 101–112. Vote data for the 112th Congress will be updated regularly, as it becomes available. For a table of years and session numbers, see the official site of the U.S. Senate.]]>
                 </doc>
             </param>
 
-            <param name="chamber" type="xsd:string" style="query" required="true">
+            <param name="chamber" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-votes">
                     <![CDATA[Accepted values: house, senate]]>
                 </doc>
             </param>
 
-            <param name="session-number" type="xsd:integer" style="query" required="true">
+            <param name="session-number" type="xsd:integer" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-votes">
                     <![CDATA[Accepted values: 1, 2, [special session number]. For a detailed list of Congressional sessions, see the Congressional Directory.]]>
                 </doc>
             </param>
 
-            <param name="roll-call-number" type="xsd:integer" style="query" required="true">
+            <param name="roll-call-number" type="xsd:integer" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-votes">
                     <![CDATA[To get roll-call numbers, see the official sites of the U.S. Senate and U.S. House of Representatives.]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -2510,31 +2516,31 @@
         </resource>
 
         <resource path="politics/{version}/us/legislative/congress/{congress-number}/{chamber}/votes/{vote-type}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="congress-number" type="xsd:integer" style="query" required="true">
+            <param name="congress-number" type="xsd:integer" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-votes-by-type">
                     <![CDATA[The number of the Congress during which the vote was taken. Accepted values: House of Representatives: 102–112, Senate: 101–112. Vote data for the 112th Congress will be updated regularly, as it becomes available. For a table of years and session numbers, see the official site of the U.S. Senate.]]>
                 </doc>
             </param>
 
-            <param name="chamber" type="xsd:string" style="query" required="true">
+            <param name="chamber" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-votes-by-type">
                     <![CDATA[Accepted values: house, senate]]>
                 </doc>
             </param>
 
-            <param name="vote-type" type="xsd:string" style="query" required="true">
+            <param name="vote-type" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-votes-by-type">
                     <![CDATA[Accepted values: missed_votes, party_votes, loneno, perfect. See API docs for more info.]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -2570,31 +2576,31 @@
         </resource>
 
         <resource path="politics/{version}/us/legislative/congress/{chamber}/votes/{year}/{month}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="chamber" type="xsd:string" style="query" required="true">
+            <param name="chamber" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-votes-by-date">
                     <![CDATA[Accepted values: house, senate]]>
                 </doc>
             </param>
 
-            <param name="year" type="xsd:string" style="query" required="true">
+            <param name="year" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-votes-by-date">
                     <![CDATA[Accepted values: House of Representatives: 1991 (102nd Congress) to present, Senate: 1989 (101st Congress) to present. For a table of years and session numbers, see the official site of the U.S. Senate. Format: YYYY]]>
                 </doc>
             </param>
 
-            <param name="month" type="xsd:string" style="query" required="true">
+            <param name="month" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-votes-by-date">
                     <![CDATA[Format: MM]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -2630,31 +2636,31 @@
         </resource>
 
         <resource path="politics/{version}/us/legislative/congress/{chamber}/votes/{start-date}/{end-date}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="chamber" type="xsd:string" style="query" required="true">
+            <param name="chamber" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-votes-by-date">
                     <![CDATA[Accepted values: house, senate]]>
                 </doc>
             </param>
 
-            <param name="start-date" type="xsd:string" style="query" required="true">
+            <param name="start-date" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-votes-by-date">
                     <![CDATA[Accepted values: House of Representatives: 1991 (102nd Congress) to present, Senate: 1989 (101st Congress) to present. The number of days from start-date to end-date cannot exceed 30. For a table of years and session numbers, see the official site of the U.S. Senate. Format: YYYY-MM-DD]]>
                 </doc>
             </param>
 
-            <param name="end-date" type="xsd:string" style="query" required="true">
+            <param name="end-date" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-votes-by-date">
                     <![CDATA[Accepted values: House of Representatives: 1991 (102nd Congress) to present, Senate: 1989 (101st Congress) to present. The number of days from start-date to end-date cannot exceed 30. For a table of years and session numbers, see the official site of the U.S. Senate. Format: YYYY-MM-DD]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -2690,19 +2696,19 @@
         </resource>
 
         <resource path="politics/{version}/us/legislative/congress/{congress-number}/nominations.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="congress-number" type="xsd:integer" style="query" required="true">
+            <param name="congress-number" type="xsd:integer" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-nom-votes">
                     <![CDATA[The number of the Congress during which the nomination votes were taken. Accepted values: 101-112. For a table of years and session numbers, see the official site of the U.S. Senate.]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -2740,31 +2746,31 @@
         <!-- Bills -->
 
         <resource path="politics/{version}/us/legislative/congress/{congress-number}/{chamber}/bills/{type}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="congress-number" type="xsd:integer" style="query" required="true">
+            <param name="congress-number" type="xsd:integer" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-bills">
                     <![CDATA[The number of the Congress during which the bill was introduced/updated. Accepted values: 105-112. For a table of years and session numbers, see the official site of the U.S. Senate.]]>
                 </doc>
             </param>
 
-            <param name="chamber" type="xsd:string" style="query" required="true">
+            <param name="chamber" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-bills">
                     <![CDATA[Accepted values: house, senate]]>
                 </doc>
             </param>
 
-            <param name="type" type="xsd:string" style="query" required="true">
+            <param name="type" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-bills">
                     <![CDATA[Accepted values: introduced, updated, passed, major. See API docs for more info.]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -2800,25 +2806,25 @@
         </resource>
 
         <resource path="politics/{version}/us/legislative/congress/members/{member-id}/bills/{type}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="member-id" type="xsd:string" style="query" required="true">
+            <param name="member-id" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-bills-by-member">
                     <![CDATA[The member's unique ID number. To find a member's ID number, get the list of members for the appropriate House or Senate. You can also use the Biographical Directory of the United States Congress to get a member's ID. In search results, each member's name is linked to a record by index ID (e.g., http://bioguide.congress.gov/scripts/biodisplay.pl?index=C001041). Use the index ID as member-id in your request. Format: alphanumeric]]>
                 </doc>
             </param>
 
-            <param name="type" type="xsd:string" style="query" required="true">
+            <param name="type" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-bills-by-member">
                     <![CDATA[Accepted values: introduced, updated. When type = introduced, the  introduced_date determines the set of recent bills. When type = updated, the latest_major_action_date determines the result set.]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -2854,25 +2860,25 @@
         </resource>
 
         <resource path="politics/{version}/us/legislative/congress/{congress-number}/bills/{bill-id}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="congress-number" type="xsd:integer" style="query" required="true">
+            <param name="congress-number" type="xsd:integer" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-bill-details">
                     <![CDATA[The number of the Congress during which the bill was introduced/updated. Accepted values: 105-112. For a table of years and session numbers, see the official site of the U.S. Senate.]]>
                 </doc>
             </param>
 
-            <param name="bill-id" type="xsd:string" style="query" required="true">
+            <param name="bill-id" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-bill-details">
                     <![CDATA[The bill's unique ID number. Bill ID numbers are included in bill summary responses as url_number. Format: alphanumeric]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -2908,31 +2914,31 @@
         </resource>
 
         <resource path="politics/{version}/us/legislative/congress/{congress-number}/bills/{bill-id}/{resource}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="congress-number" type="xsd:integer" style="query" required="true">
+            <param name="congress-number" type="xsd:integer" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-bill-subjects">
                     <![CDATA[The number of the Congress during which the bill was introduced/updated. Accepted values: 105-112. For a table of years and session numbers, see the official site of the U.S. Senate.]]>
                 </doc>
             </param>
 
-            <param name="bill-id" type="xsd:string" style="query" required="true">
+            <param name="bill-id" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-bill-subjects">
                     <![CDATA[The bill's unique ID number. Bill ID numbers are included in bill summary responses as url_number. Format: alphanumeric]]>
                 </doc>
             </param>
 
-            <param name="resource" type="xsd:string" style="query" required="true">
+            <param name="resource" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-bill-subjects">
                     <![CDATA[Accepted values: subjects, amendments, related.]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -2960,25 +2966,25 @@
         </resource>
 
         <resource path="politics/{version}/us/legislative/congress/{congress-number}/bills/{bill-id}/cosponsors.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="congress-number" type="xsd:integer" style="query" required="true">
+            <param name="congress-number" type="xsd:integer" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-bill-cosponsors">
                     <![CDATA[The number of the Congress during which the bill was introduced. Accepted values: 105-112. For a table of years and session numbers, see the official site of the U.S. Senate.]]>
                 </doc>
             </param>
 
-            <param name="bill-id" type="xsd:string" style="query" required="true">
+            <param name="bill-id" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-bill-cosponsors">
                     <![CDATA[The bill's unique ID number. Bill ID numbers are included in bill summary responses as url_number. Format: alphanumeric]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -3016,25 +3022,25 @@
         <!-- Nominees -->
 
         <resource path="politics/{version}/us/legislative/congress/{congress-number}/nominees/{nomination-category}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="congress-number" type="xsd:integer" style="query" required="true">
+            <param name="congress-number" type="xsd:integer" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-nominees">
                     <![CDATA[The number of the Congress in which the nomination was made. Accepted values: 107-112.]]>
                 </doc>
             </param>
 
-            <param name="nomination-category" type="xsd:string" style="query" required="true">
+            <param name="nomination-category" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-nominees">
                     <![CDATA[The type of nomination you want to retrieve. Accepted values: received, updated, confirmed, withdrawn. For new nominations, use received.]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -3070,25 +3076,25 @@
         </resource>
 
         <resource path="politics/{version}/us/legislative/congress/{congress-number}/nominees/{nominee-id}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="congress-number" type="xsd:integer" style="query" required="true">
+            <param name="congress-number" type="xsd:integer" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-nominee-details">
                     <![CDATA[The number of the Congress in which the nomination was made. Accepted values: 107-112.]]>
                 </doc>
             </param>
 
-            <param name="nominee-id" type="xsd:string" style="query" required="true">
+            <param name="nominee-id" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-nominee-details">
                     <![CDATA[The PN ID for the nomination. To find a PN ID, get a list of nominees. Format: alphanumeric]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -3124,25 +3130,25 @@
         </resource>
 
         <resource path="politics/{version}/us/legislative/congress/{congress-number}/nominees/state/{state}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="congress-number" type="xsd:integer" style="query" required="true">
+            <param name="congress-number" type="xsd:integer" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-nominees-by-state">
                     <![CDATA[The number of the Congress in which the nomination was made. Accepted values: 107-112.]]>
                 </doc>
             </param>
 
-            <param name="state" type="xsd:string" style="query" required="true">
+            <param name="state" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-nominees-by-state">
                     <![CDATA[Format: Two-letter state abbreviation.]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -3180,13 +3186,13 @@
         <!-- Other -->
 
         <resource path="politics/{version}/us/legislative/congress/states/members/party.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -3222,31 +3228,31 @@
         </resource>
 
         <resource path="politics/{version}/us/legislative/congress/{congress-number}/{chamber}/committees/{committee-id}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="congress-number" type="xsd:integer" style="query" required="true">
+            <param name="congress-number" type="xsd:integer" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-committees">
                     <![CDATA[Accepted values: 110-112. (data for earlier Congresses will be available soon)]]>
                 </doc>
             </param>
 
-            <param name="chamber" type="xsd:string" style="query" required="true">
+            <param name="chamber" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-committees">
                     <![CDATA[Accepted values: house, senate]]>
                 </doc>
             </param>
 
-            <param name="committee-id" type="xsd:string" style="query" required="false">
+            <param name="committee-id" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-committees">
                     <![CDATA[A specific House or Senate committee. Use this parameter to get a committee roster. To get a full list of committees including ID values (but excluding member data), simply omit this parameter (i.e., end the URI at committees[.response-format]). Format: committee abbreviation. Optional.]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -3282,19 +3288,19 @@
         </resource>
 
         <resource path="politics/{version}/us/legislative/congress/{chamber}/schedule.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="chamber" type="xsd:string" style="query" required="true">
+            <param name="chamber" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-committees">
                     <![CDATA[Accepted values: house, senate]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/congress_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -3332,13 +3338,13 @@
         <!-- Districts API -->
 
         <resource path="politics/{version}/districts.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v2">
+            <param name="version" type="xsd:string" style="template" required="true" default="v2">
                 <doc apigee:url="http://developer.nytimes.com/docs/districts_api/#h3-common-params">
                     <![CDATA[The current version is v2. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/districts_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: json (implicit default), xml]]>
                 </doc>
@@ -3389,37 +3395,37 @@
         <!-- Most Popular API -->
 
         <resource path="mostpopular/{version}/{resource-type}/{section}/{share-types}/{time-period}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v2">
+            <param name="version" type="xsd:string" style="template" required="true" default="v2">
                 <doc apigee:url="http://developer.nytimes.com/docs/most_popular_api/#h3-common-params">
                     <![CDATA[The current version is v2. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="resource-type" type="xsd:string" style="query" required="true">
+            <param name="resource-type" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/most_popular_api/">
                     <![CDATA[Accepted values: mostemailed, mostshared, mostviewed. The mostemailed and mostviewed resource types correspond to the Most Popular module on the NYTimes.com home page.]]>
                 </doc>
             </param>
 
-            <param name="section" type="xsd:string" style="query" required="true">
+            <param name="section" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/most_popular_api/">
                     <![CDATA[Limits the results by one or more sections. Accepted values: all-sections | One or more section names, separated by semicolons. To get all sections, specify all-sections. To get a particular section or sections, use the section names returned by this request (specifying the appropriate resource type)]]>
                 </doc>
             </param>
 
-            <param name="share-types" type="xsd:string" style="query" required="false">
+            <param name="share-types" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/most_popular_api/">
                     <![CDATA[Limits the results by the method used to share the items (mostshared requests only). Accepted values: One or more types, separated by semicolons: digg, email, facebook, mixx, myspace, permalink, timespeople, twitter, yahoobuzz. If you do not specify any share-types, all share types will be included. Optional.]]>
                 </doc>
             </param>
 
-            <param name="time-period" type="xsd:integer" style="query" required="false">
+            <param name="time-period" type="xsd:integer" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/most_popular_api/">
                     <![CDATA[Accepted values: 1, 7, 30  Corresponds to a day, a week, or a month of content.]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/most_popular_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return XML or serialized PHP, add the appropriate extension to your request URI. JSON is the default format; you do not need to add the .json extension to get a JSON response. Accepted values: json (implicit default), xml, sphp]]>
                 </doc>
@@ -3463,13 +3469,13 @@
         <!-- Movie Reviews API -->
 
         <resource path="movies/{version}/reviews/search.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v2">
+            <param name="version" type="xsd:string" style="template" required="true" default="v2">
                 <doc apigee:url="http://developer.nytimes.com/docs/movie_reviews_api/#h3-common-params">
                     <![CDATA[The current version is v2. (Version 1 is for internal use only.) Note: The recent updates are point releases — continue to specify v2 in your requests.]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/movie_reviews_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return XML or serialized PHP, add the appropriate extension to your request URI. JSON is the default format; you do not need to add the .json extension to get a JSON response. Accepted values: json (implicit default), xml, sphp]]>
                 </doc>
@@ -3568,19 +3574,19 @@
         </resource>
 
         <resource path="movies/{version}/reviews/{resource-path}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v2">
+            <param name="version" type="xsd:string" style="template" required="true" default="v2">
                 <doc apigee:url="http://developer.nytimes.com/docs/movie_reviews_api/#h3-common-params">
                     <![CDATA[The current version is v2. (Version 1 is for internal use only.) Note: The recent updates are point releases — continue to specify v2 in your requests.]]>
                 </doc>
             </param>
 
-            <param name="resource-type" type="xsd:string" style="query" required="true">
+            <param name="resource-type" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/movie_reviews_api/#h3-reviews">
                     <![CDATA[All reviews or NYT Critics' Picks. Accepted values: all, picks, dvd-picks. Specify all to retrieve all reviews, including NYT Critics' Picks, and covering movies currently in theaters as well as movies on DVD. Specify picks to get NYT Critics' Picks currently in theaters. Specify dvd-picks to get NYT Critics' Picks on DVD.]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/movie_reviews_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return XML or serialized PHP, add the appropriate extension to your request URI. JSON is the default format; you do not need to add the .json extension to get a JSON response. Accepted values: json (implicit default), xml, sphp]]>
                 </doc>
@@ -3628,19 +3634,19 @@
         </resource>
 
         <resource path="movies/{version}/reviews/reviewer/{reviewer-name}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v2">
+            <param name="version" type="xsd:string" style="template" required="true" default="v2">
                 <doc apigee:url="http://developer.nytimes.com/docs/movie_reviews_api/#h3-common-params">
                     <![CDATA[The current version is v2. (Version 1 is for internal use only.) Note: The recent updates are point releases — continue to specify v2 in your requests.]]>
                 </doc>
             </param>
 
-            <param name="reviewer-name" type="xsd:string" style="query" required="true">
+            <param name="reviewer-name" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/movie_reviews_api/#h3-reviews-reviewers">
                     <![CDATA[The name of the Times reviewer. Reviewer names should be hyphenated or concatenated with dots (e.g., manohla-dargis or manohla.dargis).]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/movie_reviews_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return XML or serialized PHP, add the appropriate extension to your request URI. JSON is the default format; you do not need to add the .json extension to get a JSON response. Accepted values: json (implicit default), xml, sphp]]>
                 </doc>
@@ -3694,19 +3700,19 @@
         </resource>
 
         <resource path="movies/{version}/critics/{resource-type}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v2">
+            <param name="version" type="xsd:string" style="template" required="true" default="v2">
                 <doc apigee:url="http://developer.nytimes.com/docs/movie_reviews_api/#h3-common-params">
                     <![CDATA[The current version is v2. (Version 1 is for internal use only.) Note: The recent updates are point releases — continue to specify v2 in your requests.]]>
                 </doc>
             </param>
 
-            <param name="resource-type" type="xsd:string" style="query" required="true">
+            <param name="resource-type" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/movie_reviews_api/#h3-reviewers">
                     <![CDATA[A set of reviewers or a specific reviewer. Accepted values: all, full-time, part-time, reviewer, [reviewer-name] Specify all to get all Times reviewers, or specify full-time or part-time to get that subset. Specify a reviewer's name to get details about a particular reviewer. Reviewer names should be hyphenated or concatenated with dots (e.g., a-o-scott or a.o.scott).]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/movie_reviews_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return XML or serialized PHP, add the appropriate extension to your request URI. JSON is the default format; you do not need to add the .json extension to get a JSON response. Accepted values: json (implicit default), xml, sphp]]>
                 </doc>
@@ -3745,25 +3751,25 @@
         <!-- New York State Legislature API -->
 
         <resource path="politics/{version}/ny/legislative/{year}/{chamber}/members.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v2">
+            <param name="version" type="xsd:string" style="template" required="true" default="v2">
                 <doc apigee:url="http://developer.nytimes.com/docs/ny_state_leg_api/#h3-common-params">
                     <![CDATA[The current version is v2. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="year" type="xsd:string" style="query" required="true">
+            <param name="year" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/ny_state_leg_api/#h3-member-list">
                     <![CDATA[The year of the legislative session. Version 2 is limited to the current session. Format: YYYY]]>
                 </doc>
             </param>
 
-            <param name="chamber" type="xsd:string" style="query" required="true">
+            <param name="chamber" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/ny_state_leg_api/#h3-member-list">
                     <![CDATA[Accepted values: assembly, senate]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/ny_state_leg_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: xml (implicit default), json]]>
                 </doc>
@@ -3798,19 +3804,19 @@
         </resource>
 
         <resource path="politics/{version}/ny/legislative/members/{member-name}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v2">
+            <param name="version" type="xsd:string" style="template" required="true" default="v2">
                 <doc apigee:url="http://developer.nytimes.com/docs/ny_state_leg_api/#h3-common-params">
                     <![CDATA[The current version is v2. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="member-name" type="xsd:string" style="query" required="true">
+            <param name="member-name" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/ny_state_leg_api/#h3-member-details">
                     <![CDATA[Member name. To get valid member-name values, use a members by chamber request and refer to the url_name fields.]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/ny_state_leg_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: xml (implicit default), json]]>
                 </doc>
@@ -3845,25 +3851,25 @@
         </resource>
 
         <resource path="politics/{version}/ny/legislative/{chamber}/{district}/current.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v2">
+            <param name="version" type="xsd:string" style="template" required="true" default="v2">
                 <doc apigee:url="http://developer.nytimes.com/docs/ny_state_leg_api/#h3-common-params">
                     <![CDATA[The current version is v2. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="chamber" type="xsd:string" style="query" required="true">
+            <param name="chamber" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/ny_state_leg_api/#h3-current-by-district">
                     <![CDATA[Accepted values: assembly, senate.]]>
                 </doc>
             </param>
 
-            <param name="district" type="xsd:integer" style="query" required="true">
+            <param name="district" type="xsd:integer" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/ny_state_leg_api/#h3-current-by-district">
                     <![CDATA[The district number. Accepted values: Assembly: 1 to 150, [The district number. Accepted values: Assembly: 1 to 150. If the district seat is currently vacant, a null response will be returned. If the district does not exist, a 404 response will be returned.]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/ny_state_leg_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: xml (implicit default), json]]>
                 </doc>
@@ -3898,25 +3904,25 @@
         </resource>
 
         <resource path="politics/{version}/ny/legislative/{year}/{chamber}/committees.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v2">
+            <param name="version" type="xsd:string" style="template" required="true" default="v2">
                 <doc apigee:url="http://developer.nytimes.com/docs/ny_state_leg_api/#h3-common-params">
                     <![CDATA[The current version is v2. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="year" type="xsd:string" style="query" required="true">
+            <param name="year" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/ny_state_leg_api/#h3-cmte-lists">
                     <![CDATA[The year of the legislative session. Version 2 is limited to the current session. Format: YYYY]]>
                 </doc>
             </param>
 
-            <param name="chamber" type="xsd:string" style="query" required="true">
+            <param name="chamber" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/ny_state_leg_api/#h3-cmte-lists">
                     <![CDATA[Accepted values: assembly, senate.]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/ny_state_leg_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: xml (implicit default), json]]>
                 </doc>
@@ -3951,31 +3957,31 @@
         </resource>
 
         <resource path="politics/{version}/ny/legislative/{year}/{chamber}/committees/{committee-name}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v2">
+            <param name="version" type="xsd:string" style="template" required="true" default="v2">
                 <doc apigee:url="http://developer.nytimes.com/docs/ny_state_leg_api/#h3-common-params">
                     <![CDATA[The current version is v2. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="year" type="xsd:string" style="query" required="true">
+            <param name="year" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/ny_state_leg_api/#h3-cmte-details">
                     <![CDATA[The year of the legislative session. Version 2 is limited to the current session. Format: YYYY]]>
                 </doc>
             </param>
 
-            <param name="chamber" type="xsd:string" style="query" required="true">
+            <param name="chamber" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/ny_state_leg_api/#h3-cmte-details">
                     <![CDATA[Accepted values: assembly, senate.]]>
                 </doc>
             </param>
 
-            <param name="committee-name" type="xsd:string" style="query" required="true">
+            <param name="committee-name" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/ny_state_leg_api/#h3-cmte-details">
                     <![CDATA[The committee name. To get valid committee-name values, use a committees by chamber request and refer to the url_name fields. You can also refer to the url_name fields in the current_committee_assignments node in a member details response.]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/ny_state_leg_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: xml (implicit default), json]]>
                 </doc>
@@ -4010,31 +4016,31 @@
         </resource>
 
         <resource path="politics/{version}/ny/legislative/{year}/{chamber}/bills/{type}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v2">
+            <param name="version" type="xsd:string" style="template" required="true" default="v2">
                 <doc apigee:url="http://developer.nytimes.com/docs/ny_state_leg_api/#h3-common-params">
                     <![CDATA[The current version is v2. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="year" type="xsd:string" style="query" required="true">
+            <param name="year" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/ny_state_leg_api/#h3-bills">
                     <![CDATA[The year of the legislative session. Version 2 is limited to the current session. Format: YYYY]]>
                 </doc>
             </param>
 
-            <param name="chamber" type="xsd:string" style="query" required="true">
+            <param name="chamber" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/ny_state_leg_api/#h3-bills">
                     <![CDATA[Accepted values: assembly, senate.]]>
                 </doc>
             </param>
 
-            <param name="type" type="xsd:string" style="query" required="true">
+            <param name="type" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/ny_state_leg_api/#h3-bills">
                     <![CDATA[Accepted values: introduced, updated. When type = introduced, the  introduced_date determines the set of recent bills. When type = updated, the latest_action_date determines the result set. See the sample responses for examples of bill summary data.]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/ny_state_leg_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: xml (implicit default), json]]>
                 </doc>
@@ -4069,25 +4075,25 @@
         </resource>
 
         <resource path="politics/{version}/ny/legislative/members/{member-name}/bills/{type}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v2">
+            <param name="version" type="xsd:string" style="template" required="true" default="v2">
                 <doc apigee:url="http://developer.nytimes.com/docs/ny_state_leg_api/#h3-common-params">
                     <![CDATA[The current version is v2. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="member-name" type="xsd:string" style="query" required="true">
+            <param name="member-name" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/ny_state_leg_api/#h3-bills-by-member">
                     <![CDATA[The member name. To get valid member-name values, use a members by chamber request and refer to the url_name fields.]]>
                 </doc>
             </param>
 
-            <param name="type" type="xsd:string" style="query" required="true">
+            <param name="type" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/ny_state_leg_api/#h3-bills-by-member">
                     <![CDATA[Accepted values: introduced, updated. When type = introduced, the  introduced_date determines the set of recent bills. When type = updated, the latest_action_date determines the result set. See the sample responses for examples of bill summary data.]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/ny_state_leg_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: xml (implicit default), json]]>
                 </doc>
@@ -4122,25 +4128,25 @@
         </resource>
 
         <resource path="politics/{version}/ny/legislative/{year}/bills/{bill-id}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v2">
+            <param name="version" type="xsd:string" style="template" required="true" default="v2">
                 <doc apigee:url="http://developer.nytimes.com/docs/ny_state_leg_api/#h3-common-params">
                     <![CDATA[The current version is v2. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="year" type="xsd:string" style="query" required="true">
+            <param name="year" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/ny_state_leg_api/#h3-bill-details">
                     <![CDATA[The year of the legislative session. Version 2 is limited to the current session. Format: YYYY]]>
                 </doc>
             </param>
 
-            <param name="bill-id" type="xsd:string" style="query" required="true">
+            <param name="bill-id" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/ny_state_leg_api/#h3-bill-details">
                     <![CDATA[The bill's unique ID number. Bill ID numbers are included in bill summary responses as "number".]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/ny_state_leg_api/#h3-common-params">
                     <![CDATA[Sets the representation data format. To return JSON, add the appropriate extension to your request URI. XML is the default format; you do not need to add the .xml extension to get an XML response. Accepted values: xml (implicit default), json]]>
                 </doc>
@@ -4177,19 +4183,19 @@
         <!-- Real Estate API -->
 
         <resource path="real-estate/{version}/listings/percentile/{percentile-value}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v2">
+            <param name="version" type="xsd:string" style="template" required="true" default="v2">
                 <doc apigee:url="http://developer.nytimes.com/docs/real_estate_api/#h2-params">
                     <![CDATA[The current version is v2. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="percentile-value" type="xsd:integer" style="query" required="true">
+            <param name="percentile-value" type="xsd:integer" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/real_estate_api/#h2-params">
                     <![CDATA[The percentile you want to retrieve (for Listings Percentiles and Sales Percentiles requests). Example: 50th percentile: svc/real-estate/v2/listings/percentile/50.xml (with additional required parameters appended)]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/real_estate_api/#h2-params">
                     <![CDATA[To return XML or serialized PHP, add the appropriate extension to your request URI. JSON is the default format; you do not need to add the .json extension to get a JSON response. Accepted values: json (implicit default), xml, sphp]]>
                 </doc>
@@ -4256,13 +4262,13 @@
         </resource>
 
         <resource path="real-estate/{version}/listings/count.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v2">
+            <param name="version" type="xsd:string" style="template" required="true" default="v2">
                 <doc apigee:url="http://developer.nytimes.com/docs/real_estate_api/#h2-params">
                     <![CDATA[The current version is v2. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/real_estate_api/#h2-params">
                     <![CDATA[To return XML or serialized PHP, add the appropriate extension to your request URI. JSON is the default format; you do not need to add the .json extension to get a JSON response. Accepted values: json (implicit default), xml, sphp]]>
                 </doc>
@@ -4347,19 +4353,19 @@
         </resource>
 
         <resource path="real-estate/{version}/sales/percentile/{percentile-value}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v2">
+            <param name="version" type="xsd:string" style="template" required="true" default="v2">
                 <doc apigee:url="http://developer.nytimes.com/docs/real_estate_api/#h2-params">
                     <![CDATA[The current version is v2. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="percentile-value" type="xsd:integer" style="query" required="true">
+            <param name="percentile-value" type="xsd:integer" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/real_estate_api/#h2-params">
                     <![CDATA[The percentile you want to retrieve (for Listings Percentiles and Sales Percentiles requests). Example: 50th percentile: svc/real-estate/v2/listings/percentile/50.xml (with additional required parameters appended)]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/real_estate_api/#h2-params">
                     <![CDATA[To return XML or serialized PHP, add the appropriate extension to your request URI. JSON is the default format; you do not need to add the .json extension to get a JSON response. Accepted values: json (implicit default), xml, sphp]]>
                 </doc>
@@ -4420,13 +4426,13 @@
         </resource>
 
         <resource path="real-estate/{version}/sales/count.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v2">
+            <param name="version" type="xsd:string" style="template" required="true" default="v2">
                 <doc apigee:url="http://developer.nytimes.com/docs/real_estate_api/#h2-params">
                     <![CDATA[The current version is v2. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/real_estate_api/#h2-params">
                     <![CDATA[To return XML or serialized PHP, add the appropriate extension to your request URI. JSON is the default format; you do not need to add the .json extension to get a JSON response. Accepted values: json (implicit default), xml, sphp]]>
                 </doc>
@@ -4581,31 +4587,31 @@
         <!-- Times Newswire API -->
 
         <resource path="news/{version}/content/{source}/{section}/{time-period}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/times_newswire_api/#h2-requests">
                     <![CDATA[The current version is v3. Version 2 will be supported until August 2010. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="source" type="xsd:string" style="query" required="true">
+            <param name="source" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/times_newswire_api/#h3-items">
                     <![CDATA[Limits the set of items by originating source. Accepted values: all, nyt, iht. all = items from both The New York Times and The International Herald Tribune. nyt = New York Times items only. iht = International Herald Tribune items only.]]>
                 </doc>
             </param>
 
-            <param name="section" type="xsd:string" style="query" required="true">
+            <param name="section" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/times_newswire_api/#h3-items">
                     <![CDATA[Limits the set of items by one or more sections. Accepted values: all, [One or more section names, separated by semicolons]. To get all sections, specify all. To get a particular section or sections, use the section names returned by the section-list method]]>
                 </doc>
             </param>
 
-            <param name="time-period" type="xsd:integer" style="query" required="false">
+            <param name="time-period" type="xsd:integer" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/times_newswire_api/#h3-items">
                     <![CDATA[Limits the set of items by time published. If you do not specify a time-period, all available recent items will be returned. Format: Integer, number of hours, 1–720 (up to one month). Optional.]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/times_newswire_api/#h2-requests">
                     <![CDATA[Sets the representation data format. To return XML or serialized PHP, add the appropriate extension to your request URI. JSON is the default format; you do not need to add the .json extension to get a JSON response. Accepted values: json (implicit default), xml, sphp]]>
                 </doc>
@@ -4653,13 +4659,13 @@
         </resource>
 
         <resource path="news/{version}/content.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/times_newswire_api/#h2-requests">
                     <![CDATA[The current version is v3. Version 2 will be supported until August 2010. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/times_newswire_api/#h2-requests">
                     <![CDATA[Sets the representation data format. To return XML or serialized PHP, add the appropriate extension to your request URI. JSON is the default format; you do not need to add the .json extension to get a JSON response. Accepted values: json (implicit default), xml, sphp]]>
                 </doc>
@@ -4701,13 +4707,13 @@
         </resource>
 
         <resource path="news/{version}/content/section-list.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v3">
+            <param name="version" type="xsd:string" style="template" required="true" default="v3">
                 <doc apigee:url="http://developer.nytimes.com/docs/times_newswire_api/#h2-requests">
                     <![CDATA[The current version is v3. Version 2 will be supported until August 2010. (Version 1 is for internal use only.)]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="false">
+            <param name="response-format" type="xsd:string" style="template" required="false">
                 <doc apigee:url="http://developer.nytimes.com/docs/times_newswire_api/#h2-requests">
                     <![CDATA[Sets the representation data format. To return XML or serialized PHP, add the appropriate extension to your request URI. JSON is the default format; you do not need to add the .json extension to get a JSON response. Accepted values: json (implicit default), xml, sphp]]>
                 </doc>
@@ -4745,25 +4751,25 @@
         <!-- TimesPeople API -->
 
         <resource path="timespeople/api/{version}/user/{user-id}/{data-type}.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v1">
+            <param name="version" type="xsd:string" style="template" required="true" default="v1">
                 <doc apigee:url="http://developer.nytimes.com/docs/timespeople_api/#h3-id-data">
                     <![CDATA[The current version is v1.]]>
                 </doc>
             </param>
 
-            <param name="user-id" type="xsd:integer" style="query" required="true">
+            <param name="user-id" type="xsd:integer" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/timespeople_api/#h3-id-data">
                     <![CDATA[A TimesPeople user ID number. To get a user's ID number, issue a user ID request, as described below. You can also get a user’s ID number from a TimesPeople profile page. The ID number appears in the URL for the page. Example: http://timespeople.nytimes.com/view/user/9999999/activities.html (ID = 9999999)]]>
                 </doc>
             </param>
 
-            <param name="data-type" type="xsd:string" style="query" required="true">
+            <param name="data-type" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/timespeople_api/#h3-id-data">
                     <![CDATA[Accepted values: profile, activities, newsfeed, followers, following. See API docs for more info.]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="true">
+            <param name="response-format" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/timespeople_api/#h3-id-data">
                     <![CDATA[Sets the representation data format. Add the appropriate extension to your request. There is no default format — your request must include an extension. Accepted values: js (JSON), xml (XML)]]>
                 </doc>
@@ -4798,19 +4804,19 @@
         </resource>
 
         <resource path="timespeople/api/{version}/user/{hash}/id.{response-format}">
-            <param name="version" type="xsd:string" style="query" required="true" default="v1">
+            <param name="version" type="xsd:string" style="template" required="true" default="v1">
                 <doc apigee:url="http://developer.nytimes.com/docs/timespeople_api/#h3-id-hash">
                     <![CDATA[The current version is v1.]]>
                 </doc>
             </param>
 
-            <param name="hash" type="xsd:string" style="query" required="true">
+            <param name="hash" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/timespeople_api/#h3-id-hash">
                     <![CDATA[The MD5 hash of the user's e-mail address. Note: The e-mail address used to generate the MD5 hash value must be all lowercase (for example, myname@myemail.com, not MyName@MyEmail.com). Format: 32-digit hex number]]>
                 </doc>
             </param>
 
-            <param name="response-format" type="xsd:string" style="query" required="true">
+            <param name="response-format" type="xsd:string" style="template" required="true">
                 <doc apigee:url="http://developer.nytimes.com/docs/timespeople_api/#h3-id-hash">
                     <![CDATA[Sets the representation data format. Add the appropriate extension to your request. There is no default format — your request must include an extension. Accepted values: js (JSON), xml (XML)]]>
                 </doc>
