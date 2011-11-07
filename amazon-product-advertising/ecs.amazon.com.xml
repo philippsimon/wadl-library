@@ -1,0 +1,1892 @@
+<application xmlns="http://wadl.dev.java.net/2009/02"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+             xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
+
+    <!-- Version: 2010-11-01 -->
+
+    <!--
+        Endpoints:
+
+        CA:
+            http://ecs.amazonaws.ca/onca/xml
+            https://ecs.amazonaws.ca/onca/xml
+        DE:
+            http://ecs.amazonaws.de/onca/xml
+            https://ecs.amazonaws.de/onca/xml
+        FR:
+            http://ecs.amazonaws.fr/onca/xml
+            https://ecs.amazonaws.fr/onca/xml
+        JP:
+            http://ecs.amazonaws.jp/onca/xml
+            https://ecs.amazonaws.jp/onca/xml
+        UK:
+            http://ecs.amazonaws.co.uk/onca/xml
+            https://ecs.amazonaws.co.uk/onca/xml
+        US:
+            http://ecs.amazonaws.com/onca/xml
+            https://ecs.amazonaws.com/onca/xml
+    -->
+    <resources base="http://ecs.amazonaws.com/onca/xml">
+        <!-- All requests must be signed. See: view-source:http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?Query_QueryAuth.html -->
+        <!--
+            Common parameters:
+                Service=AWSECommerceService
+                AWSAccessKeyId=
+        -->
+
+        <!-- Browse Node -->
+
+        <resource path="?Operation=BrowseNodeLookup">
+            <method id="BrowseNodeLookup" name="GET" apigee:displayName="BrowseNodeLookup">
+                <apigee:tags>
+                    <apigee:tag primary="true">Browse Node</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="?Operation=BrowseNodeLookup"/>
+
+                <doc title="BrowseNodeLookup" apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?BrowseNodeLookup.html">
+                    <![CDATA[Given a browse node ID, BrowseNodeLookup returns the specified browse node’s name, children, and ancestors. The names and browse node IDs of the children and ancestor browse nodes are also returned.]]>
+                </doc>
+
+                <request>
+                    <!-- Common request parameters -->
+
+                    <param name="AssociateTag" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[An alphanumeric token that uniquely identifies an Associate. This token is the means by which Amazon identifies the Associate to credit for a sale. If a request is made without identifying an Associate, Associate fees are not paid by Amazon. If the AssociateTag is included in the CartCreate request, the value for AssociateTag is automatically included in the PurchaseURL, which is returned by CartCreate. Valid Values: An alphanumeric token distributed by Amazon that uniquely identifies an Associate. Use this value in all requests to receive credit for the customer's purchase.]]>
+                        </doc>
+                    </param>
+
+                    <param name="ContentType" style="query" required="false" default="text/xml">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies the format of the content in the response. Generally, ContentType should only be changed for REST requests when the Style parameter is set to an XSLT stylesheet. For example, to transform your Product Advertising API response into HTML, set ContentType to text/html. See Style.]]>
+                        </doc>
+                        <option value="text/xml"/>
+                        <option value="text/html"/>
+                    </param>
+
+                    <param name="MarketplaceDomain" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies the Marketplace Domain within which to make the request. Do not use this parameter unless making a request against one of the domains specified in the list of valid values.]]>
+                        </doc>
+                        <option value="www.endless.com"/>
+                        <option value="www.javari.co.uk"/>
+                        <option value="www.javari.de"/>
+                        <option value="www.javari.jp"/>
+                    </param>
+
+                    <param name="MerchantId" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[An alphanumeric token distributed by Amazon that uniquely identifies a merchant. See API docs for valid values.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Style" type="xsd:string" style="query" required="false" default="XML">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Controls the format of the data returned in Product Advertising API responses. Style only pertains to REST requests. Set this parameter to "XML," the default, to generate a pure XML response. Set this parameter to the URL of an XSLT stylesheet to have Product Advertising API transform the XML response. See ContentType.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Validate" style="query" required="false" default="False">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Prevents an operation from executing. Set the Validate parameter to True to test your request without actually executing it. When present, Validate must equal True; the default value is False. If a request is not actually executed (Validate=True), only a subset of the errors for a request may be returned because some errors (for example, no_exact_matches) are only generated during the execution of a request.]]>
+                        </doc>
+                        <option value="True"/>
+                        <option value="False"/>
+                    </param>
+
+                    <param name="Version" type="xsd:string" style="query" required="false" default="2010-10-05">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[The version of the Product Advertising API software and WSDL to use. By default, the 2005-10-05 version is used. Alternately, specify a software version, such as 2010-11-01. For a list of valid version numbers, refer to the Product Advertising API Release Notes. Note that the latest version of Product Advertising API is not used by default.]]>
+                        </doc>
+                    </param>
+
+                    <param name="XMLEscaping" style="query" required="false" default="Single">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies whether responses are XML-encoded in a single pass or a double pass. By default, XMLEscaping is Single, and Product Advertising API responses are encoded only once in XML. For example, if the response data includes an ampersand character (&), the character is returned in its regular XML encoding (&). If XMLEscaping is Double, the same ampersand character is XML-encoded twice (&amp;). The Double value for XMLEscaping is useful in some clients, such as PHP, that do not decode text within XML elements.]]>
+                        </doc>
+                        <option value="Single"/>
+                        <option value="Double"/>
+                    </param>
+
+                    <!-- Method specific -->
+
+                    <param name="BrowseNodeId" type="xsd:positiveInteger" style="query" required="true">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?BrowseNodeLookup.html">
+                            <![CDATA[A positive integer assigned by Amazon that uniquely identifies a product category.]]>
+                        </doc>
+                    </param>
+
+                    <param name="ResponseGroup" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?BrowseNodeLookup.html">
+                            <![CDATA[Specifies the types of values to return. You can specify multiple response groups in one request by separating them with commas.]]>
+                        </doc>
+                        <option value="MostGifted"/>
+                        <option value="NewReleases"/>
+                        <option value="MostWishedFor"/>
+                        <option value="TopSellers"/>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="text/xml"/>
+                    <representation mediaType="text/html"/>
+                </response>
+            </method>
+        </resource>
+
+        <!-- Cart -->
+
+        <resource path="?Operation=CartAdd">
+            <method id="CartAdd" name="GET" apigee:displayName="CartAdd">
+                <apigee:tags>
+                    <apigee:tag primary="true">Cart</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="?Operation=CartAdd"/>
+
+                <doc title="CartAdd" apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CartAdd.html">
+                    <![CDATA[Adds items to an existing remote shopping cart.]]>
+                </doc>
+
+                <request>
+                    <!-- Common request parameters -->
+
+                    <param name="AssociateTag" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[An alphanumeric token that uniquely identifies an Associate. This token is the means by which Amazon identifies the Associate to credit for a sale. If a request is made without identifying an Associate, Associate fees are not paid by Amazon. If the AssociateTag is included in the CartCreate request, the value for AssociateTag is automatically included in the PurchaseURL, which is returned by CartCreate. Valid Values: An alphanumeric token distributed by Amazon that uniquely identifies an Associate. Use this value in all requests to receive credit for the customer's purchase.]]>
+                        </doc>
+                    </param>
+
+                    <param name="ContentType" style="query" required="false" default="text/xml">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies the format of the content in the response. Generally, ContentType should only be changed for REST requests when the Style parameter is set to an XSLT stylesheet. For example, to transform your Product Advertising API response into HTML, set ContentType to text/html. See Style.]]>
+                        </doc>
+                        <option value="text/xml"/>
+                        <option value="text/html"/>
+                    </param>
+
+                    <param name="MarketplaceDomain" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies the Marketplace Domain within which to make the request. Do not use this parameter unless making a request against one of the domains specified in the list of valid values.]]>
+                        </doc>
+                        <option value="www.endless.com"/>
+                        <option value="www.javari.co.uk"/>
+                        <option value="www.javari.de"/>
+                        <option value="www.javari.jp"/>
+                    </param>
+
+                    <param name="MerchantId" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[An alphanumeric token distributed by Amazon that uniquely identifies a merchant. See API docs for valid values.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Style" type="xsd:string" style="query" required="false" default="XML">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Controls the format of the data returned in Product Advertising API responses. Style only pertains to REST requests. Set this parameter to "XML," the default, to generate a pure XML response. Set this parameter to the URL of an XSLT stylesheet to have Product Advertising API transform the XML response. See ContentType.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Validate" style="query" required="false" default="False">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Prevents an operation from executing. Set the Validate parameter to True to test your request without actually executing it. When present, Validate must equal True; the default value is False. If a request is not actually executed (Validate=True), only a subset of the errors for a request may be returned because some errors (for example, no_exact_matches) are only generated during the execution of a request.]]>
+                        </doc>
+                        <option value="True"/>
+                        <option value="False"/>
+                    </param>
+
+                    <param name="Version" type="xsd:string" style="query" required="false" default="2010-10-05">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[The version of the Product Advertising API software and WSDL to use. By default, the 2005-10-05 version is used. Alternately, specify a software version, such as 2010-11-01. For a list of valid version numbers, refer to the Product Advertising API Release Notes. Note that the latest version of Product Advertising API is not used by default.]]>
+                        </doc>
+                    </param>
+
+                    <param name="XMLEscaping" style="query" required="false" default="Single">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies whether responses are XML-encoded in a single pass or a double pass. By default, XMLEscaping is Single, and Product Advertising API responses are encoded only once in XML. For example, if the response data includes an ampersand character (&), the character is returned in its regular XML encoding (&). If XMLEscaping is Double, the same ampersand character is XML-encoded twice (&amp;). The Double value for XMLEscaping is useful in some clients, such as PHP, that do not decode text within XML elements.]]>
+                        </doc>
+                        <option value="Single"/>
+                        <option value="Double"/>
+                    </param>
+
+                    <!-- Method specific -->
+
+                    <param name="CartId" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CartAdd.html">
+                            <![CDATA[Alphanumeric token returned by CartCreate that identifies a cart.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Item.n.ASIN" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CartAdd.html">
+                            <![CDATA[Specifies ASIN of item to be added to the cart where N is a positive integer between 1 and 10, inclusive. Up to ten items can be added at a time. Using an item's OfferListingId is preferred instead of the item's ASIN. Required if an OfferListingId is not specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Item.n.Quantity" type="xsd:positiveInteger" style="query" required="true">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CartAdd.html">
+                            <![CDATA[Specifies number of items to be added to the cart where N is a positive integer. Valid Values: Positive integer between 1 and 999, inclusive.]]>
+                        </doc>
+                    </param>
+
+                    <param name="HMAC" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CartAdd.html">
+                            <![CDATA[The Hash Message Authentication Code is an encrypted alphanumeric token that is used to authenticate requests. Value is calculated using request parameters, their values, a cryptographic function, and the Secret Key, which acts as the "key" for the function.]]>
+                        </doc>
+                    </param>
+
+                    <param name="MergeCart" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CartAdd.html">
+                            <![CDATA[This parameter is deprecated. When a customer purchases items in a remote shopping cart, the items are added to the customer’s Amazon retail shopping cart.]]>
+                        </doc>
+                    </param>
+
+                    <param name="OfferListingId" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CartAdd.html">
+                            <![CDATA[An offer listing ID is a token that uniquely identifies an item that is sold by any merchant, including Amazon. This parameter is preferred to using an ASIN to add an item to a cart. Required if ASIN is not offered.]]>
+                        </doc>
+                    </param>
+
+                    <param name="ResponseGroup" type="xsd:string" style="query" required="false" default="Cart">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CartAdd.html">
+                            <![CDATA[Specifies the types of values to return. You can specify multiple response groups in one request by separating them with commas.]]>
+                        </doc>
+                        <option value="Cart"/>
+                        <option value="CartSimilarities"/>
+                        <option value="CartTopSellers"/>
+                        <option value="NewReleases"/>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="text/xml"/>
+                    <representation mediaType="text/html"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="?Operation=CartClear">
+            <method id="CartClear" name="GET" apigee:displayName="CartClear">
+                <apigee:tags>
+                    <apigee:tag primary="true">Cart</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="?Operation=CartClear"/>
+
+                <doc title="CartClear" apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CartClear.html">
+                    <![CDATA[Removes all of the items in a remote shopping cart, including SavedForLater items. To remove only some of the items in a cart or to reduce the quantity of one or more items, use CartModify.]]>
+                </doc>
+
+                <request>
+                    <!-- Common request parameters -->
+
+                    <param name="AssociateTag" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[An alphanumeric token that uniquely identifies an Associate. This token is the means by which Amazon identifies the Associate to credit for a sale. If a request is made without identifying an Associate, Associate fees are not paid by Amazon. If the AssociateTag is included in the CartCreate request, the value for AssociateTag is automatically included in the PurchaseURL, which is returned by CartCreate. Valid Values: An alphanumeric token distributed by Amazon that uniquely identifies an Associate. Use this value in all requests to receive credit for the customer's purchase. This value is required only if the cart was created using the AssociateTag.]]>
+                        </doc>
+                    </param>
+
+                    <param name="ContentType" style="query" required="false" default="text/xml">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies the format of the content in the response. Generally, ContentType should only be changed for REST requests when the Style parameter is set to an XSLT stylesheet. For example, to transform your Product Advertising API response into HTML, set ContentType to text/html. See Style.]]>
+                        </doc>
+                        <option value="text/xml"/>
+                        <option value="text/html"/>
+                    </param>
+
+                    <param name="MarketplaceDomain" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies the Marketplace Domain within which to make the request. Do not use this parameter unless making a request against one of the domains specified in the list of valid values.]]>
+                        </doc>
+                        <option value="www.endless.com"/>
+                        <option value="www.javari.co.uk"/>
+                        <option value="www.javari.de"/>
+                        <option value="www.javari.jp"/>
+                    </param>
+
+                    <param name="MerchantId" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[An alphanumeric token distributed by Amazon that uniquely identifies a merchant. See API docs for valid values.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Style" type="xsd:string" style="query" required="false" default="XML">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Controls the format of the data returned in Product Advertising API responses. Style only pertains to REST requests. Set this parameter to "XML," the default, to generate a pure XML response. Set this parameter to the URL of an XSLT stylesheet to have Product Advertising API transform the XML response. See ContentType.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Validate" style="query" required="false" default="False">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Prevents an operation from executing. Set the Validate parameter to True to test your request without actually executing it. When present, Validate must equal True; the default value is False. If a request is not actually executed (Validate=True), only a subset of the errors for a request may be returned because some errors (for example, no_exact_matches) are only generated during the execution of a request.]]>
+                        </doc>
+                        <option value="True"/>
+                        <option value="False"/>
+                    </param>
+
+                    <param name="Version" type="xsd:string" style="query" required="false" default="2010-10-05">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[The version of the Product Advertising API software and WSDL to use. By default, the 2005-10-05 version is used. Alternately, specify a software version, such as 2010-11-01. For a list of valid version numbers, refer to the Product Advertising API Release Notes. Note that the latest version of Product Advertising API is not used by default.]]>
+                        </doc>
+                    </param>
+
+                    <param name="XMLEscaping" style="query" required="false" default="Single">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies whether responses are XML-encoded in a single pass or a double pass. By default, XMLEscaping is Single, and Product Advertising API responses are encoded only once in XML. For example, if the response data includes an ampersand character (&), the character is returned in its regular XML encoding (&). If XMLEscaping is Double, the same ampersand character is XML-encoded twice (&amp;). The Double value for XMLEscaping is useful in some clients, such as PHP, that do not decode text within XML elements.]]>
+                        </doc>
+                        <option value="Single"/>
+                        <option value="Double"/>
+                    </param>
+
+                    <!-- Method specific -->
+
+                    <param name="CartId" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CartClear.html">
+                            <![CDATA[Alphanumeric token returned by CartCreate that identifies a cart.]]>
+                        </doc>
+                    </param>
+
+                    <param name="HMAC" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CartClear.html">
+                            <![CDATA[The Hash Message Authentication Code is an encrypted alphanumeric token that is used to authenticate requests. Value is calculated using request parameters, their values, a cryptographic function, and the Secret Key, which acts as the "key" for the function.]]>
+                        </doc>
+                    </param>
+
+                    <param name="MergeCart" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CartClear.html">
+                            <![CDATA[This parameter is deprecated. When a customer purchases items in a remote shopping cart, the items are added to the customer’s Amazon retail shopping cart.]]>
+                        </doc>
+                    </param>
+
+                    <param name="ResponseGroup" type="xsd:string" style="query" required="false" default="Cart">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CartClear.html">
+                            <![CDATA[Specifies the types of values to return. You can specify multiple response groups in one request by separating them with commas.]]>
+                        </doc>
+                        <option value="Cart"/>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="text/xml"/>
+                    <representation mediaType="text/html"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="?Operation=CartCreate">
+            <method id="CartCreate" name="GET" apigee:displayName="CartCreate">
+                <apigee:tags>
+                    <apigee:tag primary="true">Cart</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="?Operation=CartCreate"/>
+
+                <doc title="CartCreate" apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CartCreate.html">
+                    <![CDATA[Creates a remote shopping cart.]]>
+                </doc>
+
+                <request>
+                    <!-- Common request parameters -->
+
+                    <param name="AssociateTag" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[An alphanumeric token that uniquely identifies an Associate. This token is the means by which Amazon identifies the Associate to credit for a sale. If a request is made without identifying an Associate, Associate fees are not paid by Amazon. If the AssociateTag is included in the CartCreate request, the value for AssociateTag is automatically included in the PurchaseURL, which is returned by CartCreate. Valid Values: An alphanumeric token distributed by Amazon that uniquely identifies an Associate. Use this value in all requests to receive credit for the customer's purchase. If it is included, it must be included on all future cart operations associated with this cart.]]>
+                        </doc>
+                    </param>
+
+                    <param name="ContentType" style="query" required="false" default="text/xml">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies the format of the content in the response. Generally, ContentType should only be changed for REST requests when the Style parameter is set to an XSLT stylesheet. For example, to transform your Product Advertising API response into HTML, set ContentType to text/html. See Style.]]>
+                        </doc>
+                        <option value="text/xml"/>
+                        <option value="text/html"/>
+                    </param>
+
+                    <param name="MarketplaceDomain" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies the Marketplace Domain within which to make the request. Do not use this parameter unless making a request against one of the domains specified in the list of valid values.]]>
+                        </doc>
+                        <option value="www.endless.com"/>
+                        <option value="www.javari.co.uk"/>
+                        <option value="www.javari.de"/>
+                        <option value="www.javari.jp"/>
+                    </param>
+
+                    <param name="MerchantId" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[An alphanumeric token distributed by Amazon that uniquely identifies a merchant. See API docs for valid values.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Style" type="xsd:string" style="query" required="false" default="XML">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Controls the format of the data returned in Product Advertising API responses. Style only pertains to REST requests. Set this parameter to "XML," the default, to generate a pure XML response. Set this parameter to the URL of an XSLT stylesheet to have Product Advertising API transform the XML response. See ContentType.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Validate" style="query" required="false" default="False">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Prevents an operation from executing. Set the Validate parameter to True to test your request without actually executing it. When present, Validate must equal True; the default value is False. If a request is not actually executed (Validate=True), only a subset of the errors for a request may be returned because some errors (for example, no_exact_matches) are only generated during the execution of a request.]]>
+                        </doc>
+                        <option value="True"/>
+                        <option value="False"/>
+                    </param>
+
+                    <param name="Version" type="xsd:string" style="query" required="false" default="2010-10-05">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[The version of the Product Advertising API software and WSDL to use. By default, the 2005-10-05 version is used. Alternately, specify a software version, such as 2010-11-01. For a list of valid version numbers, refer to the Product Advertising API Release Notes. Note that the latest version of Product Advertising API is not used by default.]]>
+                        </doc>
+                    </param>
+
+                    <param name="XMLEscaping" style="query" required="false" default="Single">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies whether responses are XML-encoded in a single pass or a double pass. By default, XMLEscaping is Single, and Product Advertising API responses are encoded only once in XML. For example, if the response data includes an ampersand character (&), the character is returned in its regular XML encoding (&). If XMLEscaping is Double, the same ampersand character is XML-encoded twice (&amp;). The Double value for XMLEscaping is useful in some clients, such as PHP, that do not decode text within XML elements.]]>
+                        </doc>
+                        <option value="Single"/>
+                        <option value="Double"/>
+                    </param>
+
+                    <!-- Method specific -->
+
+                    <param name="Item.n.ASIN" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CartCreate.html">
+                            <![CDATA[An alphanumeric token that uniquely identifies an item. Using OfferListingId is preferred instead of ASIN when adding items to a cart. Required if OfferListingId is not used.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Item.n.Quantity" type="xsd:positiveInteger" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CartCreate.html">
+                            <![CDATA[The suffix used with Item to specify the number of items to be added to the cart, for example, Item.1.ASIN=0976925524, Item.1.Quantity=2. Valid Values: Positive integer]]>
+                        </doc>
+                    </param>
+
+                    <param name="ListItemId" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CartCreate.html">
+                            <![CDATA[An alphanumeric token that uniquely identifies an item on a wishlist. This value is returned by the ListItem response group. The ListItemId attaches to the request the name and address of the list owner, which the ASIN alone does not. An ASIN or OfferListingId is still required in addition to ListItemId.]]>
+                        </doc>
+                    </param>
+
+                    <param name="MergeCart" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CartCreate.html">
+                            <![CDATA[This parameter is deprecated. When a customer purchases items in a remote shopping cart, the items are added to the customer’s Amazon retail shopping cart.]]>
+                        </doc>
+                    </param>
+
+                    <param name="OfferListingId" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CartCreate.html">
+                            <![CDATA[An offer listing ID is an alphanumeric token that uniquely identifies an item. Use the OfferListingId instead of an item's ASIN to add the item to the cart. Required if ASIN is not used.]]>
+                        </doc>
+                    </param>
+
+                    <param name="ResponseGroup" type="xsd:string" style="query" required="false" default="Cart">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CartCreate.html">
+                            <![CDATA[Specifies the types of values to return. You can specify multiple response groups in one request by separating them with commas.]]>
+                        </doc>
+                        <option value="Cart"/>
+                        <option value="CartSimilarities"/>
+                        <option value="CartTopSellers"/>
+                        <option value="CartNewReleases"/>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="text/xml"/>
+                    <representation mediaType="text/html"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="?Operation=CartGet">
+            <method id="CartGet" name="GET" apigee:displayName="CartGet">
+                <apigee:tags>
+                    <apigee:tag primary="true">Cart</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="?Operation=CartGet"/>
+
+                <doc title="CartGet" apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CartGet.html">
+                    <![CDATA[Retrieves the IDs, quantities, and prices of all of the items, including SavedForLater items in a remote shopping cart.]]>
+                </doc>
+
+                <request>
+                    <!-- Common request parameters -->
+
+                    <param name="AssociateTag" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[An alphanumeric token that uniquely identifies an Associate. This token is the means by which Amazon identifies the Associate to credit for a sale. If a request is made without identifying an Associate, Associate fees are not paid by Amazon. If the AssociateTag is included in the CartGet request, the value for AssociateTag is automatically included in the PurchaseURL, which is returned by CartGet. Valid Values: An alphanumeric token distributed by Amazon that uniquely identifies an Associate. Use this value in all requests to receive credit for the customer's purchase. This value is required only if the cart was created using an AssociateTag.]]>
+                        </doc>
+                    </param>
+
+                    <param name="ContentType" style="query" required="false" default="text/xml">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies the format of the content in the response. Generally, ContentType should only be changed for REST requests when the Style parameter is set to an XSLT stylesheet. For example, to transform your Product Advertising API response into HTML, set ContentType to text/html. See Style.]]>
+                        </doc>
+                        <option value="text/xml"/>
+                        <option value="text/html"/>
+                    </param>
+
+                    <param name="MarketplaceDomain" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies the Marketplace Domain within which to make the request. Do not use this parameter unless making a request against one of the domains specified in the list of valid values.]]>
+                        </doc>
+                        <option value="www.endless.com"/>
+                        <option value="www.javari.co.uk"/>
+                        <option value="www.javari.de"/>
+                        <option value="www.javari.jp"/>
+                    </param>
+
+                    <param name="MerchantId" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[An alphanumeric token distributed by Amazon that uniquely identifies a merchant. See API docs for valid values.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Style" type="xsd:string" style="query" required="false" default="XML">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Controls the format of the data returned in Product Advertising API responses. Style only pertains to REST requests. Set this parameter to "XML," the default, to generate a pure XML response. Set this parameter to the URL of an XSLT stylesheet to have Product Advertising API transform the XML response. See ContentType.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Validate" style="query" required="false" default="False">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Prevents an operation from executing. Set the Validate parameter to True to test your request without actually executing it. When present, Validate must equal True; the default value is False. If a request is not actually executed (Validate=True), only a subset of the errors for a request may be returned because some errors (for example, no_exact_matches) are only generated during the execution of a request.]]>
+                        </doc>
+                        <option value="True"/>
+                        <option value="False"/>
+                    </param>
+
+                    <param name="Version" type="xsd:string" style="query" required="false" default="2010-10-05">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[The version of the Product Advertising API software and WSDL to use. By default, the 2005-10-05 version is used. Alternately, specify a software version, such as 2010-11-01. For a list of valid version numbers, refer to the Product Advertising API Release Notes. Note that the latest version of Product Advertising API is not used by default.]]>
+                        </doc>
+                    </param>
+
+                    <param name="XMLEscaping" style="query" required="false" default="Single">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies whether responses are XML-encoded in a single pass or a double pass. By default, XMLEscaping is Single, and Product Advertising API responses are encoded only once in XML. For example, if the response data includes an ampersand character (&), the character is returned in its regular XML encoding (&). If XMLEscaping is Double, the same ampersand character is XML-encoded twice (&amp;). The Double value for XMLEscaping is useful in some clients, such as PHP, that do not decode text within XML elements.]]>
+                        </doc>
+                        <option value="Single"/>
+                        <option value="Double"/>
+                    </param>
+
+                    <!-- Method specific -->
+
+                    <param name="CartId" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CartGet.html">
+                            <![CDATA[Alphanumeric token returned by CartCreate that identifies a cart.]]>
+                        </doc>
+                    </param>
+
+                    <param name="CartItemId" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CartGet.html">
+                            <![CDATA[Alphanumeric token that uniquely identifies an item in a cart. Once an item, specified by an ASIN or OfferListingId, has been added to a cart, you must use the CartItemId to refer to it. The other identifiers will not work.]]>
+                        </doc>
+                    </param>
+
+                    <param name="HMAC" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CartGet.html">
+                            <![CDATA[The Hash Message Authentication Code is an encrypted alphanumeric token that is used to authenticate requests. Value is calculated using request parameters, their values, a cryptographic function, and the Secret Key, which acts as the "key" for the function.]]>
+                        </doc>
+                    </param>
+
+                    <param name="MergeCart" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CartGet.html">
+                            <![CDATA[This parameter is deprecated. When a customer purchases items in a remote shopping cart, the items are added to the customer’s Amazon retail shopping cart.]]>
+                        </doc>
+                    </param>
+
+                    <param name="ResponseGroup" type="xsd:string" style="query" required="false" default="Cart">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CartGet.html">
+                            <![CDATA[Specifies the types of values to return. You can specify multiple response groups in one request by separating them with commas.]]>
+                        </doc>
+                        <option value="Cart"/>
+                        <option value="CartSimilarities"/>
+                        <option value="CartTopSellers"/>
+                        <option value="CartNewReleases"/>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="text/xml"/>
+                    <representation mediaType="text/html"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="?Operation=CartModify">
+            <method id="CartModify" name="GET" apigee:displayName="CartModify">
+                <apigee:tags>
+                    <apigee:tag primary="true">Cart</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="?Operation=CartModify"/>
+
+                <doc title="CartModify" apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CartModify.html">
+                    <![CDATA[Changes the quantity of items that are already in a remote shopping cart and move items from the active area of a cart to the SaveForLater area or the reverse.]]>
+                </doc>
+
+                <request>
+                    <!-- Common request parameters -->
+
+                    <param name="AssociateTag" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[An alphanumeric token that uniquely identifies an Associate. This token is the means by which Amazon identifies the Associate to credit for a sale. If a request is made without identifying an Associate, Associate fees are not paid by Amazon. If the AssociateTag is included in the CartModify request, the value for AssociateTag is automatically included in the PurchaseURL, which is returned by CartModify. Valid Values: An alphanumeric token distributed by Amazon that uniquely identifies an Associate. Use this value in all requests to receive credit for the customer's purchase.]]>
+                        </doc>
+                    </param>
+
+                    <param name="ContentType" style="query" required="false" default="text/xml">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies the format of the content in the response. Generally, ContentType should only be changed for REST requests when the Style parameter is set to an XSLT stylesheet. For example, to transform your Product Advertising API response into HTML, set ContentType to text/html. See Style.]]>
+                        </doc>
+                        <option value="text/xml"/>
+                        <option value="text/html"/>
+                    </param>
+
+                    <param name="MarketplaceDomain" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies the Marketplace Domain within which to make the request. Do not use this parameter unless making a request against one of the domains specified in the list of valid values.]]>
+                        </doc>
+                        <option value="www.endless.com"/>
+                        <option value="www.javari.co.uk"/>
+                        <option value="www.javari.de"/>
+                        <option value="www.javari.jp"/>
+                    </param>
+
+                    <param name="MerchantId" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[An alphanumeric token distributed by Amazon that uniquely identifies a merchant. See API docs for valid values.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Style" type="xsd:string" style="query" required="false" default="XML">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Controls the format of the data returned in Product Advertising API responses. Style only pertains to REST requests. Set this parameter to "XML," the default, to generate a pure XML response. Set this parameter to the URL of an XSLT stylesheet to have Product Advertising API transform the XML response. See ContentType.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Validate" style="query" required="false" default="False">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Prevents an operation from executing. Set the Validate parameter to True to test your request without actually executing it. When present, Validate must equal True; the default value is False. If a request is not actually executed (Validate=True), only a subset of the errors for a request may be returned because some errors (for example, no_exact_matches) are only generated during the execution of a request.]]>
+                        </doc>
+                        <option value="True"/>
+                        <option value="False"/>
+                    </param>
+
+                    <param name="Version" type="xsd:string" style="query" required="false" default="2010-10-05">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[The version of the Product Advertising API software and WSDL to use. By default, the 2005-10-05 version is used. Alternately, specify a software version, such as 2010-11-01. For a list of valid version numbers, refer to the Product Advertising API Release Notes. Note that the latest version of Product Advertising API is not used by default.]]>
+                        </doc>
+                    </param>
+
+                    <param name="XMLEscaping" style="query" required="false" default="Single">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies whether responses are XML-encoded in a single pass or a double pass. By default, XMLEscaping is Single, and Product Advertising API responses are encoded only once in XML. For example, if the response data includes an ampersand character (&), the character is returned in its regular XML encoding (&). If XMLEscaping is Double, the same ampersand character is XML-encoded twice (&amp;). The Double value for XMLEscaping is useful in some clients, such as PHP, that do not decode text within XML elements.]]>
+                        </doc>
+                        <option value="Single"/>
+                        <option value="Double"/>
+                    </param>
+
+                    <!-- Method specific -->
+
+                    <param name="CartId" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CartModify.html">
+                            <![CDATA[Alphanumeric token returned by CartCreate that identifies a cart.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Item.n.CartItemId" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CartModify.html">
+                            <![CDATA[Specifies an item to be modified in the cart where N is a positive integer between 1 and 10, inclusive. Up to ten items can be modified at a time.CartItemId is neither an ASIN nor an OfferListingId. It is, instead, an alphanumeric token returned by CartCreate and CartAdd. This parameter is used in conjunction with Item.N.Quantity to modify the number of items in a cart. See Item, that follows, for more information.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Item.n.Quantity" type="xsd:positiveInteger" style="query" required="true">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CartModify.html">
+                            <![CDATA[Specifies the revised number of items that the customer would like in the cart where N is a positive integer. This parameter is used in conjunction with Item.N.CartItemId to modify the number of items in a cart. The Quantity value is matched to the Item.N.CartItemId value by the index number, N. For example, Item.1.CartItemId is associated with Item.1.Quantity. Constraint: N is a positive integer between 0 and 999, inclusive.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Item.n.Action" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CartModify.html">
+                            <![CDATA[Use this parameter to change cart items to move items to the Saved-For-Later area, or change Saved-For-Later (SaveForLater) items to the active cart area (MoveToCart).]]>
+                        </doc>
+                        <option value="MoveToCar"/>
+                        <option value="SaveForLater"/>
+                    </param>
+
+                    <param name="HMAC" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CartModify.html">
+                            <![CDATA[The Hash Message Authentication Code is an encrypted alphanumeric token that is used to authenticate requests. Value is calculated using request parameters, their values, a cryptographic function, and the Secret Key, which acts as the "key" for the function. Value returned by CartCreate.]]>
+                        </doc>
+                    </param>
+
+                    <param name="MergeCart" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CartModify.html">
+                            <![CDATA[This parameter is deprecated. When a customer purchases items in a remote shopping cart, the items are added to the customer’s Amazon retail shopping cart.]]>
+                        </doc>
+                    </param>
+
+                    <param name="ResponseGroup" type="xsd:string" style="query" required="false" default="Cart">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CartModify.html">
+                            <![CDATA[Specifies the types of values to return. You can specify multiple response groups in one request by separating them with commas.]]>
+                        </doc>
+                        <option value="Cart"/>
+                        <option value="CartSimilarities"/>
+                        <option value="CartTopSellers"/>
+                        <option value="CartNewReleases"/>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="text/xml"/>
+                    <representation mediaType="text/html"/>
+                </response>
+            </method>
+        </resource>
+
+        <!-- Item -->
+
+        <resource path="?Operation=ItemLookup">
+            <method id="ItemLookup" name="GET" apigee:displayName="ItemLookup">
+                <apigee:tags>
+                    <apigee:tag primary="true">Item</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="?Operation=ItemLookup"/>
+
+                <doc title="ItemLookup" apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemLookup.html">
+                    <![CDATA[Given an Item identifier, the returns some or all of the item attributes, depending on the response group specified in the request.]]>
+                </doc>
+
+                <request>
+                    <!-- Common request parameters -->
+
+                    <param name="AssociateTag" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[An alphanumeric token that uniquely identifies an Associate. This token is the means by which Amazon identifies the Associate to credit for a sale. If a request is made without identifying an Associate, Associate fees are not paid by Amazon. If the AssociateTag is included in the ItemLookup request, the value for AssociateTag is automatically included in the PurchaseURL, which is returned by ItemLookup. Valid Values: An alphanumeric token distributed by Amazon that uniquely identifies an Associate. Use this value in all requests to receive credit for the customer's purchase.]]>
+                        </doc>
+                    </param>
+
+                    <param name="ContentType" style="query" required="false" default="text/xml">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies the format of the content in the response. Generally, ContentType should only be changed for REST requests when the Style parameter is set to an XSLT stylesheet. For example, to transform your Product Advertising API response into HTML, set ContentType to text/html. See Style.]]>
+                        </doc>
+                        <option value="text/xml"/>
+                        <option value="text/html"/>
+                    </param>
+
+                    <param name="MarketplaceDomain" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies the Marketplace Domain within which to make the request. Do not use this parameter unless making a request against one of the domains specified in the list of valid values.]]>
+                        </doc>
+                        <option value="www.endless.com"/>
+                        <option value="www.javari.co.uk"/>
+                        <option value="www.javari.de"/>
+                        <option value="www.javari.jp"/>
+                    </param>
+
+                    <param name="MerchantId" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[An alphanumeric token distributed by Amazon that uniquely identifies a merchant. See API docs for valid values.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Style" type="xsd:string" style="query" required="false" default="XML">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Controls the format of the data returned in Product Advertising API responses. Style only pertains to REST requests. Set this parameter to "XML," the default, to generate a pure XML response. Set this parameter to the URL of an XSLT stylesheet to have Product Advertising API transform the XML response. See ContentType.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Validate" style="query" required="false" default="False">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Prevents an operation from executing. Set the Validate parameter to True to test your request without actually executing it. When present, Validate must equal True; the default value is False. If a request is not actually executed (Validate=True), only a subset of the errors for a request may be returned because some errors (for example, no_exact_matches) are only generated during the execution of a request.]]>
+                        </doc>
+                        <option value="True"/>
+                        <option value="False"/>
+                    </param>
+
+                    <param name="Version" type="xsd:string" style="query" required="false" default="2010-10-05">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[The version of the Product Advertising API software and WSDL to use. By default, the 2005-10-05 version is used. Alternately, specify a software version, such as 2010-11-01. For a list of valid version numbers, refer to the Product Advertising API Release Notes. Note that the latest version of Product Advertising API is not used by default.]]>
+                        </doc>
+                    </param>
+
+                    <param name="XMLEscaping" style="query" required="false" default="Single">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies whether responses are XML-encoded in a single pass or a double pass. By default, XMLEscaping is Single, and Product Advertising API responses are encoded only once in XML. For example, if the response data includes an ampersand character (&), the character is returned in its regular XML encoding (&). If XMLEscaping is Double, the same ampersand character is XML-encoded twice (&amp;). The Double value for XMLEscaping is useful in some clients, such as PHP, that do not decode text within XML elements.]]>
+                        </doc>
+                        <option value="Single"/>
+                        <option value="Double"/>
+                    </param>
+
+                    <!-- Method specific -->
+
+                    <param name="Condition" style="query" required="false" default="New">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemLookup.html">
+                            <![CDATA[Specifies an item's condition. If Condition is set to “All,” a separate set of responses is returned for each valid value of Condition. The default value is "New" (not "All"). So, if your request does not return results, consider setting the value to "All." When the value is "New," the ItemSearch Availability parameter cannot be set to "Available." Amazon only sells items that are "New."]]>
+                        </doc>
+                        <option value="New"/>
+                        <option value="Used"/>
+                        <option value="Collectible"/>
+                        <option value="Refurbished"/>
+                        <option value="All"/>
+                    </param>
+
+                    <param name="IdType" style="query" required="false" default="ASIN">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemLookup.html">
+                            <![CDATA[Type of item identifier used to look up an item. All IdTypes except ASINx require a SearchIndex to be specified. SKU requires a MerchantId to be specified also.]]>
+                        </doc>
+                        <option value="ASIN"/>
+                        <option value="SKU"/>
+                        <option value="UPC"/>
+                        <option value="EAN"/>
+                        <option value="ISBN"/>
+                    </param>
+
+                    <param name="IncludeReviewsSummary" style="query" required="false" default="True">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemLookup.html">
+                            <![CDATA[When set to true, returns the reviews summary within the Reviews iframe.]]>
+                        </doc>
+                        <option value="True"/>
+                        <option value="False"/>
+                    </param>
+
+                    <param name="ItemId" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemLookup.html">
+                            <![CDATA[One or more (up to ten) positive integers that uniquely identify an item. The meaning of the number is specified by IdType. That is, if IdType is ASIN, the ItemId value is an ASIN. If ItemIdis an ASIN, a search index cannot be specified in the request. Must be a valid item ID. For more than one ID, use a comma-separated list of up to ten IDs.]]>
+                        </doc>
+                    </param>
+
+                    <param name="MerchantId" type="xsd:string" style="query" required="false" default="Amazon">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemLookup.html">
+                            <![CDATA[Specifies the merchant who is offering the item. MerchantId is an alphanumeric identifier assigned by Amazon to merchants. Note that the default value is "Amazon." If your request does not generate results, consider setting the value to "All."]]>
+                        </doc>
+                        <option value="All"/>
+                        <option value="Featured"/>
+                    </param>
+
+                    <param name="OfferPage" type="xsd:positiveInteger" style="query" required="false" default="1">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemLookup.html">
+                            <![CDATA[Page of offers returned by ItemLookup. There are 10 offers per page. To examine offers 11 trough 20, for example, set OfferPage to 2. Valid Values: Integer between 1 and 100, inclusive]]>
+                        </doc>
+                    </param>
+
+                    <param name="RelatedItemPage" type="xsd:positiveInteger" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemLookup.html">
+                            <![CDATA[This optional parameter is only valid when the RelatedItems response group is used. Each ItemLookup request can return, at most, ten related items. The RelatedItemPage value specifies the set of ten related items to return. A value of 2, for example, returns the second set of ten related items.]]>
+                        </doc>
+                    </param>
+
+                    <param name="RelationshipType" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemLookup.html">
+                            <![CDATA[This parameter is required when the RelatedItems response group is used. The type of related item returned is specified by the RelationshipType parameter. Sample values include Episode, Season, and Tracks. For a complete list of types, see Relationship Types page in the API documentation. Required when RelatedItems response group is used.]]>
+                        </doc>
+                    </param>
+
+                    <param name="ReviewPage" type="xsd:positiveInteger" style="query" required="false" default="1">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemLookup.html">
+                            <![CDATA[Page of reviews returned by ItemLookup. There are 5 reviews per page. To examine reviews 6 through 10, for example, set ReviewPage to 2. Valid Values: Integer between 1 and 20, inclusive]]>
+                        </doc>
+                    </param>
+
+                    <param name="ReviewSort" style="query" required="false" default="-SubmissionDate">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemLookup.html">
+                            <![CDATA[Specifies the order in which Reviews are sorted in the return.]]>
+                        </doc>
+                        <option value="-SubmissionDate"/>
+                        <option value="SubmissionDate"/>
+                        <option value="-HelpfulVotes"/>
+                        <option value="HelpfulVotes"/>
+                        <option value="-OverallRating"/>
+                        <option value="OverallRating"/>
+                    </param>
+
+                    <param name="SearchIndex" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemLookup.html">
+                            <![CDATA[The product category to search. Valid Values: A search index, for example, Apparel, Beauty, Blended, Books, and so forth. Constraint:If ItemIdis an ASIN, a search index cannot be specified in the request. Required for non-ASIN ItemIds.]]>
+                        </doc>
+                    </param>
+
+                    <param name="TagPage" type="xsd:positiveInteger" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemLookup.html">
+                            <![CDATA[Specifies the page of results to return. There are ten results on a page. Constraint: The maximum page number is 400.]]>
+                        </doc>
+                    </param>
+
+                    <param name="TagsPerPage" type="xsd:positiveInteger" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemLookup.html">
+                            <![CDATA[The number of tags to return that are associated with a specified item.]]>
+                        </doc>
+                    </param>
+
+                    <param name="TagSort" style="query" required="false" default="-Usages">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemLookup.html">
+                            <![CDATA[Specifies the sorting order for the results.]]>
+                        </doc>
+                        <option value="FirstUsed">
+                            <doc><![CDATA[Sort by the date the item was first used.]]></doc>
+                        </option>
+                        <option value="-FirstUsed">
+                            <doc><![CDATA[Sort by the date the item was first used, reversed.]]></doc>
+                        </option>
+                        <option value="LastUsed">
+                            <doc><![CDATA[Sort by the date the item was last used.]]></doc>
+                        </option>
+                        <option value="-LastUsed">
+                            <doc><![CDATA[Sort by the date the item was last used, reversed.]]></doc>
+                        </option>
+                        <option value="Name">
+                            <doc><![CDATA[Alphabetical, A-Z.]]></doc>
+                        </option>
+                        <option value="-Name">
+                            <doc><![CDATA[Alphabetical, Z-A.]]></doc>
+                        </option>
+                        <option value="Usages">
+                            <doc><![CDATA[Items least used to most used.]]></doc>
+                        </option>
+                        <option value="-Usages">
+                            <doc><![CDATA[Items most used to least used.]]></doc>
+                        </option>
+                    </param>
+
+                    <param name="TruncateReviewsAt" type="xsd:positiveInteger" style="query" required="false" default="1000">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemLookup.html">
+                            <![CDATA[By default, reviews are truncated to 1000 characters within the Reviews iframe. To specify a different length, enter the value. To return complete reviews, specify 0. Constraints: Must be a positive integer or 0 (returns entire review)]]>
+                        </doc>
+                    </param>
+
+                    <param name="VariationPage" type="xsd:positiveInteger" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemLookup.html">
+                            <![CDATA[Page number of variations returned by ItemLookup. By default, ItemLookup returns all variations. Use VariationPage to return a subsection of the response. There are 10 variations per page. To examine offers 11 trough 20, for example, set VariationPage to 2. Valid Values: Integer between 1 and 150, inclusive]]>
+                        </doc>
+                    </param>
+
+                    <param name="ResponseGroup" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemLookup.html">
+                            <![CDATA[Specifies the types of values to return. You can specify multiple response groups in one request by separating them with commas.]]>
+                        </doc>
+                        <option value="Accessories"/>
+                        <option value="BrowseNodes"/>
+                        <option value="EditorialReview"/>
+                        <option value="Images"/>
+                        <option value="ItemAttributes"/>
+                        <option value="ItemIds"/>
+                        <option value="Large"/>
+                        <option value="Medium"/>
+                        <option value="OfferFull"/>
+                        <option value="Offers"/>
+                        <option value="PromotionSummary"/>
+                        <option value="OfferSummary"/>
+                        <option value="RelatedItems"/>
+                        <option value="Reviews"/>
+                        <option value="SalesRank"/>
+                        <option value="Similarities"/>
+                        <option value="Tracks"/>
+                        <option value="VariationImages"/>
+                        <option value="Variations"/>
+                        <option value="VariationSummary"/>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="text/xml"/>
+                    <representation mediaType="text/html"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="?Operation=ItemSearch">
+            <method id="ItemSearch" name="GET" apigee:displayName="ItemSearch">
+                <apigee:tags>
+                    <apigee:tag primary="true">Item</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="?Operation=ItemSearch"/>
+
+                <doc title="ItemSearch" apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                    <![CDATA[Returns items that satisfy the search criteria, including one or more search indices.]]>
+                </doc>
+
+                <request>
+                    <!-- Common request parameters -->
+
+                    <param name="AssociateTag" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[An alphanumeric token that uniquely identifies an Associate. This token is the means by which Amazon identifies the Associate to credit for a sale. If a request is made without identifying an Associate, Associate fees are not paid by Amazon. If the AssociateTag is included in the ItemSearch request, the value for AssociateTag is automatically included in the PurchaseURL, which is returned by ItemSearch. Valid Values: An alphanumeric token distributed by Amazon that uniquely identifies an Associate. Use this value in all requests to receive credit for the customer's purchase.]]>
+                        </doc>
+                    </param>
+
+                    <param name="ContentType" style="query" required="false" default="text/xml">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies the format of the content in the response. Generally, ContentType should only be changed for REST requests when the Style parameter is set to an XSLT stylesheet. For example, to transform your Product Advertising API response into HTML, set ContentType to text/html. See Style.]]>
+                        </doc>
+                        <option value="text/xml"/>
+                        <option value="text/html"/>
+                    </param>
+
+                    <param name="MarketplaceDomain" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies the Marketplace Domain within which to make the request. Do not use this parameter unless making a request against one of the domains specified in the list of valid values.]]>
+                        </doc>
+                        <option value="www.endless.com"/>
+                        <option value="www.javari.co.uk"/>
+                        <option value="www.javari.de"/>
+                        <option value="www.javari.jp"/>
+                    </param>
+
+                    <param name="MerchantId" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[An alphanumeric token distributed by Amazon that uniquely identifies a merchant. See API docs for valid values.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Style" type="xsd:string" style="query" required="false" default="XML">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Controls the format of the data returned in Product Advertising API responses. Style only pertains to REST requests. Set this parameter to "XML," the default, to generate a pure XML response. Set this parameter to the URL of an XSLT stylesheet to have Product Advertising API transform the XML response. See ContentType.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Validate" style="query" required="false" default="False">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Prevents an operation from executing. Set the Validate parameter to True to test your request without actually executing it. When present, Validate must equal True; the default value is False. If a request is not actually executed (Validate=True), only a subset of the errors for a request may be returned because some errors (for example, no_exact_matches) are only generated during the execution of a request.]]>
+                        </doc>
+                        <option value="True"/>
+                        <option value="False"/>
+                    </param>
+
+                    <param name="Version" type="xsd:string" style="query" required="false" default="2010-10-05">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[The version of the Product Advertising API software and WSDL to use. By default, the 2005-10-05 version is used. Alternately, specify a software version, such as 2010-11-01. For a list of valid version numbers, refer to the Product Advertising API Release Notes. Note that the latest version of Product Advertising API is not used by default.]]>
+                        </doc>
+                    </param>
+
+                    <param name="XMLEscaping" style="query" required="false" default="Single">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies whether responses are XML-encoded in a single pass or a double pass. By default, XMLEscaping is Single, and Product Advertising API responses are encoded only once in XML. For example, if the response data includes an ampersand character (&), the character is returned in its regular XML encoding (&). If XMLEscaping is Double, the same ampersand character is XML-encoded twice (&amp;). The Double value for XMLEscaping is useful in some clients, such as PHP, that do not decode text within XML elements.]]>
+                        </doc>
+                        <option value="Single"/>
+                        <option value="Double"/>
+                    </param>
+
+                    <!-- Method specific -->
+
+                    <!-- Query parameters. At least one is required. -->
+
+                    <param name="Actor" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[Name of an actor associated with the item. You can enter all or part of the name.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Artist" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[Name of an artist associated with the item. You can enter all or part of the name.]]>
+                        </doc>
+                    </param>
+
+                    <param name="AudienceRating" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[Movie ratings based on MPAA ratings or age, depending upon the locale. You may specify one or more values in a comma-separated list.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Author" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[Name of an author associated with the item. You can enter all or part of the name.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Brand" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[Name of a brand associated with the item. You can enter all or part of the name.]]>
+                        </doc>
+                    </param>
+
+                    <param name="BrowseNode" type="xsd:positiveInteger" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[A positive integer that identifies a product category, for example, Literature & Fiction: (17), Medicine: (13996), Mystery & Thrillers: (18), Nonfiction: (53), Outdoors & Nature: (290060).]]>
+                        </doc>
+                    </param>
+
+                    <param name="City" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[Name of a city associated with the item. You can enter all or part of the name. This parameter only works in the US locale.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Composer" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[Name of a composer associated with the item. You can enter all or part of the name.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Conductor" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[Name of a conductor associated with the item. You can enter all or part of the name.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Director" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[Name of a director associated with the item. You can enter all or part of the name.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Keywords" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[A word or phrase associated with an item. The word or phrase can be in various product fields, including product title, author, artist, description, manufacturer, and so forth. When, for example, the search index equals "MusicTracks," the Keywords parameter enables you to search by song title.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Manufacturer" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[Name of a manufacturer associated with the item. You can enter all or part of the name.]]>
+                        </doc>
+                    </param>
+
+                    <param name="MusicLabel" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[Name of a music label associated with the item. You can enter all or part of the name.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Neighborhood" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[Name of a neighborhood You can enter all or part of the name. The neighborhoods are located in one of the valid values for City.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Orchestra" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[Name of an orchestra associated with the item. You can enter all or part of the name.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Power" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[Performs a book search using a complex query string. Only works when the search index is set equal to "Books."]]>
+                        </doc>
+                    </param>
+
+                    <param name="Publisher" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[Name of a publisher associated with the item. You can enter all or part of the name.]]>
+                        </doc>
+                    </param>
+
+                    <param name="TextStream" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[A search based on two or more words. ItemSearch picks out of the block of text up to ten keywords and returns up to ten items that match those keywords. For example, if five keywords are found, two items for each keyword are returned. Only one page of results is returned so ItemPage does not work with TextStream.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Title" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[The title associated with the item. You can enter all or part of the title. Title searches are a subset of Keyword searches. If a Title search yields insufficient results, consider using a Keywords search.]]>
+                        </doc>
+                    </param>
+
+                    <!-- Other -->
+
+                    <param name="Availability" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[Enables ItemSearch to return only those items that are available. This parameter must be used in combination with a merchant ID and Condition. For more information, see Availability Parameter, which follows this table.When Availability is set to "Available," the Condition parameter cannot be set to "New."]]>
+                        </doc>
+                        <option value="Availabile"/>
+                    </param>
+
+                    <param name="Condition" style="query" required="false" default="New">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[Use the Condition parameter to filter the offers returned in the product list by condition type. By default, Condition equals "New". If you do not get results, consider changing the value to "All. When the Availability parameter is set to "Available," the Condition parameter cannot be set to "New."]]>
+                            <![CDATA[ItemSearch returns up to ten search results at a time. When condition equals "All," ItemSearch returns up to three offers per condition (if they exist), for example, three new, three used, three refurbished, and three collectible items. Or, for example, if there are no collectible or refurbished offers, ItemSearch returns three new and three used offers.]]>
+                        </doc>
+                        <option value="New"/>
+                        <option value="Used"/>
+                        <option value="Collectible"/>
+                        <option value="Refurbished"/>
+                        <option value="All"/>
+                    </param>
+
+                    <param name="IncludeReviewsSummary" style="query" required="false" default="True">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[When set to true, returns the reviews summary within the Reviews iframe.]]>
+                        </doc>
+                        <option value="True"/>
+                        <option value="False"/>
+                    </param>
+
+                    <param name="ItemPage" type="xsd:positiveInteger" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[Retrieves a specific page of items from all of the items in a response. Up to ten items are returned on a page unless Condition equals "All." In that case, ItemSearch returns up to three results per Condition, for example, three new, three used, three refurbished, and three collectible items. Or, for example, if there are no collectible or refurbished items being offered, ItemSearch returns three new and three used items. If you do not include ItemPage in your request, the first page is returned. The total number of pages of items found is returned in the TotalPages response tag. Valid Values: 1 to 400 (1 to 5 when the search index = "All")]]>
+                        </doc>
+                    </param>
+
+                    <param name="MaximumPrice" type="xsd:positiveInteger" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[Specifies the maximum price of the items in the response. Prices are in terms of the lowest currency denomination, for example, pennies. For example, 3241 represents $32.41.]]>
+                        </doc>
+                    </param>
+
+                    <param name="MerchantId" type="xsd:string" style="query" required="false" default="Amazon">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[Specifies the merchant who is selling the item. MerchantId is an alphanumeric identifier assigned by Amazon to merchants. Make sure to specify a merchant ID and not a seller ID, which is not supported. Note that the default value is "Amazon." If your request does not generate results, consider setting the value to "All."]]>
+                        </doc>
+                    </param>
+
+                    <param name="MinimumPrice" type="xsd:positiveInteger" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[Specifies the minimum price of the items to return. Prices are in terms of the lowest currency denomination, for example, pennies, for example, 3241 represents $32.41.]]>
+                        </doc>
+                    </param>
+
+                    <param name="PostalCode" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[Postal code of the merchant. In the US, the postal code is the postal code. This parameter enables you to search for items sold in a specified region of a country.]]>
+                        </doc>
+                    </param>
+
+                    <param name="RelatedItemPage" type="xsd:positiveInteger" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[This optional parameter is only valid when the RelatedItems response group is used. Each ItemLookup request can return, at most, ten related items. The RelatedItemPage value specifies the set of ten related items to return. A value of 2, for example, returns the second set of ten related items.]]>
+                        </doc>
+                    </param>
+
+                    <param name="RelationshipType" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[This parameter is required when the RelatedItems response group is used. The type of related item returned is specified by the RelationshipType parameter. Sample values include Episode, Season, and Tracks.]]>
+                        </doc>
+                    </param>
+
+                    <param name="ReviewSort" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[Sorts reviews based on the value of the parameter.]]>
+                        </doc>
+                        <option value="HelpfulVotes"/>
+                        <option value="-HelpfulVotes"/>
+                        <option value="OverallRating"/>
+                        <option value="-OverallRating"/>
+                        <option value="Rank"/>
+                        <option value="-Rank"/>
+                        <option value="SubmissionDate"/>
+                        <option value="-SubmissionDate"/>
+                    </param>
+
+                    <param name="SearchIndex" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[The product category to search. Many ItemSearch parameters are valid with only specific values of SearchIndex. Valid Values: A search index, for example, Apparel, Beauty, Blended, Books, and so forth.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Sort" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[Means by which the items in the response are ordered. Valid Values: Valid values vary significantly by search index.]]>
+                        </doc>
+                    </param>
+
+                    <param name="TagPage" type="xsd:positiveInteger" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[Specifies the page of results to return. There are ten results on a page. The maximum page number is 400.]]>
+                        </doc>
+                    </param>
+
+                    <param name="TagsPerPage" type="xsd:positiveInteger" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[The number of tags to return that are associated with a specified item.]]>
+                        </doc>
+                    </param>
+
+                    <param name="TagSort" style="query" required="false" default="-Usages">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[Specifies the sorting order for the results.]]>
+                        </doc>
+                        <option value="FirstUsed">
+                            <doc><![CDATA[Sort by the date the item was first used.]]></doc>
+                        </option>
+                        <option value="-FirstUsed">
+                            <doc><![CDATA[Sort by the date the item was first used, reversed.]]></doc>
+                        </option>
+                        <option value="LastUsed">
+                            <doc><![CDATA[Sort by the date the item was last used.]]></doc>
+                        </option>
+                        <option value="-LastUsed">
+                            <doc><![CDATA[Sort by the date the item was last used, reversed.]]></doc>
+                        </option>
+                        <option value="Name">
+                            <doc><![CDATA[Alphabetical, A-Z.]]></doc>
+                        </option>
+                        <option value="-Name">
+                            <doc><![CDATA[Alphabetical, Z-A.]]></doc>
+                        </option>
+                        <option value="Usages">
+                            <doc><![CDATA[Items least used to most used.]]></doc>
+                        </option>
+                        <option value="-Usages">
+                            <doc><![CDATA[Items most used to least used.]]></doc>
+                        </option>
+                    </param>
+
+                    <param name="TruncateReviewsAt" type="xsd:positiveInteger" style="query" required="false" default="1000">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[By default, reviews are truncated to 1000 characters within the Reviews iframe. To specify a different length, enter the value. To return complete reviews, specify 0. Constraints: Must be a positive integer or 0 (returns entire review)]]>
+                        </doc>
+                    </param>
+
+                    <param name="VariationPage" type="xsd:positiveInteger" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[Retrieves a specific page of variations returned by ItemSearch. By default, ItemSearch returns all variations. Use VariationPage to return a subsection of the response. There are 10 variations per page. To examine offers 11 trough 20, for example, set VariationPage to 2. The total number of pages is returned in the TotalPages element.]]>
+                        </doc>
+                    </param>
+
+                    <param name="ResponseGroup" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?ItemSearch.html">
+                            <![CDATA[Specifies the types of values to return. You can specify multiple response groups in one request by separating them with commas.]]>
+                        </doc>
+                        <option value="Accessories"/>
+                        <option value="BrowseNodes"/>
+                        <option value="EditorialReview"/>
+                        <option value="ItemAttributes"/>
+                        <option value="ItemIds"/>
+                        <option value="Large"/>
+                        <option value="Medium"/>
+                        <option value="OfferFull"/>
+                        <option value="Offers"/>
+                        <option value="OfferSummary"/>
+                        <option value="Reviews"/>
+                        <option value="RelatedItems"/>
+                        <option value="SearchBins"/>
+                        <option value="Similarities"/>
+                        <option value="Tracks"/>
+                        <option value="Variations"/>
+                        <option value="VariationSummary"/>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="text/xml"/>
+                    <representation mediaType="text/html"/>
+                </response>
+            </method>
+        </resource>
+
+        <!-- Seller -->
+
+        <resource path="?Operation=SellerListingLookup">
+            <method id="SellerListingLookup" name="GET" apigee:displayName="SellerListingLookup">
+                <apigee:tags>
+                    <apigee:tag primary="true">Seller</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="?Operation=SellerListingLookup"/>
+
+                <doc title="SellerListingLookup" apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?SellerListingLookup.html">
+                    <![CDATA[Returns information about a seller's listings, including product descriptions, availability, condition, and quantity available.]]>
+                </doc>
+
+                <request>
+                    <!-- Common request parameters -->
+
+                    <param name="AssociateTag" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[An alphanumeric token that uniquely identifies an Associate. This token is the means by which Amazon identifies the Associate to credit for a sale. If a request is made without identifying an Associate, Associate fees are not paid by Amazon. If the AssociateTag is included in the SellerListingLookup request, the value for AssociateTag is automatically included in the PurchaseURL, which is returned by SellerListingLookup. Valid Values: An alphanumeric token distributed by Amazon that uniquely identifies an Associate. Use this value in all requests to receive credit for the customer's purchase.]]>
+                        </doc>
+                    </param>
+
+                    <param name="ContentType" style="query" required="false" default="text/xml">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies the format of the content in the response. Generally, ContentType should only be changed for REST requests when the Style parameter is set to an XSLT stylesheet. For example, to transform your Product Advertising API response into HTML, set ContentType to text/html. See Style.]]>
+                        </doc>
+                        <option value="text/xml"/>
+                        <option value="text/html"/>
+                    </param>
+
+                    <param name="MarketplaceDomain" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies the Marketplace Domain within which to make the request. Do not use this parameter unless making a request against one of the domains specified in the list of valid values.]]>
+                        </doc>
+                        <option value="www.endless.com"/>
+                        <option value="www.javari.co.uk"/>
+                        <option value="www.javari.de"/>
+                        <option value="www.javari.jp"/>
+                    </param>
+
+                    <param name="MerchantId" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[An alphanumeric token distributed by Amazon that uniquely identifies a merchant. See API docs for valid values.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Style" type="xsd:string" style="query" required="false" default="XML">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Controls the format of the data returned in Product Advertising API responses. Style only pertains to REST requests. Set this parameter to "XML," the default, to generate a pure XML response. Set this parameter to the URL of an XSLT stylesheet to have Product Advertising API transform the XML response. See ContentType.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Validate" style="query" required="false" default="False">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Prevents an operation from executing. Set the Validate parameter to True to test your request without actually executing it. When present, Validate must equal True; the default value is False. If a request is not actually executed (Validate=True), only a subset of the errors for a request may be returned because some errors (for example, no_exact_matches) are only generated during the execution of a request.]]>
+                        </doc>
+                        <option value="True"/>
+                        <option value="False"/>
+                    </param>
+
+                    <param name="Version" type="xsd:string" style="query" required="false" default="2010-10-05">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[The version of the Product Advertising API software and WSDL to use. By default, the 2005-10-05 version is used. Alternately, specify a software version, such as 2010-11-01. For a list of valid version numbers, refer to the Product Advertising API Release Notes. Note that the latest version of Product Advertising API is not used by default.]]>
+                        </doc>
+                    </param>
+
+                    <param name="XMLEscaping" style="query" required="false" default="Single">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies whether responses are XML-encoded in a single pass or a double pass. By default, XMLEscaping is Single, and Product Advertising API responses are encoded only once in XML. For example, if the response data includes an ampersand character (&), the character is returned in its regular XML encoding (&). If XMLEscaping is Double, the same ampersand character is XML-encoded twice (&amp;). The Double value for XMLEscaping is useful in some clients, such as PHP, that do not decode text within XML elements.]]>
+                        </doc>
+                        <option value="Single"/>
+                        <option value="Double"/>
+                    </param>
+
+                    <!-- Method specific -->
+
+                    <param name="Id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?SellerListingLookup.html">
+                            <![CDATA[Number that uniquely identifies an item. The valid value depends on the value for IdType.]]>
+                        </doc>
+                    </param>
+
+                    <param name="IdType" style="query" required="true">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?SellerListingLookup.html">
+                            <![CDATA[Use the IdType parameter to specify the value type of the Id parameter value. If you are looking up an Amazon Marketplace item, use Exchange, ASIN, or SKU as the value for IdType. Discontinued, out of stock, or unavailable products will not be returned if IdType is Listing, SKU, or ASIN. Those products will be returned, however, if IdType is Exchange.]]>
+                        </doc>
+                        <option value="Exchange"/>
+                        <option value="Listing"/>
+                        <option value="ASIN"/>
+                        <option value="SKU"/>
+                    </param>
+
+                    <param name="SellerId" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?SellerListingLookup.html">
+                            <![CDATA[Alphanumeric token that uniquely identifies a seller. This parameter limits the results to a single seller ID. Required except when IdType = Exchange.]]>
+                        </doc>
+                    </param>
+
+                    <param name="ResponseGroup" type="xsd:string" style="query" required="false" default="SellerListing">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?SellerListingLookup.html">
+                            <![CDATA[Specifies the types of values to return. You can specify multiple response groups in one request by separating them with commas.]]>
+                        </doc>
+                        <option value="SellerListing"/>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="text/xml"/>
+                    <representation mediaType="text/html"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="?Operation=SellerListingSearch">
+            <method id="SellerListingSearch" name="GET" apigee:displayName="SellerListingSearch">
+                <apigee:tags>
+                    <apigee:tag primary="true">Seller</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="?Operation=SellerListingSearch"/>
+
+                <doc title="SellerListingSearch" apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?SellerListingSearch.html">
+                    <![CDATA[Searches for items offered by specific sellers.]]>
+                </doc>
+
+                <request>
+                    <!-- Common request parameters -->
+
+                    <param name="AssociateTag" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[An alphanumeric token that uniquely identifies an Associate. This token is the means by which Amazon identifies the Associate to credit for a sale. If a request is made without identifying an Associate, Associate fees are not paid by Amazon. If the AssociateTag is included in the SellerListingSearch request, the value for AssociateTag is automatically included in the PurchaseURL, which is returned by SellerListingSearch. Valid Values: An alphanumeric token distributed by Amazon that uniquely identifies an Associate. Use this value in all requests to receive credit for the customer's purchase.]]>
+                        </doc>
+                    </param>
+
+                    <param name="ContentType" style="query" required="false" default="text/xml">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies the format of the content in the response. Generally, ContentType should only be changed for REST requests when the Style parameter is set to an XSLT stylesheet. For example, to transform your Product Advertising API response into HTML, set ContentType to text/html. See Style.]]>
+                        </doc>
+                        <option value="text/xml"/>
+                        <option value="text/html"/>
+                    </param>
+
+                    <param name="MarketplaceDomain" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies the Marketplace Domain within which to make the request. Do not use this parameter unless making a request against one of the domains specified in the list of valid values.]]>
+                        </doc>
+                        <option value="www.endless.com"/>
+                        <option value="www.javari.co.uk"/>
+                        <option value="www.javari.de"/>
+                        <option value="www.javari.jp"/>
+                    </param>
+
+                    <param name="MerchantId" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[An alphanumeric token distributed by Amazon that uniquely identifies a merchant. See API docs for valid values.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Style" type="xsd:string" style="query" required="false" default="XML">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Controls the format of the data returned in Product Advertising API responses. Style only pertains to REST requests. Set this parameter to "XML," the default, to generate a pure XML response. Set this parameter to the URL of an XSLT stylesheet to have Product Advertising API transform the XML response. See ContentType.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Validate" style="query" required="false" default="False">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Prevents an operation from executing. Set the Validate parameter to True to test your request without actually executing it. When present, Validate must equal True; the default value is False. If a request is not actually executed (Validate=True), only a subset of the errors for a request may be returned because some errors (for example, no_exact_matches) are only generated during the execution of a request.]]>
+                        </doc>
+                        <option value="True"/>
+                        <option value="False"/>
+                    </param>
+
+                    <param name="Version" type="xsd:string" style="query" required="false" default="2010-10-05">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[The version of the Product Advertising API software and WSDL to use. By default, the 2005-10-05 version is used. Alternately, specify a software version, such as 2010-11-01. For a list of valid version numbers, refer to the Product Advertising API Release Notes. Note that the latest version of Product Advertising API is not used by default.]]>
+                        </doc>
+                    </param>
+
+                    <param name="XMLEscaping" style="query" required="false" default="Single">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies whether responses are XML-encoded in a single pass or a double pass. By default, XMLEscaping is Single, and Product Advertising API responses are encoded only once in XML. For example, if the response data includes an ampersand character (&), the character is returned in its regular XML encoding (&). If XMLEscaping is Double, the same ampersand character is XML-encoded twice (&amp;). The Double value for XMLEscaping is useful in some clients, such as PHP, that do not decode text within XML elements.]]>
+                        </doc>
+                        <option value="Single"/>
+                        <option value="Double"/>
+                    </param>
+
+                    <!-- Method specific -->
+
+                    <param name="ListingPage" type="xsd:positiveInteger" style="query" required="false" default="1">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?SellerListingSearch.html">
+                            <![CDATA[Page of the response to return. Up to ten lists are returned per page. For customers that have more than ten lists, more than one page of results are returned. By default, the first page is returned. To return another page, specify the page number. Constraint: Maximum value is 500.]]>
+                        </doc>
+                    </param>
+
+                    <param name="OfferStatus" style="query" required="false" default="Open">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?SellerListingSearch.html">
+                            <![CDATA[Specifies whether the product is available (Open), or not (Closed.) Closed products are those that are discontinued, out of stock, or unavailable.]]>
+                        </doc>
+                        <option value="Open"/>
+                        <option value="Open"/>
+                    </param>
+
+                    <param name="SellerId" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?SellerListingSearch.html">
+                            <![CDATA[An alphanumeric token that uniquely identifies a seller. These tokens are created by Amazon and distributed to sellers.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Sort" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?SellerListingSearch.html">
+                            <![CDATA[Use the Sort parameter to specify how your seller listing search results will be ordered. The -bfp (featured listings - default), applies only to the US, UK, and DE locales.]]>
+                        </doc>
+                        <option value="-startdate"/>
+                        <option value="startdate"/>
+                        <option value="+startdate"/>
+                        <option value="-enddate"/>
+                        <option value="enddate"/>
+                        <option value="-sku"/>
+                        <option value="sku"/>
+                        <option value="-quantity"/>
+                        <option value="quantity"/>
+                        <option value="-price"/>
+                        <option value="price"/>
+                        <option value="+price"/>
+                        <option value="-title"/>
+                        <option value="title"/>
+                    </param>
+
+                    <param name="Title" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?SellerListingSearch.html">
+                            <![CDATA[Searches for products based on the product’s name . Keywords and Title are mutually exclusive; you can have only one of the two in a request. The value can be multiple words, as long as the spaces are URL-encoded as %20. Word order does not matter and case is not significant.]]>
+                        </doc>
+                    </param>
+
+                    <param name="ResponseGroup" type="xsd:string" style="query" required="false" default="SellerListing">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?SellerListingSearch.html">
+                            <![CDATA[Specifies the types of values to return. You can specify multiple response groups in one request by separating them with commas.]]>
+                        </doc>
+                        <option value="SellerListing"/>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="text/xml"/>
+                    <representation mediaType="text/html"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="?Operation=SellerLookup">
+            <method id="SellerLookup" name="GET" apigee:displayName="SellerLookup">
+                <apigee:tags>
+                    <apigee:tag primary="true">Seller</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="?Operation=SellerLookup"/>
+
+                <doc title="SellerLookup" apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?SellerLookup.html">
+                    <![CDATA[Returns detailed information about sellers and, in the US locale, merchants.]]>
+                </doc>
+
+                <request>
+                    <!-- Common request parameters -->
+
+                    <param name="AssociateTag" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[An alphanumeric token that uniquely identifies an Associate. This token is the means by which Amazon identifies the Associate to credit for a sale. If a request is made without identifying an Associate, Associate fees are not paid by Amazon. If the AssociateTag is included in the SellerLookup request, the value for AssociateTag is automatically included in the PurchaseURL, which is returned by SellerLookup. Valid Values: An alphanumeric token distributed by Amazon that uniquely identifies an Associate. Use this value in all requests to receive credit for the customer's purchase.]]>
+                        </doc>
+                    </param>
+
+                    <param name="ContentType" style="query" required="false" default="text/xml">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies the format of the content in the response. Generally, ContentType should only be changed for REST requests when the Style parameter is set to an XSLT stylesheet. For example, to transform your Product Advertising API response into HTML, set ContentType to text/html. See Style.]]>
+                        </doc>
+                        <option value="text/xml"/>
+                        <option value="text/html"/>
+                    </param>
+
+                    <param name="MarketplaceDomain" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies the Marketplace Domain within which to make the request. Do not use this parameter unless making a request against one of the domains specified in the list of valid values.]]>
+                        </doc>
+                        <option value="www.endless.com"/>
+                        <option value="www.javari.co.uk"/>
+                        <option value="www.javari.de"/>
+                        <option value="www.javari.jp"/>
+                    </param>
+
+                    <param name="MerchantId" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[An alphanumeric token distributed by Amazon that uniquely identifies a merchant. See API docs for valid values.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Style" type="xsd:string" style="query" required="false" default="XML">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Controls the format of the data returned in Product Advertising API responses. Style only pertains to REST requests. Set this parameter to "XML," the default, to generate a pure XML response. Set this parameter to the URL of an XSLT stylesheet to have Product Advertising API transform the XML response. See ContentType.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Validate" style="query" required="false" default="False">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Prevents an operation from executing. Set the Validate parameter to True to test your request without actually executing it. When present, Validate must equal True; the default value is False. If a request is not actually executed (Validate=True), only a subset of the errors for a request may be returned because some errors (for example, no_exact_matches) are only generated during the execution of a request.]]>
+                        </doc>
+                        <option value="True"/>
+                        <option value="False"/>
+                    </param>
+
+                    <param name="Version" type="xsd:string" style="query" required="false" default="2010-10-05">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[The version of the Product Advertising API software and WSDL to use. By default, the 2005-10-05 version is used. Alternately, specify a software version, such as 2010-11-01. For a list of valid version numbers, refer to the Product Advertising API Release Notes. Note that the latest version of Product Advertising API is not used by default.]]>
+                        </doc>
+                    </param>
+
+                    <param name="XMLEscaping" style="query" required="false" default="Single">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies whether responses are XML-encoded in a single pass or a double pass. By default, XMLEscaping is Single, and Product Advertising API responses are encoded only once in XML. For example, if the response data includes an ampersand character (&), the character is returned in its regular XML encoding (&). If XMLEscaping is Double, the same ampersand character is XML-encoded twice (&amp;). The Double value for XMLEscaping is useful in some clients, such as PHP, that do not decode text within XML elements.]]>
+                        </doc>
+                        <option value="Single"/>
+                        <option value="Double"/>
+                    </param>
+
+                    <!-- Method specific -->
+
+                    <param name="FeedbackPage" type="xsd:positiveInteger" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?SellerLookup.html">
+                            <![CDATA[Specifies the page of reviews to return. Up to five reviews are returned per page. The first page is returned by default. To access additional pages, use this parameter to specify the desired page. The maximum number of pages that can be returned is 10 (50 feedback items). Valid Values: Integer between 1 and 10, inclusive]]>
+                        </doc>
+                    </param>
+
+                    <param name="SellerId" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?SellerLookup.html">
+                            <![CDATA[An alphanumeric token that identifies the seller. Valid Values: A valid Seller ID, which is provided by Amazon. In the US locale, you can use a merchant ID.]]>
+                        </doc>
+                    </param>
+
+                    <param name="ResponseGroup" type="xsd:string" style="query" required="false" default="Seller">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?SellerLookup.html">
+                            <![CDATA[Specifies the types of values to return. You can specify multiple response groups in one request by separating them with commas.]]>
+                        </doc>
+                        <option value="Seller"/>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="text/xml"/>
+                    <representation mediaType="text/html"/>
+                </response>
+            </method>
+        </resource>
+
+        <!-- Similarity -->
+
+        <resource path="?Operation=SimilarityLookup">
+            <method id="SimilarityLookup" name="GET" apigee:displayName="SimilarityLookup">
+                <apigee:tags>
+                    <apigee:tag primary="true">Similarity</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="?Operation=SimilarityLookup"/>
+
+                <doc title="SimilarityLookup" apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?SimilarityLookup.html">
+                    <![CDATA[Returns up to ten products per page that are similar to one or more items specified in the request.]]>
+                </doc>
+
+                <request>
+                    <!-- Common request parameters -->
+
+                    <param name="AssociateTag" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[An alphanumeric token that uniquely identifies an Associate. This token is the means by which Amazon identifies the Associate to credit for a sale. If a request is made without identifying an Associate, Associate fees are not paid by Amazon. If the AssociateTag is included in the SimilarityLookup request, the value for AssociateTag is automatically included in the PurchaseURL, which is returned by SimilarityLookup. Valid Values: An alphanumeric token distributed by Amazon that uniquely identifies an Associate. Use this value in all requests to receive credit for the customer's purchase.]]>
+                        </doc>
+                    </param>
+
+                    <param name="ContentType" style="query" required="false" default="text/xml">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies the format of the content in the response. Generally, ContentType should only be changed for REST requests when the Style parameter is set to an XSLT stylesheet. For example, to transform your Product Advertising API response into HTML, set ContentType to text/html. See Style.]]>
+                        </doc>
+                        <option value="text/xml"/>
+                        <option value="text/html"/>
+                    </param>
+
+                    <param name="MarketplaceDomain" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies the Marketplace Domain within which to make the request. Do not use this parameter unless making a request against one of the domains specified in the list of valid values.]]>
+                        </doc>
+                        <option value="www.endless.com"/>
+                        <option value="www.javari.co.uk"/>
+                        <option value="www.javari.de"/>
+                        <option value="www.javari.jp"/>
+                    </param>
+
+                    <param name="MerchantId" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[An alphanumeric token distributed by Amazon that uniquely identifies a merchant. See API docs for valid values.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Style" type="xsd:string" style="query" required="false" default="XML">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Controls the format of the data returned in Product Advertising API responses. Style only pertains to REST requests. Set this parameter to "XML," the default, to generate a pure XML response. Set this parameter to the URL of an XSLT stylesheet to have Product Advertising API transform the XML response. See ContentType.]]>
+                        </doc>
+                    </param>
+
+                    <param name="Validate" style="query" required="false" default="False">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Prevents an operation from executing. Set the Validate parameter to True to test your request without actually executing it. When present, Validate must equal True; the default value is False. If a request is not actually executed (Validate=True), only a subset of the errors for a request may be returned because some errors (for example, no_exact_matches) are only generated during the execution of a request.]]>
+                        </doc>
+                        <option value="True"/>
+                        <option value="False"/>
+                    </param>
+
+                    <param name="Version" type="xsd:string" style="query" required="false" default="2010-10-05">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[The version of the Product Advertising API software and WSDL to use. By default, the 2005-10-05 version is used. Alternately, specify a software version, such as 2010-11-01. For a list of valid version numbers, refer to the Product Advertising API Release Notes. Note that the latest version of Product Advertising API is not used by default.]]>
+                        </doc>
+                    </param>
+
+                    <param name="XMLEscaping" style="query" required="false" default="Single">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?CommonRequestParameters.html">
+                            <![CDATA[Specifies whether responses are XML-encoded in a single pass or a double pass. By default, XMLEscaping is Single, and Product Advertising API responses are encoded only once in XML. For example, if the response data includes an ampersand character (&), the character is returned in its regular XML encoding (&). If XMLEscaping is Double, the same ampersand character is XML-encoded twice (&amp;). The Double value for XMLEscaping is useful in some clients, such as PHP, that do not decode text within XML elements.]]>
+                        </doc>
+                        <option value="Single"/>
+                        <option value="Double"/>
+                    </param>
+
+                    <!-- Method specific -->
+
+                    <param name="Condition" style="query" required="false" default="New">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?SimilarityLookup.html">
+                            <![CDATA[Specifies an item's condition. If Condition is set to “All,” a separate set of responses is returned for each valid value of Condition.]]>
+                        </doc>
+                        <option value="New"/>
+                        <option value="Used"/>
+                        <option value="Collectible"/>
+                        <option value="Refurbished"/>
+                        <option value="All"/>
+                    </param>
+
+                    <param name="ItemId" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?SimilarityLookup.html">
+                            <![CDATA[Specifies the item you want to look up. An ItemId is an alphanumeric identifier assigned to an item. You can specify up to ten ItemIds separated by commas. Valid Values: ASIN]]>
+                        </doc>
+                    </param>
+
+                    <param name="MerchantId" type="xsd:string" style="query" required="false" default="Amazon">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?SimilarityLookup.html">
+                            <![CDATA[Specifies the merchant who is offering the item. MerchantId is an alphanumeric identifier assigned by Amazon to merchants. Make sure to use a Merchant ID and not a Seller ID. Seller IDs are not supported.]]>
+                        </doc>
+                        <option value="All"/>
+                        <option value="Featured"/>
+                    </param>
+
+                    <param name="SimilarityType" style="query" required="false" default="Intersection">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?SimilarityLookup.html">
+                            <![CDATA["Intersection" returns the intersection of items that are similar to all of the ASINs specified. "Random" returns the union of items that are similar to all of the ASINs specified. Only ten items are returned. So, if there are more than ten similar items found, a random selection from the group is returned. For this reason, running the same request multiple times can yield different results.]]>
+                        </doc>
+                        <option value="Intersection"/>
+                        <option value="Random"/>
+                    </param>
+
+                    <param name="ResponseGroup" type="xsd:string" style="query" required="false" default="Seller">
+                        <doc apigee:url="http://docs.amazonwebservices.com/AWSECommerceService/2010-11-01/DG/index.html?SimilarityLookup.html">
+                            <![CDATA[Specifies the types of values to return. You can specify multiple response groups in one request by separating them with commas.]]>
+                        </doc>
+                        <option value="Accessories"/>
+                        <option value="BrowseNodes"/>
+                        <option value="EditorialReview"/>
+                        <option value="Images"/>
+                        <option value="Large"/>
+                        <option value="ItemAttributes"/>
+                        <option value="ItemIds"/>
+                        <option value="Medium"/>
+                        <option value="Offers"/>
+                        <option value="OfferSummary"/>
+                        <option value="PromotionSummary"/>
+                        <option value="Reviews"/>
+                        <option value="SalesRank"/>
+                        <option value="Similarities"/>
+                        <option value="Tracks"/>
+                        <option value="Variations"/>
+                        <option value="VariationSummary"/>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="text/xml"/>
+                    <representation mediaType="text/html"/>
+                </response>
+            </method>
+        </resource>
+
+    </resources>
+</application>

@@ -1,0 +1,6 @@
+Known Issues:
+Currently using keys that shopping.com supplies for developers to test, and waiting on keys to be given to us.
+
+Limitations:
+None
+

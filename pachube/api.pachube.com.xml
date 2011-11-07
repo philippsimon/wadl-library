@@ -1,0 +1,954 @@
+<application xmlns="http://wadl.dev.java.net/2009/02"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+             xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
+
+    <resources base="http://api.pachube.com/v2/">
+        <!-- TODO: representations -->
+        <!-- TODO: JSON callback parameter -->
+
+        <!-- Environments (feeds) -->
+
+        <resource path="feeds">
+            <method id="get_feeds" name="GET" apigee:displayName="feeds (GET)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Environments (feeds)</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="feeds"/>
+
+                <doc title="get_feeds" apigee:url="http://api.pachube.com/v2/#list-all-available-feeds-get-v2-feeds">
+                    <![CDATA[List all available feeds. Returns a paged list of Pachube's feeds that are viewable by the authenticated account with a default page size of 50 feeds.]]>
+                </doc>
+
+                <request>
+                    <param name="page" type="xsd:integer" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#list-all-available-feeds-get-v2-feeds">
+                            <![CDATA[Integer indicating which page of results you are requesting.]]>
+                        </doc>
+                    </param>
+
+                    <param name="per_page" type="xsd:integer" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#list-all-available-feeds-get-v2-feeds">
+                            <![CDATA[Integer defining how many results to return per page (1 to 1000).]]>
+                        </doc>
+                    </param>
+
+                    <param name="content" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#list-all-available-feeds-get-v2-feeds">
+                            <![CDATA[String parameter ('full' or 'summary') describing whether we want full or summary results. Full results means all datastream values are returned, summary just returns the environment meta data for each feed.]]>
+                        </doc>
+                    </param>
+
+                    <param name="q" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#list-all-available-feeds-get-v2-feeds">
+                            <![CDATA[Full text search parameter. Should return any feeds matching this string.]]>
+                        </doc>
+                    </param>
+
+                    <param name="tag" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#list-all-available-feeds-get-v2-feeds">
+                            <![CDATA[Returns feeds containing datastreams tagged with the search query.]]>
+                        </doc>
+                    </param>
+
+                    <param name="user" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#list-all-available-feeds-get-v2-feeds">
+                            <![CDATA[Returns feeds created by the user specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="units" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#list-all-available-feeds-get-v2-feeds">
+                            <![CDATA[Returns feeds containing datastreams with units specified by the search query.]]>
+                        </doc>
+                    </param>
+
+                    <param name="status" type="xsd:string" style="query" required="false" default="all">
+                        <doc apigee:url="http://api.pachube.com/v2/#list-all-available-feeds-get-v2-feeds">
+                            <![CDATA[Possible values ('live', 'frozen', or 'all'). Whether to search for only live feeds, only frozen feeds, or all feeds. Defaults to all.]]>
+                        </doc>
+                    </param>
+
+                    <param name="order" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#list-all-available-feeds-get-v2-feeds">
+                            <![CDATA[Order of returned feeds. Possible values ('created_at', 'retrieved_at', or 'relevance').]]>
+                        </doc>
+                    </param>
+
+                    <param name="show_user" type="xsd:boolean" style="query" required="false" default="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#list-all-available-feeds-get-v2-feeds">
+                            <![CDATA[Include user login and user level for each feed. Possible values: true, false (default)]]>
+                        </doc>
+                    </param>
+
+                    <!-- advanced parameters -->
+
+                    <param name="lat" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#list-all-available-feeds-get-v2-feeds">
+                            <![CDATA[Used to find feeds located around this latitude. Used if ids/_datastreams_ are not specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="lon" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#list-all-available-feeds-get-v2-feeds">
+                            <![CDATA[Used to find feeds located around this longitude. Used if ids/_datastreams_ are not specified.]]>
+                        </doc>
+                    </param>
+
+                    <param name="distance" type="xsd:double" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#list-all-available-feeds-get-v2-feeds">
+                            <![CDATA[Search radius.]]>
+                        </doc>
+                    </param>
+
+                    <param name="distance_units" type="xsd:string" style="query" required="false" default="kms">
+                        <doc apigee:url="http://api.pachube.com/v2/#list-all-available-feeds-get-v2-feeds">
+                            <![CDATA[Units of search radius. 'miles' or 'kms' (default)]]>
+                        </doc>
+                    </param>
+
+                    <!-- historical query parameters -->
+
+                    <param name="start" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[Defines the starting point of the query as a timestamp, e.g. 2010-05-20T11:01:46Z. The default value is blank.]]>
+                        </doc>
+                    </param>
+
+                    <param name="end" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[Defines the end point of the data returned as a timestamp, e.g. 2010-05-21T11:01:46Z. The default value is set to the current timestamp.]]>
+                        </doc>
+                    </param>
+
+                    <param name="duration" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[Specifies the duration of the query. See API docs for more details.]]>
+                        </doc>
+                    </param>
+
+                    <param name="page" type="xsd:integer" style="query" required="false" default="0">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[Defines which page we are looking at of the matching results. If not set, the default value is 0.]]>
+                        </doc>
+                    </param>
+
+                    <param name="per_page" type="xsd:integer" style="query" required="false" default="100">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[Defines how many results are returned per page. If not set this value defaults to 100. Maximum value is 1000.]]>
+                        </doc>
+                    </param>
+
+                    <param name="time" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[Returns the feed with the values as they were at the specified timestamp. See API docs for more details.]]>
+                        </doc>
+                    </param>
+
+                    <param name="find_previous" type="xsd:boolean" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[Will also return the previous value to the date range being requested. Note that this is useful for any graphing because if you want to draw a graph of the date range you specified you would end up with a small gap until the first value.]]>
+                        </doc>
+                    </param>
+
+                    <param name="interval_type" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[If set to "discrete" the data will be returned in fixed time interval format according to the inverval value supplied. If this is not set, the raw datapoints will be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="interval" type="xsd:integer" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[Determines what interval of data is requested and is defined in seconds between the datapoints. If a value is passed in which does not match one of these values, it is rounded up to the next value. See API docs for acceptable values.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="text/csv"/>
+                </response>
+            </method>
+
+            <method id="post_feeds" name="POST" apigee:displayName="feeds (POST)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Environments (feeds)</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="feeds"/>
+
+                <doc title="post_feeds" apigee:url="http://api.pachube.com/v2/#create-new-feed-post-v2-feeds">
+                    <![CDATA[Create new feed. New environments can be created by sending a correctly formatted document to this URL or by including the data in the POST body.]]>
+                </doc>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="text/csv"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="feeds/{feed_id}">
+            <param name="feed_id" type="xsd:integer" style="template" required="true"/>
+
+            <method id="get_feed" name="GET" apigee:displayName="feeds/{feed_id} (GET)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Environments (feeds)</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="feeds/{feed_id}"/>
+
+                <doc title="get_feeds_single" apigee:url="http://api.pachube.com/v2/#read-feed-get-v2-feeds-feed-id">
+                    <![CDATA[Read feed. Returns the most recent datastreams from environment ID.]]>
+                </doc>
+
+                <request>
+                    <param name="datastream" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#read-feed-get-v2-feeds-feed-id">
+                            <![CDATA[Filter the returned datastreams. Comma separated datastream IDs.]]>
+                        </doc>
+                    </param>
+
+                    <param name="show_user" type="xsd:boolean" style="query" required="false" default="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#read-feed-get-v2-feeds-feed-id">
+                            <![CDATA[Include user login and user level for each feed. Possible values: true, false (default).]]>
+                        </doc>
+                    </param>
+
+                    <!-- historical query parameters -->
+
+                    <param name="start" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[Defines the starting point of the query as a timestamp, e.g. 2010-05-20T11:01:46Z. The default value is blank.]]>
+                        </doc>
+                    </param>
+
+                    <param name="end" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[Defines the end point of the data returned as a timestamp, e.g. 2010-05-21T11:01:46Z. The default value is set to the current timestamp.]]>
+                        </doc>
+                    </param>
+
+                    <param name="duration" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[Specifies the duration of the query. See API docs for more details.]]>
+                        </doc>
+                    </param>
+
+                    <param name="page" type="xsd:integer" style="query" required="false" default="0">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[Defines which page we are looking at of the matching results. If not set, the default value is 0.]]>
+                        </doc>
+                    </param>
+
+                    <param name="per_page" type="xsd:integer" style="query" required="false" default="100">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[Defines how many results are returned per page. If not set this value defaults to 100. Maximum value is 1000.]]>
+                        </doc>
+                    </param>
+
+                    <param name="time" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[Returns the feed with the values as they were at the specified timestamp. See API docs for more details.]]>
+                        </doc>
+                    </param>
+
+                    <param name="find_previous" type="xsd:boolean" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[Will also return the previous value to the date range being requested. Note that this is useful for any graphing because if you want to draw a graph of the date range you specified you would end up with a small gap until the first value.]]>
+                        </doc>
+                    </param>
+
+                    <param name="interval_type" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[If set to "discrete" the data will be returned in fixed time interval format according to the inverval value supplied. If this is not set, the raw datapoints will be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="interval" type="xsd:integer" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[Determines what interval of data is requested and is defined in seconds between the datapoints. If a value is passed in which does not match one of these values, it is rounded up to the next value. See API docs for acceptable values.]]>
+                        </doc>
+                    </param>
+
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="text/csv"/>
+                </response>
+            </method>
+
+            <method id="put_feed" name="PUT" apigee:displayName="feeds/{feed_id} (PUT)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Environments (feeds)</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="feeds/{feed_id}"/>
+
+                <doc title="put_feeds_single" apigee:url="http://api.pachube.com/v2/#update-feed-put-v2-feeds-feed-id">
+                    <![CDATA[Update feed. Updates [environment ID]'s environment and datastreams.]]>
+                </doc>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="text/csv"/>
+                </response>
+            </method>
+
+            <method id="delete_feed" name="DELETE" apigee:displayName="feeds/{feed_id} (DELETE)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Environments (feeds)</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="feeds/{feed_id}"/>
+
+                <doc title="delete_feeds_single" apigee:url="http://api.pachube.com/v2/#delete-feed-delete-v2-feeds-feed-id">
+                    <![CDATA[Delete feed. A request made to this URL will delete the object referred to by the ID. WARNING: This is final and cannot be undone.]]>
+                </doc>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="text/csv"/>
+                </response>
+            </method>
+        </resource>
+
+        <!-- Datastreams -->
+
+        <resource path="feeds/{feed_id}/datastreams">
+            <param name="feed_id" type="xsd:integer" style="template" required="true"/>
+
+            <method id="post_datastream" name="POST" apigee:displayName="feeds/{feed_id}/datastreams (POST)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Datastreams</apigee:tag>
+                    <apigee:tag>Environments (feeds)</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="feeds/{feed_id}/datastreams"/>
+
+                <doc title="post_datastream" apigee:url="http://api.pachube.com/v2/#create-new-datastream-post-v2-feeds-feed-id-datastreams">
+                    <![CDATA[Creates a new datastream in environment [feed ID]. The body of the request should contain a JSON, XML or CSV representation of the datastream to be created.]]>
+                </doc>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="text/csv"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="feeds/{feed_id}/datastreams/{datastream_id}">
+            <param name="feed_id" type="xsd:integer" style="template" required="true"/>
+            <param name="datastream_id" type="xsd:string" style="template" required="true"/>
+
+            <method id="get_datastream" name="GET" apigee:displayName="feeds/{feed_id}/datastreams/{datastream_id} (GET)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Datastreams</apigee:tag>
+                    <apigee:tag>Environments (feeds)</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="feeds/{feed_id}/datastreams/{datastream_id}"/>
+
+                <doc title="get_datastream" apigee:url="http://api.pachube.com/v2/#read-datastream-get-v2-feeds-feed-id-datastreams-datastream-id">
+                    <![CDATA[Read datastream. Returns a datastream for the environment [feed ID].]]>
+                </doc>
+
+                <request>
+                    <!-- historical query parameters -->
+
+                    <param name="start" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[Defines the starting point of the query as a timestamp, e.g. 2010-05-20T11:01:46Z. The default value is blank.]]>
+                        </doc>
+                    </param>
+
+                    <param name="end" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[Defines the end point of the data returned as a timestamp, e.g. 2010-05-21T11:01:46Z. The default value is set to the current timestamp.]]>
+                        </doc>
+                    </param>
+
+                    <param name="duration" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[Specifies the duration of the query. See API docs for more details.]]>
+                        </doc>
+                    </param>
+
+                    <param name="page" type="xsd:integer" style="query" required="false" default="0">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[Defines which page we are looking at of the matching results. If not set, the default value is 0.]]>
+                        </doc>
+                    </param>
+
+                    <param name="per_page" type="xsd:integer" style="query" required="false" default="100">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[Defines how many results are returned per page. If not set this value defaults to 100. Maximum value is 1000.]]>
+                        </doc>
+                    </param>
+
+                    <param name="time" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[Returns the feed with the values as they were at the specified timestamp. See API docs for more details.]]>
+                        </doc>
+                    </param>
+
+                    <param name="find_previous" type="xsd:boolean" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[Will also return the previous value to the date range being requested. Note that this is useful for any graphing because if you want to draw a graph of the date range you specified you would end up with a small gap until the first value.]]>
+                        </doc>
+                    </param>
+
+                    <param name="interval_type" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[If set to "discrete" the data will be returned in fixed time interval format according to the inverval value supplied. If this is not set, the raw datapoints will be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="interval" type="xsd:integer" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[Determines what interval of data is requested and is defined in seconds between the datapoints. If a value is passed in which does not match one of these values, it is rounded up to the next value. See API docs for acceptable values.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="text/csv"/>
+                </response>
+            </method>
+
+            <method id="put_datastream" name="PUT" apigee:displayName="feeds/{feed_id}/datastreams/{datastream_id} (PUT)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Datastreams</apigee:tag>
+                    <apigee:tag>Environments (feeds)</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="feeds/{feed_id}/datastreams/{datastream_id}"/>
+
+                <doc title="put_datastream" apigee:url="http://api.pachube.com/v2/#update-datastream-put-v2-feeds-feed-id-datastreams-datastream-id">
+                    <![CDATA[Update datastream. This method updates just the single datastream [datastream ID] of [environment ID]'s environment.]]>
+                </doc>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="text/csv"/>
+                </response>
+            </method>
+
+            <method id="delete_datastream" name="DELETE" apigee:displayName="feeds/{feed_id}/datastreams/{datastream_id} (DELETE)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Datastreams</apigee:tag>
+                    <apigee:tag>Environments (feeds)</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="feeds/{feed_id}/datastreams/{datastream_id}"/>
+
+                <doc title="delete_datastream" apigee:url="http://api.pachube.com/v2/#delete-datastream-delete-v2-feeds-feed-id-datastreams-datastream-id">
+                    <![CDATA[Delete datastream. A request made to this URL will delete the object referred to by the ID. WARNING: This is final and cannot be undone.]]>
+                </doc>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="text/csv"/>
+                </response>
+            </method>
+        </resource>
+
+        <!-- Datapoints -->
+
+        <resource path="feeds/{feed_id}/datastreams/{datastream_id}/datapoints">
+            <param name="feed_id" type="xsd:integer" style="template" required="true"/>
+            <param name="datastream_id" type="xsd:string" style="template" required="true"/>
+
+            <method id="post_datapoint" name="POST" apigee:displayName="feeds/{feed_id}/datastreams/{datastream_id}/datapoints (POST)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Datapoints</apigee:tag>
+                    <apigee:tag>Datastreams</apigee:tag>
+                    <apigee:tag>Environments (feeds)</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="feeds/{feed_id}/datastreams/{datastream_id}/datapoints"/>
+
+                <doc title="post_datapoint" apigee:url="http://api.pachube.com/v2/#create-datapoint-post-v2-feeds-feed-id-datastreams-datastream-id-datapoints">
+                    <![CDATA[Create datapoint. A POST request to this URL will create new datapoints for this datastream. This enables you to insert datapoints into the history of the datastream. Datapoints should have a unique timestamp, which can to be specified down to the sub-second level. Sending new datapoints with the same timestamp as existing ones will overwrite the old data with the new. If a single update contains multiple values with the same timestamp (along with other records), then the result will be datapoints recorded for all unique timestamps, but for any duplicated ones, we will only record the last record processed. Currently you can only send a maximum of 500 datapoints in a single update. Attempting to send more than that will result in an error, and in that case none of your datapoints will be stored.]]>
+                </doc>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="text/csv"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="feeds/{feed_id}/datastreams/{datastream_id}/datapoints/{timestamp}">
+            <param name="feed_id" type="xsd:integer" style="template" required="true"/>
+            <param name="datastream_id" type="xsd:string" style="template" required="true"/>
+            <param name="timestamp" type="xsd:string" style="template" required="true"/>
+
+            <method id="get_datapoint" name="GET" apigee:displayName="feeds/{feed_id}/datastreams/{datastream_id}/datapoints/{timestamp} (GET)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Datapoints</apigee:tag>
+                    <apigee:tag>Datastreams</apigee:tag>
+                    <apigee:tag>Environments (feeds)</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="feeds/{feed_id}/datastreams/{datastream_id}/datapoints/{timestamp}"/>
+
+                <doc title="get_datapoint" apigee:url="http://api.pachube.com/v2/#read-datapoint-get-v2-feeds-feed-id-datastreams-datastream-id-datapoints-timestamp">
+                    <![CDATA[Read datapoint. A GET request will return the value of this specific timestamp. Note: this method is provided for completeness, since most applications will request ranges of data from the datastream level (i.e. Historical Queries).]]>
+                </doc>
+
+                <request>
+                    <!-- historical query parameters -->
+
+                    <param name="start" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[Defines the starting point of the query as a timestamp, e.g. 2010-05-20T11:01:46Z. The default value is blank.]]>
+                        </doc>
+                    </param>
+
+                    <param name="end" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[Defines the end point of the data returned as a timestamp, e.g. 2010-05-21T11:01:46Z. The default value is set to the current timestamp.]]>
+                        </doc>
+                    </param>
+
+                    <param name="duration" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[Specifies the duration of the query. See API docs for more details.]]>
+                        </doc>
+                    </param>
+
+                    <param name="page" type="xsd:integer" style="query" required="false" default="0">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[Defines which page we are looking at of the matching results. If not set, the default value is 0.]]>
+                        </doc>
+                    </param>
+
+                    <param name="per_page" type="xsd:integer" style="query" required="false" default="100">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[Defines how many results are returned per page. If not set this value defaults to 100. Maximum value is 1000.]]>
+                        </doc>
+                    </param>
+
+                    <param name="time" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[Returns the feed with the values as they were at the specified timestamp. See API docs for more details.]]>
+                        </doc>
+                    </param>
+
+                    <param name="find_previous" type="xsd:boolean" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[Will also return the previous value to the date range being requested. Note that this is useful for any graphing because if you want to draw a graph of the date range you specified you would end up with a small gap until the first value.]]>
+                        </doc>
+                    </param>
+
+                    <param name="interval_type" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[If set to "discrete" the data will be returned in fixed time interval format according to the inverval value supplied. If this is not set, the raw datapoints will be returned.]]>
+                        </doc>
+                    </param>
+
+                    <param name="interval" type="xsd:integer" style="query" required="false">
+                        <doc apigee:url="http://api.pachube.com/v2/#historical-queries">
+                            <![CDATA[Determines what interval of data is requested and is defined in seconds between the datapoints. If a value is passed in which does not match one of these values, it is rounded up to the next value. See API docs for acceptable values.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="text/csv"/>
+                </response>
+            </method>
+
+            <method id="put_datapoint" name="PUT" apigee:displayName="feeds/{feed_id}/datastreams/{datastream_id}/datapoints/{timestamp} (PUT)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Datapoints</apigee:tag>
+                    <apigee:tag>Datastreams</apigee:tag>
+                    <apigee:tag>Environments (feeds)</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="feeds/{feed_id}/datastreams/{datastream_id}/datapoints/{timestamp}"/>
+
+                <doc title="put_datapoint" apigee:url="http://api.pachube.com/v2/#update-datapoint-put-v2-feeds-feed-id-datastreams-datastream-id-datapoints-timestamp">
+                    <![CDATA[Update datapoint. A PUT request will modify the value of the datapoint for this timestamp.]]>
+                </doc>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="text/csv"/>
+                </response>
+            </method>
+
+            <method id="delete_datapoint" name="DELETE" apigee:displayName="feeds/{feed_id}/datastreams/{datastream_id}/datapoints/{timestamp} (DELETE)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Datapoints</apigee:tag>
+                    <apigee:tag>Datastreams</apigee:tag>
+                    <apigee:tag>Environments (feeds)</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="feeds/{feed_id}/datastreams/{datastream_id}/datapoints/{timestamp}"/>
+
+                <doc title="delete_datapoint" apigee:url="http://api.pachube.com/v2/#delete-datapoint-delete-v2-feeds-feed-id-datastreams-datastream-id-datapoints-timestamp">
+                    <![CDATA[Delete datapoint. A request made to this URL will delete the object referred to by the ID. WARNING: This is final and cannot be undone.]]>
+                </doc>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="text/csv"/>
+                </response>
+            </method>
+        </resource>
+
+        <!-- Triggers -->
+
+        <resource path="triggers">
+            <method id="get_triggers" name="GET" apigee:displayName="triggers (GET)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Triggers</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="triggers"/>
+
+                <doc title="get_triggers" apigee:url="http://api.pachube.com/v2/#list-triggers-get-v2-triggers">
+                    <![CDATA[List triggers. Use this method to retrieve a list of all triggers for the authenticated account.]]>
+                </doc>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="text/csv"/>
+                </response>
+            </method>
+
+            <method id="post_triggers" name="POST" apigee:displayName="triggers (POST)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Triggers</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="triggers"/>
+
+                <doc title="post_triggers" apigee:url="http://api.pachube.com/v2/#create-trigger-post-v2-triggers">
+                    <![CDATA[Create trigger. Use this method to create a trigger. Data for creating the trigger can be encoded as xml or json (see API docs for trigger types)]]>
+                </doc>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="text/csv"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="triggers/{trigger_id}">
+            <param name="trigger_id" type="xsd:integer" style="template" required="true"/>
+
+            <method id="get_trigger" name="GET" apigee:displayName="triggers/{trigger_id} (GET)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Triggers</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="triggers/{trigger_id}"/>
+
+                <doc title="get_trigger" apigee:url="http://api.pachube.com/v2/#read-trigger-get-v2-triggers-trigger-id">
+                    <![CDATA[Read trigger. Use this method to retrieve the XML or JSON representation of a single trigger.]]>
+                </doc>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="text/csv"/>
+                </response>
+            </method>
+
+            <method id="put_trigger" name="PUT" apigee:displayName="triggers/{trigger_id} (PUT)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Triggers</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="triggers/{trigger_id}"/>
+
+                <doc title="put_trigger" apigee:url="http://api.pachube.com/v2/#update-trigger-put-v2-triggers-trigger-id">
+                    <![CDATA[Update trigger. Use this method to update an existing trigger object. Any attempt to change the environment_id or stream_id is ignored.]]>
+                </doc>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="text/csv"/>
+                </response>
+            </method>
+
+            <method id="delete_trigger" name="DELETE" apigee:displayName="triggers/{trigger_id} (DELETE)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Triggers</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="triggers/{trigger_id}"/>
+
+                <doc title="delete_trigger" apigee:url="http://api.pachube.com/v2/#delete-trigger-delete-v2-triggers-trigger-id">
+                    <![CDATA[Delete the specified trigger object. WARNING: This is final and cannot be undone.]]>
+                </doc>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="text/csv"/>
+                </response>
+            </method>
+        </resource>
+
+        <!-- Users -->
+
+        <resource path="users">
+            <method id="get_users" name="GET" apigee:displayName="users (GET)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Users</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="users"/>
+
+                <doc title="get_users" apigee:url="http://api.pachube.com/v2/#list-all-users-get-v2-users">
+                    <![CDATA[List all users. This method will list all of the users that the authenticated account has created.]]>
+                </doc>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="text/csv"/>
+                </response>
+            </method>
+
+            <method id="post_users" name="POST" apigee:displayName="users (POST)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Users</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="users"/>
+
+                <doc title="post_users" apigee:url="http://api.pachube.com/v2/#create-user-post-v2-users">
+                    <![CDATA[Create user. This method will create a new user with the permissions of the role specified. They must have a role specified.]]>
+                </doc>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="text/csv"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="users/{user_login}">
+            <param name="user_login" type="xsd:string" style="template" required="true"/>
+
+            <method id="get_user" name="GET" apigee:displayName="users/{user_login} (GET)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Users</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="users/{user_login}"/>
+
+                <doc title="get_user" apigee:url="http://api.pachube.com/v2/#read-user-get-v2-users-user-login">
+                    <![CDATA[Read user. This method will retrieve the details of a specific user. The amount of data retrieved will vary depending on whether or not you are the user in question, or the owner of the user, or depending on the privacy settings the user has defined.]]>
+                </doc>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="text/csv"/>
+                </response>
+            </method>
+
+            <method id="put_user" name="PUT" apigee:displayName="users/{user_login} (PUT)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Users</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="users/{user_login}"/>
+
+                <doc title="put_user" apigee:url="http://api.pachube.com/v2/#update-user-put-v2-users-user-login">
+                    <![CDATA[Update user. This method will update the details of a specific user.]]>
+                </doc>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="text/csv"/>
+                </response>
+            </method>
+
+            <method id="delete_user" name="DELETE" apigee:displayName="users/{user_login} (DELETE)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Users</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="users/{user_login}"/>
+
+                <doc title="delete_user" apigee:url="http://api.pachube.com/v2/#delete-user-delete-v2-users-user-login">
+                    <![CDATA[Delete user. This method will permanently delete a user. WARNING: This is final and cannot be undone.]]>
+                </doc>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="text/csv"/>
+                </response>
+            </method>
+        </resource>
+
+        <!-- API Keys -->
+        <!-- we'll just keep these in one section instead of having a bunch of copies for each resource -->
+
+        <resource path="{resource}/keys">
+            <param name="resource" type="xsd:string" style="template" required="false"/>
+
+            <method id="get_keys" name="GET" apigee:displayName="keys (GET)">
+                <apigee:tags>
+                    <apigee:tag primary="true">API Keys</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="keys"/>
+
+                <doc title="get_keys" apigee:url="http://api.pachube.com/v2/#list-api-keys-get-v2-keys">
+                    <![CDATA[List API Keys. Calling this URL will return all of the keys for the resource.]]>
+                </doc>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="text/csv"/>
+                </response>
+            </method>
+
+            <method id="post_keys" name="POST" apigee:displayName="keys (POST)">
+                <apigee:tags>
+                    <apigee:tag primary="true">API Keys</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="keys"/>
+
+                <doc title="post_users" apigee:url="http://api.pachube.com/v2/#create-api-key-post-v2-keys">
+                    <![CDATA[Create API Key.]]>
+                </doc>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="text/csv"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="{resource}/keys/{key_id}">
+            <param name="resource" type="xsd:string" style="template" required="false"/>
+
+            <method id="get_key" name="GET" apigee:displayName="keys/{key_id} (GET)">
+                <apigee:tags>
+                    <apigee:tag primary="true">API Keys</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="keys/{key_id}"/>
+
+                <doc title="get_key" apigee:url="http://api.pachube.com/v2/#read-api-key-get-v2-keys-key-id">
+                    <![CDATA[Read API Key.]]>
+                </doc>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="text/csv"/>
+                </response>
+            </method>
+
+            <method id="delete_key" name="DELETE" apigee:displayName="keys/{key_id} (DELETE)">
+                <apigee:tags>
+                    <apigee:tag primary="true">API Keys</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="keys/{key_id}"/>
+
+                <doc title="delete_key" apigee:url="http://api.pachube.com/v2/#delete-api-key-delete-v2-keys-key-id">
+                    <![CDATA[Delete API Key.]]>
+                </doc>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                    <representation mediaType="application/xml"/>
+                    <representation mediaType="text/csv"/>
+                </response>
+            </method>
+        </resource>
+
+    </resources>
+</application>
