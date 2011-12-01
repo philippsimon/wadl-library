@@ -44,7 +44,7 @@
 				
 				<request>
 					<param name="calendarId" type="xsd:string" style="template" required="true" />
-					<param name="ruleId" type="xsd:string" style="query" required="true" />
+					<param name="ruleId" type="xsd:string" style="template" required="true" />
 				</request>
 			</method>
 		</resource>
