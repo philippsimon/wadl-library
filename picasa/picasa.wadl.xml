@@ -14,7 +14,7 @@
 					<apigee:tag primary="true">Picasa</apigee:tag>
 				</apigee:tags>
 				
-				<apigee:authentication required="true" />
+				<apigee:authentication required="false" />
 				
 				<apigee:example url="user/{userID}" />
 
@@ -34,7 +34,7 @@
 					<apigee:tag primary="true">Picasa</apigee:tag>
 				</apigee:tags>
 				
-				<apigee:authentication required="true" />
+				<apigee:authentication required="false" />
 				
 				<apigee:example url="user/{userID}/albumid/{albumID}" />
 
