@@ -16,7 +16,7 @@
 				
 				<apigee:authentication required="false" />
 				
-				<apigee:example url="?callname=FindPopularItems&amp;version={version}&amp;QueryKeywords={QueryKeywords}" />
+				<apigee:example url="shopping?callname=FindPopularItems&amp;version={version}&amp;QueryKeywords={QueryKeywords}" />
 
 				<doc apigee:url="http://developer.ebay.com/devzone/shopping/docs/CallRef/FindPopularItems.html">
 					<![CDATA[Searches for popular items based on a category or keyword.]]>
@@ -72,7 +72,7 @@
 				
 				<apigee:authentication required="false" />
 				
-				<apigee:example url="?callname=GetItemStatus&amp;version={version}&amp;ItemID={ItemID}" />
+				<apigee:example url="shopping?callname=GetItemStatus&amp;version={version}&amp;ItemID={ItemID}" />
 
 				<doc apigee:url="http://developer.ebay.com/devzone/shopping/docs/CallRef/GetItemStatus.html">
 					<![CDATA[Retrieves Item status information for a list of up to 10 specified ItemIDs.]]>
