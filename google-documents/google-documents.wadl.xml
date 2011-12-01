@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<application xmlns="http://wadl.dev.java.net/2009/02"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+             xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
+
+	<resources base="https://docs.google.com/feeds/default">
+		
+		<resource path="{visibility}/full">
+			<method id="documents.list.feeds" name="GET" apigee:displayName="Get Documents and Files">
+				<apigee:tags>
+					<apigee:tag primary="true">Google Documents</apigee:tag>
+				</apigee:tags>
+				
+				<apigee:authentication required="true" />
+				
+				<apigee:example url="private/full" />
+
+				<doc apigee:url="http://code.google.com/intl/en/apis/documents/docs/3.0/reference.html#Documents_List_Feed">
+					<![CDATA[Lists all the documents for the Google Account that's associated with the authenticated user.]]>
+				</doc>
+				
+				<request>
+					<param name="visibility" type="xsd:int" style="template" default="private" required="true">
+						<option value="private" />
+					</param>
+					<param name="v" type="xsd:string" style="query" default="3" required="true" />
+					<param name="max-results" type="xsd:int" style="query" required="false" />
+					<param name="start-key" type="xsd:string" style="query" required="false" />
+				</request>
+			</method>
+		</resource>
+		
+		<resource path="{visibility}/full/{resourceID}">
+			<method id="documents.list.feed" name="GET" apigee:displayName="Get Document">
+				<apigee:tags>
+					<apigee:tag primary="true">Google Documents</apigee:tag>
+				</apigee:tags>
+				
+				<apigee:authentication required="true" />
+				
+				<apigee:example url="private/full/{resourceID}" />
+
+				<doc apigee:url="http://code.google.com/intl/en/apis/documents/docs/3.0/reference.html#Documents_List_Feed">
+					<![CDATA[Retrieves the document associated with the resourceID for the Google Account that's associated with the authenticated user.]]>
+				</doc>
+				
+				<request>
+					<param name="visibility" type="xsd:int" style="template" default="private" required="true">
+						<option value="private" />
+					</param>
+					<param name="resourceID" type="xsd:string" style="template" required="true" />
+					<param name="v" type="xsd:string" style="query" default="3" required="true" />
+				</request>
+			</method>
+		</resource>
+	
+	</resources>
+</application>

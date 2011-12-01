@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<application xmlns="http://wadl.dev.java.net/2009/02"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+             xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
+
+	<resources base="http://api.npr.org">
+		
+		<resource path="stations">
+			<method id="stations" name="GET" apigee:displayName="Get Stations">
+				<apigee:tags>
+					<apigee:tag primary="true">NPR</apigee:tag>
+				</apigee:tags>
+				
+				<apigee:authentication required="true" />
+				
+				<apigee:example url="stations" />
+
+				<doc apigee:url="http://www.npr.org/api/stationFinder.php">
+					<![CDATA[Returns NPR member stations or stations that carry NPR programming.]]>
+				</doc>
+				
+				<request>
+					<param name="zip" type="xsd:string" style="query" required="false" />
+					<param name="city" type="xsd:string" style="query" required="false" />
+					<param name="state" type="xsd:string" style="query" required="false" />
+					<param name="callLetters" type="xsd:string" style="query" required="false" />
+					<param name="band" type="xsd:string" style="query" required="false" />
+					<param name="network" type="xsd:string" style="query" required="false" />
+					<param name="lat" type="xsd:decimal" style="query" required="false" />
+					<param name="lon" type="xsd:decimal" style="query" required="false" />
+					<param name="id" type="xsd:string" style="query" required="false" />
+				</request>
+			</method>
+		</resource>
+
+		<resource path="transcript">
+			<method id="transcript" name="GET" apigee:displayName="Get Program Transcript">
+				<apigee:tags>
+					<apigee:tag primary="true">NPR</apigee:tag>
+				</apigee:tags>
+				
+				<apigee:authentication required="true" />
+				
+				<apigee:example url="transcript?id={id}" />
+
+				<doc apigee:url="http://www.npr.org/api/transcript.php">
+					<![CDATA[Provides access to full transcripts of stories airing on selected NPR programs.]]>
+				</doc>
+				
+				<request>
+					<param name="id" type="xsd:string" style="query" required="true" />
+				</request>
+			</method>
+		</resource>
+	
+	</resources>
+</application>

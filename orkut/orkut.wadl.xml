@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<application xmlns="http://wadl.dev.java.net/2009/02"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+             xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
+
+	<resources base="https://www.googleapis.com/orkut/v2">
+		
+		<resource path="activities/{activityId}/acl/{userId}">
+			<method id="orkut.acl.delete" name="DELETE" apigee:displayName="Delete Access Control List">
+				<apigee:tags>
+					<apigee:tag primary="true">Orkut</apigee:tag>
+				</apigee:tags>
+				
+				<apigee:authentication required="true" />
+				
+				<apigee:example url="activities/{activityId}/acl/{userId}" />
+
+				<doc apigee:url="http://code.google.com/intl/en/apis/orkut/v2/reference.html#method_orkut_acl_delete">
+					<![CDATA[Excludes an element from the ACL of the activity. The value "me" is valid for the parameter userId and means the authenticated user.]]>
+				</doc>
+				
+				<request>
+					<param name="activityId" type="xsd:string" style="template" required="true" />
+					<param name="userId" type="xsd:string" style="template" required="true" />
+				</request>
+			</method>
+		</resource>
+
+		<resource path="people/{userId}/activities/{collection}">
+			<method id="orkut.activities.list" name="GET" apigee:displayName="Get Activities">
+				<apigee:tags>
+					<apigee:tag primary="true">Orkut</apigee:tag>
+				</apigee:tags>
+				
+				<apigee:authentication required="true" />
+				
+				<apigee:example url="people/{userId}/activities/{collection}" />
+
+				<doc apigee:url="http://code.google.com/intl/en/apis/orkut/v2/reference.html#method_orkut_activities_list">
+					<![CDATA[Retrieves a list of activities.]]>
+				</doc>
+				
+				<request>
+					<param name="userId" type="xsd:string" style="template" required="true" />
+					<param name="collection" type="xsd:string" style="template" required="true" />
+					<param name="hl" type="xsd:string" style="query" required="false" />
+					<param name="maxResults" type="xsd:integer" style="query" required="false" />
+					<param name="pageToken" type="xsd:string" style="query" required="false" />
+					<param name="fields" type="xsd:string" style="query" required="false" />
+				</request>
+			</method>
+		</resource>
+	
+	</resources>
+</application>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<application xmlns="http://wadl.dev.java.net/2009/02"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+             xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
+
+	<resources base="https://www-opensocial.googleusercontent.com/api">
+		
+		<resource path="people/@me/@self">
+			<method id="contacts.user.info" name="GET" apigee:displayName="Get User Contact Information">
+				<apigee:tags>
+					<apigee:tag primary="true">Google Contacts</apigee:tag>
+				</apigee:tags>
+				
+				<apigee:authentication required="true" />
+				
+				<apigee:example url="people/@me/@self" />
+
+				<doc apigee:url="http://code.google.com/intl/en/apis/contacts/docs/poco/1.0/developers_guide.html#RetrievingContacts">
+					<![CDATA[Retrieves the authenticated user's contact information.]]>
+				</doc>
+			</method>
+		</resource>
+
+		<resource path="people/@me/@all">
+			<method id="contacts.user.contacts" name="GET" apigee:displayName="Get User Contacts">
+				<apigee:tags>
+					<apigee:tag primary="true">Google Contacts</apigee:tag>
+				</apigee:tags>
+				
+				<apigee:authentication required="true" />
+				
+				<apigee:example url="people/@me/@all" />
+
+				<doc apigee:url="http://code.google.com/intl/en/apis/contacts/docs/poco/1.0/developers_guide.html#RetrievingAllContacts">
+					<![CDATA[Retrieves a list of all of the user's contacts.]]>
+				</doc>
+			</method>
+		</resource>
+	
+	</resources>
+</application>

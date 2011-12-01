@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<application
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+	xmlns="http://wadl.dev.java.net/2009/02"
+	xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd
+						http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
+
+	
+	<resources base="https://www.googleapis.com/pagespeedonline/v1">
+		<resource path="runPagespeed">
+			<method id="run" name="GET" apigee:displayName="Run Pagespeed">
+				<apigee:tags>
+					<apigee:tag primary="true">Pagespeed Online</apigee:tag>
+				</apigee:tags>
+				
+				<apigee:authentication required="false" />
+				
+				<apigee:example url="runPagespeed?url={url}" />
+
+				<doc apigee:url="http://code.google.com/intl/en/apis/pagespeedonline/v1/reference.html#method_pagespeedonline_pagespeedapi_runpagespeed">
+					<![CDATA[Runs Page Speed analysis on the page at the specified URL, and returns a Page Speed score, a list of suggestions to make that page faster, and other information.]]>
+				</doc>
+
+				<request>
+					<param name="url" type="xsd:string" style="query" required="true" />
+					<param name="locale" type="xsd:string" style="query" default="en_US" required="false" />
+					<param name="rule" type="xsd:string" style="query" repeating="true" required="false" />
+					<param name="strategy" type="xsd:string" style="query" default="desktop" required="false">
+						<option value="desktop" />
+						<option value="mobile" />
+					</param>
+
+					<param name="callback" type="xsd:string" style="query" required="false" />
+					<param name="prettyPrint" type="xsd:boolean" style="query" default="true" required="false" />
+					<param name="userIp" type="xsd:string" style="query" required="false" />
+				</request>
+			</method>
+		</resource>
+	</resources>
+</application>

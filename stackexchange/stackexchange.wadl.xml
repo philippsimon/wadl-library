@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<application xmlns="http://wadl.dev.java.net/2009/02"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+             xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
+
+	<resources base="http://api.stackoverflow.com/1.1">
+		
+		<resource path="answers">
+			<method id="answers" name="GET" apigee:displayName="List Answers">
+				<apigee:tags>
+					<apigee:tag primary="true">Stack Exchange</apigee:tag>
+				</apigee:tags>
+				
+				<apigee:authentication required="false" />
+				
+				<apigee:example url="answers" />
+
+				<doc apigee:url="http://api.stackoverflow.com/1.1/usage/methods/answers">
+					<![CDATA[Returns all the answers in the system.]]>
+				</doc>
+				
+				<request>
+					<param name="body" type="xsd:boolean" style="query" required="false">
+						<doc><![CDATA[When "true", a post's body will be included in the response.]]></doc>
+					</param>
+					<param name="comments" type="xsd:boolean" style="query" required="false">
+						<doc><![CDATA[When "true", any comments on a post will be included in the response.]]></doc>
+					</param>
+					<param name="fromdate" type="xsd:string" style="query" required="false">
+						<doc><![CDATA[Unix timestamp of the minimum creation date on a returned item. Unix epoch date, range [0, 253,402,300,799].]]></doc>
+					</param>
+					<param name="max" type="xsd:string" style="query" required="false">
+						<doc><![CDATA[Maximum of the range to include in the response according to the current sort. Integer or unix epoch date.]]></doc>
+					</param>
+					<param name="min" type="xsd:string" style="query" required="false">
+						<doc><![CDATA[Minimum of the range to include in the response according to the current sort. integer or unix epoch date.]]></doc>
+					</param>
+					<param name="order" type="xsd:string" style="query" default="desc" required="false">
+						<doc><![CDATA[How the current sort should be ordered. one of desc (default), or asc.]]></doc>
+					</param>
+					<param name="page" type="xsd:int" style="query" required="false">
+						<doc><![CDATA[The pagination offset for the current collection. Affected by the specified pagesize. 32-bit signed integer.]]></doc>
+					</param>
+					<param name="pagesize" type="xsd:int" style="query" required="false">
+						<doc><![CDATA[The number of collection results to display during pagination. Should be between 0 and 100 inclusive. 32-bit signed integer.]]></doc>
+					</param>
+					<param name="sort" type="xsd:string" style="query" default="activity" required="false">
+						<doc><![CDATA[How a collection should be sorted. one of activity (default), creation, or votes.]]></doc>
+					</param>
+					<param name="todate" type="xsd:string" style="query" required="false">
+						<doc><![CDATA[Unix timestamp of the maximum creation date on a returned item. Unix epoch date, range [0, 253,402,300,799].]]></doc>
+					</param>
+				</request>
+			</method>
+		</resource>
+		
+		<resource path="answers/{id}">
+			<method id="answers-by-ids" name="GET" apigee:displayName="Get Answers By Ids">
+				<apigee:tags>
+					<apigee:tag primary="true">Stack Exchange</apigee:tag>
+				</apigee:tags>
+				
+				<apigee:authentication required="false" />
+				
+				<apigee:example url="answers/{id}" />
+
+				<doc apigee:url="http://api.stackoverflow.com/1.1/usage/methods/answers-by-ids">
+					<![CDATA[Gets the set of answers with ids in id.]]>
+				</doc>
+				
+				<request>
+					<param name="id" type="xsd:string" style="query" required="true">
+						<doc><![CDATA[A single primary key identifier or a vectorized, semicolon-delimited list of identifiers. This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon.]]></doc>
+					</param>
+					<param name="body" type="xsd:boolean" style="query" required="false">
+						<doc><![CDATA[When "true", a post's body will be included in the response.]]></doc>
+					</param>
+					<param name="comments" type="xsd:boolean" style="query" required="false">
+						<doc><![CDATA[When "true", any comments on a post will be included in the response.]]></doc>
+					</param>
+					<param name="fromdate" type="xsd:string" style="query" required="false">
+						<doc><![CDATA[Unix timestamp of the minimum creation date on a returned item. Unix epoch date, range [0, 253,402,300,799].]]></doc>
+					</param>
+					<param name="max" type="xsd:string" style="query" required="false">
+						<doc><![CDATA[Maximum of the range to include in the response according to the current sort. Integer or unix epoch date.]]></doc>
+					</param>
+					<param name="min" type="xsd:string" style="query" required="false">
+						<doc><![CDATA[Minimum of the range to include in the response according to the current sort. integer or unix epoch date.]]></doc>
+					</param>
+					<param name="order" type="xsd:string" style="query" default="desc" required="false">
+						<doc><![CDATA[How the current sort should be ordered. one of desc (default), or asc.]]></doc>
+					</param>
+					<param name="page" type="xsd:int" style="query" required="false">
+						<doc><![CDATA[The pagination offset for the current collection. Affected by the specified pagesize. 32-bit signed integer.]]></doc>
+					</param>
+					<param name="pagesize" type="xsd:int" style="query" required="false">
+						<doc><![CDATA[The number of collection results to display during pagination. Should be between 0 and 100 inclusive. 32-bit signed integer.]]></doc>
+					</param>
+					<param name="sort" type="xsd:string" style="query" default="activity" required="false">
+						<doc><![CDATA[How a collection should be sorted. one of activity (default), creation, or votes.]]></doc>
+					</param>
+					<param name="todate" type="xsd:string" style="query" required="false">
+						<doc><![CDATA[Unix timestamp of the maximum creation date on a returned item. Unix epoch date, range [0, 253,402,300,799].]]></doc>
+					</param>
+				</request>
+			</method>
+		</resource>
+	
+	</resources>
+</application>

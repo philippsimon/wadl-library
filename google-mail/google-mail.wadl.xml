@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<application xmlns="http://wadl.dev.java.net/2009/02"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+             xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
+
+	<resources base="https://apps-apis.google.com/a/feeds/emailsettings/2.0">
+
+		<resource path="{domain_name}/{user_name}/label">
+			<method id="gmail.settings.label.retrieve" name="GET" apigee:displayName="Get Labels">
+				<apigee:tags>
+					<apigee:tag primary="true">Google Mail (Settings)</apigee:tag>
+				</apigee:tags>
+				
+				<apigee:authentication required="true" />
+				
+				<apigee:example url="{domain_name}/{user_name}/label" />
+
+				<doc apigee:url="http://code.google.com/intl/en/googleapps/domain/email_settings/developers_guide_protocol.html#GA_email_label_main">
+					<![CDATA[Retrieves all labels and their settings.]]>
+				</doc>
+				
+				<request>
+					<param name="domain_name" type="xsd:string" style="template" required="true" />
+					<param name="user_name" type="xsd:string" style="template" required="true" />
+				</request>
+			</method>
+		</resource>
+
+		<resource path="{domain name}/{user name}/pop">
+			<method id="gmail.settings.pop.retrieve" name="GET" apigee:displayName="Get POP Settings">
+				<apigee:tags>
+					<apigee:tag primary="true">Google Mail (Settings)</apigee:tag>
+				</apigee:tags>
+				
+				<apigee:authentication required="true" />
+				
+				<apigee:example url="{domain_name}/{user_name}/pop" />
+
+				<doc apigee:url="http://code.google.com/intl/en/googleapps/domain/email_settings/developers_guide_protocol.html#GA_email_pop_get">
+					<![CDATA[Retrieves Google Mail POP settings.]]>
+				</doc>
+				
+				<request>
+					<param name="domain_name" type="xsd:string" style="template" required="true" />
+					<param name="user_name" type="xsd:string" style="template" required="true" />
+				</request>
+			</method>
+		</resource>
+
+	</resources>
+</application>

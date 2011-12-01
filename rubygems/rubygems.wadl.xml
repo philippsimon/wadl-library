@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<application xmlns="http://wadl.dev.java.net/2009/02"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+             xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
+
+	<resources base="https://rubygems.org/api/v1">
+		
+		<resource path="gems/{gemName}.{format}">
+			<method id="getGem" name="GET" apigee:displayName="Get Gem">
+				<apigee:tags>
+					<apigee:tag primary="true">Ruby Gems</apigee:tag>
+				</apigee:tags>
+				
+				<apigee:authentication required="false" />
+				
+				<apigee:example url="gems/{gemName}.{format}" />
+
+				<doc apigee:url="http://guides.rubygems.org/rubygems-org-api/#gem">
+					<![CDATA[Returns some basic information about the given gem.]]>
+				</doc>
+				
+				<request>
+					<param name="format" type="xsd:string" style="template" required="true">
+						<option value="json" mediaType="application/json" />
+						<option value="xml" mediaType="application/xml" />
+						<option value="yaml" mediaType="application/yaml" />
+					</param>
+				</request>
+			</method>
+		</resource>
+		
+		<resource path="search.{format}">
+			<method id="searchGem" name="GET" apigee:displayName="Search Gem">
+				<apigee:tags>
+					<apigee:tag primary="true">Ruby Gems</apigee:tag>
+				</apigee:tags>
+				
+				<apigee:authentication required="false" />
+				
+				<apigee:example url="search.{format}?query={query}" />
+
+				<doc apigee:url="http://guides.rubygems.org/rubygems-org-api/#gem">
+					<![CDATA[Submit a search to Gemcutter for active gems, just like a search query on the site.]]>
+				</doc>
+				
+				<request>
+					<param name="format" type="xsd:string" style="template" required="true">
+						<option value="json" mediaType="application/json" />
+						<option value="xml" mediaType="application/xml" />
+						<option value="yaml" mediaType="application/yaml" />
+					</param>
+					<param name="query" type="xsd:string" style="query" required="true" />
+				</request>
+			</method>
+		</resource>
+	
+	</resources>
+</application>
