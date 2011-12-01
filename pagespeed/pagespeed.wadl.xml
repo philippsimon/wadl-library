@@ -16,7 +16,7 @@
 					<apigee:tag primary="true">Pagespeed Online</apigee:tag>
 				</apigee:tags>
 				
-				<apigee:authentication required="false" />
+				<apigee:authentication required="true" />
 				
 				<apigee:example url="runPagespeed?url={url}" />
 
