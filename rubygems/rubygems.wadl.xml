@@ -8,30 +8,6 @@
 
 	<resources base="https://rubygems.org/api/v1">
 		
-		<resource path="gems/{gemName}.{format}">
-			<method id="getGem" name="GET" apigee:displayName="Get Gem">
-				<apigee:tags>
-					<apigee:tag primary="true">Ruby Gems</apigee:tag>
-				</apigee:tags>
-				
-				<apigee:authentication required="false" />
-				
-				<apigee:example url="gems/{gemName}.{format}" />
-
-				<doc apigee:url="http://guides.rubygems.org/rubygems-org-api/#gem">
-					<![CDATA[Returns some basic information about the given gem.]]>
-				</doc>
-				
-				<request>
-					<param name="format" type="xsd:string" style="template" required="true">
-						<option value="json" mediaType="application/json" />
-						<option value="xml" mediaType="application/xml" />
-						<option value="yaml" mediaType="application/yaml" />
-					</param>
-				</request>
-			</method>
-		</resource>
-		
 		<resource path="search.{format}">
 			<method id="searchGem" name="GET" apigee:displayName="Search Gem">
 				<apigee:tags>
@@ -57,5 +33,29 @@
 			</method>
 		</resource>
 	
+		<resource path="gems/{gemName}.{format}">
+			<method id="getGem" name="GET" apigee:displayName="Get Gem">
+				<apigee:tags>
+					<apigee:tag primary="true">Ruby Gems</apigee:tag>
+				</apigee:tags>
+				
+				<apigee:authentication required="false" />
+				
+				<apigee:example url="gems/{gemName}.{format}" />
+
+				<doc apigee:url="http://guides.rubygems.org/rubygems-org-api/#gem">
+					<![CDATA[Returns some basic information about the given gem.]]>
+				</doc>
+				
+				<request>
+					<param name="format" type="xsd:string" style="template" required="true">
+						<option value="json" mediaType="application/json" />
+						<option value="xml" mediaType="application/xml" />
+						<option value="yaml" mediaType="application/yaml" />
+					</param>
+				</request>
+			</method>
+		</resource>
+
 	</resources>
 </application>
