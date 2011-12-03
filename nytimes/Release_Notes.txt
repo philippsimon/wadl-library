@@ -1,0 +1,6 @@
+Known Issues:
+API Keys are included in every parameter dialog because each NYTimes API requires a different key that must be present in the query.
+
+Limitations:
+None
+

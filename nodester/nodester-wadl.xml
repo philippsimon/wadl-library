@@ -1,0 +1,657 @@
+<application xmlns="http://wadl.dev.java.net/2009/02"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+             xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
+
+    <resources base="http://nodester.com/">
+
+        <!-- Miscellaneous -->
+
+        <resource path="coupon">
+            <method id="coupon" name="POST" apigee:displayName="Request Coupon">
+                <apigee:tags>
+                    <apigee:tag primary="true">Miscellaneous</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="false"/>
+
+                <apigee:example url="coupon"/>
+
+                <doc title="coupon" apigee:url="http://nodester.com/api.html#couponapi">
+                    <![CDATA[Requests a coupon for early access (password in email)]]>
+                </doc>
+
+                <request>
+                    <param name="email" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://nodester.com/api.html#couponapi">
+                            <![CDATA[The email of the user requesting a coupon code]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="status">
+            <method id="status" name="GET" apigee:displayName="Get Status">
+                <apigee:tags>
+                    <apigee:tag primary="true">Miscellaneous</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="false"/>
+
+                <apigee:example url="status"/>
+
+                <doc title="status" apigee:url="http://nodester.com/api.html#status">
+                    <![CDATA[Returns platform status and number of apps running]]>
+                </doc>
+            </method>
+        </resource>
+
+        <!-- User -->
+
+        <resource path="user">
+            <method id="post_user" name="POST" apigee:displayName="Register User">
+                <apigee:tags>
+                    <apigee:tag primary="true">User</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="false"/>
+
+                <apigee:example url="user"/>
+
+                <doc title="user" apigee:url="http://nodester.com/api.html#userapi">
+                    <![CDATA[Creates user account (pass in user and password and email and id_rsa.pub string) Ensure that all + in the ssh key are substituted for their %2B counter parts, else your key will break.]]>
+                </doc>
+
+                <request>
+                    <param name="coupon" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://nodester.com/api.html#userapi">
+                            <![CDATA[The user's coupon code]]>
+                        </doc>
+                    </param>
+
+                    <param name="user" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://nodester.com/api.html#userapi">
+                            <![CDATA[The username to register]]>
+                        </doc>
+                    </param>
+
+                    <param name="password" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://nodester.com/api.html#userapi">
+                            <![CDATA[The user's password]]>
+                        </doc>
+                    </param>
+
+                    <param name="email" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://nodester.com/api.html#userapi">
+                            <![CDATA[The user's email address]]>
+                        </doc>
+                    </param>
+
+                    <param name="rsakey" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://nodester.com/api.html#userapi">
+                            <![CDATA[The user's RSA SSH key]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+    </resources>
+
+    <resources base="http://api.nodester.com/">
+
+        <!-- User -->
+
+        <resource path="user">
+            <method id="put_user" name="PUT" apigee:displayName="Update User">
+                <apigee:tags>
+                    <apigee:tag primary="true">User</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="false"/>
+
+                <apigee:example url="user"/>
+
+                <doc title="Update User" apigee:url="http://nodester.com/api.html#userapi">
+                    <![CDATA[Updates user account password and/or SSH key]]>
+                </doc>
+
+                <request>
+                    <param name="password" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://nodester.com/api.html#userapi">
+                            <![CDATA[The user's password]]>
+                        </doc>
+                    </param>
+
+                    <param name="rsakey" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://nodester.com/api.html#userapi">
+                            <![CDATA[The user's RSA SSH key]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+
+            <method id="delete_user" name="DELETE" apigee:displayName="Delete User">
+                <apigee:tags>
+                    <apigee:tag primary="true">User</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="user"/>
+
+                <doc title="Delete User" apigee:url="http://nodester.com/api.html#userapi">
+                    <![CDATA[Deletes the authenticated user's account]]>
+                </doc>
+            </method>
+        </resource>
+
+        <!-- App -->
+
+        <resource path="app">
+            <method id="post_app" name="POST" apigee:displayName="Create Application">
+                <apigee:tags>
+                    <apigee:tag primary="true">App</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="app"/>
+
+                <doc title="Create Application" apigee:url="http://nodester.com/api.html#app">
+                    <![CDATA[Creates nodejs app for hosting (requires basic auth and returns the port address required for use along with a git repo to push to)]]>
+                </doc>
+
+                <request>
+                    <param name="appname" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://nodester.com/api.html#app">
+                            <![CDATA[Application name]]>
+                        </doc>
+                    </param>
+
+                    <param name="start" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://nodester.com/api.html#app">
+                            <![CDATA[The main script file (eg. server.js)]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+
+            <method id="put_app_update" name="PUT" apigee:displayName="Change Application (Update Name)">
+                <apigee:tags>
+                    <apigee:tag primary="true">App</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="app"/>
+
+                <doc title="Change Application (Update Name)" apigee:url="http://nodester.com/api.html#app">
+                    <![CDATA[Update starting app name (requires basic auth, appname, and starting page and returns the port address required for use along with a git repo to push to and running status of the app)]]>
+                </doc>
+
+                <request>
+                    <param name="appname" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://nodester.com/api.html#app">
+                            <![CDATA[Application name]]>
+                        </doc>
+                    </param>
+
+                    <param name="start" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://nodester.com/api.html#app">
+                            <![CDATA[The main script file (eg. server.js)]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+
+            <method id="put_app_startstop" name="PUT" apigee:displayName="Change Application (Start/Stop)">
+                <apigee:tags>
+                    <apigee:tag primary="true">App</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="app"/>
+
+                <doc title="Change Application (Start/Stop)" apigee:url="http://nodester.com/api.html#app">
+                    <![CDATA[Starts or stops your hosted nodejs app (requires basic auth, appname, and running=true|false and returns the port address required for use along with a git repo to push to)]]>
+                </doc>
+
+                <request>
+                    <param name="appname" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://nodester.com/api.html#app">
+                            <![CDATA[Application name]]>
+                        </doc>
+                    </param>
+
+                    <param name="running" type="xsd:boolean" style="query" required="true">
+                        <doc apigee:url="http://nodester.com/api.html#app">
+                            <![CDATA[Desired application running state (true = started, false = stopped)]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+
+            <method id="delete_app" name="DELETE" apigee:displayName="Delete Application">
+                <apigee:tags>
+                    <apigee:tag primary="true">App</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="app"/>
+
+                <doc title="Delete Application" apigee:url="http://nodester.com/api.html#app">
+                    <![CDATA[Deletes a nodejs app (requires basic auth and appname)]]>
+                </doc>
+
+                <request>
+                    <param name="appname" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://nodester.com/api.html#app">
+                            <![CDATA[Application name]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="app/{appname}">
+            <param name="appname" type="xsd:string" style="template" required="true">
+                <doc apigee:url="http://nodester.com/api.html#app">
+                    <![CDATA[Application name]]>
+                </doc>
+            </param>
+
+            <method id="app_info" name="GET" apigee:displayName="Application Info">
+                <apigee:tags>
+                    <apigee:tag primary="true">App</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="app/{appname}"/>
+
+                <doc title="Application Information" apigee:url="http://nodester.com/api.html#app">
+                    <![CDATA[Returns nodejs app info (requires basic auth and appname)]]>
+                </doc>
+
+                <request>
+                    <param name="appname" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://nodester.com/api.html#app">
+                            <![CDATA[Application name]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="applogs/{appname}">
+            <param name="appname" type="xsd:string" style="template" required="true">
+                <doc apigee:url="http://nodester.com/api.html#app">
+                    <![CDATA[Application name]]>
+                </doc>
+            </param>
+
+            <method id="app_logs" name="GET" apigee:displayName="Application Information (Logs)">
+                <apigee:tags>
+                    <apigee:tag primary="true">App</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="applogs/{appname}"/>
+
+                <doc title="Application Information (Logs)" apigee:url="http://nodester.com/api.html#app">
+                    <![CDATA[Returns nodejs app logs (requires basic auth and appname)]]>
+                </doc>
+
+                <request>
+                    <param name="appname" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://nodester.com/api.html#app">
+                            <![CDATA[Application name]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <!-- Env -->
+
+        <resource path="env">
+            <method id="put_env" name="PUT" apigee:displayName="Create/Update Environment">
+                <apigee:tags>
+                    <apigee:tag primary="true">Env</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="env"/>
+
+                <doc title="Create/Update Environment" apigee:url="http://nodester.com/api.html#env">
+                    <![CDATA[Creates/updates environment key/value pair (requires basic auth, appname, and environment key and value)]]>
+                </doc>
+
+                <request>
+                    <param name="appname" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://nodester.com/api.html#env">
+                            <![CDATA[Application name]]>
+                        </doc>
+                    </param>
+
+                    <param name="key" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://nodester.com/api.html#env">
+                            <![CDATA[Environment key]]>
+                        </doc>
+                    </param>
+
+                    <param name="value" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://nodester.com/api.html#env">
+                            <![CDATA[Environment value]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+
+            <method id="delete_env" name="DELETE" apigee:displayName="Delete Environment">
+                <apigee:tags>
+                    <apigee:tag primary="true">Env</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="env"/>
+
+                <doc title="Delete Environment" apigee:url="http://nodester.com/api.html#env">
+                    <![CDATA[Deletes environment key/value pair (requires basic auth, appname, and environment key)]]>
+                </doc>
+
+                <request>
+                    <param name="appname" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://nodester.com/api.html#env">
+                            <![CDATA[Application name]]>
+                        </doc>
+                    </param>
+
+                    <param name="key" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://nodester.com/api.html#env">
+                            <![CDATA[Environment key]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+            
+            <method id="get_env" name="GET" apigee:displayName="Environment Information">
+                <apigee:tags>
+                    <apigee:tag primary="true">Env</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="env"/>
+
+                <doc title="Environment Information" apigee:url="http://nodester.com/api.html#env">
+                    <![CDATA[Returns environment info (requires basic auth, appname, and environment key)]]>
+                </doc>
+
+                <request>
+                    <param name="appname" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://nodester.com/api.html#env">
+                            <![CDATA[Application name]]>
+                        </doc>
+                    </param>
+
+                    <param name="key" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://nodester.com/api.html#env">
+                            <![CDATA[Environment key]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <!-- Apps -->
+
+        <resource path="app">
+            <method id="apps" name="GET" apigee:displayName="All Applications Information">
+                <apigee:tags>
+                    <apigee:tag primary="true">Apps</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="apps"/>
+
+                <doc title="All Applications Information" apigee:url="http://nodester.com/api.html">
+                    <![CDATA[Returns all nodejs app info (requires basic auth)]]>
+                </doc>
+            </method>
+        </resource>
+
+        <!-- NPM -->
+
+        <resource path="npm">
+            <method id="npm_install" name="POST" apigee:displayName="Install NPM Package">
+                <apigee:tags>
+                    <apigee:tag primary="true">NPM</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="npm"/>
+
+                <doc title="Install NPM Package" apigee:url="http://nodester.com/api.html#appnpm">
+                    <![CDATA[Installs an NPM package for an application]]>
+                </doc>
+
+                <request>
+                    <param name="action" type="xsd:string" style="query" required="true" default="install" fixed="install"/>
+
+                    <param name="appname" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://nodester.com/api.html#appnpm">
+                            <![CDATA[Application name]]>
+                        </doc>
+                    </param>
+
+                    <param name="package" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://nodester.com/api.html#appnpm">
+                            <![CDATA[Package name]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+
+            <method id="npm_update" name="POST" apigee:displayName="Upgrade NPM Package">
+                <apigee:tags>
+                    <apigee:tag primary="true">NPM</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="npm"/>
+
+                <doc title="Upgrade NPM Package" apigee:url="http://nodester.com/api.html#appnpm">
+                    <![CDATA[Upgrades an NPM package for an application]]>
+                </doc>
+
+                <request>
+                    <param name="action" type="xsd:string" style="query" required="true" default="update" fixed="update"/>
+
+                    <param name="appname" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://nodester.com/api.html#appnpm">
+                            <![CDATA[Application name]]>
+                        </doc>
+                    </param>
+
+                    <param name="package" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://nodester.com/api.html#appnpm">
+                            <![CDATA[Package name]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+
+            <method id="npm_uninstall" name="POST" apigee:displayName="Uninstall NPM Package">
+                <apigee:tags>
+                    <apigee:tag primary="true">NPM</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="npm"/>
+
+                <doc title="Uninstall NPM Package" apigee:url="http://nodester.com/api.html#appnpm">
+                    <![CDATA[Uninstalls an NPM package for an application]]>
+                </doc>
+
+                <request>
+                    <param name="action" type="xsd:string" style="query" required="true" default="uninstall" fixed="uninstall"/>
+
+                    <param name="appname" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://nodester.com/api.html#appnpm">
+                            <![CDATA[Application name]]>
+                        </doc>
+                    </param>
+
+                    <param name="package" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://nodester.com/api.html#appnpm">
+                            <![CDATA[Package name]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <!-- App Domains -->
+
+        <resource path="appdomains">
+            <method id="post_appdomains" name="POST" apigee:displayName="Create Application Domain">
+                <apigee:tags>
+                    <apigee:tag primary="true">App Domains</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="appdomains"/>
+
+                <doc title="Create Application Domain" apigee:url="http://nodester.com/api.html#appdomains">
+                    <![CDATA[Creates an application domain (requires basic auth)]]>
+                </doc>
+
+                <request>
+                    <param name="appname" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://nodester.com/api.html#appdomains">
+                            <![CDATA[Application name]]>
+                        </doc>
+                    </param>
+
+                    <param name="domain" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://nodester.com/api.html#appdomains">
+                            <![CDATA[Application domain (eg. example.com)]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+
+            <method id="delete_appdomains" name="DELETE" apigee:displayName="Delete Application Domain">
+                <apigee:tags>
+                    <apigee:tag primary="true">App Domains</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="appdomains"/>
+
+                <doc title="Delete Application Domain" apigee:url="http://nodester.com/api.html#appdomains">
+                    <![CDATA[Deletes an application domain (requires basic auth)]]>
+                </doc>
+
+                <request>
+                    <param name="appname" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://nodester.com/api.html#appdomains">
+                            <![CDATA[Application name]]>
+                        </doc>
+                    </param>
+
+                    <param name="domain" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://nodester.com/api.html#appdomains">
+                            <![CDATA[Application domain]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+
+            <method id="get_appdomains" name="GET" apigee:displayName="Application Domain Information">
+                <apigee:tags>
+                    <apigee:tag primary="true">App Domains</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="appdomains"/>
+
+                <doc title="Application Domain Information" apigee:url="http://nodester.com/api.html#appdomains">
+                    <![CDATA[Returns a list of all your application domains (requires basic auth)]]>
+                </doc>
+            </method>
+        </resource>
+
+        <!-- Reset Password -->
+
+        <resource path="reset_password">
+            <method id="post_reset_password" name="POST" apigee:displayName="Reset Password (POST)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Reset Password</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="false"/>
+
+                <apigee:example url="reset_password"/>
+
+                <doc title="Reset Password (POST)" apigee:url="http://nodester.com/api.html#reset_password">
+                    <![CDATA[Sends a e-mail with a token to reset your user password]]>
+                </doc>
+
+                <request>
+                    <param name="user" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://nodester.com/api.html#reset_password">
+                            <![CDATA[Username of the account to reset the password for]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="reset_password/{token}">
+            <param name="token" type="xsd:string" style="template" required="true">
+                <doc apigee:url="http://nodester.com/api.html#reset_password">
+                    <![CDATA[Password reset token]]>
+                </doc>
+            </param>
+
+            <method id="put_reset_password" name="PUT" apigee:displayName="Reset Password (PUT)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Reset Password</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="false"/>
+
+                <apigee:example url="reset_password/{token}"/>
+
+                <doc title="Reset Password (PUT)" apigee:url="http://nodester.com/api.html#reset_password">
+                    <![CDATA[Updates your password using the provided token]]>
+                </doc>
+
+                <request>
+                    <param name="password" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://nodester.com/api.html#reset_password">
+                            <![CDATA[The new password for the account]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+    </resources>
+</application>

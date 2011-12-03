@@ -1,0 +1,6 @@
+Known Issues:
+Authentication does not work every time, if this happens exit out of console and try again. Works for me on 2nd try.
+
+Limitations:
+None
+

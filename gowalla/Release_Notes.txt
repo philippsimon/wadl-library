@@ -1,0 +1,6 @@
+Known Issues:
+Friend Activity under Users requires a token. Every other API request works with Basic HTTP or Custom Auth.
+
+Limitations:
+OAuth is not standard and therefore the Console does not support it at the moment.
+

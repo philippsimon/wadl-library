@@ -1,0 +1,1129 @@
+<application xmlns="http://wadl.dev.java.net/2009/02"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+             xmlns:box="urn:boxnet"
+             xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
+
+    <grammars>
+        <include href="BoxNet.xsd"/>
+    </grammars>
+
+    <resources base="https://www.box.net/api/1.0/">
+        <!-- Authentication -->
+
+        <resource path="rest?action=get_ticket">
+            <method id="get_ticket" name="GET" apigee:displayName="get_ticket">
+                <apigee:tags>
+                    <apigee:tag primary="true">Authentication</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="rest?action=get_ticket"/>
+
+                <doc title="get_ticket" apigee:url="http://developers.box.net/ApiFunction_get_ticket">
+                    <![CDATA[This method is used in the authentication process. The ticket obtained from this method is used to generate an authentication page for the user to login.]]>
+                </doc>
+            </method>
+        </resource>
+
+        <resource path="rest?action=get_auth_token">
+            <method id="get_auth_token" name="GET" apigee:displayName="get_auth_token">
+                <apigee:tags>
+                    <apigee:tag primary="true">Authentication</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="rest?action=get_auth_token"/>
+
+                <doc title="get_auth_token" apigee:url="http://developers.box.net/ApiFunction_get_auth_token">
+                    <![CDATA[This method is used in the authorization process. You should call this method after the user has authorized oneself on the Box.net partner authentication page. Pass the ticket that you get when calling the get_ticket method.]]>
+                </doc>
+
+                <request>
+                    <param name="ticket" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_get_auth_token#Inputparameters">
+                            <![CDATA[The ticket obtained from the get_ticket API method (part of the initial steps in the authentication process).]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="rest?action=logout">
+            <method id="logout" name="GET" apigee:displayName="logout">
+                <apigee:tags>
+                    <apigee:tag primary="true">Authentication</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="rest?action=logout"/>
+
+                <doc title="logout" apigee:url="http://developers.box.net/ApiFunction_logout">
+                    <![CDATA[This method is used to logout a user.]]>
+                </doc>
+            </method>
+        </resource>
+
+        <resource path="rest?action=register_new_user">
+            <method id="register_new_user" name="GET" apigee:displayName="register_new_user">
+                <apigee:tags>
+                    <apigee:tag primary="true">Authentication</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="rest?action=register_new_user"/>
+
+                <doc title="register_new_user" apigee:url="http://developers.box.net/ApiFunction_register_new_user">
+                    <![CDATA[This method is used to register a new user.]]>
+                </doc>
+
+                <request>
+                    <param name="login" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_register_new_user#Inputparameters">
+                            <![CDATA[The login username for the user you intend to create.]]>
+                        </doc>
+                    </param>
+
+                    <param name="password" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_register_new_user#Inputparameters">
+                            <![CDATA[The login password for the user you intend to create.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="rest?action=verify_registration_email">
+            <method id="verify_registration_email" name="GET" apigee:displayName="verify_registration_email">
+                <apigee:tags>
+                    <apigee:tag primary="true">Authentication</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="rest?action=verify_registration_email"/>
+
+                <doc title="verify_registration_email"
+                     apigee:url="http://developers.box.net/ApiFunction_verify_registration_email">
+                    <![CDATA[This method is used to verify whether a user email is available, or already in use.]]>
+                </doc>
+
+                <request>
+                    <param name="login" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_verify_registration_email#Inputparameters">
+                            <![CDATA[The login username of the user for which you would like to verify registration.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="rest?action=get_account_info">
+            <method id="get_account_info" name="GET" apigee:displayName="get_account_info">
+                <apigee:tags>
+                    <apigee:tag primary="true">Authentication</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="rest?action=get_account_info"/>
+
+                <doc title="get_account_info" apigee:url="http://developers.box.net/ApiFunction_get_account_info">
+                    <![CDATA[This method is used to get the user's account information. Authentication token (auth_token) is required.]]>
+                </doc>
+            </method>
+        </resource>
+
+        <!-- File & Folder Operations -->
+
+        <resource path="rest?action=get_account_tree">
+            <method id="get_account_tree" name="GET" apigee:displayName="get_account_tree">
+                <apigee:tags>
+                    <apigee:tag primary="true">File &amp; Folder Operations</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="rest?action=get_account_tree"/>
+
+                <doc title="get_account_tree" apigee:url="http://developers.box.net/ApiFunction_get_account_tree">
+                    <![CDATA[This method is used to get a tree representing all of the user's files and folders. Authentication token (auth_token) is required.]]>
+                </doc>
+
+                <request>
+                    <param name="folder_id" type="xsd:long" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_get_account_tree#Inputparameters">
+                            <![CDATA[The ID of the root folder from which the tree begins.  If this value is "0", the user's full account tree is returned.]]>
+                        </doc>
+                    </param>
+
+                    <!-- FIXME: this should be an array (params[]), not a regular query parameter -->
+                    <!-- FIXME: restrict values to specified params -->
+                    <param name="params" type="xsd:string" style="query" required="false" repeating="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_get_account_tree#Inputparameters">
+                            <![CDATA[Additional, optional parameters.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="rest?action=create_folder">
+            <method id="create_folder" name="GET" apigee:displayName="create_folder">
+                <apigee:tags>
+                    <apigee:tag primary="true">File &amp; Folder Operations</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="rest?action=create_folder"/>
+
+                <doc title="create_folder" apigee:url="http://developers.box.net/ApiFunction_create_folder">
+                    <![CDATA[This method creates a new folder in a user's account. Authentication token (auth_token) is required.]]>
+                </doc>
+
+                <request>
+                    <param name="parent_id" type="xsd:long" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_create_folder#Inputparameters">
+                            <![CDATA[The folder_id in which the new folder will be created.]]>
+                        </doc>
+                    </param>
+
+                    <param name="name" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_create_folder#Inputparameters">
+                            <![CDATA[The name of the folder when it will be created.]]>
+                        </doc>
+                    </param>
+
+                    <!-- FIXME: impose restriction on share value to be "1" or nothing (?) -->
+                    <param name="share" type="xsd:long" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_create_folder#Inputparameters">
+                            <![CDATA[A binary parameter which can be set to 1 in order to allow the folder to be shared.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="rest?action=move">
+            <method id="move" name="GET" apigee:displayName="move">
+                <apigee:tags>
+                    <apigee:tag primary="true">File &amp; Folder Operations</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="rest?action=move"/>
+
+                <doc title="move" apigee:url="http://developers.box.net/ApiFunction_move">
+                    <![CDATA[This method moves a file or folder into another folder. Authentication token (auth_token) is required.]]>
+                </doc>
+
+                <request>
+                    <!-- FIXME: impose restriction on target value to be either "file" or "folder" -->
+                    <param name="target" type="xsd:string" style="query" required="true" default="file">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_move#Inputparameters">
+                            <![CDATA[The type of item to be moved.  Can be 'file' or 'folder'.]]>
+                        </doc>
+                    </param>
+
+                    <param name="target_id" type="xsd:long" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_move#Inputparameters">
+                            <![CDATA[The id of the item you wish to move. If the target is a folder, this will be the folder_id. If the target is a file, this will be the file_id.]]>
+                        </doc>
+                    </param>
+
+                    <param name="destination_id" type="xsd:long" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_move#Inputparameters">
+                            <![CDATA[The folder_id of the folder to which you will move the item.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="rest?action=copy">
+            <method id="copy" name="GET" apigee:displayName="copy">
+                <apigee:tags>
+                    <apigee:tag primary="true">File &amp; Folder Operations</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="rest?action=copy"/>
+
+                <doc title="copy" apigee:url="http://developers.box.net/ApiFunction_copy">
+                    <![CDATA[This method copies a file into another folder. Authentication token (auth_token) is required.]]>
+                </doc>
+
+                <request>
+                    <!-- FIXME: impose restriction on target value to be "file" only -->
+                    <param name="target" type="xsd:string" style="query" required="true" default="file">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_copy#Inputparameters">
+                            <![CDATA[The type of item to be copied. Currently this can only be set to 'file']]>
+                        </doc>
+                    </param>
+
+                    <param name="target_id" type="xsd:long" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_copy#Inputparameters">
+                            <![CDATA[The id of the file you wish to copy.]]>
+                        </doc>
+                    </param>
+
+                    <param name="destination_id" type="xsd:long" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_copy#Inputparameters">
+                            <![CDATA[The folder_id of the folder to which you will copy the item.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="rest?action=rename">
+            <method id="rename" name="GET" apigee:displayName="rename">
+                <apigee:tags>
+                    <apigee:tag primary="true">File &amp; Folder Operations</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="rest?action=rename"/>
+
+                <doc title="rename" apigee:url="http://developers.box.net/ApiFunction_rename">
+                    <![CDATA[This method renames a file or folder. Authentication token (auth_token) is required.]]>
+                </doc>
+
+                <request>
+                    <!-- FIXME: impose restriction on target value to be either "file" or "folder" -->
+                    <param name="target" type="xsd:string" style="query" required="true" default="file">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_rename#Inputparameters">
+                            <![CDATA[The type of item to be renamed. This can be set as 'file' or 'folder'.]]>
+                        </doc>
+                    </param>
+
+                    <param name="target_id" type="xsd:long" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_rename#Inputparameters">
+                            <![CDATA[The id of the item you wish to rename. If the target is a folder, this will be the folder_id. If the target is a file, this will be the file_id.]]>
+                        </doc>
+                    </param>
+
+                    <param name="new_name" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_rename#Inputparameters">
+                            <![CDATA[The new name to be applied to the item.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="rest?action=delete">
+            <method id="delete" name="GET" apigee:displayName="delete">
+                <apigee:tags>
+                    <apigee:tag primary="true">File &amp; Folder Operations</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="rest?action=delete"/>
+
+                <doc title="delete" apigee:url="http://developers.box.net/ApiFunction_delete">
+                    <![CDATA[This method deletes a file or folder. Authentication token (auth_token) is required.]]>
+                </doc>
+
+                <request>
+                    <!-- FIXME: impose restriction on target value to be either "file" or "folder" -->
+                    <param name="target" type="xsd:string" style="query" required="true" default="file">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_delete#Inputparameters">
+                            <![CDATA[The type of item to be deleted. This can be set as 'file' or 'folder'.]]>
+                        </doc>
+                    </param>
+
+                    <param name="target_id" type="xsd:long" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_delete#Inputparameters">
+                            <![CDATA[The id of the item you wish to delete. If the target is a folder, this will be the folder_id. If the target is a file, this will be the file_id.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="rest?action=get_file_info">
+            <method id="get_file_info" name="GET" apigee:displayName="get_file_info">
+                <apigee:tags>
+                    <apigee:tag primary="true">File &amp; Folder Operations</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="rest?action=get_file_info"/>
+
+                <doc title="get_file_info" apigee:url="http://developers.box.net/ApiFunction_get_file_info">
+                    <![CDATA[This method retrieves the details for a specified file. Authentication token (auth_token) is required.]]>
+                </doc>
+
+                <request>
+                    <param name="file_id" type="xsd:long" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_get_file_info#Inputparameters">
+                            <![CDATA[The id of the file for with you want to obtain more information.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="rest?action=set_description">
+            <method id="set_description" name="GET" apigee:displayName="set_description">
+                <apigee:tags>
+                    <apigee:tag primary="true">File &amp; Folder Operations</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="rest?action=set_description"/>
+
+                <doc title="set_description" apigee:url="http://developers.box.net/ApiFunction_set_description">
+                    <![CDATA[This method sets the description for a file or folder.]]>
+                </doc>
+
+                <request>
+                    <!-- FIXME: impose restriction on target value to be either "file" or "folder" -->
+                    <param name="target" type="xsd:string" style="query" required="true" default="file">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_set_description#Inputparameters">
+                            <![CDATA[The type of item being targeted. This can be set as 'file' or 'folder'.]]>
+                        </doc>
+                    </param>
+
+                    <param name="target_id" type="xsd:long" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_set_description#Inputparameters">
+                            <![CDATA[The id of the item you wish to set a description for. If the target is a folder, this will be the folder_id. If the target is a file, this will be the file_id.]]>
+                        </doc>
+                    </param>
+
+                    <param name="description" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_set_description#Inputparameters">
+                            <![CDATA[The description to be applied to the item.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <!-- Sharing -->
+
+        <resource path="rest?action=public_share">
+            <method id="public_share" name="GET" apigee:displayName="public_share">
+                <apigee:tags>
+                    <apigee:tag primary="true">Sharing</apigee:tag>
+                    <apigee:tag>File &amp; Folder Operations</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="rest?action=public_share"/>
+
+                <doc title="public_share" apigee:url="http://developers.box.net/ApiFunction_public_share">
+                    <![CDATA[This method makes a file or folder shareable, and may initiate sharing through Box.net email notifications. Authentication token (auth_token) is required.]]>
+                </doc>
+
+                <request>
+                    <!-- FIXME: impose restriction on target value to be either "file" or "folder" -->
+                    <param name="target" type="xsd:string" style="query" required="true" default="file">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_public_share#Inputparameters">
+                            <![CDATA[The type of item to be shared. This can be set as 'file' or 'folder'.]]>
+                        </doc>
+                    </param>
+
+                    <param name="target_id" type="xsd:long" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_public_share#Inputparameters">
+                            <![CDATA[The id of the item you wish to share. If the target is a folder, this will be the folder_id. If the target is a file, this will be the file_id.]]>
+                        </doc>
+                    </param>
+
+                    <param name="password" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_public_share#Inputparameters">
+                            <![CDATA[The password to protect the folder or file.]]>
+                        </doc>
+                    </param>
+
+                    <param name="message" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_public_share#Inputparameters">
+                            <![CDATA[An message to be included in a notification email.]]>
+                        </doc>
+                    </param>
+
+                    <!-- FIXME: this should be an array (emails[]), not a regular query parameter -->
+                    <param name="emails" type="xsd:string" style="query" required="true" repeating="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_public_share#Inputparameters">
+                            <![CDATA[An array of emails for which to notify users about the newly shared file or folder.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="rest?action=public_unshare">
+            <method id="public_unshare" name="GET" apigee:displayName="public_unshare">
+                <apigee:tags>
+                    <apigee:tag primary="true">Sharing</apigee:tag>
+                    <apigee:tag>File &amp; Folder Operations</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="rest?action=public_unshare"/>
+
+                <doc title="public_unshare" apigee:url="http://developers.box.net/ApiFunction_public_unshare">
+                    <![CDATA[This method unshares a file or folder. Authentication token (auth_token) is required.]]>
+                </doc>
+
+                <request>
+                    <!-- FIXME: impose restriction on target value to be either "file" or "folder" -->
+                    <param name="target" type="xsd:string" style="query" required="true" default="file">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_public_unshare#Inputparameters">
+                            <![CDATA[The type of item to be unshared. This can be set as 'file' or 'folder'.]]>
+                        </doc>
+                    </param>
+
+                    <param name="target_id" type="xsd:long" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_public_unshare#Inputparameters">
+                            <![CDATA[The id of the item you wish to unshare. If the target is a folder, this will be the folder_id. If the target is a file, this will be the file_id.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="rest?action=private_share">
+            <method id="private_share" name="GET" apigee:displayName="private_share">
+                <apigee:tags>
+                    <apigee:tag primary="true">Sharing</apigee:tag>
+                    <apigee:tag>File &amp; Folder Operations</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="rest?action=private_share"/>
+
+                <doc title="private_share" apigee:url="http://developers.box.net/ApiFunction_private_share">
+                    <![CDATA[This method privately shares a file or folder with another user(s). Authentication token (auth_token) is required.]]>
+                </doc>
+
+                <request>
+                    <!-- FIXME: impose restriction on target value to be either "file" or "folder" -->
+                    <param name="target" type="xsd:string" style="query" required="true" default="file">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_private_share#Inputparameters">
+                            <![CDATA[The type of item to be shared. This can be set as 'file' or 'folder'.]]>
+                        </doc>
+                    </param>
+
+                    <param name="target_id" type="xsd:long" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_private_share#Inputparameters">
+                            <![CDATA[The id of the item you wish to share. If the target is a folder, this will be the folder_id. If the target is a file, this will be the file_id.]]>
+                        </doc>
+                    </param>
+
+                    <param name="message" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_private_share#Inputparameters">
+                            <![CDATA[An message to be included in a notification email.]]>
+                        </doc>
+                    </param>
+
+                    <!-- FIXME: this should be an array (emails[]), not a regular query parameter -->
+                    <param name="emails" type="xsd:string" style="query" required="true" repeating="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_private_share#Inputparameters">
+                            <![CDATA[An array of emails for which to notify users about the newly shared file or folder.]]>
+                        </doc>
+                    </param>
+
+                    <param name="notify" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_private_share#Inputparameters">
+                            <![CDATA[If this parameter is set to "1", then a notification email will be sent to users.  If set to "0", notifications will not be sent.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="rest?action=request_friends">
+            <method id="request_friends" name="GET" apigee:displayName="request_friends">
+                <apigee:tags>
+                    <apigee:tag primary="true">Sharing</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="rest?action=request_friends"/>
+
+                <doc title="request_friends" apigee:url="http://developers.box.net/ApiFunction_request_friends">
+                    <![CDATA[This method requests new friends to be added to the user's network. Authentication token (auth_token) is required.]]>
+                </doc>
+
+                <request>
+                    <param name="message" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_request_friends#Inputparameters">
+                            <![CDATA[An message to be included in a notification email.]]>
+                        </doc>
+                    </param>
+
+                    <!-- FIXME: this should be an array (emails[]), not a regular query parameter -->
+                    <param name="emails" type="xsd:string" style="query" required="true" repeating="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_request_friends#Inputparameters">
+                            <![CDATA[An array of emails for which to notify users about the friend request.]]>
+                        </doc>
+                    </param>
+
+                    <!-- FIXME: this should be an array (params[]), not a regular query parameter -->
+                    <!-- FIXME: restrict values to specified params -->
+                    <param name="params" type="xsd:string" style="query" required="false" repeating="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_request_friends#Inputparameters">
+                            <![CDATA[Allows you to set additional, optional parameters.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="rest?action=get_friends">
+            <method id="get_friends" name="GET" apigee:displayName="get_friends">
+                <apigee:tags>
+                    <apigee:tag primary="true">Sharing</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="rest?action=get_friends"/>
+
+                <doc title="get_friends" apigee:url="http://developers.box.net/ApiFunction_get_friends">
+                    <![CDATA[This method is used to retrieve a list of the user's friends. Authentication token (auth_token) is required.]]>
+                </doc>
+
+                <request>
+                    <!-- FIXME: this should be an array (params[]), not a regular query parameter -->
+                    <!-- FIXME: restrict values to specified params -->
+                    <param name="params" type="xsd:string" style="query" required="false" repeating="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_get_friends#Inputparameters">
+                            <![CDATA[Allows you to set additional, optional parameters.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="rest?action=add_to_mybox">
+            <method id="add_to_mybox" name="GET" apigee:displayName="add_to_mybox">
+                <apigee:tags>
+                    <apigee:tag primary="true">Sharing</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="rest?action=add_to_mybox"/>
+
+                <doc title="add_to_mybox" apigee:url="http://developers.box.net/ApiFunction_add_to_mybox">
+                    <![CDATA[This method copies a file that publicly shared by another individual and into a user's a designated folder in the user's Box. Authentication token (auth_token) is required.]]>
+                </doc>
+
+                <request>
+                    <param name="file_id" type="xsd:long" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_add_to_mybox#Inputparameters">
+                            <![CDATA[The id of the file you wish to copy.]]>
+                        </doc>
+                    </param>
+
+                    <param name="public_name" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_add_to_mybox#Inputparameters">
+                            <![CDATA[The unique public name of the shared file that you wish to copy.]]>
+                        </doc>
+                    </param>
+
+                    <param name="folder_id" type="xsd:long" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_add_to_mybox#Inputparameters">
+                            <![CDATA[The folder_id of the folder to which you will copy the item.]]>
+                        </doc>
+                    </param>
+
+                    <!-- FIXME: this should be an array (tags[]), not a regular query parameter -->
+                    <param name="tags" type="xsd:string" style="query" required="false" repeating="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_add_to_mybox#Inputparameters">
+                            <![CDATA[A list of tags to apply to the file when copied into the user's own folder.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="rest?action=toggle_folder_email">
+            <method id="toggle_folder_email" name="GET" apigee:displayName="toggle_folder_email">
+                <apigee:tags>
+                    <apigee:tag primary="true">Sharing</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="rest?action=toggle_folder_email"/>
+
+                <doc title="toggle_folder_email" apigee:url="http://developers.box.net/ApiFunction_toggle_folder_email">
+                    <![CDATA[This method enables or disables the upload email address for a folder. Authentication token (auth_token) is required.]]>
+                </doc>
+
+                <request>
+                    <param name="folder_id" type="xsd:long" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_toggle_folder_email#Inputparameters">
+                            <![CDATA[The id of the folder for which to enable or disable the upload email.]]>
+                        </doc>
+                    </param>
+
+                    <param name="enable" type="xsd:boolean" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_toggle_folder_email#Inputparameters">
+                            <![CDATA[Whether or not to enable the upload email for the folder.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <!-- Tagging -->
+
+        <resource path="rest?action=add_to_tag">
+            <method id="add_to_tag" name="GET" apigee:displayName="add_to_tag">
+                <apigee:tags>
+                    <apigee:tag primary="true">Tagging</apigee:tag>
+                    <apigee:tag>File &amp; Folder Operations</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="rest?action=add_to_tag"/>
+
+                <doc title="add_to_tag" apigee:url="http://developers.box.net/ApiFunction_add_to_tag">
+                    <![CDATA[This method applies a tag or tags to a designated file or folder. Authentication token (auth_token) is required.]]>
+                </doc>
+
+                <request>
+                    <!-- FIXME: impose restriction on target value to be either "file" or "folder" -->
+                    <param name="target" type="xsd:string" style="query" required="true" default="file">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_add_to_tag#Inputparameters">
+                            <![CDATA[The type of item to be tagged. This can be set as 'file' or 'folder'.]]>
+                        </doc>
+                    </param>
+
+                    <param name="target_id" type="xsd:long" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_add_to_tag#Inputparameters">
+                            <![CDATA[The id of the item you wish to tag. If the target is a folder, this will be the folder_id. If the target is a file, this will be the file_id.]]>
+                        </doc>
+                    </param>
+
+                    <!-- FIXME: this should be an array (tags[]), not a regular query parameter -->
+                    <param name="tags" type="xsd:string" style="query" required="true" repeating="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_add_to_tag#Inputparameters">
+                            <![CDATA[A list of tags that will be applied to the target (file or folder), and which will replace all existing tags on that item.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="rest?action=export_tags">
+            <method id="export_tags" name="GET" apigee:displayName="export_tags">
+                <apigee:tags>
+                    <apigee:tag primary="true">Tagging</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="rest?action=export_tags"/>
+
+                <doc title="export_tags" apigee:url="http://developers.box.net/ApiFunction_export_tags">
+                    <![CDATA[This method returns all the tags in a user's account. Note that, if you want to find the tags associated with a particular file or folder, get_account_tree can be used. Authentication token (auth_token) is required.]]>
+                </doc>
+            </method>
+        </resource>
+
+        <!-- Commenting -->
+
+        <resource path="rest?action=get_comments">
+            <method id="get_comments" name="GET" apigee:displayName="get_comments">
+                <apigee:tags>
+                    <apigee:tag primary="true">Commenting</apigee:tag>
+                    <apigee:tag>File &amp; Folder Operations</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="rest?action=get_comments"/>
+
+                <doc title="get_comments" apigee:url="http://developers.box.net/ApiFunction_get_comments">
+                    <![CDATA[This method is used to retrieve the comments on an item. Authentication token (auth_token) is required.]]>
+                </doc>
+
+                <request>
+                    <!-- FIXME: impose restriction on target value to "file" or "folder" -->
+                    <param name="target" type="xsd:string" style="query" required="true" default="file">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_get_comments#Inputparameters">
+                            <![CDATA[The type of item to be selected. This can be set as 'file' or 'folder'.]]>
+                        </doc>
+                    </param>
+
+                    <param name="target_id" type="xsd:long" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_get_comments#Inputparameters">
+                            <![CDATA[The id of the item for which you would like to obtain the comments.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="rest?action=add_comment">
+            <method id="add_comment" name="GET" apigee:displayName="add_comment">
+                <apigee:tags>
+                    <apigee:tag primary="true">Commenting</apigee:tag>
+                    <apigee:tag>File &amp; Folder Operations</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="rest?action=add_comment"/>
+
+                <doc title="add_comment" apigee:url="http://developers.box.net/ApiFunction_add_comment">
+                    <![CDATA[This method is used to add a comment to an item. Authentication token (auth_token) is required.]]>
+                </doc>
+
+                <request>
+                    <!-- FIXME: impose restriction on target value to "file", "folder", or "comment" -->
+                    <param name="target" type="xsd:string" style="query" required="true" default="file">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_add_comment#Inputparameters">
+                            <![CDATA[The type of item to be selected. Values can be 'file', 'folder', or 'comment'.]]>
+                        </doc>
+                    </param>
+
+                    <param name="target_id" type="xsd:long" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_add_comment#Inputparameters">
+                            <![CDATA[The id of the item to which you would like to add the comment.]]>
+                        </doc>
+                    </param>
+
+                    <param name="message" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_add_comment#Inputparameters">
+                            <![CDATA[The message of the comment you wish to add.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="rest?action=delete_comment">
+            <method id="delete_comment" name="GET" apigee:displayName="delete_comment">
+                <apigee:tags>
+                    <apigee:tag primary="true">Commenting</apigee:tag>
+                    <apigee:tag>File &amp; Folder Operations</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="rest?action=delete_comment"/>
+
+                <doc title="delete_comment" apigee:url="http://developers.box.net/ApiFunction_delete_comment">
+                    <![CDATA[This method is used to delete a comment. Authentication token (auth_token) is required.]]>
+                </doc>
+
+                <request>
+                    <param name="target_id" type="xsd:long" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_delete_comment#Inputparameters">
+                            <![CDATA[The id of the comment that you would like to delete.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <!-- Version History -->
+
+        <resource path="rest?action=get_versions">
+            <method id="get_versions" name="GET" apigee:displayName="get_versions">
+                <apigee:tags>
+                    <apigee:tag primary="true">Version History</apigee:tag>
+                    <apigee:tag>File &amp; Folder Operations</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="rest?action=get_versions"/>
+
+                <doc title="get_versions" apigee:url="http://developers.box.net/ApiFunction_get_versions">
+                    <![CDATA[This method is used to retrieve the past versions of a file. Authentication token (auth_token) is required.]]>
+                </doc>
+
+                <request>
+                    <!-- FIXME: impose restriction on target value to "file" only -->
+                    <param name="target" type="xsd:string" style="query" required="true" default="file">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_get_versions#Inputparameters">
+                            <![CDATA[The type of item to be selected. Currently this method only applies to the 'file' type.]]>
+                        </doc>
+                    </param>
+
+                    <param name="target_id" type="xsd:long" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_get_versions#Inputparameters">
+                            <![CDATA[The id of the file for which you would like to retrieve the past versions.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="rest?action=make_current_version">
+            <method id="make_current_version" name="GET" apigee:displayName="make_current_version">
+                <apigee:tags>
+                    <apigee:tag primary="true">Version History</apigee:tag>
+                    <apigee:tag>File &amp; Folder Operations</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="rest?action=make_current_version"/>
+
+                <doc title="make_current_version"
+                     apigee:url="http://developers.box.net/ApiFunction_make_current_version">
+                    <![CDATA[This method is used to set a past version of a file as the current version. Authentication token (auth_token) is required.]]>
+                </doc>
+
+                <request>
+                    <param name="version_id" type="xsd:long" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_make_current_version#Inputparameters">
+                            <![CDATA[The id of the item version that you would like to set as current.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <!-- Miscellaneous -->
+
+        <resource path="rest?action=search">
+            <method id="search" name="GET" apigee:displayName="search">
+                <apigee:tags>
+                    <apigee:tag primary="true">Miscellaneous</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="rest?action=search"/>
+
+                <doc title="search" apigee:url="http://developers.box.net/ApiFunction_search">
+                    <![CDATA[This method gets a list of items that would normally be obtained through search. Authentication token (auth_token) is required.]]>
+                </doc>
+
+                <request>
+                    <param name="query" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_search#Inputparameters">
+                            <![CDATA[The text of which the user wishes to perform a search.]]>
+                        </doc>
+                    </param>
+
+                    <param name="page" type="xsd:long" style="query" required="true" default="1">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_search#Inputparameters">
+                            <![CDATA[The page number, which begins on page 1. This coincides with the per_page parameter.]]>
+                        </doc>
+                    </param>
+
+                    <param name="per_page" type="xsd:long" style="query" required="true" default="35">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_search#Inputparameters">
+                            <![CDATA[The number of search results to display per page.]]>
+                        </doc>
+                    </param>
+
+                    <!-- FIXME: impose restriction on sort value to "relevance", "name", "date", or "size" -->
+                    <param name="sort" type="xsd:string" style="query" required="true" default="relevance">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_search#Inputparameters">
+                            <![CDATA[The method in which the results may be sorted. Values can be 'relevance', 'name', 'date', or 'size'.]]>
+                        </doc>
+                    </param>
+
+                    <!-- FIXME: impose restriction on direction value to "asc" or "desc" -->
+                    <param name="direction" type="xsd:string" style="query" required="true" default="asc">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_search#Inputparameters">
+                            <![CDATA[Can specify whether to sort content in ascending or descending order. Values can be 'asc' or 'desc'.]]>
+                        </doc>
+                    </param>
+
+                    <!-- FIXME: this should be an array (params[]), not a regular query parameter -->
+                    <!-- FIXME: restrict values to specified params -->
+                    <param name="params" type="xsd:string" style="query" required="false" repeating="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_search#Inputparameters">
+                            <![CDATA[Additional, optional parameters.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="rest?action=get_updates">
+            <method id="get_updates" name="GET" apigee:displayName="get_updates">
+                <apigee:tags>
+                    <apigee:tag primary="true">Miscellaneous</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="rest?action=get_updates"/>
+
+                <doc title="get_updates" apigee:url="http://developers.box.net/ApiFunction_get_updates">
+                    <![CDATA[This method returns the content of a user's Updates tab. Authentication token (auth_token) is required.]]>
+                </doc>
+
+                <request>
+                    <param name="begin_timestamp" type="xsd:long" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_get_updates#Inputparameters">
+                            <![CDATA[A UNIX timestamp of the earliest point in time to obtain an update (the time of the oldest update you want to display).]]>
+                        </doc>
+                    </param>
+
+                    <param name="end_timestamp" type="xsd:long" style="query" required="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_get_updates#Inputparameters">
+                            <![CDATA[A UNIX timestamp of the latest point in time to obtain an update.]]>
+                        </doc>
+                    </param>
+
+                    <!-- FIXME: this should be an array (params[]), not a regular query parameter -->
+                    <!-- FIXME: restrict values to specified params -->
+                    <param name="params" type="xsd:string" style="query" required="false" repeating="true">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_get_updates#Inputparameters">
+                            <![CDATA[Additional, optional parameters.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <!-- Upload and Download -->
+
+        <resource path="download/{auth_token}/{file_id}">
+            <param name="auth_token" type="xsd:string" style="query" required="true"/>
+            <param name="file_id" type="xsd:string" style="query" required="true"/>
+
+            <method id="download" name="GET" apigee:displayName="download">
+                <apigee:tags>
+                    <apigee:tag primary="true">Upload &amp; Download</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="false"/>
+
+                <apigee:example url="download/{auth_token}/{file_id}"/>
+
+                <doc title="download" apigee:url="http://developers.box.net/ApiFunction_Upload-and-Download#download">
+                    <![CDATA[Downloads a file.]]>
+                </doc>
+            </method>
+        </resource>
+
+        <resource path="version_download/{auth_token}/{file_id}/{version_id}">
+            <param name="auth_token" type="xsd:string" style="query" required="true"/>
+            <param name="file_id" type="xsd:string" style="query" required="true"/>
+            <param name="version_id" type="xsd:string" style="query" required="true"/>
+
+            <method id="version_download" name="GET" apigee:displayName="version_download">
+                <apigee:tags>
+                    <apigee:tag primary="true">Upload &amp; Download</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="false"/>
+
+                <apigee:example url="version_download/{auth_token}/{file_id}/{version_id}"/>
+
+                <doc title="version_download"
+                     apigee:url="http://developers.box.net/ApiFunction_Upload-and-Download#download">
+                    <![CDATA[Downloads a past version of a file. The version_id can be obtained by using the get_versions API method.]]>
+                </doc>
+            </method>
+        </resource>
+
+        <resource path="upload/{auth_token}/{folder_id}">
+            <param name="auth_token" type="xsd:string" style="query" required="true"/>
+            <param name="folder_id" type="xsd:string" style="query" required="true"/>
+
+            <method id="upload" name="POST" apigee:displayName="upload">
+                <apigee:tags>
+                    <apigee:tag primary="true">Upload &amp; Download</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="false"/>
+
+                <apigee:example url="upload/{auth_token}/{folder_id}"/>
+
+                <doc title="upload"
+                     apigee:url="http://developers.box.net/ApiFunction_Upload-and-Download#uploadoverwritenewcopy">
+                    <![CDATA[Uploads a file. Note: Uploading a file to this URL will overwrite the file if a file by the same name already exists, unless the new_copy parameter is specified.]]>
+                </doc>
+
+                <request>
+                    <param name="new_copy" type="xsd:long" style="query" required="false">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_Upload-and-Download#uploadoverwritenewcopy">
+                            <![CDATA[If set to "1", the uploaded file will saved as a new copy if it is the same name as an existing file, and the existing file will not be overwritten.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="overwrite/{auth_token}/{file_id}">
+            <param name="auth_token" type="xsd:string" style="query" required="true"/>
+            <param name="file_id" type="xsd:string" style="query" required="true"/>
+
+            <method id="overwrite" name="POST" apigee:displayName="overwrite">
+                <apigee:tags>
+                    <apigee:tag primary="true">Upload &amp; Download</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="false"/>
+
+                <apigee:example url="overwrite/{auth_token}/{file_id}"/>
+
+                <doc title="overwrite"
+                     apigee:url="http://developers.box.net/ApiFunction_Upload-and-Download#uploadoverwritenewcopy">
+                    <![CDATA[Uploads a file and overwrites the existing file with it.]]>
+                </doc>
+
+                <request>
+                    <param name="file_name" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_Upload-and-Download#uploadoverwritenewcopy">
+                            <![CDATA[An optional new name for the uploaded/overwritten file.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+        <resource path="new_copy/{auth_token}/{file_id}">
+            <param name="auth_token" type="xsd:string" style="query" required="true"/>
+            <param name="file_id" type="xsd:string" style="query" required="true"/>
+
+            <method id="new_copy" name="POST" apigee:displayName="new_copy">
+                <apigee:tags>
+                    <apigee:tag primary="true">Upload &amp; Download</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="false"/>
+
+                <apigee:example url="new_copy/{auth_token}/{file_id}"/>
+
+                <doc title="new_copy"
+                     apigee:url="http://developers.box.net/ApiFunction_Upload-and-Download#uploadoverwritenewcopy">
+                    <![CDATA[Makes a new copy of the file. The filename of the copy will have "(<copy_number>)" appended to it, unless the new_file_name parameter is specified.]]>
+                </doc>
+
+                <request>
+                    <param name="new_file_name" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://developers.box.net/ApiFunction_Upload-and-Download#uploadoverwritenewcopy">
+                            <![CDATA[An optional new name for the copied file.]]>
+                        </doc>
+                    </param>
+                </request>
+            </method>
+        </resource>
+
+    </resources>
+</application>

@@ -1,0 +1,22 @@
+OAuth 2.0
+
+Consumer Key		3MVG9y6x0357HlefI1KX257Y6VYKLd0UKpIaMtsytTcvnfraqlo0moXLR2yUVcM_s5DUbRAh57Jyxy3K.I.4J
+
+Consumer Secret
+1120298370801762361
+
+Authorization Method
+POST
+
+Authorization URL
+https://login.salesforce.com/services/oauth2/authorize?response_type=code&amp;client_id=3MVG9Y6d_Btp4xp73jHbsGf28PZeAE7jlZcjsIpfa4Ekk1kFeCHoDx0_zNpnsH909B8r4JjK1xtqzQfXNbANw
+
+Access Token Location 
+Header
+
+Access Token URL
+https://login.salesforce.com/services/oauth2/token
+
+Callback URL
+https://apigee.com/oauth_callback/salesforcechatter/oauth2CodeCallback
+

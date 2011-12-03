@@ -1,0 +1,6 @@
+Known Issues:
+None
+
+Limitations:
+User must use basic http authentication instead of OAuth because it is not standard, ever API request contains auth_basic parameter set to 1 to allow basic http authentication to work fully.
+

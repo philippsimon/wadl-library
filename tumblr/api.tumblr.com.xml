@@ -1,0 +1,1211 @@
+<application xmlns="http://wadl.dev.java.net/2009/02"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+             xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
+
+    <resources base="http://api.tumblr.com/v2/">
+
+        <!-- Blog -->
+
+        <resource path="blog/{base-hostname}/info">
+            <param name="base-hostname" style="template" required="true">
+                <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#hostname">
+                    <![CDATA[The unique hostname of the blog.]]>
+                </doc>
+            </param>
+
+            <method id="blog-info" name="GET" apigee:displayName="info">
+                <apigee:tags>
+                    <apigee:tag primary="true">Blog</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="blog/{base-hostname}/info"/>
+
+                <doc title="/info" apigee:url="http://www.tumblr.com/docs/en/api/v2#blog-info">
+                    <![CDATA[This method returns general information about the blog, such as the title, number of posts, and other high-level data.]]>
+                </doc>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="blog/{base-hostname}/avatar/{size}">
+            <param name="base-hostname" style="template" required="true">
+                <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#hostname">
+                    <![CDATA[The unique hostname of the blog.]]>
+                </doc>
+            </param>
+
+            <param name="size" style="template" required="false" default="64">
+                <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#blog-avatar">
+                    <![CDATA[The size of the avatar (square, one value for both length and width). Must be one of the values: 16, 24, 30, 40, 48, 64, 96, 128, 512]]>
+                </doc>
+                <option value="16"/>
+                <option value="24"/>
+                <option value="30"/>
+                <option value="40"/>
+                <option value="48"/>
+                <option value="64"/>
+                <option value="96"/>
+                <option value="128"/>
+                <option value="512"/>
+            </param>
+
+            <method id="blog-avatar" name="GET" apigee:displayName="avatar">
+                <apigee:tags>
+                    <apigee:tag primary="true">Blog</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="false"/>
+
+                <apigee:example url="blog/{base-hostname}/avatar/{size}"/>
+
+                <doc title="/avatar" apigee:url="http://www.tumblr.com/docs/en/api/v2#blog-avatar">
+                    <![CDATA[Retrieves a blog's avatar in one of 9 different sizes.]]>
+                </doc>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="blog/{base-hostname}/followers">
+            <param name="base-hostname" style="template" required="true">
+                <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#hostname">
+                    <![CDATA[The unique hostname of the blog.]]>
+                </doc>
+            </param>
+
+            <method id="blog-followers" name="GET" apigee:displayName="followers">
+                <apigee:tags>
+                    <apigee:tag primary="true">Blog</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="blog/{base-hostname}/followers"/>
+
+                <doc title="/followers" apigee:url="http://www.tumblr.com/docs/en/api/v2#blog-followers">
+                    <![CDATA[Retrieves a blog's followers.]]>
+                </doc>
+
+                <request>
+                    <param name="limit" type="xsd:positiveInteger" style="query" required="false" default="20">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#blog-followers">
+                            <![CDATA[The number of results to return: 1–20, inclusive]]>
+                        </doc>
+                    </param>
+
+                    <param name="offset" type="xsd:positiveInteger" style="query" required="false" default="0">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#blog-followers">
+                            <![CDATA[Result to start at.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="blog/{base-hostname}/posts/{type}">
+            <param name="base-hostname" style="template" required="true">
+                <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#hostname">
+                    <![CDATA[The unique hostname of the blog.]]>
+                </doc>
+            </param>
+
+            <param name="type" style="template" required="false">
+                <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#posts">
+                    <![CDATA[The type of post to return. Specify one of the following:  text, quote, link, answer, video, audio, photo. By default, all types are returned]]>
+                </doc>
+                <option value="text"/>
+                <option value="quote"/>
+                <option value="link"/>
+                <option value="answer"/>
+                <option value="video"/>
+                <option value="audio"/>
+                <option value="photo"/>
+            </param>
+
+            <method id="posts" name="GET" apigee:displayName="posts">
+                <apigee:tags>
+                    <apigee:tag primary="true">Blog</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="blog/{base-hostname}/posts/{type}"/>
+
+                <doc title="/posts" apigee:url="http://www.tumblr.com/docs/en/api/v2#posts">
+                    <![CDATA[Retrieves published posts.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:integer" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#post-params">
+                            <![CDATA[A specific post ID. Returns the single post specified or (if not found) a 404 error.]]>
+                        </doc>
+                    </param>
+
+                    <param name="tag" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#post-params">
+                            <![CDATA[Limits the response to posts with the specified tag]]>
+                        </doc>
+                    </param>
+
+                    <param name="limit" type="xsd:positiveInteger" style="query" required="false" default="20">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#post-params">
+                            <![CDATA[The number of posts to return: 1–20, inclusive]]>
+                        </doc>
+                    </param>
+
+                    <param name="offset" type="xsd:positiveInteger" style="query" required="false" default="0">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#post-params">
+                            <![CDATA[Post number to start at.]]>
+                        </doc>
+                    </param>
+
+                    <param name="reblog_info" type="xsd:boolean" style="query" required="false" default="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#post-params">
+                            <![CDATA[Indicates whether to return reblog information (specify true or false). Returns the various reblogged_ fields.]]>
+                        </doc>
+                    </param>
+
+                    <param name="notes_info" type="xsd:boolean" style="query" required="false" default="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#post-params">
+                            <![CDATA[Indicates whether to return notes information (specify true or false). Returns note count and note metadata.]]>
+                        </doc>
+                    </param>
+
+                    <param name="format" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#post-params">
+                            <![CDATA[Specifies the post format to return, other than HTML.]]>
+                        </doc>
+                        <option value="text">
+                            <doc><![CDATA[Plain text, no HTML]]></doc>
+                        </option>
+                        <option value="raw">
+                            <doc><![CDATA[As entered by the user (no post-processing); if the user writes in Markdown, the Markdown will be returned rather than HTML]]></doc>
+                        </option>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="blog/{base-hostname}/posts/queue">
+            <param name="base-hostname" style="template" required="true">
+                <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#hostname">
+                    <![CDATA[The unique hostname of the blog.]]>
+                </doc>
+            </param>
+
+            <method id="blog-queue" name="GET" apigee:displayName="posts/queue">
+                <apigee:tags>
+                    <apigee:tag primary="true">Blog</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="blog/{base-hostname}/posts/queue"/>
+
+                <doc title="/posts/queue" apigee:url="http://www.tumblr.com/docs/en/api/v2#blog-queue">
+                    <![CDATA[Retrieves queued posts.]]>
+                </doc>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="blog/{base-hostname}/posts/draft">
+            <param name="base-hostname" style="template" required="true">
+                <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#hostname">
+                    <![CDATA[The unique hostname of the blog.]]>
+                </doc>
+            </param>
+
+            <method id="blog-drafts" name="GET" apigee:displayName="posts/draft">
+                <apigee:tags>
+                    <apigee:tag primary="true">Blog</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="blog/{base-hostname}/posts/drafts"/>
+
+                <doc title="/posts/draft" apigee:url="http://www.tumblr.com/docs/en/api/v2#blog-drafts">
+                    <![CDATA[Retrieves draft posts.]]>
+                </doc>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="blog/{base-hostname}/posts/submission">
+            <param name="base-hostname" style="template" required="true">
+                <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#hostname">
+                    <![CDATA[The unique hostname of the blog.]]>
+                </doc>
+            </param>
+
+            <method id="blog-submissions" name="GET" apigee:displayName="posts/submission">
+                <apigee:tags>
+                    <apigee:tag primary="true">Blog</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="blog/{base-hostname}/posts/submission"/>
+
+                <doc title="/posts/submission" apigee:url="http://www.tumblr.com/docs/en/api/v2#blog-submissions">
+                    <![CDATA[Retrieves submission posts.]]>
+                </doc>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="blog/{base-hostname}/post">
+            <param name="base-hostname" style="template" required="true">
+                <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#hostname">
+                    <![CDATA[The unique hostname of the blog.]]>
+                </doc>
+            </param>
+
+            <method id="post-text" name="POST" apigee:displayName="post (Text)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Blog</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="blog/{base-hostname}/post"/>
+
+                <doc title="/post" apigee:url="http://www.tumblr.com/docs/en/api/v2#posting">
+                    <![CDATA[Creates a new text blog post.]]>
+                </doc>
+
+                <request>
+                    <!-- Common parameters -->
+
+                    <param name="type" style="query" required="true" default="text" fixed="text">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[The type of post to create.]]>
+                        </doc>
+                        <option value="text"/>
+                        <option value="photo"/>
+                        <option value="quote"/>
+                        <option value="link"/>
+                        <option value="chat"/>
+                        <option value="audio"/>
+                        <option value="video"/>
+                    </param>
+
+                    <param name="tags" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[Comma-separated tags for this post.]]>
+                        </doc>
+                    </param>
+
+                    <param name="tweet" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet]]>
+                        </doc>
+                    </param>
+
+                    <param name="date" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[The GMT date and time of the post, as a string. Default is the date and time of the POST request.]]>
+                        </doc>
+                    </param>
+
+                    <param name="markdown" type="xsd:boolean" style="query" required="false" default="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[Indicates whether the post uses markdown syntax.]]>
+                        </doc>
+                    </param>
+
+                    <!-- Method specific -->
+
+                    <param name="title" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ptext-posts">
+                            <![CDATA[The optional title of the post. HTML entities must be escaped.]]>
+                        </doc>
+                    </param>
+
+                    <param name="body" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ptext-posts">
+                            <![CDATA[The full post body, HTML allowed.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+
+            <method id="post-photo" name="POST" apigee:displayName="post (Photo)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Blog</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="blog/{base-hostname}/post"/>
+
+                <doc title="/post" apigee:url="http://www.tumblr.com/docs/en/api/v2#posting">
+                    <![CDATA[Creates a new photo blog post.]]>
+                </doc>
+
+                <request>
+                    <!-- Common parameters -->
+
+                    <param name="type" style="query" required="true" default="photo" fixed="photo">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[The type of post to create.]]>
+                        </doc>
+                        <option value="text"/>
+                        <option value="photo"/>
+                        <option value="quote"/>
+                        <option value="link"/>
+                        <option value="chat"/>
+                        <option value="audio"/>
+                        <option value="video"/>
+                    </param>
+
+                    <param name="tags" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[Comma-separated tags for this post.]]>
+                        </doc>
+                    </param>
+
+                    <param name="tweet" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet]]>
+                        </doc>
+                    </param>
+
+                    <param name="date" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[The GMT date and time of the post, as a string. Default is the date and time of the POST request.]]>
+                        </doc>
+                    </param>
+
+                    <param name="markdown" type="xsd:boolean" style="query" required="false" default="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[Indicates whether the post uses markdown syntax.]]>
+                        </doc>
+                    </param>
+
+                    <!-- Method specific -->
+
+                    <param name="caption" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#pphoto-posts">
+                            <![CDATA[The user-supplied caption. HTML allowed.]]>
+                        </doc>
+                    </param>
+
+                    <param name="link" type="xsd:anyURI" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#pphoto-posts">
+                            <![CDATA[The "click-through URL" for the photo.]]>
+                        </doc>
+                    </param>
+
+                    <param name="source" type="xsd:anyURI" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#pphoto-posts">
+                            <![CDATA[The photo source URL. Either the source or data parameter is required.]]>
+                        </doc>
+                    </param>
+
+                    <param name="data" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#pphoto-posts">
+                            <![CDATA[One or more image files (as an array) (submit multiple times to create a slide show) Either the source or data parameter is required.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+
+            <method id="post-quote" name="POST" apigee:displayName="post (Quote)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Blog</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="blog/{base-hostname}/post"/>
+
+                <doc title="/post" apigee:url="http://www.tumblr.com/docs/en/api/v2#posting">
+                    <![CDATA[Creates a new quote blog post.]]>
+                </doc>
+
+                <request>
+                    <!-- Common parameters -->
+
+                    <param name="type" style="query" required="true" default="quote" fixed="quote">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[The type of post to create.]]>
+                        </doc>
+                        <option value="text"/>
+                        <option value="photo"/>
+                        <option value="quote"/>
+                        <option value="link"/>
+                        <option value="chat"/>
+                        <option value="audio"/>
+                        <option value="video"/>
+                    </param>
+
+                    <param name="tags" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[Comma-separated tags for this post.]]>
+                        </doc>
+                    </param>
+
+                    <param name="tweet" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet]]>
+                        </doc>
+                    </param>
+
+                    <param name="date" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[The GMT date and time of the post, as a string. Default is the date and time of the POST request.]]>
+                        </doc>
+                    </param>
+
+                    <param name="markdown" type="xsd:boolean" style="query" required="false" default="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[Indicates whether the post uses markdown syntax.]]>
+                        </doc>
+                    </param>
+
+                    <!-- Method specific -->
+
+                    <param name="quote" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#pquote-posts">
+                            <![CDATA[The full text of the quote. HTML entities must be escaped.]]>
+                        </doc>
+                    </param>
+
+                    <param name="source" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#pquote-posts">
+                            <![CDATA[Cited source. HTML allowed.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+
+            <method id="post-link" name="POST" apigee:displayName="post (Link)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Blog</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="blog/{base-hostname}/post"/>
+
+                <doc title="/post" apigee:url="http://www.tumblr.com/docs/en/api/v2#posting">
+                    <![CDATA[Creates a new link blog post.]]>
+                </doc>
+
+                <request>
+                    <!-- Common parameters -->
+
+                    <param name="type" style="query" required="true" default="link" fixed="link">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[The type of post to create.]]>
+                        </doc>
+                        <option value="text"/>
+                        <option value="photo"/>
+                        <option value="quote"/>
+                        <option value="link"/>
+                        <option value="chat"/>
+                        <option value="audio"/>
+                        <option value="video"/>
+                    </param>
+
+                    <param name="tags" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[Comma-separated tags for this post.]]>
+                        </doc>
+                    </param>
+
+                    <param name="tweet" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet]]>
+                        </doc>
+                    </param>
+
+                    <param name="date" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[The GMT date and time of the post, as a string. Default is the date and time of the POST request.]]>
+                        </doc>
+                    </param>
+
+                    <param name="markdown" type="xsd:boolean" style="query" required="false" default="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[Indicates whether the post uses markdown syntax.]]>
+                        </doc>
+                    </param>
+
+                    <!-- Method specific -->
+
+                    <param name="title" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#plink-posts">
+                            <![CDATA[The title of the page the link points to. HTML entities should be escaped.]]>
+                        </doc>
+                    </param>
+
+                    <param name="url" type="xsd:anyURI" style="query" required="true">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#plink-posts">
+                            <![CDATA[The link.]]>
+                        </doc>
+                    </param>
+
+                    <param name="description" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#plink-posts">
+                            <![CDATA[A user-supplied description. HTML allowed.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+
+            <method id="post-chat" name="POST" apigee:displayName="post (Chat)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Blog</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="blog/{base-hostname}/post"/>
+
+                <doc title="/post" apigee:url="http://www.tumblr.com/docs/en/api/v2#posting">
+                    <![CDATA[Creates a new chat blog post.]]>
+                </doc>
+
+                <request>
+                    <!-- Common parameters -->
+
+                    <param name="type" style="query" required="true" default="chat" fixed="chat">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[The type of post to create.]]>
+                        </doc>
+                        <option value="text"/>
+                        <option value="photo"/>
+                        <option value="quote"/>
+                        <option value="link"/>
+                        <option value="chat"/>
+                        <option value="audio"/>
+                        <option value="video"/>
+                    </param>
+
+                    <param name="tags" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[Comma-separated tags for this post.]]>
+                        </doc>
+                    </param>
+
+                    <param name="tweet" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet]]>
+                        </doc>
+                    </param>
+
+                    <param name="date" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[The GMT date and time of the post, as a string. Default is the date and time of the POST request.]]>
+                        </doc>
+                    </param>
+
+                    <param name="markdown" type="xsd:boolean" style="query" required="false" default="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[Indicates whether the post uses markdown syntax.]]>
+                        </doc>
+                    </param>
+
+                    <!-- Method specific -->
+
+                    <param name="title" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-convo">
+                            <![CDATA[The title of the chat.]]>
+                        </doc>
+                    </param>
+
+                    <param name="conversation" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-convo">
+                            <![CDATA[The text of the conversation/chat, with dialogue labels (no HTML)]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+
+            <method id="post-audio" name="POST" apigee:displayName="post (Audio)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Blog</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="blog/{base-hostname}/post"/>
+
+                <doc title="/post" apigee:url="http://www.tumblr.com/docs/en/api/v2#posting">
+                    <![CDATA[Creates a new audio blog post.]]>
+                </doc>
+
+                <request>
+                    <!-- Common parameters -->
+
+                    <param name="type" style="query" required="true" default="audio" fixed="audio">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[The type of post to create.]]>
+                        </doc>
+                        <option value="text"/>
+                        <option value="photo"/>
+                        <option value="quote"/>
+                        <option value="link"/>
+                        <option value="chat"/>
+                        <option value="audio"/>
+                        <option value="video"/>
+                    </param>
+
+                    <param name="tags" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[Comma-separated tags for this post.]]>
+                        </doc>
+                    </param>
+
+                    <param name="tweet" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet]]>
+                        </doc>
+                    </param>
+
+                    <param name="date" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[The GMT date and time of the post, as a string. Default is the date and time of the POST request.]]>
+                        </doc>
+                    </param>
+
+                    <param name="markdown" type="xsd:boolean" style="query" required="false" default="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[Indicates whether the post uses markdown syntax.]]>
+                        </doc>
+                    </param>
+
+                    <!-- Method specific -->
+
+                    <param name="caption" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#paudio-posts">
+                            <![CDATA[The user-supplied caption.]]>
+                        </doc>
+                    </param>
+
+                    <param name="external_url" type="xsd:anyURI" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#paudio-posts">
+                            <![CDATA[The URL of the site that hosts the audio file (not tumblr). Either the external_url or data parameter is required.]]>
+                        </doc>
+                    </param>
+
+                    <param name="data" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#paudio-posts">
+                            <![CDATA[The audio file, as URL-encoded binary. Either the external_url or data parameter is required.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+
+            <method id="post-video" name="POST" apigee:displayName="post (Video)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Blog</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="blog/{base-hostname}/post"/>
+
+                <doc title="/post" apigee:url="http://www.tumblr.com/docs/en/api/v2#posting">
+                    <![CDATA[Creates a new video blog post.]]>
+                </doc>
+
+                <request>
+                    <!-- Common parameters -->
+
+                    <param name="type" style="query" required="true" default="video" fixed="video">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[The type of post to create.]]>
+                        </doc>
+                        <option value="text"/>
+                        <option value="photo"/>
+                        <option value="quote"/>
+                        <option value="link"/>
+                        <option value="chat"/>
+                        <option value="audio"/>
+                        <option value="video"/>
+                    </param>
+
+                    <param name="tags" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[Comma-separated tags for this post.]]>
+                        </doc>
+                    </param>
+
+                    <param name="tweet" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet]]>
+                        </doc>
+                    </param>
+
+                    <param name="date" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[The GMT date and time of the post, as a string. Default is the date and time of the POST request.]]>
+                        </doc>
+                    </param>
+
+                    <param name="markdown" type="xsd:boolean" style="query" required="false" default="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[Indicates whether the post uses markdown syntax.]]>
+                        </doc>
+                    </param>
+
+                    <!-- Method specific -->
+
+                    <param name="caption" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#pvideo-posts">
+                            <![CDATA[The user-supplied caption.]]>
+                        </doc>
+                    </param>
+
+                    <param name="embed" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#pvideo-posts">
+                            <![CDATA[HTML embed code for the video. Either the embed or data parameter is required.]]>
+                        </doc>
+                    </param>
+
+                    <param name="data" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#pvideo-posts">
+                            <![CDATA[A video file, as URL-encoded binary. Either the embed or data parameter is required.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="blog/{base-hostname}/post/edit">
+            <param name="base-hostname" style="template" required="true">
+                <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#hostname">
+                    <![CDATA[The unique hostname of the blog.]]>
+                </doc>
+            </param>
+
+            <method id="post-edit" name="POST" apigee:displayName="post/edit">
+                <apigee:tags>
+                    <apigee:tag primary="true">Blog</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="blog/{base-hostname}/post/edit"/>
+
+                <doc title="/post/edit" apigee:url="http://www.tumblr.com/docs/en/api/v2#editing">
+                    <![CDATA[Edits a blog post.]]>
+                </doc>
+
+                <request>
+                    <!-- Common parameters -->
+
+                    <param name="type" style="query" required="true">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[The post type.]]>
+                        </doc>
+                        <option value="text"/>
+                        <option value="photo"/>
+                        <option value="quote"/>
+                        <option value="link"/>
+                        <option value="chat"/>
+                        <option value="audio"/>
+                        <option value="video"/>
+                    </param>
+
+                    <param name="tags" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[Comma-separated tags for this post.]]>
+                        </doc>
+                    </param>
+
+                    <param name="tweet" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet]]>
+                        </doc>
+                    </param>
+
+                    <param name="date" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[The GMT date and time of the post, as a string. Default is the date and time of the POST request.]]>
+                        </doc>
+                    </param>
+
+                    <param name="markdown" type="xsd:boolean" style="query" required="false" default="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[Indicates whether the post uses markdown syntax.]]>
+                        </doc>
+                    </param>
+
+                    <!-- Method specific -->
+
+                    <param name="id" type="xsd:integer" style="query" required="true">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#editing">
+                            <![CDATA[The ID of the post to edit.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="blog/{base-hostname}/post/reblog">
+            <param name="base-hostname" style="template" required="true">
+                <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#hostname">
+                    <![CDATA[The unique hostname of the blog.]]>
+                </doc>
+            </param>
+
+            <method id="post-reblog" name="POST" apigee:displayName="post/reblog">
+                <apigee:tags>
+                    <apigee:tag primary="true">Blog</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="blog/{base-hostname}/post/reblog"/>
+
+                <doc title="/post/reblog" apigee:url="http://www.tumblr.com/docs/en/api/v2#reblogging">
+                    <![CDATA[Reblogs a post.]]>
+                </doc>
+
+                <request>
+                    <!-- Common parameters -->
+
+                    <param name="type" style="query" required="true">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[The post type.]]>
+                        </doc>
+                        <option value="text"/>
+                        <option value="photo"/>
+                        <option value="quote"/>
+                        <option value="link"/>
+                        <option value="chat"/>
+                        <option value="audio"/>
+                        <option value="video"/>
+                    </param>
+
+                    <param name="tags" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[Comma-separated tags for this post.]]>
+                        </doc>
+                    </param>
+
+                    <param name="tweet" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet]]>
+                        </doc>
+                    </param>
+
+                    <param name="date" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[The GMT date and time of the post, as a string. Default is the date and time of the POST request.]]>
+                        </doc>
+                    </param>
+
+                    <param name="markdown" type="xsd:boolean" style="query" required="false" default="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#ppt-all">
+                            <![CDATA[Indicates whether the post uses markdown syntax.]]>
+                        </doc>
+                    </param>
+
+                    <!-- Method specific -->
+
+                    <param name="id" type="xsd:integer" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#reblogging">
+                            <![CDATA[The ID of the reblogged post on tumblelog. Default is the next available ID.]]>
+                        </doc>
+                    </param>
+
+                    <param name="reblog_key" type="xsd:integer" style="query" required="true">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#reblogging">
+                            <![CDATA[The reblog key for the reblogged post – get the reblog key with a /posts request]]>
+                        </doc>
+                    </param>
+
+                    <param name="comment" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#reblogging">
+                            <![CDATA[A comment added to the reblogged post.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="blog/{base-hostname}/post/delete">
+            <param name="base-hostname" style="template" required="true">
+                <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#hostname">
+                    <![CDATA[The unique hostname of the blog.]]>
+                </doc>
+            </param>
+
+            <method id="post-delete" name="POST" apigee:displayName="post/delete">
+                <apigee:tags>
+                    <apigee:tag primary="true">Blog</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="blog/{base-hostname}/post/delete"/>
+
+                <doc title="/post/delete" apigee:url="http://www.tumblr.com/docs/en/api/v2#deleting-posts">
+                    <![CDATA[Deletes a post.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:integer" style="query" required="true">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#deleting-posts">
+                            <![CDATA[The ID of the post to delete.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
+        <!-- User -->
+
+        <resource path="user/dashboard">
+            <method id="user-dashboard" name="GET" apigee:displayName="dashboard">
+                <apigee:tags>
+                    <apigee:tag primary="true">User</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="user/dashboard"/>
+
+                <doc title="/user/dashboard" apigee:url="http://www.tumblr.com/docs/en/api/v2#m-ug-dashboard">
+                    <![CDATA[Use this method to retrieve the dashboard that matches the OAuth credentials submitted with the request.]]>
+                </doc>
+
+                <request>
+                    <param name="limit" type="xsd:positiveInteger" style="query" required="false" default="20">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#m-ug-dashboard">
+                            <![CDATA[The number of results to return: 1–20, inclusive]]>
+                        </doc>
+                    </param>
+
+                    <param name="offset" type="xsd:positiveInteger" style="query" required="false" default="0">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#m-ug-dashboard">
+                            <![CDATA[Post number to start at.]]>
+                        </doc>
+                    </param>
+
+                    <param name="type" style="query" required="false">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#m-ug-dashboard">
+                            <![CDATA[The type of post to return.]]>
+                        </doc>
+                        <option value="text"/>
+                        <option value="photo"/>
+                        <option value="quote"/>
+                        <option value="link"/>
+                        <option value="chat"/>
+                        <option value="audio"/>
+                        <option value="video"/>
+                        <option value="question"/>
+                    </param>
+
+                    <param name="since_id" type="xsd:integer" style="query" required="false" default="0">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#m-ug-dashboard">
+                            <![CDATA[Return posts that have appeared after this ID. Use this parameter to page through the results: first get a set of posts, and then get posts since the last ID of the previous set.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="user/likes">
+            <method id="user-likes" name="GET" apigee:displayName="likes">
+                <apigee:tags>
+                    <apigee:tag primary="true">User</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="user/likes"/>
+
+                <doc title="/user/likes" apigee:url="http://www.tumblr.com/docs/en/api/v2#m-ug-likes">
+                    <![CDATA[Use this method to retrieve the liked posts that match the OAuth credentials submitted with the request.]]>
+                </doc>
+
+                <request>
+                    <param name="limit" type="xsd:positiveInteger" style="query" required="false" default="20">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#m-ug-likes">
+                            <![CDATA[The number of results to return: 1–20, inclusive]]>
+                        </doc>
+                    </param>
+
+                    <param name="offset" type="xsd:positiveInteger" style="query" required="false" default="0">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#m-ug-likes">
+                            <![CDATA[Liked post number to start at.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="user/following">
+            <method id="user-following" name="GET" apigee:displayName="following">
+                <apigee:tags>
+                    <apigee:tag primary="true">User</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="user/following"/>
+
+                <doc title="/user/following" apigee:url="http://www.tumblr.com/docs/en/api/v2#m-ug-following">
+                    <![CDATA[Use this method to retrieve the blogs followed by the user whose OAuth credentials are submitted with the request.]]>
+                </doc>
+
+                <request>
+                    <param name="limit" type="xsd:positiveInteger" style="query" required="false" default="20">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#m-ug-following">
+                            <![CDATA[The number of results to return: 1–20, inclusive]]>
+                        </doc>
+                    </param>
+
+                    <param name="offset" type="xsd:positiveInteger" style="query" required="false" default="0">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#m-ug-following">
+                            <![CDATA[Result number to start at.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="user/follow">
+            <method id="user-follow" name="POST" apigee:displayName="follow">
+                <apigee:tags>
+                    <apigee:tag primary="true">User</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="user/follow"/>
+
+                <doc title="/user/follow" apigee:url="http://www.tumblr.com/docs/en/api/v2#m-up-follow">
+                    <![CDATA[Follow a blog.]]>
+                </doc>
+
+                <request>
+                    <param name="url" type="xsd:anyURI" style="query" required="true">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#m-up-follow">
+                            <![CDATA[The URL of the blog to follow.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="user/unfollow">
+            <method id="user-unfollow" name="POST" apigee:displayName="unfollow">
+                <apigee:tags>
+                    <apigee:tag primary="true">User</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="user/unfollow"/>
+
+                <doc title="/user/unfollow" apigee:url="http://www.tumblr.com/docs/en/api/v2#m-up-unfollow">
+                    <![CDATA[Unfollow a blog.]]>
+                </doc>
+
+                <request>
+                    <param name="url" type="xsd:anyURI" style="query" required="true">
+                        <doc apigee:url="http://www.tumblr.com/docs/en/api/v2#m-up-unfollow">
+                            <![CDATA[The URL of the blog to unfollow.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+
+    </resources>
+</application>

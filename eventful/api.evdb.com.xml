@@ -1,0 +1,3767 @@
+<application xmlns="http://wadl.dev.java.net/2009/02"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+             xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
+
+             <resources base="http://api.evdb.com/rest/">
+
+        <!-- Events -->
+
+        <resource path="events/new">
+            <method id="events_new" name="GET" apigee:displayName="events/new">
+                <apigee:tags>
+                    <apigee:tag primary="true">Events</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="events/new"/>
+
+                <doc title="events_new" apigee:url="http://api.evdb.com/docs/events/new/">
+                    <![CDATA[Creates a new event. See http://eventful.com/events/new for an example interface.]]>
+                </doc>
+
+                <request>
+                    <param name="title" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/new/">
+                            <![CDATA[The event title.]]>
+                        </doc>
+                    </param>
+
+                    <param name="start_time" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/new/">
+                            <![CDATA[The event start time in ISO 8601 format (e.g. "2005-03-01T19:00:00") or a readable alternative (e.g. "2005-03-01 19:00:00"). See the W3C Note on Date and Time formats for examples or RFC3339 for more detail. Note that if offset information is specified here (e.g. "2005-03-01T19:00:00-04:00"), the time will be converted to UTC. The preferred method of specifying the time zone is via the tz_olson_path parameter.]]>
+                        </doc>
+                    </param>
+
+                    <param name="stop_time" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/new/">
+                            <![CDATA[The event stop time, if any, in ISO 8601 format. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="tz_olson_path" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/new/">
+                            <![CDATA[The event timezone, as listed in the Olson timezones database (e.g. "America/New_York"). Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="all_day" type="xsd:boolean" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/new/">
+                            <![CDATA[True ("1") if the event is an all-day event, false ("0") otherwise. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="description" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/new/">
+                            <![CDATA[The event description. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="privacy" type="xsd:integer" style="query" required="false" default="1">
+                        <doc apigee:url="http://api.evdb.com/docs/events/new/">
+                            <![CDATA[The privacy setting for this event. (1 = public, 2 = private, 3 = semi-private) Optional, defaults to 1.]]>
+                        </doc>
+                    </param>
+
+                    <param name="tags" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/new/">
+                            <![CDATA[A space-delimited list of tags. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="free" type="xsd:boolean" style="query" required="false" default="relevance">
+                        <doc apigee:url="http://api.evdb.com/docs/events/new/">
+                            <![CDATA[True ("1") if the event is free, false ("0") otherwise. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="price" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/new/">
+                            <![CDATA[A text string describing the event price. For example, this could indicate a price range ("$15 - $35"), free but donations requested ("$10 donation suggested"), or other special instructions ("Adults $15, children under eight $5"). Don't pass this parameter or leave it blank if there is no price information. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="venue_id" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/new/">
+                            <![CDATA[The ID of the venue where this event occurs. Use /venues/new or /venues/search retrieve an appropriate ID. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="parent_id" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/new/">
+                            <![CDATA[The ID of this event's parent event. Optional.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="events/get">
+            <method id="events_get" name="GET" apigee:displayName="events/get">
+                <apigee:tags>
+                    <apigee:tag primary="true">Events</apigee:tag>
+                </apigee:tags>
+
+                <!-- app_key only -->
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="events/get"/>
+
+                <doc title="events_get" apigee:url="http://api.evdb.com/docs/events/get/">
+                    <![CDATA[Given an event ID, returns the event data associated with that event. See http://eventful.com/events/E0-001-000278174-6 for an example interface.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/get/">
+                            <![CDATA[The ID of the requested event.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="events/modify">
+            <method id="events_modify" name="GET" apigee:displayName="events/modify">
+                <apigee:tags>
+                    <apigee:tag primary="true">Events</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="events/modify"/>
+
+                <doc title="events_modify" apigee:url="http://api.evdb.com/docs/events/modify/">
+                    <![CDATA[Modifies an existing event.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/modify/">
+                            <![CDATA[The ID of the event to modify. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="title" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/modify/">
+                            <![CDATA[The event title. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="start_time" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/modify/">
+                            <![CDATA[The event start time in ISO 8601 format (e.g. "2005-03-01T19:00:00") or a readable alternative (e.g. "2005-03-01 19:00:00"). See the W3C Note on Date and Time formats for examples or RFC3339 for more detail. Note that if offset information is specified here (e.g. "2005-03-01T19:00:00-04:00"), the time will be converted to UTC. The preferred method of specifying the time zone is via the tz_olson_path parameter. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="stop_time" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/modify/">
+                            <![CDATA[The event stop time, if any, in ISO 8601 format. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="tz_olson_path" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/modify/">
+                            <![CDATA[The event timezone, as listed in the Olson timezones database (e.g. "America/New_York"). Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="all_day" type="xsd:boolean" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/modify/">
+                            <![CDATA[True ("1") if the event is an all-day event, false ("0") otherwise. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="description" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/modify/">
+                            <![CDATA[The event description. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="privacy" type="xsd:integer" style="query" required="false" default="1">
+                        <doc apigee:url="http://api.evdb.com/docs/events/modify/">
+                            <![CDATA[The privacy setting for this event. (1 = public, 2 = private, 3 = semi-private) Optional, defaults to 1.]]>
+                        </doc>
+                    </param>
+
+                    <param name="tags" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/modify/">
+                            <![CDATA[A space-delimited list of tags. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="free" type="xsd:boolean" style="query" required="false" default="relevance">
+                        <doc apigee:url="http://api.evdb.com/docs/events/modify/">
+                            <![CDATA[True ("1") if the event is free, false ("0") otherwise. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="price" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/modify/">
+                            <![CDATA[A text string describing the event price. For example, this could indicate a price range ("$15 - $35"), free but donations requested ("$10 donation suggested"), or other special instructions ("Adults $15, children under eight $5"). Don't pass this parameter or leave it blank if there is no price information. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="venue_id" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/modify/">
+                            <![CDATA[The ID of the venue where this event occurs. Use /venues/modify or /venues/search retrieve an appropriate ID. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="parent_id" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/modify/">
+                            <![CDATA[The ID of this event's parent event. Optional.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="events/withdraw">
+            <method id="events_withdraw" name="GET" apigee:displayName="events/withdraw">
+                <apigee:tags>
+                    <apigee:tag primary="true">Events</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="events/withdraw"/>
+
+                <doc title="events_withdraw" apigee:url="http://api.evdb.com/docs/events/withdraw/">
+                    <![CDATA[Given an event ID, sets the event record to be withdrawn. Withdrawn events no longer show up in search results.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/withdraw/">
+                            <![CDATA[The id of the event to withdraw.]]>
+                        </doc>
+                    </param>
+
+                    <param name="note" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/withdraw/">
+                            <![CDATA[An optional note describing why the event has been withdrawn.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="events/restore">
+            <method id="events_restore" name="GET" apigee:displayName="events/restore">
+                <apigee:tags>
+                    <apigee:tag primary="true">Events</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="events/restore"/>
+
+                <doc title="events_restore" apigee:url="http://api.evdb.com/docs/events/restore/">
+                    <![CDATA[Given an ID of a currently-withdrawn event, restores the event record to active status.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/restore/">
+                            <![CDATA[The id of the event to restore.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="events/search">
+            <method id="events_search" name="GET" apigee:displayName="events/search">
+                <apigee:tags>
+                    <apigee:tag primary="true">Events</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <!-- app_key only -->
+                <apigee:example url="events/search"/>
+
+                <doc title="events_search" apigee:url="http://api.evdb.com/docs/events/search/">
+                    <![CDATA[This function handles event search. It performs the requested search, returning the results as an XML file. See the search box at http://eventful.com/events for an example interface.]]>
+                </doc>
+
+                <request>
+                    <param name="keywords" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/search/">
+                            <![CDATA[The search keywords. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="location" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/search/">
+                            <![CDATA[A location name to use in filtering the search results. Locations in the form "San Diego", "San Diego, TX", "London, United Kingdom", and "Calgary, Alberta, Canada" are accepted, as are postal codes ("92122") and venue IDs ("V0-001-000268633-5"). Common geocoordinate formats ("32.746682, -117.162741") are also accepted, but the "within" parameter is recommended in order to set a search radius. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="date" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/search/">
+                            <![CDATA[Limit this list of results to a date range, specified by label or exact range. Currently supported labels include: "All", "Future", "Past", "Today", "Last Week", "This Week", "Next week", and months by name, e.g. "October". Exact ranges take the form 'YYYYMMDDHH-YYYYMMDDHH', e.g. '2008042500-2008042723'. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="category" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/search/">
+                            <![CDATA[Limit the search results to this category ID. See /categories/list for a list of categories and their IDs. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="within" type="xsd:integer" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/search/">
+                            <![CDATA[If within is set and the "location" parameter resolves to a specific geolocation, the search will be restricted to the specified radius. If the "location" parameter does not resolve to a specific location, this parameter is ignored. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="units" type="xsd:integer" style="query" required="false" default="mi">
+                        <doc apigee:url="http://api.evdb.com/docs/events/search/">
+                            <![CDATA[One of "mi" or "km", the units of the "within" parameter. Defaults to "mi". Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="count_only" type="xsd:boolean" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/search/">
+                            <![CDATA[If count_only is set, an abbreviated version of the output will be returned. Only total_items and search_time elements are included in the result. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="sort_order" type="xsd:string" style="query" required="false" default="relevance">
+                        <doc apigee:url="http://api.evdb.com/docs/events/search/">
+                            <![CDATA[One of 'popularity', 'date', or 'relevance'. Default is 'relevance'. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="sort_direction" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/search/">
+                            <![CDATA[One of 'ascending' or 'descending'. Default varies by sort_order. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="page_size" type="xsd:integer" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/search/">
+                            <![CDATA[The desired number of results per page. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="page_number" type="xsd:integer" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/search/">
+                            <![CDATA[The desired page number. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="mature" type="xsd:string" style="query" required="false" default="all">
+                        <doc apigee:url="http://api.evdb.com/docs/events/search/">
+                            <![CDATA[Sets the level of filtering for events marked as "mature" due to keywords in the title or description. One of 'all' (no filtering), 'normal', or 'safe'. 'Normal' mature filtering consists of words that are clearly profanities and inappropriate for younger audiences. 'Safe' mature filtering consists of all normal mature filtered words, as well as other terms that may be used as inappropriate innuendo. A 'safe' filter may eliminate events that are benign in nature, but contain questionable content based on keywords. Defaults to 'all'. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="include" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/search/">
+                            <![CDATA[Indicates that optional sections should be included in the result XML. Multiple section names can be indicated, separated by commas (e.g. 'categories,links'). Sections include 'categories', 'price', and 'links'. Optional.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="events/reindex">
+            <method id="events_reindex" name="GET" apigee:displayName="events/reindex">
+                <apigee:tags>
+                    <apigee:tag primary="true">Events</apigee:tag>
+                </apigee:tags>
+
+                <!-- app_key only -->
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="events/reindex"/>
+
+                <doc title="events_reindex" apigee:url="http://api.evdb.com/docs/events/reindex/">
+                    <![CDATA[Given an event ID, updates the search index for that event. Ordinarily, the Eventful search index is updated to reflect recent changes automatically every few minutes. In some cases it's preferred to make a specific change searchable immediately. This is the method to use in that case.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/reindex/">
+                            <![CDATA[The id of the event to reindex.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="events/ical">
+            <method id="events_ical" name="GET" apigee:displayName="events/ical">
+                <apigee:tags>
+                    <apigee:tag primary="true">Events</apigee:tag>
+                </apigee:tags>
+
+                <!-- app_key only -->
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="events/ical"/>
+
+                <doc title="events_ical" apigee:url="http://api.evdb.com/docs/events/ical/">
+                    <![CDATA[This function handles event search and returns the results in an iCalendar (RFC-2445) format, not in XML.]]>
+                </doc>
+
+                <request>
+                    <param name="keywords" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/ical/">
+                            <![CDATA[The search keywords. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="location" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/ical/">
+                            <![CDATA[A location name to use in filtering the search results. Locations in the form "San Diego", "San Diego, TX", "London, United Kingdom", and "Calgary, Alberta, Canada" are accepted, as are postal codes ("92122"). Full addresses ("1 Infinite Loop, Cupertino, CA") and common geocoordinate formats ("32.746682, -117.162741") are also accepted, but the "within" parameter is recommended in order to set a search radius. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="date" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/ical/">
+                            <![CDATA[Limit this list of results to the specified date range. Date ranges are specified by label. Currently supported labels include: "All", "Future", "Past", "Today", "Last Week", "This Week", "Next week", and months by name, e.g. "October". Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="within" type="xsd:integer" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/ical/">
+                            <![CDATA[Limit this list of results to the specified date range. Date ranges are specified by label. Currently supported labels include: "All", "Future", "Past", "Today", "Last Week", "This Week", "Next week", and months by name, e.g. "October". Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="units" type="xsd:string" style="query" required="false" default="mi">
+                        <doc apigee:url="http://api.evdb.com/docs/events/ical/">
+                            <![CDATA[One of "mi" or "km", the units of the "within" parameter. Defaults to "mi". Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="sort_order" type="xsd:string" style="query" required="false" default="date">
+                        <doc apigee:url="http://api.evdb.com/docs/events/ical/">
+                            <![CDATA[One of 'popularity', 'date', 'title', 'relevance', or 'venue_name'. Default is 'date'. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="sort_direction" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/ical/">
+                            <![CDATA[One of 'ascending' or 'descending'. Default varies by sort_order. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="page_size" type="xsd:integer" style="query" required="false" default="50">
+                        <doc apigee:url="http://api.evdb.com/docs/events/ical/">
+                            <![CDATA[The desired number of results per page. Default: 50, Maximum: 50. Optional.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="text/calendar"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="events/rss">
+            <method id="events_rss" name="GET" apigee:displayName="events/rss">
+                <apigee:tags>
+                    <apigee:tag primary="true">Events</apigee:tag>
+                </apigee:tags>
+
+                <!-- app_key only -->
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="events/rss"/>
+
+                <doc title="events_rss" apigee:url="http://api.evdb.com/docs/events/rss/">
+                    <![CDATA[This function handles event search and returns the results in an RSS 2.0 (Specification) XML format.]]>
+                </doc>
+
+                <request>
+                    <param name="keywords" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/rss/">
+                            <![CDATA[The search keywords. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="location" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/rss/">
+                            <![CDATA[A location name to use in filtering the search results. Locations in the form "San Diego", "San Diego, TX", "London, United Kingdom", and "Calgary, Alberta, Canada" are accepted, as are postal codes ("92122"). Full addresses ("1 Infinite Loop, Cupertino, CA") and common geocoordinate formats ("32.746682, -117.162741") are also accepted, but the "within" parameter is recommended in order to set a search radius. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="date" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/rss/">
+                            <![CDATA[Limit this list of results to the specified date range. Date ranges are specified by label. Currently supported labels include: "All", "Future", "Past", "Today", "Last Week", "This Week", "Next week", and months by name, e.g. "October". Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="within" type="xsd:integer" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/rss/">
+                            <![CDATA[Limit this list of results to the specified date range. Date ranges are specified by label. Currently supported labels include: "All", "Future", "Past", "Today", "Last Week", "This Week", "Next week", and months by name, e.g. "October". Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="units" type="xsd:string" style="query" required="false" default="mi">
+                        <doc apigee:url="http://api.evdb.com/docs/events/rss/">
+                            <![CDATA[One of "mi" or "km", the units of the "within" parameter. Defaults to "mi". Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="sort_order" type="xsd:string" style="query" required="false" default="date">
+                        <doc apigee:url="http://api.evdb.com/docs/events/rss/">
+                            <![CDATA[One of 'popularity', 'date', 'title', 'relevance', or 'venue_name'. Default is 'date'. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="sort_direction" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/rss/">
+                            <![CDATA[One of 'ascending' or 'descending'. Default varies by sort_order. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="page_size" type="xsd:integer" style="query" required="false" default="50">
+                        <doc apigee:url="http://api.evdb.com/docs/events/rss/">
+                            <![CDATA[The desired number of results per page. Default: 50, Maximum: 50. Optional.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/rss+xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="events/tags/list">
+            <method id="events_tags_list" name="GET" apigee:displayName="events/tags/list">
+                <apigee:tags>
+                    <apigee:tag primary="true">Events</apigee:tag>
+                    <apigee:tag>Tags</apigee:tag>
+                </apigee:tags>
+
+                <!-- app_key only -->
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="events/tags/list"/>
+
+                <doc title="events_tags_list" apigee:url="http://api.evdb.com/docs/events/tags/list/">
+                    <![CDATA[Lists all tags attached to an event.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/tags/list/">
+                            <![CDATA[The ID of the event.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="events/going/list">
+            <method id="events_going_list" name="GET" apigee:displayName="events/going/list">
+                <apigee:tags>
+                    <apigee:tag primary="true">Events</apigee:tag>
+                    <apigee:tag>Users</apigee:tag>
+                </apigee:tags>
+
+                <!-- app_key only -->
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="events/going/list"/>
+
+                <doc title="events_going_list" apigee:url="http://api.evdb.com/docs/events/going/list/">
+                    <![CDATA[Lists all users going attached to an event.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/going/list/">
+                            <![CDATA[The ID of the event.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="events/tags/new">
+            <method id="events_tags_new" name="GET" apigee:displayName="events/tags/new">
+                <apigee:tags>
+                    <apigee:tag primary="true">Events</apigee:tag>
+                    <apigee:tag>Tags</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="events/tags/new"/>
+
+                <doc title="events_tags_new" apigee:url="http://api.evdb.com/docs/events/tags/new/">
+                    <![CDATA[Adds a new tag to an event.]]>
+                </doc>
+
+                <request>
+                    <param name="tags" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/tags/new/">
+                            <![CDATA[A space-delimited list of tags. Tags with spaces should be enclosed in quotes (e.g. "San Diego").]]>
+                        </doc>
+                    </param>
+
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/tags/new/">
+                            <![CDATA[The ID of the event to which these tags are being added.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="events/tags/delete">
+            <method id="events_tags_delete" name="GET" apigee:displayName="events/tags/delete">
+                <apigee:tags>
+                    <apigee:tag primary="true">Events</apigee:tag>
+                    <apigee:tag>Tags</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="events/tags/delete"/>
+
+                <doc title="events_tags_delete" apigee:url="http://api.evdb.com/docs/events/tags/delete/">
+                    <![CDATA[Removes tags from an event.]]>
+                </doc>
+
+                <request>
+                    <param name="tags" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/tags/delete/">
+                            <![CDATA[A space-delimited list of tags. Tags with spaces should be enclosed in quotes (e.g. "San Diego").]]>
+                        </doc>
+                    </param>
+
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/tags/delete/">
+                            <![CDATA[The ID of the event from which these tags are being removed.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="events/comments/new">
+            <method id="events_comments_new" name="GET" apigee:displayName="events/comments/new">
+                <apigee:tags>
+                    <apigee:tag primary="true">Events</apigee:tag>
+                    <apigee:tag>Comments</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="events/comments/new"/>
+
+                <doc title="events_comments_new" apigee:url="http://api.evdb.com/docs/events/comments/new/">
+                    <![CDATA[Adds a new comment to an event. See http://eventful.com/events/E0-001-000278174-6 for an example interface.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/comments/new/">
+                            <![CDATA[The ID of the event to which this comment is being added.]]>
+                        </doc>
+                    </param>
+
+                    <param name="comments" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/comments/new/">
+                            <![CDATA[The body of the comment message.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="events/comments/modify">
+            <method id="events_comments_modify" name="GET" apigee:displayName="events/comments/modify">
+                <apigee:tags>
+                    <apigee:tag primary="true">Events</apigee:tag>
+                    <apigee:tag>Comments</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="events/comments/modify"/>
+
+                <doc title="events_comments_modify" apigee:url="http://api.evdb.com/docs/events/comments/modify/">
+                    <![CDATA[Modifies the text of a comment attached to an event. See http://eventful.com/events/E0-001-000278174-6 for an example interface.]]>
+                </doc>
+
+                <request>
+                    <param name="comment_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/comments/modify/">
+                            <![CDATA[The ID of the comment to modify.]]>
+                        </doc>
+                    </param>
+
+                    <param name="comments" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/comments/modify/">
+                            <![CDATA[The new, modified comment to save.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="events/comments/delete">
+            <method id="events_comments_delete" name="GET" apigee:displayName="events/comments/delete">
+                <apigee:tags>
+                    <apigee:tag primary="true">Events</apigee:tag>
+                    <apigee:tag>Comments</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="events/comments/delete"/>
+
+                <doc title="events_comments_delete" apigee:url="http://api.evdb.com/docs/events/comments/delete/">
+                    <![CDATA[Deletes a comment from an event. See http://eventful.com/events/E0-001-000278174-6 for an example interface.]]>
+                </doc>
+
+                <request>
+                    <param name="comment_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/comments/delete/">
+                            <![CDATA[The ID of the comment to be deleted.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="events/links/new">
+            <method id="events_links_new" name="GET" apigee:displayName="events/links/new">
+                <apigee:tags>
+                    <apigee:tag primary="true">Events</apigee:tag>
+                    <apigee:tag>Links</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="events/links/new"/>
+
+                <doc title="events_links_new" apigee:url="http://api.evdb.com/docs/events/links/new/">
+                    <![CDATA[Adds a new link to an event. See http://eventful.com/events/E0-001-000278174-6 for an example interface.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/links/new/">
+                            <![CDATA[The ID of the event to which this link is being added.]]>
+                        </doc>
+                    </param>
+
+                    <param name="link" type="xsd:anyURI" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/links/new/">
+                            <![CDATA[The URL of the link. (e.g. "http://foo.com")]]>
+                        </doc>
+                    </param>
+
+                    <param name="description" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/links/new/">
+                            <![CDATA[The title of the link. (e.g. "Foo Laboratories"). Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="link_type_id" type="xsd:integer" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/links/new/">
+                            <![CDATA[The ID of the link type. See API docs for accepted values.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="events/links/delete">
+            <method id="events_links_delete" name="GET" apigee:displayName="events/links/delete">
+                <apigee:tags>
+                    <apigee:tag primary="true">Events</apigee:tag>
+                    <apigee:tag>Links</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="events/links/delete"/>
+
+                <doc title="events_links_delete" apigee:url="http://api.evdb.com/docs/events/links/delete/">
+                    <![CDATA[Deletes a link from an event. See http://eventful.com/events/E0-001-000278174-6 for an example interface.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/links/delete/">
+                            <![CDATA[The ID of the event from which this link is being removed.]]>
+                        </doc>
+                    </param>
+
+                    <param name="link_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/links/delete/">
+                            <![CDATA[The ID of the link to be deleted.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="events/images/add">
+            <method id="events_images_add" name="GET" apigee:displayName="events/images/add">
+                <apigee:tags>
+                    <apigee:tag primary="true">Events</apigee:tag>
+                    <apigee:tag>Images</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="events/images/add"/>
+
+                <doc title="events_images_add" apigee:url="http://api.evdb.com/docs/events/images/add/">
+                    <![CDATA[Deletes a images from an event. See http://eventful.com/events/E0-001-000278174-6 for an example interface.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/images/add/">
+                            <![CDATA[The event ID.]]>
+                        </doc>
+                    </param>
+
+                    <param name="images_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/images/add/">
+                            <![CDATA[The image ID. (See /images/new to upload an image and retrieve the ID.)]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="events/images/remove">
+            <method id="events_images_remove" name="GET" apigee:displayName="events/images/remove">
+                <apigee:tags>
+                    <apigee:tag primary="true">Events</apigee:tag>
+                    <apigee:tag>Images</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="events/images/remove"/>
+
+                <doc title="events_images_remove" apigee:url="http://api.evdb.com/docs/events/images/remove/">
+                    <![CDATA[Removes an image from an event.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/images/remove/">
+                            <![CDATA[The event ID.]]>
+                        </doc>
+                    </param>
+
+                    <param name="images_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/images/remove/">
+                            <![CDATA[The image ID. (See /images/new to upload an image and retrieve the ID.)]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="events/performers/add">
+            <method id="events_performers_add" name="GET" apigee:displayName="events/performers/add">
+                <apigee:tags>
+                    <apigee:tag primary="true">Events</apigee:tag>
+                    <apigee:tag>Performers</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="events/performers/add"/>
+
+                <doc title="events_performers_add" apigee:url="http://api.evdb.com/docs/events/performers/add/">
+                    <![CDATA[Adds a performer to an event.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/performers/add/">
+                            <![CDATA[The event ID.]]>
+                        </doc>
+                    </param>
+
+                    <param name="performer_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/performers/add/">
+                            <![CDATA[The performer ID. (See /performers/new to create a performer and retrieve the ID.)]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="events/performers/remove">
+            <method id="events_performers_remove" name="GET" apigee:displayName="events/performers/remove">
+                <apigee:tags>
+                    <apigee:tag primary="true">Events</apigee:tag>
+                    <apigee:tag>Performers</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="events/performers/remove"/>
+
+                <doc title="events_performers_remove" apigee:url="http://api.evdb.com/docs/events/performers/remove/">
+                    <![CDATA[Removes a performer from an event.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/performers/remove/">
+                            <![CDATA[The event ID.]]>
+                        </doc>
+                    </param>
+
+                    <param name="performer_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/performers/remove/">
+                            <![CDATA[The performer ID. (See /events/get to list the performer IDs for an event.)]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="events/properties/add">
+            <method id="events_properties_add" name="GET" apigee:displayName="events/properties/add">
+                <apigee:tags>
+                    <apigee:tag primary="true">Events</apigee:tag>
+                    <apigee:tag>Properties</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="events/properties/add"/>
+
+                <doc title="events_properties_add" apigee:url="http://api.evdb.com/docs/events/properties/add/">
+                    <![CDATA[Adds a property to an event. Properties are custom name/value pairs that can be used to add arbitrary information to an event. For instance, a "Rating" property of "5 Stars" could be added to an event using this method.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/properties/add/">
+                            <![CDATA[The event ID.]]>
+                        </doc>
+                    </param>
+
+                    <param name="name" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/properties/add/">
+                            <![CDATA[The property name.]]>
+                        </doc>
+                    </param>
+
+                    <param name="value" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/properties/add/">
+                            <![CDATA[The property value.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="events/properties/list">
+            <method id="events_properties_list" name="GET" apigee:displayName="events/properties/list">
+                <apigee:tags>
+                    <apigee:tag primary="true">Events</apigee:tag>
+                    <apigee:tag>Properties</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="events/properties/list"/>
+
+                <doc title="events_properties_list" apigee:url="http://api.evdb.com/docs/events/properties/list/">
+                    <![CDATA[Lists all properties for an event.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/properties/list/">
+                            <![CDATA[The event ID.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="events/properties/remove">
+            <method id="events_properties_remove" name="GET" apigee:displayName="events/properties/remove">
+                <apigee:tags>
+                    <apigee:tag primary="true">Events</apigee:tag>
+                    <apigee:tag>Properties</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="events/properties/remove"/>
+
+                <doc title="events_properties_remove" apigee:url="http://api.evdb.com/docs/events/properties/remove/">
+                    <![CDATA[Removes a property (or group of properties) from an event.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/properties/remove/">
+                            <![CDATA[The event ID.]]>
+                        </doc>
+                    </param>
+
+                    <param name="property_id" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/properties/remove/">
+                            <![CDATA[The ID of the property to remove. Specify either this or "name".]]>
+                        </doc>
+                    </param>
+
+                    <param name="name" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/events/properties/remove/">
+                            <![CDATA[The name of the property to remove. NOTE: if name is specified, any property with this name will be removed from this event. Specify either this or "id".]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="events/categories/add">
+            <method id="events_categories_add" name="GET" apigee:displayName="events/categories/add">
+                <apigee:tags>
+                    <apigee:tag primary="true">Events</apigee:tag>
+                    <apigee:tag>Categories</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="events/categories/add"/>
+
+                <doc title="events_categories_add" apigee:url="http://api.evdb.com/docs/events/categories/add/">
+                    <![CDATA[Adds a event to the speficied category.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/categories/add/">
+                            <![CDATA[The event ID.]]>
+                        </doc>
+                    </param>
+
+                    <param name="category_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/categories/add/">
+                            <![CDATA[The category ID. (See /categories/list for a list of available categories.)]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="events/categories/remove">
+            <method id="events_categories_remove" name="GET" apigee:displayName="events/categories/remove">
+                <apigee:tags>
+                    <apigee:tag primary="true">Events</apigee:tag>
+                    <apigee:tag>Categories</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="events/categories/remove"/>
+
+                <doc title="events_categories_remove" apigee:url="http://api.evdb.com/docs/events/categories/remove/">
+                    <![CDATA[Removes a event from the speficied category.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/categories/remove/">
+                            <![CDATA[The event ID.]]>
+                        </doc>
+                    </param>
+
+                    <param name="category_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/categories/remove/">
+                            <![CDATA[The category ID. (See /categories/list for a list of available categories.)]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="events/dates/resolve">
+            <method id="events_dates_resolve" name="GET" apigee:displayName="events/dates/resolve">
+                <apigee:tags>
+                    <apigee:tag primary="true">Events</apigee:tag>
+                    <apigee:tag>Dates</apigee:tag>
+                </apigee:tags>
+
+                <!-- app_key only -->
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="events/dates/resolve"/>
+
+                <doc title="events_dates_resolve" apigee:url="http://api.evdb.com/docs/events/dates/resolve/">
+                    <![CDATA[Given a date string in most common formats, return a start_date and end_date in ISO 8601 format, suitable for /events/new. Uses the current date to make assumptions about relative dates. For example, the where string "Feb 15 8pm-10pm", submitted in January 2007, would resolve to a start_date of "2007-02-15T20:00:00" and an end_date of "2007-02-15T22:00:00". Dates without times are assumed to be all-day events, so "February 27th" would resolve to a start_date of "2007-02-27T00:00:00" with the all_day flag set to 1.]]>
+                </doc>
+
+                <request>
+                    <param name="when" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/events/dates/resolve/">
+                            <![CDATA[A string containing a date and optional time(s).]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <!-- Venues -->
+
+        <resource path="venues/new">
+            <method id="venues_new" name="GET" apigee:displayName="venues/new">
+                <apigee:tags>
+                    <apigee:tag primary="true">Venues</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="venues/new"/>
+
+                <doc title="venues_new" apigee:url="http://api.evdb.com/docs/venues/new/">
+                    <![CDATA[Creates a new venue with the provided information. See http://eventful.com/venues/new for an example interface.]]>
+                </doc>
+
+                <request>
+                    <param name="name" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/new/">
+                            <![CDATA[The displayed name for this venue.]]>
+                        </doc>
+                    </param>
+
+                    <param name="address" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/new/">
+                            <![CDATA[The street address of the venue. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="city" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/new/">
+                            <![CDATA[The city name. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="region" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/new/">
+                            <![CDATA[The name of the region (state, province, county). Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="postal_code" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/new/">
+                            <![CDATA[The postal code or ZIP code. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="country" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/new/">
+                            <![CDATA[The name of the country.]]>
+                        </doc>
+                    </param>
+
+                    <param name="description" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/new/">
+                            <![CDATA[The venue description. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="privacy" type="xsd:string" style="query" required="false" default="1">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/new/">
+                            <![CDATA[The privacy setting for this venue. (1 = public, 2 = private, 3 = semi-private). Optional, defaults to 1.]]>
+                        </doc>
+                    </param>
+
+                    <param name="venue_type" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/new/">
+                            <![CDATA[The type of venue (e.g. Cinema, Arena). See eventful.com/venues/new for a current list of options.]]>
+                        </doc>
+                    </param>
+
+                    <param name="url" type="xsd:anyURI" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/new/">
+                            <![CDATA[A URI link to further information about this venue. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="url_type" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/new/">
+                            <![CDATA[The type of the link provided in the url parameter (e.g. Blog, Review, Official Site). See the "Add a link" section of any event page for a current list. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="parent_id" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/new/">
+                            <![CDATA[The ID of this venue's parent venue. Optional.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="venues/get">
+            <method id="venues_get" name="GET" apigee:displayName="venues/get">
+                <apigee:tags>
+                    <apigee:tag primary="true">Venues</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="venues/get"/>
+
+                <doc title="venues_get" apigee:url="http://api.evdb.com/docs/venues/get/">
+                    <![CDATA[Given a venue ID, returns information about that particular venue.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/get/">
+                            <![CDATA[The ID of the requested venue.]]>
+                        </doc>
+                    </param>
+
+                    <param name="mature" type="xsd:string" style="query" required="false" default="all">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/get/">
+                            <![CDATA[Sets the level of filtering for events marked as "mature" due to keywords in the title or description. One of 'all' (no filtering), 'normal', or 'safe'. 'Normal' mature filtering consists of words that are clearly profanities and inappropriate for younger audiences. 'Safe' mature filtering consists of all normal mature filtered words, as well as other terms that may be used as inappropriate innuendo. A 'safe' filter may eliminate events that are benign in nature, but contain questionable content based on keywords. Defaults to 'all'.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="venues/modify">
+            <method id="venues_modify" name="GET" apigee:displayName="venues/modify">
+                <apigee:tags>
+                    <apigee:tag primary="true">Venues</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="venues/modify"/>
+
+                <doc title="venues_modify" apigee:url="http://api.evdb.com/docs/venues/modify/">
+                    <![CDATA[Creates a modify venue with the provided information. See http://eventful.com/venues/modify for an example interface.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/modify/">
+                            <![CDATA[The ID of the venue to modify.]]>
+                        </doc>
+                    </param>
+
+                    <param name="name" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/modify/">
+                            <![CDATA[The displayed name for this venue. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="address" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/modify/">
+                            <![CDATA[The street address of the venue. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="city" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/modify/">
+                            <![CDATA[The city name. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="region" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/modify/">
+                            <![CDATA[The name of the region (state, province, county). Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="postal_code" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/modify/">
+                            <![CDATA[The postal code or ZIP code. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="country" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/modify/">
+                            <![CDATA[The name of the country. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="description" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/modify/">
+                            <![CDATA[The venue description. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="privacy" type="xsd:string" style="query" required="false" default="1">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/modify/">
+                            <![CDATA[The privacy setting for this venue. (1 = public, 2 = private, 3 = semi-private). Optional, defaults to 1.]]>
+                        </doc>
+                    </param>
+
+                    <param name="venue_type" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/modify/">
+                            <![CDATA[The type of venue (e.g. Cinema, Arena). See eventful.com/venues/modify for a current list of options. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="url" type="xsd:anyURI" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/modify/">
+                            <![CDATA[A URI link to further information about this venue. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="url_type" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/modify/">
+                            <![CDATA[The type of the link provided in the url parameter (e.g. Blog, Review, Official Site). See the "Add a link" section of any event page for a current list. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="parent_id" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/modify/">
+                            <![CDATA[The ID of this venue's parent venue. Optional.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="venues/withdraw">
+            <method id="venues_withdraw" name="GET" apigee:displayName="venues/withdraw">
+                <apigee:tags>
+                    <apigee:tag primary="true">Venues</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="venues/withdraw"/>
+
+                <doc title="venues_withdraw" apigee:url="http://api.evdb.com/docs/venues/withdraw/">
+                    <![CDATA[Given a venue ID, sets the venue record to be withdrawn. Withdrawn venues no longer show up in search results. Please note that events attached to venue will not be withdrawn and will still link to the venue.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/withdraw/">
+                            <![CDATA[The ID of the requested venue.]]>
+                        </doc>
+                    </param>
+
+                    <param name="note" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/withdraw/">
+                            <![CDATA[An optional note describing why the venue has been withdrawn.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="venues/restore">
+            <method id="venues_restore" name="GET" apigee:displayName="venues/restore">
+                <apigee:tags>
+                    <apigee:tag primary="true">Venues</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="venues/restore"/>
+
+                <doc title="venues_restore" apigee:url="http://api.evdb.com/docs/venues/restore/">
+                    <![CDATA[Given an ID of a currently-withdrawn venue, restores the venue record to active status.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/restore/">
+                            <![CDATA[The ID of the requested venue.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="venues/search">
+            <method id="venues_search" name="GET" apigee:displayName="venues/search">
+                <apigee:tags>
+                    <apigee:tag primary="true">Venues</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <!-- app_key only -->
+                <apigee:example url="venues/search"/>
+
+                <doc title="venues_search" apigee:url="http://api.evdb.com/docs/venues/search/">
+                    <![CDATA[This function handles venue search. It performs the requested search, returning the results as an XML file.]]>
+                </doc>
+
+                <request>
+                    <param name="keywords" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/search/">
+                            <![CDATA[The search keywords. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="location" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/search/">
+                            <![CDATA[A location name to use in filtering the search results. Locations in the form "San Diego", "San Diego, TX", "London, United Kingdom", and "Calgary, Alberta, Canada" are accepted, as are postal codes ("92122") and venue IDs ("V0-001-000268633-5"). Common geocoordinate formats ("32.746682, -117.162741") are also accepted, but the "within" parameter is recommended in order to set a search radius. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="count_only" type="xsd:boolean" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/search/">
+                            <![CDATA[If count_only is set, an abbreviated version of the output will be returned. Only total_items and search_time elements are included in the result. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="page_size" type="xsd:integer" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/search/">
+                            <![CDATA[The desired number of results per page. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="page_number" type="xsd:integer" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/search/">
+                            <![CDATA[The desired page number. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="within" type="xsd:integer" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/search/">
+                            <![CDATA[If within is set and the "location" parameter resolves to a specific geolocation, the search will be restricted to the specified radius. If the "location" parameter does not resolve to a specific location, this parameter is ignored. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="units" type="xsd:integer" style="query" required="false" default="mi">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/search/">
+                            <![CDATA[One of "mi" or "km", the units of the "within" parameter. Defaults to "mi". Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="sort_order" type="xsd:string" style="query" required="false" default="relevance">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/search/">
+                            <![CDATA[One of 'popularity', 'date', or 'relevance'. Default is 'relevance'. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="sort_direction" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/search/">
+                            <![CDATA[One of 'ascending' or 'descending'. Default varies by sort_order. Optional.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="venues/tags/list">
+            <method id="venues_tags_list" name="GET" apigee:displayName="venues/tags/list">
+                <apigee:tags>
+                    <apigee:tag primary="true">Venues</apigee:tag>
+                    <apigee:tag>Tags</apigee:tag>
+                </apigee:tags>
+
+                <!-- app_key only -->
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="venues/tags/list"/>
+
+                <doc title="venues_tags_list" apigee:url="http://api.evdb.com/docs/venues/tags/list/">
+                    <![CDATA[Lists all tags attached to a venue.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/tags/list/">
+                            <![CDATA[The ID of the venue.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="venues/tags/new">
+            <method id="venues_tags_new" name="GET" apigee:displayName="venues/tags/new">
+                <apigee:tags>
+                    <apigee:tag primary="true">Venues</apigee:tag>
+                    <apigee:tag>Tags</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="venues/tags/new"/>
+
+                <doc title="venues_tags_new" apigee:url="http://api.evdb.com/docs/venues/tags/new/">
+                    <![CDATA[Adds a new tag to an event.]]>
+                </doc>
+
+                <request>
+                    <param name="tags" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/tags/new/">
+                            <![CDATA[A space-delimited list of tags. Tags with spaces should be enclosed in quotes (e.g. "San Diego").]]>
+                        </doc>
+                    </param>
+
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/tags/new/">
+                            <![CDATA[The ID of the venue to which these tags are being added.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="venues/tags/delete">
+            <method id="venues_tags_delete" name="GET" apigee:displayName="venues/tags/delete">
+                <apigee:tags>
+                    <apigee:tag primary="true">Venues</apigee:tag>
+                    <apigee:tag>Tags</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="venues/tags/delete"/>
+
+                <doc title="venues_tags_delete" apigee:url="http://api.evdb.com/docs/venues/tags/delete/">
+                    <![CDATA[Removes tags from an venue.]]>
+                </doc>
+
+                <request>
+                    <param name="tags" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/tags/delete/">
+                            <![CDATA[A space-delimited list of tags. Tags with spaces should be enclosed in quotes (e.g. "San Diego").]]>
+                        </doc>
+                    </param>
+
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/tags/delete/">
+                            <![CDATA[The ID of the venue from which these tags are being removed.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="venues/ical">
+            <method id="venues_ical" name="GET" apigee:displayName="venues/ical">
+                <apigee:tags>
+                    <apigee:tag primary="true">Venues</apigee:tag>
+                </apigee:tags>
+
+                <!-- app_key only -->
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="venues/ical"/>
+
+                <doc title="venues_ical" apigee:url="http://api.evdb.com/docs/venues/ical/">
+                    <![CDATA[Returns an iCalendar (RFC-2445) (not XML) document of events occuring at a specified venue.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/ical/">
+                            <![CDATA[The ID of the venue to use as the feed source.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="text/calendar"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="venues/rss">
+            <method id="venues_rss" name="GET" apigee:displayName="venues/rss">
+                <apigee:tags>
+                    <apigee:tag primary="true">Venues</apigee:tag>
+                </apigee:tags>
+
+                <!-- app_key only -->
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="venues/rss"/>
+
+                <doc title="venues_rss" apigee:url="http://api.evdb.com/docs/venues/rss/">
+                    <![CDATA[Returns an RSS 2.0 (Specification) feed of events occuring at a specified venue.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/rss/">
+                            <![CDATA[The ID of the venue to use as the feed source.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="text/calendar"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="venues/comments/new">
+            <method id="venues_comments_new" name="GET" apigee:displayName="venues/comments/new">
+                <apigee:tags>
+                    <apigee:tag primary="true">Venues</apigee:tag>
+                    <apigee:tag>Comments</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="venues/comments/new"/>
+
+                <doc title="venues_comments_new" apigee:url="http://api.evdb.com/docs/venues/comments/new/">
+                    <![CDATA[Adds a new comment to a venue. See http://eventful.com/venues/V0-001-000111066-8 for an example interface.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/comments/new/">
+                            <![CDATA[The ID of the venue to which this comment is being added.]]>
+                        </doc>
+                    </param>
+
+                    <param name="comments" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/comments/new/">
+                            <![CDATA[The body of the comment message.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="venues/comments/modify">
+            <method id="venues_comments_modify" name="GET" apigee:displayName="venues/comments/modify">
+                <apigee:tags>
+                    <apigee:tag primary="true">Venues</apigee:tag>
+                    <apigee:tag>Comments</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="venues/comments/modify"/>
+
+                <doc title="venues_comments_modify" apigee:url="http://api.evdb.com/docs/venues/comments/modify/">
+                    <![CDATA[Modifies the text of a comment attached to an venue. See http://eventful.com/venues/V0-001-000111066-8 for an example interface.]]>
+                </doc>
+
+                <request>
+                    <param name="comment_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/comments/modify/">
+                            <![CDATA[The ID of the comment to modify.]]>
+                        </doc>
+                    </param>
+
+                    <param name="comments" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/comments/modify/">
+                            <![CDATA[The new, modified comment to save.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="venues/comments/delete">
+            <method id="venues_comments_delete" name="GET" apigee:displayName="venues/comments/delete">
+                <apigee:tags>
+                    <apigee:tag primary="true">Venues</apigee:tag>
+                    <apigee:tag>Comments</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="venues/comments/delete"/>
+
+                <doc title="venues_comments_delete" apigee:url="http://api.evdb.com/docs/venues/comments/delete/">
+                    <![CDATA[Deletes a comment from an venue. See http://eventful.com/venues/V0-001-000111066-8 for an example interface.]]>
+                </doc>
+
+                <request>
+                    <param name="comment_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/comments/delete/">
+                            <![CDATA[The ID of the comment to be deleted.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="venues/links/new">
+            <method id="venues_links_new" name="GET" apigee:displayName="venues/links/new">
+                <apigee:tags>
+                    <apigee:tag primary="true">Venues</apigee:tag>
+                    <apigee:tag>Links</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="venues/links/new"/>
+
+                <doc title="venues_links_new" apigee:url="http://api.evdb.com/docs/venues/links/new/">
+                    <![CDATA[Adds a new link to a venue. See http://eventful.com/venues/V0-001-000102695-2 for an example interface.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/links/new/">
+                            <![CDATA[The ID of the event to which this link is being added.]]>
+                        </doc>
+                    </param>
+
+                    <param name="link" type="xsd:anyURI" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/links/new/">
+                            <![CDATA[The URL of the link. (e.g. "http://foo.com")]]>
+                        </doc>
+                    </param>
+
+                    <param name="description" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/links/new/">
+                            <![CDATA[The title of the link. (e.g. "Foo Laboratories"). Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="link_type_id" type="xsd:integer" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/links/new/">
+                            <![CDATA[The ID of the link type. See API docs for accepted values.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="venues/links/delete">
+            <method id="venues_links_delete" name="GET" apigee:displayName="venues/links/delete">
+                <apigee:tags>
+                    <apigee:tag primary="true">Events</apigee:tag>
+                    <apigee:tag>Links</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="venues/links/delete"/>
+
+                <doc title="venues_links_delete" apigee:url="http://api.evdb.com/docs/venues/links/delete/">
+                    <![CDATA[Deletes a link from a venue. See http://eventful.com/venues/V0-001-000102695-2 for an example interface.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/links/delete/">
+                            <![CDATA[The ID of the venue from which this link is being removed.]]>
+                        </doc>
+                    </param>
+
+                    <param name="link_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/links/delete/">
+                            <![CDATA[The ID of the link to be deleted.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="venues/properties/add">
+            <method id="venues_properties_add" name="GET" apigee:displayName="venues/properties/add">
+                <apigee:tags>
+                    <apigee:tag primary="true">Venues</apigee:tag>
+                    <apigee:tag>Properties</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="venues/properties/add"/>
+
+                <doc title="venues_properties_add" apigee:url="http://api.evdb.com/docs/venues/properties/add/">
+                    <![CDATA[Adds a property to a venue. Properties are custom name/value pairs that can be used to add arbitrary information to a venue. For instance, a "Rating" property of "5 Stars" could be added to a venue using this method.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/properties/add/">
+                            <![CDATA[The venue ID.]]>
+                        </doc>
+                    </param>
+
+                    <param name="name" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/properties/add/">
+                            <![CDATA[The property name.]]>
+                        </doc>
+                    </param>
+
+                    <param name="value" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/properties/add/">
+                            <![CDATA[The property value.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="venues/properties/list">
+            <method id="venues_properties_list" name="GET" apigee:displayName="venues/properties/list">
+                <apigee:tags>
+                    <apigee:tag primary="true">Venues</apigee:tag>
+                    <apigee:tag>Properties</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="venues/properties/list"/>
+
+                <doc title="venues_properties_list" apigee:url="http://api.evdb.com/docs/venues/properties/list/">
+                    <![CDATA[Lists all properties for a venue.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/properties/list/">
+                            <![CDATA[The venue ID.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="venues/properties/remove">
+            <method id="venues_properties_remove" name="GET" apigee:displayName="venues/properties/remove">
+                <apigee:tags>
+                    <apigee:tag primary="true">Venues</apigee:tag>
+                    <apigee:tag>Properties</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="venues/properties/remove"/>
+
+                <doc title="venues_properties_remove" apigee:url="http://api.evdb.com/docs/venues/properties/remove/">
+                    <![CDATA[Removes a property (or group of properties) from a venue.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/properties/remove/">
+                            <![CDATA[The venue ID.]]>
+                        </doc>
+                    </param>
+
+                    <param name="property_id" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/properties/remove/">
+                            <![CDATA[The ID of the property to remove. Specify either this or "name".]]>
+                        </doc>
+                    </param>
+
+                    <param name="name" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/properties/remove/">
+                            <![CDATA[The name of the property to remove. NOTE: if name is specified, any property with this name will be removed from this venue. Specify either this or "id".]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="venues/resolve">
+            <method id="venues_resolve" name="GET" apigee:displayName="venues/resolve">
+                <apigee:tags>
+                    <apigee:tag primary="true">Venues</apigee:tag>
+                </apigee:tags>
+
+                <!-- app_key only -->
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="venues/resolve"/>
+
+                <doc title="venues_resolve" apigee:url="http://api.evdb.com/docs/venues/resolve/">
+                    <![CDATA[Given a location string, return a venue ID suitable for /events/new if possible. This method searches through Eventful's database of venues and cities for the closest match possible. If only one venue match is found, that venue is returned. If more than one is found, the top match is returned along with a list of alternative venues. If no matches are found, a "fail" status is returned. If the location string matches a city more closely than any venues, a TBD venue in that city is returned. However, venue matches will be favored if they seem to fit more closely. For instance, "Paris" will return a TBD venue in Paris, France, and "Las Vegas" will return a TBD in that city, but "Paris Las Vegas" will return the venue ID for the Paris Hotel in Las Vegas.]]>
+                </doc>
+
+                <request>
+                    <param name="location" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/venues/resolve/">
+                            <![CDATA[A venue name and/or city.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <!-- Users -->
+
+        <resource path="users/calendars/list">
+            <method id="users_calendars_list" name="GET" apigee:displayName="users/calendars/list">
+                <apigee:tags>
+                    <apigee:tag primary="true">Users</apigee:tag>
+                    <apigee:tag>Calendars</apigee:tag>
+                </apigee:tags>
+
+                <!-- app_key only -->
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="users/calendars/list"/>
+
+                <doc title="users_calendars_list" apigee:url="http://api.evdb.com/docs/users/calendars/list/">
+                    <![CDATA[Given a user ID, returns a list of that user's calendars. Note: This method requires user authentication to list private calendars.]]>
+                </doc>
+
+                <request>
+                    <param name="owner" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/users/calendars/list/">
+                            <![CDATA[The Eventful username of the calendars' owner. Optional, defaults to authenticated user.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="users/calendars/get">
+            <method id="users_calendars_get" name="GET" apigee:displayName="users/calendars/get">
+                <apigee:tags>
+                    <apigee:tag primary="true">Users</apigee:tag>
+                    <apigee:tag>Calendars</apigee:tag>
+                </apigee:tags>
+
+                <!-- app_key only -->
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="users/calendars/get"/>
+
+                <doc title="users_calendars_get" apigee:url="http://api.evdb.com/docs/users/calendars/get/">
+                    <![CDATA[Given a calendar ID, returns the properties of that calendar. Note: This method requires user authentication to get a private calendar.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/users/calendars/get/">
+                            <![CDATA[The calendar ID.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="users/get">
+            <method id="users_get" name="GET" apigee:displayName="users/get">
+                <apigee:tags>
+                    <apigee:tag primary="true">Users</apigee:tag>
+                </apigee:tags>
+
+                <!-- app_key only -->
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="users/get"/>
+
+                <doc title="users_get" apigee:url="http://api.evdb.com/docs/users/get/">
+                    <![CDATA[Given a user ID, returns the user data associated with that user. See http://www.eventful.com/users/eventor for an example interface.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/users/get/">
+                            <![CDATA[The ID of the requested user.]]>
+                        </doc>
+                    </param>
+
+                    <param name="list-counts" type="xsd:integer" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/users/get/">
+                            <![CDATA[List counts of user activity. Set to 1 to display this data. Optional.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="users/search">
+            <method id="users_search" name="GET" apigee:displayName="users/search">
+                <apigee:tags>
+                    <apigee:tag primary="true">Users</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <!-- app_key only -->
+                <apigee:example url="users/search"/>
+
+                <doc title="users_search" apigee:url="http://api.evdb.com/docs/users/search/">
+                    <![CDATA[This function handles user search. It performs the requested search, returning the results as an XML file.]]>
+                </doc>
+
+                <request>
+                    <param name="keywords" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/users/search/">
+                            <![CDATA[The search keywords.]]>
+                        </doc>
+                    </param>
+
+                    <param name="sort_order" type="xsd:string" style="query" required="false" default="relevance">
+                        <doc apigee:url="http://api.evdb.com/docs/users/search/">
+                            <![CDATA[Orders sorting of results by "relevance" (default), "username", "event_count", "venue_count", or "calendar_count".]]>
+                        </doc>
+                    </param>
+
+                    <param name="count_only" type="xsd:boolean" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/users/search/">
+                            <![CDATA[If count_only is set, an abbreviated version of the output will be returned. Only total_items and search_time elements are included in the result. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="page_size" type="xsd:integer" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/users/search/">
+                            <![CDATA[The desired number of results per page. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="page_number" type="xsd:integer" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/users/search/">
+                            <![CDATA[The desired page number. Optional.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="users/groups/list">
+            <method id="users_groups_list" name="GET" apigee:displayName="users/groups/list">
+                <apigee:tags>
+                    <apigee:tag primary="true">Users</apigee:tag>
+                    <apigee:tag>Groups</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="users/groups/list"/>
+
+                <doc title="users_groups_list" apigee:url="http://api.evdb.com/docs/users/groups/list/">
+                    <![CDATA[Given a user ID, returns a list of all groups of which the user is member.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/users/groups/list/">
+                            <![CDATA[The user ID.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="users/venues/list">
+            <method id="users_venues_list" name="GET" apigee:displayName="users/venues/list">
+                <apigee:tags>
+                    <apigee:tag primary="true">Users</apigee:tag>
+                    <apigee:tag>Venues</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="users/venues/list"/>
+
+                <doc title="users_venues_list" apigee:url="http://api.evdb.com/docs/users/venues/list/">
+                    <![CDATA[Given a user ID, returns the most recent venues added by this user. See http://eventful.com/events/new (the recent venues list) for an example interface.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/users/venues/list/">
+                            <![CDATA[The user ID. Defaults to the authenticated user. Optional.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="users/locales/add">
+            <method id="users_locales_add" name="GET" apigee:displayName="users/locales/add">
+                <apigee:tags>
+                    <apigee:tag primary="true">Users</apigee:tag>
+                    <apigee:tag>Locales</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="users/locales/add"/>
+
+                <doc title="users_locales_add" apigee:url="http://api.evdb.com/docs/users/locales/add/">
+                    <![CDATA[Adds a new locale to a user. See user preferences for an example interface.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/users/locales/add/">
+                            <![CDATA[The user ID.]]>
+                        </doc>
+                    </param>
+
+                    <param name="locale" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/users/locales/add/">
+                            <![CDATA[The locale to add to the user.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="users/locales/list">
+            <method id="users_locales_list" name="GET" apigee:displayName="users/locales/list">
+                <apigee:tags>
+                    <apigee:tag primary="true">Users</apigee:tag>
+                    <apigee:tag>Locales</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="users/locales/list"/>
+
+                <doc title="users_locales_list" apigee:url="http://api.evdb.com/docs/users/locales/list/">
+                    <![CDATA[Lists all locales attached to a user.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/users/locales/list/">
+                            <![CDATA[The user ID. If not specified, the authenticated user by default. Optional.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="users/locales/delete">
+            <method id="users_locales_delete" name="GET" apigee:displayName="users/locales/delete">
+                <apigee:tags>
+                    <apigee:tag primary="true">Users</apigee:tag>
+                    <apigee:tag>Locales</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="users/locales/delete"/>
+
+                <doc title="users_locales_delete" apigee:url="http://api.evdb.com/docs/users/locales/delete/">
+                    <![CDATA[Deletes a locale from a user. See user preferences for an example interface.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/users/locales/delete/">
+                            <![CDATA[The user ID from which to delete the locale.]]>
+                        </doc>
+                    </param>
+
+                    <param name="locale" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/users/locales/delete/">
+                            <![CDATA[The name of the locale to delete.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="users/going/add">
+            <method id="users_going_add" name="GET" apigee:displayName="users/going/add">
+                <apigee:tags>
+                    <apigee:tag primary="true">Users</apigee:tag>
+                    <apigee:tag>Events</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="users/going/add"/>
+
+                <doc title="users_going_add" apigee:url="http://api.evdb.com/docs/users/going/add/">
+                    <![CDATA[Marks a user as going to an event.]]>
+                </doc>
+
+                <request>
+                    <param name="event_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/users/going/add/">
+                            <![CDATA[The event ID.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="users/going/remove">
+            <method id="users_going_remove" name="GET" apigee:displayName="users/going/remove">
+                <apigee:tags>
+                    <apigee:tag primary="true">Users</apigee:tag>
+                    <apigee:tag>Events</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="users/going/remove"/>
+
+                <doc title="users_going_remove" apigee:url="http://api.evdb.com/docs/users/going/remove/">
+                    <![CDATA[Marks a user as not going to an event.]]>
+                </doc>
+
+                <request>
+                    <param name="event_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/users/going/remove/">
+                            <![CDATA[The event ID.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <!-- Calendars -->
+
+        <resource path="calendars/new">
+            <method id="calendars_new" name="GET" apigee:displayName="calendars/new">
+                <apigee:tags>
+                    <apigee:tag primary="true">Calendars</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="calendars/new"/>
+
+                <doc title="calendars_new" apigee:url="http://api.evdb.com/docs/calendars/new/">
+                    <![CDATA[Creates a new calendar. See http://eventful.com/calendars/new for an example interface.]]>
+                </doc>
+
+                <request>
+                    <param name="calendar_name" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/new/">
+                            <![CDATA[The calendar name.]]>
+                        </doc>
+                    </param>
+
+                    <param name="description" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/new/">
+                            <![CDATA[The calendar description. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="tags" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/new/">
+                            <![CDATA[A space-delimited list of tags. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="privacy" type="xsd:string" style="query" required="false" default="1">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/new/">
+                            <![CDATA[The privacy setting for this calendar. (1 = public, 2 = private, 3 = semi-private). Optional, defaults to 1.]]>
+                        </doc>
+                    </param>
+
+                    <param name="where_query" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/new/">
+                            <![CDATA[The keywords to use for smart calendar - the "what". Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="notify_schedule" type="xsd:anyURI" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/new/">
+                            <![CDATA[Choice to notify owner on updates to calendar either "immediately", "daily", or "weekly". Optional.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="calendars/get">
+            <method id="calendars_get" name="GET" apigee:displayName="calendars/get">
+                <apigee:tags>
+                    <apigee:tag primary="true">Calendars</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="calendars/get"/>
+
+                <doc title="calendars_get" apigee:url="http://api.evdb.com/docs/calendars/get/">
+                    <![CDATA[Given a calendar ID, returns the calendar data associated with that calendar.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/get/">
+                            <![CDATA[The ID of the requested calendar.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="calendars/search">
+            <method id="calendars_search" name="GET" apigee:displayName="calendars/search">
+                <apigee:tags>
+                    <apigee:tag primary="true">Calendars</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <!-- app_key only -->
+                <apigee:example url="calendars/search"/>
+
+                <doc title="calendars_search" apigee:url="http://api.evdb.com/docs/calendars/search/">
+                    <![CDATA[This function handles calendar search. It performs the requested search, returning the results as an XML file.]]>
+                </doc>
+
+                <request>
+                    <param name="keywords" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/search/">
+                            <![CDATA[The search keywords. Optional]]>
+                        </doc>
+                    </param>
+
+                    <param name="count_only" type="xsd:boolean" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/search/">
+                            <![CDATA[If count_only is set, an abbreviated version of the output will be returned. Only total_items and search_time elements are included in the result. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="sort_order" type="xsd:string" style="query" required="false" default="relevance">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/search/">
+                            <![CDATA[One of 'relevance', 'calendar_name'. Default is 'relevance'. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="sort_direction" type="xsd:string" style="query" required="false" default="ascending">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/search/">
+                            <![CDATA[One of 'ascending' or 'descending'. Default is 'ascending'. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="page_size" type="xsd:integer" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/search/">
+                            <![CDATA[The desired number of results per page. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="page_number" type="xsd:integer" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/search/">
+                            <![CDATA[The desired page number. Optional.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="calendars/modify">
+            <method id="calendars_modify" name="GET" apigee:displayName="calendars/modify">
+                <apigee:tags>
+                    <apigee:tag primary="true">Calendars</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="calendars/modify"/>
+
+                <doc title="calendars_modify" apigee:url="http://api.evdb.com/docs/calendars/modify/">
+                    <![CDATA[Modifies an existing calendar.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/modify/">
+                            <![CDATA[The ID of the calendar object to modify.]]>
+                        </doc>
+                    </param>
+
+                    <param name="calendar_name" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/modify/">
+                            <![CDATA[The calendar name. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="description" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/modify/">
+                            <![CDATA[The calendar description. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="tags" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/modify/">
+                            <![CDATA[A space-delimited list of tags. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="privacy" type="xsd:string" style="query" required="false" default="1">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/modify/">
+                            <![CDATA[The privacy setting for this calendar. (1 = public, 2 = private, 3 = semi-private). Optional, defaults to 1.]]>
+                        </doc>
+                    </param>
+
+                    <param name="where_query" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/modify/">
+                            <![CDATA[The keywords to use for smart calendar - the "what". Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="notify_schedule" type="xsd:anyURI" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/modify/">
+                            <![CDATA[Choice to notify owner on updates to calendar either "immediately", "daily", or "weekly". Optional.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="calendars/delete">
+            <method id="calendars_delete" name="GET" apigee:displayName="calendars/delete">
+                <apigee:tags>
+                    <apigee:tag primary="true">Calendars</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="calendars/delete"/>
+
+                <doc title="calendars_delete" apigee:url="http://api.evdb.com/docs/calendars/delete/">
+                    <![CDATA[Permanently deletes a calendar given an id (e.g. "C0-001-000000000-1").]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/delete/">
+                            <![CDATA[The calendar ID to delete.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="calendars/events/add">
+            <method id="calendars_events_add" name="GET" apigee:displayName="calendars/events/add">
+                <apigee:tags>
+                    <apigee:tag primary="true">Calendars</apigee:tag>
+                    <apigee:tag>Events</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="calendars/events/add"/>
+
+                <doc title="calendars_events_add" apigee:url="http://api.evdb.com/docs/calendars/events/add/">
+                    <![CDATA[Adds an event to a calendar.]]>
+                </doc>
+
+                <request>
+                    <param name="calendar_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/events/add/">
+                            <![CDATA[The unique ID of the calendar that the event will be added to.]]>
+                        </doc>
+                    </param>
+
+                    <param name="event_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/events/add/">
+                            <![CDATA[The ID of the event that will be added to the calendar.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="calendars/events/remove">
+            <method id="calendars_events_remove" name="GET" apigee:displayName="calendars/events/remove">
+                <apigee:tags>
+                    <apigee:tag primary="true">Calendars</apigee:tag>
+                    <apigee:tag>Events</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="calendars/events/remove"/>
+
+                <doc title="calendars_events_remove" apigee:url="http://api.evdb.com/docs/calendars/events/remove/">
+                    <![CDATA[Adds an event to a calendar.]]>
+                </doc>
+
+                <request>
+                    <param name="calendar_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/events/remove/">
+                            <![CDATA[The unique ID of the calendar that the event will be removed from.]]>
+                        </doc>
+                    </param>
+
+                    <param name="event_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/events/remove/">
+                            <![CDATA[The ID of the event that will be removed.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="calendars/events/list">
+            <method id="calendars_events_list" name="GET" apigee:displayName="calendars/events/list">
+                <apigee:tags>
+                    <apigee:tag primary="true">Calendars</apigee:tag>
+                    <apigee:tag>Events</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <!-- app_key only -->
+                <apigee:example url="calendars/events/list"/>
+
+                <doc title="calendars_events_list" apigee:url="http://api.evdb.com/docs/calendars/events/list/">
+                    <![CDATA[Returns a list of events associated with a calendar.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/events/list/">
+                            <![CDATA[The calendar ID.]]>
+                        </doc>
+                    </param>
+
+                    <param name="count_only" type="xsd:boolean" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/events/list/">
+                            <![CDATA[If count_only is set, an abbreviated version of the output will be returned. Only total_items and events/list_time elements are included in the result. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="modified_since" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/events/list/">
+                            <![CDATA[Searches for events that were modified after modified_since time. In the form of yyyy-MM-ddTHH-mm-ss. (E.g. "2005-11-15T18:00:00".)]]>
+                        </doc>
+                    </param>
+
+                    <param name="sort_order" type="xsd:string" style="query" required="false" default="date">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/events/list/">
+                            <![CDATA[One of 'date', 'title', 'venue_name'. Default is 'date'. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="sort_direction" type="xsd:string" style="query" required="false" default="ascending">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/events/list/">
+                            <![CDATA[One of 'ascending' or 'descending'. Default is 'ascending'. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="page_size" type="xsd:integer" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/events/list/">
+                            <![CDATA[The desired number of results per page. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="page_number" type="xsd:integer" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/events/list/">
+                            <![CDATA[The desired page number. Optional.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="calendars/events/ical">
+            <method id="calendars_events_ical" name="GET" apigee:displayName="calendars/events/ical">
+                <apigee:tags>
+                    <apigee:tag primary="true">Calendars</apigee:tag>
+                    <apigee:tag>Events</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <!-- app_key only -->
+                <apigee:example url="calendars/events/ical"/>
+
+                <doc title="calendars_events_ical" apigee:url="http://api.evdb.com/docs/calendars/events/ical/">
+                    <![CDATA[Returns an iCalendar (RFC-2445) (not XML) document of events contained on a specified calendar.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/events/ical/">
+                            <![CDATA[The calendar ID.]]>
+                        </doc>
+                    </param>
+
+                    <param name="date" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/events/ical/">
+                            <![CDATA[Limit this list of results to the specified date range. Date ranges are specified by label. Currently supported labels include: "All", "Future", "Past", "Today", "Last Week", "This Week", "Next week", and months by name, e.g. "October". Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="sort_order" type="xsd:string" style="query" required="false" default="date">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/events/ical/">
+                            <![CDATA[One of 'date', 'title', 'venue_name'. Default is 'date'. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="sort_direction" type="xsd:string" style="query" required="false" default="ascending">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/events/ical/">
+                            <![CDATA[One of 'ascending' or 'descending'. Default is 'ascending'. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="page_size" type="xsd:integer" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/events/ical/">
+                            <![CDATA[The desired number of results per page. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="page_number" type="xsd:integer" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/events/ical/">
+                            <![CDATA[The desired page number. Optional.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="text/calendar"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="calendars/events/rss">
+            <method id="calendars_events_rss" name="GET" apigee:displayName="calendars/events/rss">
+                <apigee:tags>
+                    <apigee:tag primary="true">Calendars</apigee:tag>
+                    <apigee:tag>Events</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <!-- app_key only -->
+                <apigee:example url="calendars/events/rss"/>
+
+                <doc title="calendars_events_rss" apigee:url="http://api.evdb.com/docs/calendars/events/rss/">
+                    <![CDATA[Returns an an RSS 2.0 (not XML) feed of events contained in a specified calendar.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/events/rss/">
+                            <![CDATA[The ID of the calendar to use as the feed source.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/rss+xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="calendars/properties/add">
+            <method id="calendars_properties_add" name="GET" apigee:displayName="calendars/properties/add">
+                <apigee:tags>
+                    <apigee:tag primary="true">Calendars</apigee:tag>
+                    <apigee:tag>Properties</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="calendars/properties/add"/>
+
+                <doc title="calendars_properties_add" apigee:url="http://api.evdb.com/docs/calendars/properties/add/">
+                    <![CDATA[Adds a property to a calendar. Properties are custom name/value pairs that can be used to add arbitrary information to a venue. For instance, a "Rating" property of "5 Stars" could be added to a venue using this method.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/properties/add/">
+                            <![CDATA[The venue ID.]]>
+                        </doc>
+                    </param>
+
+                    <param name="name" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/properties/add/">
+                            <![CDATA[The property name.]]>
+                        </doc>
+                    </param>
+
+                    <param name="value" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/properties/add/">
+                            <![CDATA[The property value.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="calendars/properties/list">
+            <method id="calendars_properties_list" name="GET" apigee:displayName="calendars/properties/list">
+                <apigee:tags>
+                    <apigee:tag primary="true">Calendars</apigee:tag>
+                    <apigee:tag>Properties</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="calendars/properties/list"/>
+
+                <doc title="calendars_properties_list" apigee:url="http://api.evdb.com/docs/calendars/properties/list/">
+                    <![CDATA[Lists all properties for a calendar.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/properties/list/">
+                            <![CDATA[The ID of the calendar.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="calendars/properties/remove">
+            <method id="calendars_properties_remove" name="GET" apigee:displayName="calendars/properties/remove">
+                <apigee:tags>
+                    <apigee:tag primary="true">Calendars</apigee:tag>
+                    <apigee:tag>Properties</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="calendars/properties/remove"/>
+
+                <doc title="calendars_properties_remove" apigee:url="http://api.evdb.com/docs/calendars/properties/remove/">
+                    <![CDATA[Removes a property (or group of properties) from a calendar.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/properties/remove/">
+                            <![CDATA[The ID of the calendar.]]>
+                        </doc>
+                    </param>
+
+                    <param name="property_id" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/properties/remove/">
+                            <![CDATA[The ID of the property to remove. Specify either this or "name".]]>
+                        </doc>
+                    </param>
+
+                    <param name="name" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/calendars/properties/remove/">
+                            <![CDATA[The name of the property to remove. NOTE: if name is specified, any property with this name will be removed from this venue. Specify either this or "id".]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <!-- Groups -->
+
+        <resource path="groups/new">
+            <method id="groups_new" name="GET" apigee:displayName="groups/new">
+                <apigee:tags>
+                    <apigee:tag primary="true">Groups</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="groups/new"/>
+
+                <doc title="groups_new" apigee:url="http://api.evdb.com/docs/">
+                    <![CDATA[Adds a new group. Undocumented.]]>
+                </doc>
+            </method>
+        </resource>
+
+        <resource path="groups/get">
+            <method id="groups_get" name="GET" apigee:displayName="groups/get">
+                <apigee:tags>
+                    <apigee:tag primary="true">Groups</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="groups/get"/>
+
+                <doc title="groups_get" apigee:url="http://api.evdb.com/docs/">
+                    <![CDATA[Gets the details for a group. Undocumented.]]>
+                </doc>
+            </method>
+        </resource>
+
+        <resource path="groups/modify">
+            <method id="groups_modify" name="GET" apigee:displayName="groups/modify">
+                <apigee:tags>
+                    <apigee:tag primary="true">Groups</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="groups/modify"/>
+
+                <doc title="groups_modify" apigee:url="http://api.evdb.com/docs/">
+                    <![CDATA[Modifies a group. Undocumented.]]>
+                </doc>
+            </method>
+        </resource>
+
+        <resource path="groups/withdraw">
+            <method id="groups_withdraw" name="GET" apigee:displayName="groups/withdraw">
+                <apigee:tags>
+                    <apigee:tag primary="true">Groups</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="groups/withdraw"/>
+
+                <doc title="groups_withdraw" apigee:url="http://api.evdb.com/docs/">
+                    <![CDATA[Withdraws (deletes) a group. Undocumented.]]>
+                </doc>
+            </method>
+        </resource>
+
+        <resource path="groups/search">
+            <method id="groups_search" name="GET" apigee:displayName="groups/search">
+                <apigee:tags>
+                    <apigee:tag primary="true">Groups</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="groups/search"/>
+
+                <doc title="groups_search" apigee:url="http://api.evdb.com/docs/">
+                    <![CDATA[Searches for a group. Undocumented.]]>
+                </doc>
+            </method>
+        </resource>
+
+        <resource path="groups/users/add">
+            <method id="groups_users_add" name="GET" apigee:displayName="groups/users/add">
+                <apigee:tags>
+                    <apigee:tag primary="true">Groups</apigee:tag>
+                    <apigee:tag>Users</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="groups/users/add"/>
+
+                <doc title="groups_users_add" apigee:url="http://api.evdb.com/docs/">
+                    <![CDATA[Adds a user to a group. Undocumented.]]>
+                </doc>
+            </method>
+        </resource>
+
+        <resource path="groups/users/list">
+            <method id="groups_users_list" name="GET" apigee:displayName="groups/users/list">
+                <apigee:tags>
+                    <apigee:tag primary="true">Groups</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="groups/users/list"/>
+
+                <doc title="groups_users_list" apigee:url="http://api.evdb.com/docs/groups/users/list/">
+                    <![CDATA[Returns a list of members associated with a group. See http://eventful.com/groups/G0-001-000001237-8/members for an example interface.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/groups/users/list/">
+                            <![CDATA[The group ID.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="groups/users/remove">
+            <method id="groups_users_remove" name="GET" apigee:displayName="groups/users/remove">
+                <apigee:tags>
+                    <apigee:tag primary="true">Groups</apigee:tag>
+                    <apigee:tag>Users</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="groups/users/remove"/>
+
+                <doc title="groups_users_remove" apigee:url="http://api.evdb.com/docs/">
+                    <![CDATA[Removes a user to a group. Undocumented.]]>
+                </doc>
+            </method>
+        </resource>
+
+        <resource path="groups/events/add">
+            <method id="groups_events_add" name="GET" apigee:displayName="groups/events/add">
+                <apigee:tags>
+                    <apigee:tag primary="true">Groups</apigee:tag>
+                    <apigee:tag>Events</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="groups/events/add"/>
+
+                <doc title="groups_events_add" apigee:url="http://api.evdb.com/docs/groups/events/add/">
+                    <![CDATA[Adds an event to a group.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/groups/events/add/">
+                            <![CDATA[The group ID.]]>
+                        </doc>
+                    </param>
+
+                    <param name="event_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/groups/events/add/">
+                            <![CDATA[The event ID.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="groups/events/remove">
+            <method id="groups_events_remove" name="GET" apigee:displayName="groups/events/remove">
+                <apigee:tags>
+                    <apigee:tag primary="true">Groups</apigee:tag>
+                    <apigee:tag>Events</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="groups/events/remove"/>
+
+                <doc title="groups_events_remove" apigee:url="http://api.evdb.com/docs/">
+                    <![CDATA[Removes an event from a group. Undocumented.]]>
+                </doc>
+            </method>
+        </resource>
+
+        <resource path="groups/events/list">
+            <method id="groups_events_list" name="GET" apigee:displayName="groups/events/list">
+                <apigee:tags>
+                    <apigee:tag primary="true">Groups</apigee:tag>
+                    <apigee:tag>Events</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="groups/events/list"/>
+
+                <doc title="groups_events_list" apigee:url="http://api.evdb.com/docs/">
+                    <![CDATA[Lists the events for a group. Undocumented.]]>
+                </doc>
+            </method>
+        </resource>
+
+        <!-- Images -->
+
+        <resource path="images/new">
+            <method id="images_new_get" name="GET" apigee:displayName="images/new (GET)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Images</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="images/new"/>
+
+                <doc title="images_new" apigee:url="http://api.evdb.com/docs/images/new/">
+                    <![CDATA[Uploads an image to Eventful and assigns it an image ID. Use this method to upload via URL.]]>
+                </doc>
+
+                <request>
+                    <param name="image_url" type="xsd:anyURI" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/images/new/">
+                            <![CDATA[The group ID.]]>
+                        </doc>
+                    </param>
+
+                    <param name="caption" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/groups/events/add/">
+                            <![CDATA[A caption for this image. Optional.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+
+            <method id="images_new_post" name="POST" apigee:displayName="images/new (POST)">
+                <apigee:tags>
+                    <apigee:tag primary="true">Images</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="images/new"/>
+
+                <doc title="images_new" apigee:url="http://api.evdb.com/docs/images/new/">
+                    <![CDATA[Uploads an image to Eventful and assigns it an image ID. Use this method to upload via POST file data.]]>
+                </doc>
+
+                <request>
+                    <param name="image_file" type="xsd:anyURI" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/images/new/">
+                            <![CDATA[The local filename.]]>
+                        </doc>
+                    </param>
+
+                    <param name="caption" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/groups/events/add/">
+                            <![CDATA[A caption for this image. Optional.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="images/delete">
+            <method id="images_delete" name="GET" apigee:displayName="images/delete">
+                <apigee:tags>
+                    <apigee:tag primary="true">Images</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="images/delete"/>
+
+                <doc title="images_delete" apigee:url="http://api.evdb.com/docs/">
+                    <![CDATA[Deletes an image. Undocumented.]]>
+                </doc>
+            </method>
+        </resource>
+
+        <!-- Performers -->
+
+        <resource path="performers/new">
+            <method id="performers_new" name="GET" apigee:displayName="performers/new">
+                <apigee:tags>
+                    <apigee:tag primary="true">Performers</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="performers/new"/>
+
+                <doc title="performers_new" apigee:url="http://api.evdb.com/docs/performers/new/">
+                    <![CDATA[Creates a new performer. See http://eventful.com/performers/new for an example interface.]]>
+                </doc>
+
+                <request>
+                    <param name="name" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/performers/new/">
+                            <![CDATA[The name of this performer.]]>
+                        </doc>
+                    </param>
+
+                    <param name="short_bio" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/performers/new/">
+                            <![CDATA[A short biography of this performer.]]>
+                        </doc>
+                    </param>
+
+                    <param name="long_bio" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/performers/new/">
+                            <![CDATA[A detailed biography of this performer. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="tags" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/performers/new/">
+                            <![CDATA[A space-delimited list of tags. Optional.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="performers/get">
+            <method id="performers_get" name="GET" apigee:displayName="performers/get">
+                <apigee:tags>
+                    <apigee:tag primary="true">Performers</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="performers/get"/>
+
+                <doc title="performers_get" apigee:url="http://api.evdb.com/docs/performers/get/">
+                    <![CDATA[Given a performer ID, returns the performer data associated with that performer.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/performers/get/">
+                            <![CDATA[The ID of the requested performer.]]>
+                        </doc>
+                    </param>
+
+                    <param name="show_events" type="xsd:boolean" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/performers/get/">
+                            <![CDATA[If true, include the events list.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="performers/modify">
+            <method id="performers_modify" name="GET" apigee:displayName="performers/modify">
+                <apigee:tags>
+                    <apigee:tag primary="true">Performers</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="performers/modify"/>
+
+                <doc title="performers_modify" apigee:url="http://api.evdb.com/docs/performers/modify/">
+                    <![CDATA[Modifies an existing performer.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/performers/modify/">
+                            <![CDATA[The ID of the performer object to modify.]]>
+                        </doc>
+                    </param>
+
+                    <param name="name" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/performers/modify/">
+                            <![CDATA[The name of this performer. Optional, defaults to the original name.]]>
+                        </doc>
+                    </param>
+
+                    <param name="short_bio" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/performers/modify/">
+                            <![CDATA[A short biography of this performer.]]>
+                        </doc>
+                    </param>
+
+                    <param name="long_bio" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/performers/modify/">
+                            <![CDATA[A detailed biography of this performer. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="tags" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/performers/modify/">
+                            <![CDATA[A space-delimited list of tags. Optional.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="performers/search">
+            <method id="performers_search" name="GET" apigee:displayName="performers/search">
+                <apigee:tags>
+                    <apigee:tag primary="true">Performers</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <!-- app_key only -->
+                <apigee:example url="performers/search"/>
+
+                <doc title="performers_search" apigee:url="http://api.evdb.com/docs/performers/search/">
+                    <![CDATA[This function handles performer search. It performs the requested search, returning the results as an XML file. See the search box at http://eventful.com/performers for an example interface.]]>
+                </doc>
+
+                <request>
+                    <param name="keywords" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/performers/search/">
+                            <![CDATA[The search keywords. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="count_only" type="xsd:boolean" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/performers/search/">
+                            <![CDATA[If count_only is set, an abbreviated version of the output will be returned. Only total_items and search_time elements are included in the result. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="sort_order" type="xsd:string" style="query" required="false" default="relevance">
+                        <doc apigee:url="http://api.evdb.com/docs/performers/search/">
+                            <![CDATA[One of 'relevance', 'name', 'event_count', 'demand_member_count', or 'created'. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="sort_direction" type="xsd:string" style="query" required="false" default="ascending">
+                        <doc apigee:url="http://api.evdb.com/docs/performers/search/">
+                            <![CDATA[One of 'ascending' or 'descending'. Default is 'ascending'. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="page_size" type="xsd:integer" style="query" required="false" default="20">
+                        <doc apigee:url="http://api.evdb.com/docs/performers/search/">
+                            <![CDATA[The desired number of results per page. Maximum 100, defaults to 20. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="page_number" type="xsd:integer" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/performers/search/">
+                            <![CDATA[The desired page number. Optional.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="performers/withdraw">
+            <method id="performers_withdraw" name="GET" apigee:displayName="performers/withdraw">
+                <apigee:tags>
+                    <apigee:tag primary="true">Performers</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="performers/withdraw"/>
+
+                <doc title="performers_withdraw" apigee:url="http://api.evdb.com/docs/performers/withdraw/">
+                    <![CDATA[Marks a performer as withdrawn. Withdrawn performers are not listed in search results.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/performers/withdraw/">
+                            <![CDATA[The performer ID to withdraw.]]>
+                        </doc>
+                    </param>
+
+                    <param name="note" type="xsd:boolean" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/performers/withdraw/">
+                            <![CDATA[A short reason why this performer was withdrawn.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="performers/links/add">
+            <method id="performers_links_add" name="GET" apigee:displayName="performers/links/add">
+                <apigee:tags>
+                    <apigee:tag primary="true">Performers</apigee:tag>
+                    <apigee:tag>Links</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="performers/links/add"/>
+
+                <doc title="performers_links_add" apigee:url="http://api.evdb.com/docs/">
+                    <![CDATA[Add links to a performer. Undocumented.]]>
+                </doc>
+            </method>
+        </resource>
+
+        <resource path="performers/links/remove">
+            <method id="performers_links_remove" name="GET" apigee:displayName="performers/links/remove">
+                <apigee:tags>
+                    <apigee:tag primary="true">Performers</apigee:tag>
+                    <apigee:tag>Links</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="performers/links/remove"/>
+
+                <doc title="performers_links_remove" apigee:url="http://api.evdb.com/docs/">
+                    <![CDATA[Remove links from a performer. Undocumented.]]>
+                </doc>
+            </method>
+        </resource>
+
+        <resource path="performers/images/add">
+            <method id="performers_images_add" name="GET" apigee:displayName="performers/images/add">
+                <apigee:tags>
+                    <apigee:tag primary="true">Performers</apigee:tag>
+                    <apigee:tag>Images</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="performers/images/add"/>
+
+                <doc title="performers_images_add" apigee:url="http://api.evdb.com/docs/performers/images/add/">
+                    <![CDATA[Add an image to a performer.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/performers/images/add/">
+                            <![CDATA[The performer ID.]]>
+                        </doc>
+                    </param>
+
+                    <param name="image_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/performers/images/add/">
+                            <![CDATA[The image ID. (See /images/new to upload an image and retrieve the ID.)]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="performers/images/remove">
+            <method id="performers_images_remove" name="GET" apigee:displayName="performers/images/remove">
+                <apigee:tags>
+                    <apigee:tag primary="true">Performers</apigee:tag>
+                    <apigee:tag>Images</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="performers/images/remove"/>
+
+                <doc title="performers_images_remove" apigee:url="http://api.evdb.com/docs/performers/images/remove/">
+                    <![CDATA[Removes an image from a performer.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/performers/images/remove/">
+                            <![CDATA[The performer ID.]]>
+                        </doc>
+                    </param>
+
+                    <param name="image_id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/performers/images/remove/">
+                            <![CDATA[The image ID. (See /images/new to upload an image and retrieve the ID.)]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <!-- Demand -->
+
+        <resource path="demands/get">
+            <method id="demands_get" name="GET" apigee:displayName="demands/get">
+                <apigee:tags>
+                    <apigee:tag primary="true">Demands</apigee:tag>
+                </apigee:tags>
+
+                <!-- app_key only -->
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="demands/get"/>
+
+                <doc title="demands_get" apigee:url="http://api.evdb.com/docs/demands/get/">
+                    <![CDATA[Given a demand ID, returns the demand data associated with that demand.]]>
+                </doc>
+
+                <request>
+                    <param name="id" type="xsd:string" style="query" required="true">
+                        <doc apigee:url="http://api.evdb.com/docs/demands/get/">
+                            <![CDATA[The ID of the requested demand.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="demands/search">
+            <method id="demands_search" name="GET" apigee:displayName="demands/search">
+                <apigee:tags>
+                    <apigee:tag primary="true">Demands</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <!-- app_key only -->
+                <apigee:example url="demands/search"/>
+
+                <doc title="demands_search" apigee:url="http://api.evdb.com/docs/demands/search/">
+                    <![CDATA[This function handles demand search. It performs the requested search, returning the results as an XML file. See the search box at http://eventful.com/demand for an example interface.]]>
+                </doc>
+
+                <request>
+                    <param name="keywords" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/demands/search/">
+                            <![CDATA[The search keywords. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="location" type="xsd:string" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/demands/search/">
+                            <![CDATA[A location name to use in filtering the search results. Locations in the form "San Diego", "San Diego, TX", "London, United Kingdom", and "Calgary, Alberta, Canada" are accepted, as are postal codes ("92122"). Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="count_only" type="xsd:boolean" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/demands/search/">
+                            <![CDATA[If count_only is set, an abbreviated version of the output will be returned. Only total_items and search_time elements are included in the result. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="sort_order" type="xsd:string" style="query" required="false" default="relevance">
+                        <doc apigee:url="http://api.evdb.com/docs/demands/search/">
+                            <![CDATA[One of 'relevance', 'name', 'category', 'member_count', 'performer', or 'created'. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="sort_direction" type="xsd:string" style="query" required="false" default="ascending">
+                        <doc apigee:url="http://api.evdb.com/docs/demands/search/">
+                            <![CDATA[One of 'ascending' or 'descending'. Default is 'ascending'. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="page_size" type="xsd:integer" style="query" required="false" default="20">
+                        <doc apigee:url="http://api.evdb.com/docs/demands/search/">
+                            <![CDATA[The desired number of results per page. Maximum 100, defaults to 20. Optional.]]>
+                        </doc>
+                    </param>
+
+                    <param name="page_number" type="xsd:integer" style="query" required="false">
+                        <doc apigee:url="http://api.evdb.com/docs/demands/search/">
+                            <![CDATA[The desired page number. Optional.]]>
+                        </doc>
+                    </param>
+                </request>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <!-- Categories -->
+
+        <resource path="categories/list">
+            <method id="categories_list" name="GET" apigee:displayName="categories/list">
+                <apigee:tags>
+                    <apigee:tag primary="true">Categories</apigee:tag>
+                </apigee:tags>
+
+                <!-- app_key only -->
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="categories/list"/>
+
+                <doc title="categories_list" apigee:url="http://api.evdb.com/docs/categories/list/">
+                    <![CDATA[Lists all event categories.]]>
+                </doc>
+
+                <response>
+                    <representation mediaType="application/xml"/>
+                </response>
+            </method>
+        </resource>
+
+    </resources>
+</application>
