@@ -237,20 +237,6 @@
         </resource>
 
         <resource path="posts/all">
-            <method id="postAll" name="GET" apigee:displayName="posts/all">
-                <apigee:tags>
-                    <apigee:tag primary="true">Posts</apigee:tag>
-                </apigee:tags>
-
-                <apigee:authentication required="true"/>
-
-                <apigee:example url="posts/all"/>
-
-                <doc title="posts/all" apigee:url="http://www.delicious.com/help/api#posts_all">
-                    <![CDATA[Returns all posts. Please use sparingly. Call the update function to see if you need to fetch this at all.]]>
-                </doc>
-
-                <request>
                     <param name="results" type="xsd:integer" style="query" required="false">
                         <doc apigee:url="http://www.delicious.com/help/api#posts_all">
                             <![CDATA[Return this many results.]]>
@@ -286,7 +272,19 @@
                             <![CDATA[Filter for posts on this date or earlier.]]>
                         </doc>
                     </param>
-                </request>
+
+            <method id="postAll" name="GET" apigee:displayName="posts/all">
+                <apigee:tags>
+                    <apigee:tag primary="true">Posts</apigee:tag>
+                </apigee:tags>
+
+                <apigee:authentication required="true"/>
+
+                <apigee:example url="posts/all"/>
+
+                <doc title="posts/all" apigee:url="http://www.delicious.com/help/api#posts_all">
+                    <![CDATA[Returns all posts. Please use sparingly. Call the update function to see if you need to fetch this at all.]]>
+                </doc>
 
                 <response>
                     <representation mediaType="application/json"/>
