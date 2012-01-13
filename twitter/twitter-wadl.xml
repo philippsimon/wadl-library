@@ -1969,7 +1969,7 @@
             </param>
             <method id="trends" name="GET">
                 <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
-                    <apigee:tag primary="true">Trends</apigee:tag>
+                    <apigee:tag primary="true">Deprecated</apigee:tag>
                 </apigee:tags>
                 <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
                 <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/trends.{format}"/>
