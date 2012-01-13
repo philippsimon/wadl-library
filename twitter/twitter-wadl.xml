@@ -1797,7 +1797,7 @@
                 <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="false"/>
                 <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/" url="/trends/{woeid}.{format}"/>
                 <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
-                     apigee:url="http://dev.twitter.com/doc/get/trends/location"><![CDATA[Returns the top 10 trending topics for a specific location Twitter has trending topic information
+                     apigee:url="https://dev.twitter.com/docs/api/1/get/trends/%3Awoeid"><![CDATA[Returns the top 10 trending topics for a specific location Twitter has trending topic information
                     for. The response is an array of "trend" objects that encode the name of the trending topic, the
                     query parameter that can be used to search for the topic on Search, and the direct URL that can be
                     issued against Search. This information is cached for five minutes, and therefore users are
