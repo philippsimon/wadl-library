@@ -2582,6 +2582,44 @@
         </resource>
 
     </resources>
+
+    <resources base="http://search.twitter.com">
+
+        <resource path="search.{format}">
+            <param name="format" type="xsd:string" style="template" required="true" default="json">
+                <option value="xml" mediaType="application/xml"/>
+                <option value="json" mediaType="application/json"/>
+                <option value="rss" mediaType="application/rss+xml"/>
+                <option value="atom" mediaType="application/atom+xml"/>
+            </param>
+            <method id="search" name="GET">
+                <apigee:tags xmlns:apigee="http://api.apigee.com/wadl/2010/07/">
+                    <apigee:tag primary="true">Search</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication xmlns:apigee="http://api.apigee.com/wadl/2010/07/" required="true"/>
+                <apigee:example xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+                                url="/search.{format}?q={q}"/>
+                <doc xmlns:apigee="http://api.apigee.com/wadl/2010/07/" title=""
+                     apigee:url="https://dev.twitter.com/docs/using-search"><![CDATA[Returns tweets that match a specified query.
+                ]]></doc>
+                <request>
+                    <param name="callback" required="false" type="string" style="query" default=""/>
+                    <param name="geocode" required="false" type="string" style="query" default=""/>
+                    <param name="lang" required="false" type="string" style="query" default=""/>
+                    <param name="locale" required="false" type="string" style="query" default=""/>
+                    <param name="page" required="false" type="string" style="query" default=""/>
+                    <param name="result_type" required="false" type="string" style="query" default=""/>
+                    <param name="rpp" required="false" type="string" style="query" default=""/>
+                    <param name="show_user" required="false" type="string" style="query" default=""/>
+                    <param name="until" required="false" type="string" style="query" default=""/>
+                    <param name="since_id" required="false" type="string" style="query" default=""/>
+                    <param name="include_entities" required="false" type="string" style="query" default=""/>
+                </request>
+            </method>
+        </resource>
+
+    </resources>
+    
 </application><!-- check authdefaults
 revisit what POST examples include (like params="param1, param2")
 Other tags: GET/POST/PUT/DELETE auth/noauth
