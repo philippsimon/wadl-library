@@ -42,7 +42,6 @@
 				<doc title="" apigee:url="http://www.twilio.com/docs/api/2010-04-01/rest/account"><![CDATA[Allows you to modify the 'FriendlyName' for the {AccountSid} via POST.]]></doc>
 			    <request>
 				   <param name="Content-Type" type="string" style="header" required="true" default="application/x-www-form-urlencoded"/>
-                   <param name="FriendlyName" type="string" style="query" required="true" default=""/>
                 </request>
             </method>
 		</resource>
