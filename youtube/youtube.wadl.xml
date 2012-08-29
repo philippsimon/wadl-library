@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<application xmlns="http://wadl.dev.java.net/2009/02"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+             xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
+
+	<resources base="https://gdata.youtube.com/feeds/api">
+		
+		<resource path="videos">
+			<method id="videos.search" name="GET" apigee:displayName="Search Videos">
+				<apigee:tags>
+					<apigee:tag primary="true">YouTube</apigee:tag>
+				</apigee:tags>
+				
+				<apigee:authentication required="false" />
+				
+				<apigee:example url="videos" />
+
+				<doc apigee:url="http://code.google.com/intl/en/apis/youtube/2.0/reference.html#Searching_for_videos">
+					<![CDATA[Retrieve a list of videos matching a user-specified search term.]]>
+				</doc>
+				
+				<request>
+					<!-- Standard Google Data API parameters -->
+					<param name="alt" type="xsd:string" style="query" default="atom" required="false">
+						<option value="atom" />
+						<option value="rss" />
+						<option value="json" />
+						<option value="json-in-script" />
+						<option value="jsonc" />
+					</param>
+					<param name="author" type="xsd:string" style="query" required="false" />
+					<param name="callback" type="xsd:string" style="query" required="false" />
+					<param name="fields" type="xsd:string" style="query"  required="false" />
+					<param name="fields-language" type="xsd:string" style="query" required="false" />
+					<param name="max-results" type="xsd:string" style="query" default="25" required="false" />
+					<param name="prettyprint" type="xsd:boolean" style="query" default="false" required="false" />
+					<param name="start-index" type="xsd:integer" style="query" required="false" />
+					<param name="strict" type="xsd:string" style="query" required="false" />
+					<param name="v" type="xsd:string" style="query" required="false">
+						<option value="1" />
+						<option value="2" />
+						<option value="2.1" />
+					</param>
+
+					<!-- Custom YouTube Data API parameters -->
+					<param name="3d" type="xsd:string" style="query" required="false" />
+					<param name="caption" type="xsd:boolean" style="query" required="false" />
+					<param name="category" type="xsd:string" style="query" required="false" />
+					<param name="duration" type="xsd:string" style="query" required="false">
+						<option value="short" />
+						<option value="medium" />
+						<option value="long" />
+					</param>
+					<param name="format" type="xsd:string" style="query" required="false">
+						<option value="0" />
+						<option value="5" />
+						<option value="6" />
+					</param>
+					<param name="hd" type="xsd:string" style="query" required="false" />
+					<param name="license" type="xsd:string" style="query" required="false">
+						<option value="cc" />
+						<option value="youtube" />
+					</param>
+					<param name="location" type="xsd:string" style="query" required="false" />
+					<param name="location-radius" type="xsd:decimal" style="query" required="false" />
+					<param name="lr" type="xsd:string" style="query" required="false" />
+					<param name="orderby" type="xsd:string" style="query" required="false">
+						<option value="relevance" />
+						<option value="published" />
+						<option value="viewCount" />
+						<option value="rating" />
+					</param>
+					<param name="q" type="xsd:string" style="query" required="false" />
+					<param name="safeSearch" type="xsd:string" style="query" default="moderate" required="false">
+						<option value="none" />
+						<option value="moderate" />
+						<option value="strict" />
+					</param>
+					<param name="time" type="xsd:string" style="query" default="all_time" required="false">
+						<option value="today" />
+						<option value="this_week" />
+						<option value="this_month" />
+						<option value="all_time" />
+					</param>
+					<param name="uploader" type="xsd:string" style="query" default="partner" required="false" />
+				</request>
+			</method>
+		</resource>
+	
+	</resources>
+</application>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<application xmlns="http://wadl.dev.java.net/2009/02"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+             xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
+
+	<resources base="https://www.googleapis.com/freebase/v1">
+		
+		<resource path="search">
+			<method id="search" name="GET" apigee:displayName="Search">
+				<apigee:tags>
+					<apigee:tag primary="true">Freebase</apigee:tag>
+				</apigee:tags>
+				
+				<apigee:authentication required="false" />
+				
+				<apigee:example url="search?query={query}" />
+
+				<doc apigee:url="http://wiki.freebase.com/wiki/ApiSearch">
+					<![CDATA[Provides access to Freebase data given a free text query.]]>
+				</doc>
+				
+				<request>
+					<param name="query" type="xsd:string" style="query" required="true">
+						<doc><![CDATA[The text you want to match against freebase entities.]]></doc>
+					</param>
+					<param name="callback" type="xsd:string" style="query" required="false">
+						<doc><![CDATA[JS method name for JSONP callbacks.]]></doc>
+					</param>
+					<param name="domain" type="xsd:string" style="query" required="false">
+						<doc><![CDATA[Comma separated list of domain IDs. Search results must include these domains.]]></doc>
+					</param>
+					<param name="filter" type="xsd:string" style="query" required="false">
+						<doc><![CDATA[Filter s-expression.]]></doc>
+					</param>
+					<param name="html_escape" type="xsd:boolean" style="query" default="true" required="false">
+						<doc><![CDATA[Whether or not to escape entities.]]></doc>
+					</param>
+					<param name="indent" type="xsd:boolean" style="query" default="false" required="false">
+						<doc><![CDATA[Whether to indent the json.]]></doc>
+					</param>
+					<param name="limit" type="xsd:integer" style="query" default="20" required="false">
+						<doc><![CDATA[Return up to this number of results.]]></doc>
+					</param>
+					<param name="mql_output" type="xsd:string" style="query" required="false">
+						<doc><![CDATA[MQL query thats extracts entity information.]]></doc>
+					</param>
+					<param name="prefixed" type="xsd:boolean" style="query" default="false" required="false">
+						<doc><![CDATA[Whether or not to match by name prefix (used for autosuggest).]]></doc>
+					</param>
+					<param name="start" type="xsd:integer" style="query" default="0" required="false">
+						<doc><![CDATA[Allows paging through results.]]></doc>
+					</param>
+					<param name="type" type="xsd:string" style="query" required="false">
+						<doc><![CDATA[Comma seperated list of type IDs. Search results must include these types.]]></doc>
+					</param>
+				</request>
+			</method>
+		</resource>
+
+		<resource path="mqlread">
+			<method id="mqlread" name="GET" apigee:displayName="Read MQL">
+				<apigee:tags>
+					<apigee:tag primary="true">Freebase</apigee:tag>
+				</apigee:tags>
+				
+				<apigee:authentication required="false" />
+				
+				<apigee:example url="mqlread?query={query}" />
+
+				<doc apigee:url="http://wiki.freebase.com/wiki/MQL_Read_Service">
+					<![CDATA[Provides access to the freebase database using the Metaweb query language (MQL).]]>
+				</doc>
+				
+				<request>
+					<param name="query" type="xsd:string" style="query" required="true">
+						<doc><![CDATA[The text you want to match against freebase entities.]]></doc>
+					</param>
+					<param name="as_of_time" type="xsd:string" style="query" required="false">
+						<doc><![CDATA[Run the query as it would've been run at the specified point in time. Must be a valid timestamp (e.g. "2007-01-09T22" or "2007-02").]]></doc>
+					</param>
+					<param name="callback" type="xsd:string" style="query" required="false">
+						<doc><![CDATA[JS method name for JSONP callbacks.]]></doc>
+					</param>
+					<param name="cursor" type="xsd:string" style="query" required="false">
+						<doc><![CDATA[Provides a mechanism for "paging" out results (can be used in conjunction with "limit" directive in MQL). No value (for the first request) OR a valid cursor returned by a previous request.]]></doc>
+					</param>
+					<param name="html_escape" type="xsd:boolean" style="query" default="true" required="false">
+						<doc><![CDATA[Whether or not to escape entities.]]></doc>
+					</param>
+					<param name="indent" type="xsd:boolean" style="query" default="false" required="false">
+						<doc><![CDATA[Whether to indent the json.]]></doc>
+					</param>
+					<param name="lang" type="xsd:string" style="query" default="/lang/en" required="false">
+						<doc><![CDATA[Return strings in the language requested (if a given object has no name in the requested language, null will be returned).]]></doc>
+					</param>
+					<param name="cost" type="xsd:boolean" style="query" default="false" required="false">
+						<doc><![CDATA[Whether or not to show the costs.]]></doc>
+					</param>
+					<param name="uniqueness_failure" type="xsd:string" style="query" default="hard" required="false">
+						<doc><![CDATA[How MQL responds to uniqueness failures.]]></doc>
+						<option value="hard" />
+						<option value="soft" />
+					</param>
+				</request>
+			</method>
+		</resource>
+	
+	</resources>
+</application>

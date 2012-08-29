@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<application xmlns="http://wadl.dev.java.net/2009/02"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+             xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
+
+	<resources base="http://open.api.ebay.com">
+		
+		<resource path="shopping">
+			<method id="findPopularItems" name="GET" apigee:displayName="Find Popular Items">
+				<apigee:tags>
+					<apigee:tag primary="true">eBay</apigee:tag>
+				</apigee:tags>
+				
+				<apigee:authentication required="false" />
+				
+				<apigee:example url="shopping?callname=FindPopularItems&amp;version={version}&amp;QueryKeywords={QueryKeywords}" />
+
+				<doc apigee:url="http://developer.ebay.com/devzone/shopping/docs/CallRef/FindPopularItems.html">
+					<![CDATA[Searches for popular items based on a category or keyword.]]>
+				</doc>
+				
+				<request>
+					<param name="callname" type="xsd:string" style="query" default="FindPopularItems" required="true">
+						<doc><![CDATA[The name of the call you are using.]]></doc>
+					</param>
+					<param name="version" type="xsd:string" style="query" required="true">
+						<doc><![CDATA[The API version that your application supports.]]></doc>
+					</param>
+					<param name="QueryKeywords" type="xsd:string" style="query" required="true">
+						<doc><![CDATA[A query that specifies a string for searching titles of items on eBay. If you are using a URL, then to search for multiple words, use "%20". For example, use Harry%20Potter to search for items containing those words in any order. You can incorporate wildcards into a multi-word search, as in the following: ap*%20ip*. The words "and" and "or" are treated like any other word. Only use "and", "or", or "the" if you are searching for listings containing these words. QueryKeywords can be used in combination with CategoryID and CategoryIDExclude (max length: 350 (characters)).]]></doc>
+					</param>
+					<param name="MessageID" type="xsd:string" style="query" required="false">
+						<doc><![CDATA[If you pass a value in MessageID in a request, we'll return the same value in CorrelationID in the response. If you're making a lot of calls, you can use this for tracking that a response is returned for every request and to match particular responses to particular requests. (In this case, specify a different value for each request.) You can specify any value that is useful to you.]]></doc>
+					</param>
+					<param name="CategoryID" type="xsd:string" style="query" required="false">
+						<doc><![CDATA[Specify CategoryID to restrict your query to a specific category. Up to 10 categories may be specified. If you are using a URL, and you want to specify more than one CategoryID, separate the values with a comma. For example, to specify Fiction Books and Children's Books, specify CategoryID=377,279. If the specified category ID doesn't match an existing category for the site, an invalid-category error message is returned. To determine valid categories: Use findItemsAdvanced from the Finding API with CategoryHistogram value in the OutputSelector field to retrieve matching categories. Then make another findItemsAdvanced call with the ID of a matching category. CategoryID can be used in combination with QueryKeywords and CategoryIDExclude. To retrieve the most popular items across all categorys, do not submit a CategoryID (max length: 10).]]></doc>
+					</param>
+					<param name="CategoryIDExclude" type="xsd:string" style="query" required="false">
+						<doc><![CDATA[Specify this value if you want search results to be filtered so that the popular items returned do not include items that belong to a specific category. CategoryIDExclude is an unbounded field. If you are using a URL, you can separate multiple values with a comma. For example, if you want to specify Records and SuperAudio CDs, specify CategoryIDExclude=306,46354. If you use CategoryIDExclude, it must be used in with QueryKeywords or CategoryID. The CategoryIDExclude input field need not be used if you specified the CategoryID input field.]]></doc>
+					</param>
+					<param name="MaxEntries" type="xsd:integer" style="query" required="false">
+						<doc><![CDATA[Specifies the maximum number of entries to return in a single call (Min: 0 - Max: 100).]]></doc>
+					</param>
+
+					<param name="callback" type="xsd:string" style="query" required="false">
+						<doc><![CDATA[Applies only in cases where the response data is in JSON format. If this value is true, the response data is wrapped in a call to a _cb_[call name] function, to make the response data easier to use. For example, if you use the FindPopularItems call and you specify callback=true, then the FindPopularItems response data will be wrapped in a call to a _cb_FindPopularItems function. If you prefer, use the callbackname parameter instead. The callbackname parameter enables you to specify the name of the function that is returned. If you use both the callback parameter and the callbackname parameter, the callback parameter is ignored.]]></doc>
+					</param>
+					<param name="callbackname" type="xsd:string" style="query" required="false">
+						<doc><![CDATA[Applies only in cases where the response data is in JSON format. If you use this value, the response data is wrapped in a call to a function, to make the response data easier to use. The value you specify for this parameter is used as the name of the function that is returned. For example, if you use the FindPopularItems call and you specify callbackname=myfunction, then the FindPopularItems response data will be wrapped in a call to a myfunction function. The value you specify for this parameter can contain only alphanumeric characters (and the "_" and "." characters). If you use this parameter with the callback parameter, the callback parameter is ignored.]]></doc>
+					</param>
+					<param name="requestencoding" type="xsd:string" style="query" required="false">
+						<doc><![CDATA[If you use a URL for an HTTP GET request, requestencoding is unnecessary: the only valid value is NV (Name-Value Pair). If you use HTTP POST, this is a required header. Valid options: JSON, XML, NV, or SOAP (all caps). For request formats JSON and NV, you must append a "Value" field to represent instances of an extension of a simple type or instances of a restriction on a simple type (see responseencoding, below).]]></doc>
+					</param>
+					<param name="siteid" type="xsd:integer" style="query" required="false">
+						<doc><![CDATA[The numeric value for the eBay site with the items you want information about, e.g. the siteid of the US site is 0.]]></doc>
+					</param>
+					<param name="versionhandling" type="xsd:string" style="query" default="eBayStandard" required="false">
+						<doc><![CDATA[The versionhandling option allows you to receive the enum values from the latest Shopping API schema, regardless of the schema version you specified in version (or in X-EBAY-API-VERSION) parameter. To utilize this option, set versionhandling=LatestEnumValues. If you set versionhandling=eBayStandard, you will receive the value 'CustomCode' if we have added an enum value that is not defined in the schema version you specified in version (or in X-EBAY-API-VERSION). If you don't specify a versionhandling value, the default behavior is the same as the versionhandling=eBayStandard setting.]]></doc>
+						<option value="eBayStandard" />
+						<option value="LatestEnumValues" />
+					</param>
+				</request>
+			</method>
+
+			<method id="getItemStatus" name="GET" apigee:displayName="Get Item Status">
+				<apigee:tags>
+					<apigee:tag primary="true">eBay</apigee:tag>
+				</apigee:tags>
+				
+				<apigee:authentication required="false" />
+				
+				<apigee:example url="shopping?callname=GetItemStatus&amp;version={version}&amp;ItemID={ItemID}" />
+
+				<doc apigee:url="http://developer.ebay.com/devzone/shopping/docs/CallRef/GetItemStatus.html">
+					<![CDATA[Retrieves Item status information for a list of up to 10 specified ItemIDs.]]>
+				</doc>
+				
+				<request>
+					<param name="callname" type="xsd:string" style="query" default="GetItemStatus" required="true">
+						<doc><![CDATA[The name of the call you are using.]]></doc>
+					</param>
+					<param name="version" type="xsd:string" style="query" required="true">
+						<doc><![CDATA[The API version that your application supports.]]></doc>
+					</param>
+					<param name="ItemID" type="xsd:string" style="query" required="true">
+						<doc><![CDATA[The item ID that uniquely identifies the item listing for which to retrieve the data. You can provide a maximum of 20 ItemIDs. Use a comma to separate ItemIDs (max length: 19). Note: The eBay database specifies 38. However, Item IDs are usually 9 to 12 digits.]]></doc>
+					</param>
+					<param name="MessageID" type="xsd:string" style="query" required="false">
+						<doc><![CDATA[If you pass a value in MessageID in a request, we'll return the same value in CorrelationID in the response. If you're making a lot of calls, you can use this for tracking that a response is returned for every request and to match particular responses to particular requests. (In this case, specify a different value for each request.) You can specify any value that is useful to you.]]></doc>
+					</param>
+
+					<param name="callback" type="xsd:string" style="query" required="false">
+						<doc><![CDATA[Applies only in cases where the response data is in JSON format. If this value is true, the response data is wrapped in a call to a _cb_[call name] function, to make the response data easier to use. For example, if you use the FindPopularItems call and you specify callback=true, then the FindPopularItems response data will be wrapped in a call to a _cb_FindPopularItems function. If you prefer, use the callbackname parameter instead. The callbackname parameter enables you to specify the name of the function that is returned. If you use both the callback parameter and the callbackname parameter, the callback parameter is ignored.]]></doc>
+					</param>
+					<param name="callbackname" type="xsd:string" style="query" required="false">
+						<doc><![CDATA[Applies only in cases where the response data is in JSON format. If you use this value, the response data is wrapped in a call to a function, to make the response data easier to use. The value you specify for this parameter is used as the name of the function that is returned. For example, if you use the FindPopularItems call and you specify callbackname=myfunction, then the FindPopularItems response data will be wrapped in a call to a myfunction function. The value you specify for this parameter can contain only alphanumeric characters (and the "_" and "." characters). If you use this parameter with the callback parameter, the callback parameter is ignored.]]></doc>
+					</param>
+					<param name="requestencoding" type="xsd:string" style="query" required="false">
+						<doc><![CDATA[If you use a URL for an HTTP GET request, requestencoding is unnecessary: the only valid value is NV (Name-Value Pair). If you use HTTP POST, this is a required header. Valid options: JSON, XML, NV, or SOAP (all caps). For request formats JSON and NV, you must append a "Value" field to represent instances of an extension of a simple type or instances of a restriction on a simple type (see responseencoding, below).]]></doc>
+					</param>
+					<param name="siteid" type="xsd:integer" style="query" required="false">
+						<doc><![CDATA[The numeric value for the eBay site with the items you want information about, e.g. the siteid of the US site is 0.]]></doc>
+					</param>
+					<param name="versionhandling" type="xsd:string" style="query" default="eBayStandard" required="false">
+						<doc><![CDATA[The versionhandling option allows you to receive the enum values from the latest Shopping API schema, regardless of the schema version you specified in version (or in X-EBAY-API-VERSION) parameter. To utilize this option, set versionhandling=LatestEnumValues. If you set versionhandling=eBayStandard, you will receive the value 'CustomCode' if we have added an enum value that is not defined in the schema version you specified in version (or in X-EBAY-API-VERSION). If you don't specify a versionhandling value, the default behavior is the same as the versionhandling=eBayStandard setting.]]></doc>
+						<option value="eBayStandard" />
+						<option value="LatestEnumValues" />
+					</param>
+				</request>
+			</method>
+		</resource>
+	
+	</resources>
+</application>

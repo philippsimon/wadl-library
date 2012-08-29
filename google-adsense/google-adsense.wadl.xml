@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<application xmlns="http://wadl.dev.java.net/2009/02"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+             xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
+
+	<resources base="https://www.googleapis.com/adsense/v1">
+		
+		<resource path="adclients">
+			<method id="adsense.adclients.list" name="GET" apigee:displayName="List Ad Clients">
+				<apigee:tags>
+					<apigee:tag primary="true">Google AdSense (Management)</apigee:tag>
+				</apigee:tags>
+				
+				<apigee:authentication required="true" />
+				
+				<apigee:example url="adclients" />
+
+				<doc apigee:url="http://code.google.com/intl/en/apis/adsense/management/v1/reference.html#method_adsense_adclients_list">
+					<![CDATA[List all ad clients in this AdSense account.]]>
+				</doc>
+
+				<request>
+					<param name="maxResults" type="xsd:string" style="query" default="10000" required="false" />
+					<param name="pageToken" type="xsd:string" style="query" required="false" />
+
+					<param name="callback" type="xsd:string" style="query" required="false" />
+					<param name="fields" type="xsd:string" style="query" required="false" />
+					<param name="access_token" type="xsd:string" style="query" required="false" />
+					<param name="prettyPrint" type="xsd:boolean" style="query" default="true" required="false" />
+					<param name="userIp" type="xsd:string" style="query" required="false" />
+				</request>
+			</method>
+		</resource>
+
+		<resource path="adclients/{adClientId}/adunits">
+			<method id="adsense.adunits.list" name="GET" apigee:displayName="List Ad Units">
+				<apigee:tags>
+					<apigee:tag primary="true">Google AdSense (Management)</apigee:tag>
+				</apigee:tags>
+				
+				<apigee:authentication required="true" />
+				
+				<apigee:example url="adclients/{adClientId}/adunits" />
+
+				<doc apigee:url="http://code.google.com/intl/en/apis/adsense/management/v1/reference.html#method_adsense_adunits_list">
+					<![CDATA[List all ad units in this AdSense account.]]>
+				</doc>
+
+				<request>
+					<param name="adClientId" type="xsd:string" style="template" required="true" />
+					<param name="includeInactive" type="xsd:boolean" style="query" default="true" required="false" />
+					<param name="maxResults" type="xsd:string" style="query" default="10000" required="false" />
+					<param name="pageToken" type="xsd:string" style="query" required="false" />
+
+					<param name="callback" type="xsd:string" style="query" required="false" />
+					<param name="fields" type="xsd:string" style="query" required="false" />
+					<param name="access_token" type="xsd:string" style="query" required="false" />
+					<param name="prettyPrint" type="xsd:boolean" style="query" default="true" required="false" />
+					<param name="userIp" type="xsd:string" style="query" required="false" />
+				</request>
+			</method>
+		</resource>
+	
+	</resources>
+</application>
